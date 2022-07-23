@@ -3,3 +3,8 @@ one:
   email: one@examples.com
   encrypted_password: <%= BCrypt::Password.create('password')%>
   remember_token: <%= Clearance::Token.new %>
+
+two:
+  email: two@examples.com
+  encrypted_password: <%= BCrypt::Password.create('password')%>
+  remember_token: <%= Clearance::Token.new %>
