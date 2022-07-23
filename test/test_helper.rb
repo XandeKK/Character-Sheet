@@ -21,4 +21,16 @@ class ActiveSupport::TestCase
 
     assert_response :redirect
   end
+
+  def sign_up_with_other_user
+    user = users(:two)
+    post session_url, params: {
+      session: {
+        email: user.email,
+        password: 'password'
+      }
+    }
+
+    assert_response :redirect
+  end
 end
