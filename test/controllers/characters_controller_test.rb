@@ -60,7 +60,8 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
       post characters_path, params: {
         character: {
           name: "Pikachu",
-          statistic: {}
+          statistic: {},
+          character_category_id: character_categories(:one).id
         }
       }
     end

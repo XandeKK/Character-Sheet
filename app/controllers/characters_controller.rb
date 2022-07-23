@@ -46,7 +46,7 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :statistic)
+    params.require(:character).permit(:name, :statistic, :character_category_id)
   end
 
   def redirect_if_empty

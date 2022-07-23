@@ -5,7 +5,8 @@ class CharacterTest < ActiveSupport::TestCase
     @character = Character.new(
       name: "Feel",
       statistic: {},
-      user: users(:one)
+      user: users(:one),
+      character_category: character_categories(:one)
     )
   end
 

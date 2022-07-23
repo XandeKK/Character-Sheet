@@ -4,8 +4,10 @@ one:
   name: Percy Jackson
   statistic: {}
   user: one
+  character_category: one
 
 two:
   name: Annabeth
   statistic: {}
   user: two
+  character_category: three
