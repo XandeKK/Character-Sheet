@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   
   get 'gm', to: 'gm#index'
   get 'npcs', to: 'npcs#index'
+  get 'enemies', to: 'enemies#index'
 end
