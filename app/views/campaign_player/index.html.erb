@@ -1,2 +1,15 @@
-<h1>CampaignPlayer#index</h1>
-<p>Find me in app/views/campaign_player/index.html.erb</p>
+<h1>CampaignPlayer</h1>
+
+<%= form_with do |form| %>
+	<%= form.label :name_server %>
+	<%= form.text_field :name_server %>
+
+	<%= form.label "Password", :password %>
+	<%= form.text_field :password %>
+
+	<%= form.label :character %>
+	<%= form.select :character, @characters.map { |ca| [ca.name, ca.id]}, {}, class: "form-control" %>
+
+	<%= form.submit "Connect Server" %>
+<% end %>
+

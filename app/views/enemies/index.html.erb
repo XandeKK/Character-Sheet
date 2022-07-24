@@ -1,2 +1,19 @@
-<h1>Enemies#index</h1>
-<p>Find me in app/views/enemies/index.html.erb</p>
+<h1>Enemy</h1>
+<br>
+
+<% if @enemies.empty? %>
+	<h3>Has no enemy.</h3>
+<% else %>
+	<ul>
+		<% @enemies.each do |enemy|  %>
+			<li>
+				<%= link_to enemy.name, character_path(enemy) %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+
+<br>
+
+<%= link_to "New", new_character_path %>
+

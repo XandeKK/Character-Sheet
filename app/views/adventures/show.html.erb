@@ -1,2 +1,38 @@
-<h1>Adventures#show</h1>
-<p>Find me in app/views/adventures/show.html.erb</p>
+<h1><%= @adventure.name %></h1>
+
+<%= form_with do |form| %>
+	<%= form.label "Server's name:" %>
+	<%= form.label @adventure.unique_name %><br>
+
+	<%= form.label "Password", :password %>
+	<%= form.text_field :password, value: @adventure.password %>
+
+	<%= form.submit "Start Server" %>
+<% end %>
+
+<hr>
+<h3>Npcs</h3>
+<ul>
+	<% @npcs.each do |npc| %>
+		<li>
+			<%= link_to npc.name, character_path(npc) %>
+		</li>
+	<% end%>
+</ul>
+
+Add npc
+
+<hr>
+<h3>Enemies</h3>
+<ul>
+	<% @enemies.each do |enemy| %>
+		<li>
+			<%= link_to enemy.name, character_path(enemy) %>
+		</li>
+	<% end%>
+</ul>
+
+Add Enemy
+
+<hr>
+<h3>Players</h3>

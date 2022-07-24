@@ -3,6 +3,8 @@ class CharactersController < ApplicationController
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
 
   def index
+    @player = CharacterCategory.find_by_name("Player")
+    @characters = Character.where(user: current_user, character_category: @player)
   end
 
   def show
@@ -10,6 +12,7 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
+    @character_categories = CharacterCategory.all
   end
 
   def create
@@ -20,6 +23,7 @@ class CharactersController < ApplicationController
     if @character.save
       redirect_to character_path(@character), notice: "Character created successfully"
     else
+      @character_categories = CharacterCategory.all
       render :new, status: :unprocessable_entity
     end
   end

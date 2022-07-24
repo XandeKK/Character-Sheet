@@ -1,2 +1,19 @@
-<h1>Adventures#index</h1>
-<p>Find me in app/views/adventures/index.html.erb</p>
+<h1>Adventures</h1>
+<br>
+
+<% if @adventures.empty? %>
+	<h3>Has no adventure.</h3>
+<% else %>
+	<ul>
+		<% @adventures.each do |adventure|  %>
+			<li>
+				<%= link_to adventure.name, adventure_path(adventure) %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+
+<br>
+
+<%= link_to "New", new_adventure_path %>
+
