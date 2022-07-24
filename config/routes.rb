@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   resources :characters
   get 'player', to: 'player#index'
+  get 'gm', to: 'gm#index'
 end
