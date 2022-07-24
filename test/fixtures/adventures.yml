@@ -3,13 +3,13 @@
 one:
   name: MyString
   password: MyString
-  unique_name: MyString
+  unique_name: <%= SecureRandom.hex(4) %>
   online: false
   user: one
 
 two:
   name: MyString
   password: MyString
-  unique_name: MyString
+  unique_name: <%= SecureRandom.hex(4) %>
   online: false
   user: two

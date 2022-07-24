@@ -39,7 +39,7 @@ class CharactersController < ApplicationController
     if @character.destroy
       redirect_to characters_path, notice: "Character successfully deleted"
     else
-
+      redirect_to characters_path, alert: "Could not delete."
     end
   end
 
