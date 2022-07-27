@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center"> 
-	🚧  Character Sheet 🎲 In progress... 🚧
+	🚧  Character Sheet 🎲 Gave up... 🚧
 </h4>
 
 <p align="center">
@@ -24,10 +24,10 @@ For the moment, I will do, for now, for the pathfinder system.
 
 ## ⚙️ Features
 
-- [ ] Login/Signup with Email
-- [ ] Forgot password
-- [ ] Change password
-- [ ] Create a character
+- [X] Login/Signup with Email
+- [X] Forgot password
+- [X] Change password
+- [X] Create a character
 - [ ] A screen to show the map
 - [ ] Send dice to screen, using [3D Dice](https://github.com/3d-dice/dice-box)
 - [ ] Send characters' info to GM
@@ -40,24 +40,7 @@ For the moment, I will do, for now, for the pathfinder system.
 The following tools were used in building the project:
 
 -   **[Ruby on rails](https://rubyonrails.org/)**
--   **[Bootstrap](https://getbootstrap.com/)**
 -   **[Postgresql](https://www.postgresql.org/)**
--   **[Postgis](https://postgis.net/)**
--   **[Dice 3D Box](https://github.com/3d-dice/dice-box)**
--   **[AwesomeSweet](https://github.com/zombieFox/awesomeSheet)** I used the design
--   **[Dice Roller](https://github.com/zombieFox/diceRoller)** I used the design
-
-## Author
-
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/80427458?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Alexandre Alves</b></sub>
- <br />
-
-[![Twitter Badge](https://img.shields.io/badge/-@art_xande-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/art_xande)](https://twitter.com/art_xande) [![Linkedin Badge](https://img.shields.io/badge/-Alexandre-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/alexandre-dos-santos-alves-707921206/)](https://www.linkedin.com/in/alexandre-dos-santos-alves-707921206/) 
-[![Gmail Badge](https://img.shields.io/badge/-alexandre.dosa@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:alexandre.dosa@gmail.com)](mailto:alexandre.dosa@gmail.com)
-
----
 
 ## 📝 License
 
