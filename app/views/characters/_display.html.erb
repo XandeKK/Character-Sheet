@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "character" do %>
+	<p>Name: <%= character.name %></p>
+	<p>Character category: <%= character.character_category.name %></p>
+	<%= @character.statistic %>
+	<%= button_to "edit", edit_character_path(character) %>
+<% end %>

@@ -10,14 +10,18 @@ class CharactersController < ApplicationController
   def show
   end
 
-  def new
-    @character = Character.new
+  def edit
     @character_categories = CharacterCategory.all
+    render partial: "edit", locals: { character: @character }
   end
 
   def create
-    @character = Character.new(character_params)
+    player = CharacterCategory.find_by_name("Player")
+    @character = Character.new
 
+    @character.name = "undefined"
+    @character.statistic = '{"name": "undefined"}'
+    @character.character_category = player
     @character.user = current_user
 
     if @character.save
@@ -28,14 +32,14 @@ class CharactersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @character.update(character_params)
-      redirect_to character_path(@character), notice: "Character successfully updated"
+      flash[:notice] = "Character successfully updated"
+      render partial: "display", locals: { character: @character }
+      # redirect_to character_path(@character)
     else
-      render :edit, status: :unprocessable_entity
+      @character_categories = CharacterCategory.all
+      render partial: 'edit', locals: { character: @character } , status: :unprocessable_entity
     end
   end
 
