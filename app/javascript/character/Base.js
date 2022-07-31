@@ -102,6 +102,7 @@ class BaseUI {
 		let div_parent = document.getElementById(id)
 
 		button.innerText = "-";
+		button.className = "delete_button";
 		button.setAttribute("action", id);
 		button.addEventListener("click", this.eventDelete);
 
@@ -146,5 +147,47 @@ class BaseUI {
 		array.splice(path[2], 1);
 
 		div.remove();
+		base.sortArray(path[1]);
+	}
+
+	sortArray(parent) {
+		let div_parent = document.getElementById(parent);
+		let array_div = div_parent.childNodes
+		let cont = 0;
+		array_div = Array.from(array_div)
+
+		for (var i = 0; i < array_div.length; i++) {
+			if (document.getElementById(array_div[i].id) === null) {continue;}
+			
+			this.renamingIdAndAction(array_div[i], cont);
+			this.renamingInput(array_div[i], cont);
+
+			cont++
+		}
+	}
+
+	renamingIdAndAction(div, number) {
+		let id = div.id;
+		let split_id = id.split("_");
+
+		split_id[2] = number;
+		id = split_id.join("_");
+		div.id = id;
+
+		let deleteButton = div.getElementsByClassName("delete_button")[0];
+		deleteButton.setAttribute("action", id);
+	}
+
+	renamingInput(div, number) {
+		let array_input = div.getElementsByClassName("character");
+		for (var i = 0; i < array_input.length; i++) {
+		
+			let id = array_input[i].id;
+			let split_id = id.split("_");
+
+			split_id[2] = number;
+			id = split_id.join("_");
+			array_input[i].id = id;
+		}
 	}
 };
