@@ -53,7 +53,6 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_response :success
-    assert_equal "Character successfully updated", flash[:notice]
   end
 
   test "should not update character which does not belong to the user" do

@@ -1,4 +1,10 @@
 <%= render partial: "display", locals: { character: @character } %>
 <%= button_to "Delete", character_path(@character), method: :delete %>
 
+<%= javascript_include_tag "character/Base" %>
+<%= javascript_include_tag "character/CharacterUI" %>
+<%= javascript_include_tag "character/main" %>
+
+<script>
+	const main_json = <%= raw @character.statistic %>
 </script>

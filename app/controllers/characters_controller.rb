@@ -16,27 +16,21 @@ class CharactersController < ApplicationController
   end
 
   def create
-    player = CharacterCategory.find_by_name("Player")
     @character = Character.new
 
-    @character.name = "undefined"
-    @character.statistic = '{"name": "undefined"}'
-    @character.character_category = player
-    @character.user = current_user
-
-    if @character.save
+    if @character.create_character current_user
       redirect_to character_path(@character), notice: "Character created successfully"
     else
-      @character_categories = CharacterCategory.all
-      render :new, status: :unprocessable_entity
+      @player = CharacterCategory.find_by_name("Player")
+      @characters = Character.where(user: current_user, character_category: @player)
+
+      render :index, status: :unprocessable_entity
     end
   end
 
   def update
     if @character.update(character_params)
-      flash[:notice] = "Character successfully updated"
       render partial: "display", locals: { character: @character }
-      # redirect_to character_path(@character)
     else
       @character_categories = CharacterCategory.all
       render partial: 'edit', locals: { character: @character } , status: :unprocessable_entity

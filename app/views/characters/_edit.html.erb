@@ -4,17 +4,11 @@
 		<%= form.label :character_category_id %>
 		<%= form.select :character_category_id, @character_categories.map { |ca| [ca.name, ca.id]}, {} %><br>
 
-		<hr>
-
+		<%= form.hidden_field :name %> <!-- Get it in json character -->
 		<%= form.hidden_field :statistic %><br>
 
 		<div id="button">Display</div>
 		<%= form.submit "Display", id: "submit", style: "display: none"%>
 	<% end%>
-
-	<script>
-		button.addEventListener("click", function(e) {
-			// submit.click();
-		})
-	</script>
+	<%= javascript_include_tag "character/edit" %>
 <% end %>
