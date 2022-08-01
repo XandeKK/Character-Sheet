@@ -13,12 +13,10 @@ function saveJson(event) {
 
 	character_statistic.value = JSON.stringify(main_json);
 	setInputName();
-
-	submit.click();
 }
 
 // Save json
-button.addEventListener("click", saveJson);
+submit.addEventListener("click", saveJson);
 
 // Disabling enter key for form
 document.addEventListener('keypress', function (e) {
@@ -32,9 +30,45 @@ function setInputName() {
 	character_name.value = main_json["character"]["details"]["name"];
 }
 
+base.createCardTab("basics", "Basics",[
+	{"id": "details", "name": "Details"},
+	{"id": "perception", "name": "Perception"},
+	{"id": "speed", "name": "Speed"},
+	{"id": "languages", "name": "Languages"},
+]);
+
+base.createCardTab("statistics", "Statistics", [
+	{"id": "ability", "name": "Ability"},
+	{"id": "savingThrows", "name": "Saving Throws"},
+	{"id": "classDc", "name": "Class DC"},
+]);
+
+base.createCardTab("defense", "Defense", [
+	{"id": "hitPoints", "name": "HP"},
+	{"id": "armorClass", "name": "AC"},
+]);
+
+base.createCardTab("offense", "Offense", [
+	{"id": "meleeStrikes", "name": "Melee Strikes"},
+	{"id": "rangedStrikes", "name": "Ranged Strikes"},
+	{"id": "weaponProficiencies", "name": "Weapon Proficiencies"},
+]);
+
+base.createCardTab("skills", "Skills", [
+	{"id": "skills", "name": "Skills"},
+	{"id": "skillFeats", "name": "Skill Feats"},
+	{"id": "ancestryFeatsAndAbilities", "name": "Ancestry Feats"},
+	{"id": "classFeatsAndAbilities", "name": "Class Feats"},
+	{"id": "generalFeats", "name": "General Feats"},
+	{"id": "bonusFeats", "name": "Bonus Feats"},
+]);
+
+base.createCardTab("inventory", "Inventory", [
+	{"id": "inventory", "name": "Inventory"},
+	{"id": "money", "name": "Money"}
+]);
+
 // Details
-base.createDiv("details", "form");
-base.createTitle("Details", "details");
 base.createInput("Name", "name", "details", "text");
 base.createInput("Class Name", "className", "details", "text");
 base.createInput("Ancestry", "ancestry", "details", "text");
@@ -47,8 +81,6 @@ base.createInput("Traits", "traits", "details", "text");
 base.createInput("Experience Points", "experiencePoints", "details", "number");
 
 // Hit Points
-base.createDiv("hitPoints", "form");
-base.createTitle("Hit Points", "hitPoints");
 base.createInput("Max Hp", "maxHp", "hitPoints", "number");
 base.createInput("Current Hp", "currentHp", "hitPoints", "number");
 base.createInput("Temporary", "temporary", "hitPoints", "number");
@@ -58,8 +90,6 @@ base.createInput("Dying", "dying", "hitPoints", "text");
 base.createInput("Wounded", "wounded", "hitPoints", "text");
 
 // Ability
-base.createDiv("ability", "form");
-base.createTitle("Ability", "ability");
 base.createInput("Strength", "strength", "ability", "number");
 base.createInput("Dexterity", "dexterity", "ability", "number");
 base.createInput("Constitution", "constitution", "ability", "number");
@@ -69,8 +99,6 @@ base.createInput("Charisma", "charisma", "ability", "number");
 
 
 // Armor Class
-base.createDiv("armorClass", "form");
-base.createTitle("Armor Class", "armorClass");
 base.createInput("Capable", "capable", "armorClass", "number");
 characterUI.createSelectProficiency("Armor Class", "proficiency", "armorClass")
 
@@ -87,41 +115,32 @@ base.createInput("Current Hp", "currentHp", "armorClass", "number");
 
 // Class Dc
 
-base.createDiv("classDc", "form");
-base.createTitle("Class Dc", "classDc");
 characterUI.createSelectAbility("Key Ability", "keyAbility", "classDc")
 base.createInput("Item", "item", "classDc", "number");
 characterUI.createSelectProficiency("Proficiency", "proficiency", "classDc")
 
 // Perception
-base.createDiv("perception", "form");
-base.createTitle("Perception", "perception");
+
 base.createInput("Item", "item", "perception", "number");
-base.createTextArea("Senses", "senses", "perception");
 characterUI.createSelectProficiency("Perception", "proficiency", "perception")
+base.createTextArea("Senses", "senses", "perception");
 
 // Speed
-base.createDiv("speed", "form");
-base.createTitle("Speed", "speed");
 base.createInput("Feet", "feet", "speed", "number"); 
 base.createTextArea("Movement Types", "movementTypes", "speed");
 base.createTextArea("Notes", "notes", "speed");
 
 // Saving Throws
-base.createDiv("savingThrows", "form");
-base.createTitle("Saving Throws", "savingThrows");
 characterUI.createSelectProficiency("Fortitude", "fortitude", "savingThrows")
 characterUI.createSelectProficiency("Will", "will", "savingThrows")
 characterUI.createSelectProficiency("Reflex", "reflex", "savingThrows")
 
 // Skills
-base.createDiv("skills", "form");
-base.createTitle("Skills", "skills");
 
 var skills = main_json['character']['skills'];
 for (let i = 0; i < skills.length; i++) {
 	let id = "character_skills_" + i;
-	base.createDiv(id, "skills");
+	base.createDiv(id, "skills", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 
 	base.createInput("Name", "name", id, "text"); 
 	
@@ -134,65 +153,55 @@ for (let i = 0; i < skills.length; i++) {
 }
 
 // Melee Strikes Weapon
-base.createDiv("meleeStrikes", "form");
-base.createTitle("Melee Strikes", "meleeStrikes");
+base.addCreateButton("Melee Strikes", "meleeStrikes");
 
 var meleeStrikes = main_json['character']['meleeStrikes'];
 for (let i = 0; i < meleeStrikes.length; i++) {
 	let id = "character_meleeStrikes_" + i;
-	base.createDiv(id, "meleeStrikes");
+	base.createDiv(id, "meleeStrikes", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	characterUI.createWeapon(false, "meleeStrikes", id);
 }
-base.addCreateButton("Melee Strikes", "meleeStrikes");
 
 // Ranged Strikes Weapon
-base.createDiv("rangedStrikes", "form");
-base.createTitle("Ranged Strikes", "rangedStrikes");
+base.addCreateButton("Ranged Strikes", "rangedStrikes");
 
 var rangedStrikes = main_json['character']['rangedStrikes'];
 for (let i = 0; i < rangedStrikes.length; i++) {
 	let id = "character_rangedStrikes_" + i;
-	base.createDiv(id, "rangedStrikes");
+	base.createDiv(id, "rangedStrikes", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	characterUI.createWeapon(false, "rangedStrikes", id)
 }
-base.addCreateButton("Ranged Strikes", "rangedStrikes");
 
 // Languages
-base.createDiv("languages", "form");
-base.createTitle("Languages", "languages");
+base.addCreateButton("Languages", "languages");
 
 var languages = main_json['character']['languages'];
 for (let i = 0; i < languages.length; i++) {
 	let id = "character_languages_" + i;
-	base.createDiv(id, "languages");
+	base.createDiv(id, "languages", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	characterUI.createLanguages(false, id)
 }
-base.addCreateButton("Languages", "languages");
 
 // Weapon Proficiencies
-base.createDiv("weaponProficiencies", "form");
-base.createTitle("Weapon Proficiencies", "weaponProficiencies");
 
 var weaponProficiencies = main_json['character']['weaponProficiencies'];
 for (let i = 0; i < weaponProficiencies.length; i++) {
 	let id = "character_weaponProficiencies_" + i;
-	base.createDiv(id, "weaponProficiencies");
+	base.createDiv(id, "weaponProficiencies", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	base.createInput("Name", "name", id, "text"); 
 	characterUI.createSelectProficiency("Proficiency", "proficiency", id)
 }
 
 // Ancestry Feats And Abilities
-base.createDiv("ancestryFeatsAndAbilities", "form");
-base.createTitle("Ancestry Feats and Abilities", "ancestryFeatsAndAbilities");
 
 var ancestryFeatsAndAbilities = main_json['character']['ancestryFeatsAndAbilities'];
 for (let i = 0; i < ancestryFeatsAndAbilities.length; i++) {
 	let id = "character_ancestryFeatsAndAbilities_" + i;
-	base.createDiv(id, "ancestryFeatsAndAbilities");
+	base.createDiv(id, "ancestryFeatsAndAbilities", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	base.createInput("Level", "level", id, "text"); 
 	base.createInput("Name", "name", id, "text"); 
@@ -200,13 +209,11 @@ for (let i = 0; i < ancestryFeatsAndAbilities.length; i++) {
 }
 
 // Skill Feats
-base.createDiv("skillFeats", "form");
-base.createTitle("Skill Feats", "skillFeats");
 
 var skillFeats = main_json['character']['skillFeats'];
 for (let i = 0; i < skillFeats.length; i++) {
 	let id = "character_skillFeats_" + i;
-	base.createDiv(id, "skillFeats");
+	base.createDiv(id, "skillFeats", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	base.createInput("Level", "level", id, "text"); 
 	base.createInput("Name", "name", id, "text"); 
@@ -214,13 +221,11 @@ for (let i = 0; i < skillFeats.length; i++) {
 }
 
 // Class Feats And Abilities
-base.createDiv("classFeatsAndAbilities", "form");
-base.createTitle("Class Feats and Abilities", "classFeatsAndAbilities");
 
 var classFeatsAndAbilities = main_json['character']['classFeatsAndAbilities'];
 for (let i = 0; i < classFeatsAndAbilities.length; i++) {
 	let id = "character_classFeatsAndAbilities_" + i;
-	base.createDiv(id, "classFeatsAndAbilities");
+	base.createDiv(id, "classFeatsAndAbilities", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	base.createInput("Level", "level", id, "text"); 
 	base.createInput("Name", "name", id, "text"); 
@@ -228,13 +233,11 @@ for (let i = 0; i < classFeatsAndAbilities.length; i++) {
 }
 
 // General Feats
-base.createDiv("generalFeats", "form");
-base.createTitle("General Feats", "generalFeats");
 
 var generalFeats = main_json['character']['generalFeats'];
 for (let i = 0; i < generalFeats.length; i++) {
 	let id = "character_generalFeats_" + i;
-	base.createDiv(id, "generalFeats");
+	base.createDiv(id, "generalFeats", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	base.createInput("Level", "level", id, "text"); 
 	base.createInput("Name", "name", id, "text"); 
@@ -242,34 +245,28 @@ for (let i = 0; i < generalFeats.length; i++) {
 }
 
 // Bonus Feats
-base.createDiv("bonusFeats", "form");
-base.createTitle("Bonus Feats", "bonusFeats");
+base.addCreateButton("Bonus Feats", "bonusFeats");
 
 var bonusFeats = main_json['character']['bonusFeats'];
 for (let i = 0; i < bonusFeats.length; i++) {
 	let id = "character_bonusFeats_" + i;
-	base.createDiv(id, "bonusFeats");
+	base.createDiv(id, "bonusFeats", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
 	characterUI.createBonusFeats(false, id)
 }
-base.addCreateButton("Bonus Feats", "bonusFeats");
 
 // Inventory
-base.createDiv("inventory", "form");
-base.createTitle("Inventory", "inventory");
+base.addCreateButton("Inventory", "inventory");
 
 var inventory = main_json['character']['inventory'];
 for (let i = 0; i < inventory.length; i++) {
 	let id = "character_inventory_" + i;
-	base.createDiv(id, "inventory");
+	base.createDiv(id, "inventory", "row gx-3 gy-2 align-items-center mb-3 pb-3");
 
 	characterUI.createInventory(false, id)
 }
-base.addCreateButton("Inventory", "inventory");
 
 // Money
-base.createDiv("money", "form");
-base.createTitle("Money", "money");
 
 base.createInput("pp", "pp", "money", "number"); 
 base.createInput("gp", "gp", "money", "number"); 

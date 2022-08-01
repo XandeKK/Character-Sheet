@@ -12,7 +12,6 @@ class CharactersController < ApplicationController
 
   def edit
     @character_categories = CharacterCategory.all
-    render partial: "edit", locals: { character: @character }
   end
 
   def create
@@ -30,16 +29,23 @@ class CharactersController < ApplicationController
 
   def update
     if @character.update(character_params)
-      render partial: "display", locals: { character: @character }
+      redirect_to character_path(@character), notice: "Character successfully updated"
     else
       @character_categories = CharacterCategory.all
-      render partial: 'edit', locals: { character: @character } , status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    category = @character.character_category.name
     if @character.destroy
-      redirect_to characters_path, notice: "Character successfully deleted"
+      if category == "Player"
+        redirect_to characters_path, notice: "Character successfully deleted"
+      elsif category == "Npc"
+        redirect_to npcs_path, notice: "Character successfully deleted"
+      else
+        redirect_to enemies_path, notice: "Character successfully deleted"
+      end
     else
       redirect_to characters_path, alert: "Could not delete."
     end

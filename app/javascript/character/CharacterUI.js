@@ -73,6 +73,8 @@ class CharacterUI {
 
 		base.createInput("Name", "name", parent, "text");
 		base.createTextArea("Notes", "notes", parent);
+
+		base.addDeleteButton(parent);
 	}
 
 	createBonusFeats(isNew, parent) {

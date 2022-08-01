@@ -1,0 +1,25 @@
+<%= javascript_include_tag "character/Base" %>
+<%= javascript_include_tag "character/CharacterUI" %>
+<%= javascript_include_tag "character/main" %>
+
+<script>
+	let main_json = <%= raw @character.statistic %>
+</script>
+
+
+<div class="text-end">
+	<%= button_to "Delete", character_path(@character), method: :delete, class: "btn btn-danger" %>
+</div>
+<%= form_with model: @character, url: character_path(@character), id: "form", data: {turbo: false} do |form| %>
+	
+	<div>
+		<%= form.label :character_category_id, class: "form-label" %>
+		<%= form.select :character_category_id, @character_categories.map { |ca| [ca.name, ca.id]}, {}, class: "form-select" %>
+	</div>
+
+	<%= form.hidden_field :name %>
+	<%= form.hidden_field :statistic %>
+
+	<%= form.submit "Display", id: "submit", class: "btn btn-success position-fixed bottom-0 end-0 m-4", style: "z-index: 99;" %>
+<% end%>
+<%= javascript_include_tag "character/edit" %>

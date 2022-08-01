@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :characters, except: [:new, :edit]
-  post 'edit/character/:id', to: 'characters#edit', as: 'edit_character'
+  resources :characters, except: [:new]
   
   get 'player', to: 'player#index'
   get 'player/campaigns_player', to: 'campaign_player#index', as: 'campaigns_player'
