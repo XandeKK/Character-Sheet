@@ -39,13 +39,13 @@ base.createCardTab("basics", "Basics",[
 
 base.createCardTab("statistics", "Statistics", [
 	{"id": "ability", "name": "Ability"},
-	{"id": "savingThrows", "name": "Saving Throws"},
 	{"id": "classDc", "name": "Class DC"},
 ]);
 
 base.createCardTab("defense", "Defense", [
 	{"id": "hitPoints", "name": "HP"},
 	{"id": "armorClass", "name": "AC"},
+	{"id": "savingThrows", "name": "Saving Throws"},
 ]);
 
 base.createCardTab("offense", "Offense", [

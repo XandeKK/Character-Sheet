@@ -42,6 +42,7 @@
       "maxHp": 0,
       "brokenThreshold": 0,
       "currentHp": 0
+      // Add item
     },
     "classDc": {
       "keyAbility": "",

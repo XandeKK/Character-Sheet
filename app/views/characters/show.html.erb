@@ -1,9 +1,5 @@
-
 <div class="text-end">
 	<%= button_to "Delete", character_path(@character), method: :delete, class: "btn btn-danger" %>
 </div>
-<%= render partial: "display", locals: { character: @character } %>
 
-<script>
-	let main_json = <%= raw @character.statistic %>
-</script>
+<%= render partial: "display", locals: { character: @character } %>
