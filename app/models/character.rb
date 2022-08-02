@@ -15,8 +15,8 @@ class Character < ApplicationRecord
     end
   end
 
-  def create_character current_user
-    player = CharacterCategory.find_by_name("Player")
+  def create_character current_user, category
+    player = CharacterCategory.find_by_name(category)
 
     self.name = "undefined"
     character_json = File.read("#{Rails.root}/app/models/json/character.json")

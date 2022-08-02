@@ -16,8 +16,9 @@ class CharactersController < ApplicationController
 
   def create
     @character = Character.new
+    category = params[:category]
 
-    if @character.create_character current_user
+    if @character.create_character current_user, category
       redirect_to character_path(@character), notice: "Character created successfully"
     else
       @player = CharacterCategory.find_by_name("Player")
