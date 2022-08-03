@@ -109,6 +109,7 @@ base.createInput("Hardness", "hardness", "armorClass", "number");
 base.createInput("Max Hp", "maxHp", "armorClass", "number");
 base.createInput("Broken Threshold", "brokenThreshold", "armorClass", "number");
 base.createInput("Current Hp", "currentHp", "armorClass", "number");
+base.createInput("Item", "item", "armorClass", "number");
 
 // Class Dc
 

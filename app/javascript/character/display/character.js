@@ -17,10 +17,10 @@ class Character {
 	}
 
 	getAC() {
-		let item = main_json.character.armorClass.item;
-		let proficiency = main_json.character.armorClass.proficiency;
-		let capable = main_json.character.armorClass.capable;
-		let dexterity = this.getAbilityModifier("dexterity");
+		let item = parseInt(main_json.character.armorClass.item);
+		let proficiency = parseInt(main_json.character.armorClass.proficiency);
+		let capable = parseInt(main_json.character.armorClass.capable);
+		let dexterity = parseInt(this.getAbilityModifier("dexterity"));
 
 		if (capable <= dexterity) {dexterity = capable}
 
