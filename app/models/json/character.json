@@ -18,9 +18,6 @@
       "currentHp": 0,
       "temporary": 0,
       "resistancesAndImmunities": "",
-      "conditions": "",
-      "dying": "",
-      "wounded": ""
     },
     "ability": {
       "strength": 0,
@@ -229,7 +226,7 @@
     "rangedStrikes": [
       // {
       //   "weapon": "",
-      //   "weaponDexterity": "",
+      //   "weaponDexterity": 0,
       //   "proficiency": 0,
       //   "item": 0,
         
@@ -239,6 +236,7 @@
       //   "weaponSpecialization": "",
       //   "traits": "",
       //   "other": "",
+      //   "range": "",
       //   "notes": ""
       // }
     ],
@@ -508,6 +506,7 @@
     "inventory": [
       // {
       //   "name": "",
+      //   "amount": 0,
       //   "bulk": 0,
       //   "notes": ""
       // }

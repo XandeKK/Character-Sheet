@@ -1,7 +1,22 @@
 <%= link_to "edit", edit_character_path(character), class: "btn btn-primary position-fixed bottom-0 end-0 m-4", style: "z-index: 99;", data: {turbo: false} %>
 
-<% character_json = JSON.parse character.statistic %>
-<% character_json = character_json["character"] %>
+<%= render partial: "characters/offcanvas" %>
+
+<%
+  character_json = JSON.parse character.statistic
+  character_json = character_json["character"]
+%>
+
+<%
+  # Eu não sei como que vou refatorar isso.
+  def attackRoll weapon
+    modifier = weapon["weaponStrength"].to_i || weapon["weaponDexterity"].to_i
+    proficiency = weapon["proficiency"].to_i
+    item = weapon["item"].to_i
+    attack = modifier + proficiency + item
+    return attack
+  end
+%>
 
 <div class="card my-5">
   <div class="card-header">
@@ -9,22 +24,22 @@
   </div>
   <div class="card-body">
     <div id="introduce">
-      <h1 id="characterName">Percy Jackson</h1>
-      <h3 id="classAndLevel">Warrior 3</h3>
+      <h1 id="characterName">...</h1>
+      <h3 id="classAndLevel">...</h3>
       <div class="row text-center">
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Iniciative</span>
-          <span class="col" id="perception">+3</span>
+          <span class="col" id="perception">...</span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Speed</span>
-          <span class="col" id="speed">30ft</span>
+          <span class="col" id="speed">...</span>
         </p>
       </div>
       <div class="row justify-content-center">
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Size</span>
-          <span class="col ms-2" id="size">Medium</span>
+          <span class="col ms-2" id="size">...</span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Ancestry</span>
@@ -45,11 +60,11 @@
         <p class="col row">
 
           <span class="col-12 fw-semibold text-danger">Hero Points</span>
-          <span class="col ms-2" id="heroPoints">1</span>
+          <span class="col ms-2" id="heroPoints">...</span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">EXP</span>
-          <span class="col ms-2" id="experiencePoints">23,000</span>
+          <span class="col ms-2" id="experiencePoints">...</span>
         </p>
       </div>
       <!-- <div>
@@ -70,37 +85,37 @@
     <div class="row text-center">
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="strength">STR 18</span>
-          <span class="col" id="strengthModifier">+4</span>
+          <span class="col-12 fw-semibold text-danger" id="strength">STR ...</span>
+          <span class="col " id="strengthModifier">...</span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="dexterity">DEX 20</span>
-          <span class="col" id="dexterityModifier">+5</span>
+          <span class="col-12 fw-semibold text-danger" id="dexterity">DEX ...</span>
+          <span class="col" id="dexterityModifier">...</span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="constitution">CON 13</span>
-          <span class="col" id="constitutionModifier">+1</span>
+          <span class="col-12 fw-semibold text-danger" id="constitution">CON ...</span>
+          <span class="col" id="constitutionModifier">...</span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="intelligence">INT 13</span>
-          <span class="col" id="intelligenceModifier">+1</span>
+          <span class="col-12 fw-semibold text-danger" id="intelligence">INT ...</span>
+          <span class="col" id="intelligenceModifier">...</span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="wisdom">WIS 10</span>
-          <span class="col" id="wisdomModifier">0</span>
+          <span class="col-12 fw-semibold text-danger" id="wisdom">WIS ...</span>
+          <span class="col" id="wisdomModifier">...</span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="charisma">CHA 10</span>
+          <span class="col-12 fw-semibold text-danger" id="charisma">CHA ...</span>
           <span class="col" id="charismaModifier">0</span>
         </p>
       </div>
@@ -108,7 +123,10 @@
     <div class="row row-cols-auto">
       <span class="col-12 fw-semibold text-danger">Languages</span>
       <div class="ms-2">
-        ...
+        <% character_json["languages"].each do |language| %>
+          <%= language["name"] %>
+          /
+        <% end %>
       </div>
     </div>
   </div>
@@ -122,15 +140,15 @@
     <div class="row">
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">HP</span>
-          <span class="col-8 ms-2" id="hp">100/200</span>
+          <span class="col-8 ms-2" id="hp">...</span>
         </p>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Temporary HP</span>
-          <span class="col-8 ms-2" id="temporary">0/0</span>
+          <span class="col-8 ms-2" id="temporary">...</span>
         </p>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">AC</span>
-          <span class="col-8 ms-2" id="ac">24</span>
+          <span class="col-8 ms-2" id="ac">...</span>
         </p>
     </div>
     <div class="row">
@@ -142,15 +160,15 @@
     <div class="row">
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Fortitude</span>
-          <span class="col-8 ms-2" id="fortitude">+2</span>
+          <span class="col-8 ms-2" id="fortitude">...</span>
         </p>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Reflex</span>
-          <span class="col-8 ms-2" id="reflex">+4</span>
+          <span class="col-8 ms-2" id="reflex">...</span>
         </p>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Will</span>
-          <span class="col-8 ms-2" id="will">+14</span>
+          <span class="col-8 ms-2" id="will">...</span>
         </p>
     </div>
   </div>
@@ -168,6 +186,10 @@
             <div class="row">
               <span class="col-12 fw-semibold text-danger">Weapon</span>
               <span class="col-9 ms-3 text-truncate"><%= melee["weapon"] %></span>
+            </div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Attack</span>
+              <span class="col-9 ms-3 text-truncate">+<%= attackRoll(melee) %></span>
             </div>
           </div>
           <div>
@@ -196,6 +218,10 @@
               <span class="col-12 fw-semibold text-danger">Weapon</span>
               <span class="col-9 ms-3 text-truncate"><%= ranged["weapon"] %></span>
             </div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Attack</span>
+              <span class="col-9 ms-3 text-truncate">+<%= attackRoll(ranged) %></span>
+            </div>
           </div>
           <div>
             <div class="col row">
@@ -205,6 +231,10 @@
             <div class="col row">
               <span class="col-12 fw-semibold text-danger">Type</span>
               <span class="col ms-3"><%= ranged["types"] %></span>
+            </div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Range</span>
+              <span class="col-9 ms-3 text-truncate"><%= ranged["range"] %>ft</span>
             </div>
           </div>
           <div class="row">

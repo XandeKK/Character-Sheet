@@ -85,9 +85,6 @@ base.createInput("Max Hp", "maxHp", "hitPoints", "number");
 base.createInput("Current Hp", "currentHp", "hitPoints", "number");
 base.createInput("Temporary", "temporary", "hitPoints", "number");
 base.createInput("Resistances and Immunities", "resistancesAndImmunities", "hitPoints", "text");
-base.createInput("Conditions", "conditions", "hitPoints", "text");
-base.createInput("Dying", "dying", "hitPoints", "text");
-base.createInput("Wounded", "wounded", "hitPoints", "text");
 
 // Ability
 base.createInput("Strength", "strength", "ability", "number");

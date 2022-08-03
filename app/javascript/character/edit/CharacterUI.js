@@ -37,12 +37,12 @@ class CharacterUI {
 			main_json['character'][type][size] = {}
 		}
 
-		base.createInput("Weapon", "type", parent, "text");
+		base.createInput("Weapon", "weapon", parent, "text");
 
 		if (type == "meleeStrikes") {
-			base.createInput("Weapon Strength", "weaponStrength", parent, "text");
+			base.createInput("Weapon Strength", "weaponStrength", parent, "number");
 		} else {
-			base.createInput("Weapon Dexterity", "weaponDexterity", parent, "text");
+			base.createInput("Weapon Dexterity", "weaponDexterity", parent, "number");
 		}
 
 		this.createSelectProficiency("Proficiency", "proficiency", parent);
@@ -55,6 +55,7 @@ class CharacterUI {
 			base.createInput("Damage Strength", "damageStrength", parent, "text");
 		} else {
 			base.createInput("Special", "special", parent, "text");
+			base.createInput("Range", "range", parent, "number");
 		}
 
 		base.createInput("Weapon Specialization", "weaponSpecialization", parent, "text");
@@ -97,6 +98,7 @@ class CharacterUI {
 
 		base.createInput("Name", "name", parent, "text");
 		base.createInput("Bulk", "bulk", parent, "number");
+		base.createInput("Amount", "amount", parent, "number");
 		base.createTextArea("Notes", "notes", parent);
 
 		base.addDeleteButton(parent);
