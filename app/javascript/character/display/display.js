@@ -42,9 +42,8 @@ class Display {
 
 		resistancesAndImmunities.innerText = main_json.character.hitPoints.resistancesAndImmunities;
 
-		// Eu esqueci do item e proficiencia no json e no edit.
-		fortitude.innerText = main_json.character.savingThrows.fortitude;
-		reflex.innerText = main_json.character.savingThrows.reflex;
-		will.innerText = main_json.character.savingThrows.will;
+		fortitude.innerText = character.getSavingThrows("fortitude", "constitution") ;
+		reflex.innerText = character.getSavingThrows("reflex", "dexterity");
+		will.innerText = character.getSavingThrows("will", "wisdom");
 	}
 }

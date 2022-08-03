@@ -35,7 +35,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     assert_difference("Character.count") do
-      post characters_path
+      post characters_path, params: { category: "Player"}
     end
 
     assert_response :redirect

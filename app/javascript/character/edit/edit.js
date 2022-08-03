@@ -130,8 +130,11 @@ base.createTextArea("Notes", "notes", "speed");
 
 // Saving Throws
 characterUI.createSelectProficiency("Fortitude", "fortitude", "savingThrows")
+base.createInput("FortitudeItem", "fortitudeItem", "savingThrows", "number"); 
 characterUI.createSelectProficiency("Will", "will", "savingThrows")
+base.createInput("Will", "willItem", "savingThrows", "number"); 
 characterUI.createSelectProficiency("Reflex", "reflex", "savingThrows")
+base.createInput("Reflex", "reflexItem", "savingThrows", "number"); 
 
 // Skills
 

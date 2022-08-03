@@ -27,4 +27,11 @@ class Character {
 		let ac = item + proficiency + dexterity;
 		return ac;
 	}
+
+	getSavingThrows(name, ability) {
+		let item = parseInt(main_json.character.savingThrows[name + "Item"]);
+		let proficiency = parseInt(main_json.character.savingThrows[name]);
+		let modifier = parseInt(this.getAbilityModifier(ability));
+		return item + proficiency + modifier
+	}
 }

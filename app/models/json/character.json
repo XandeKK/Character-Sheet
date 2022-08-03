@@ -17,7 +17,7 @@
       "maxHp": 0,
       "currentHp": 0,
       "temporary": 0,
-      "resistancesAndImmunities": "",
+      "resistancesAndImmunities": ""
     },
     "ability": {
       "strength": 0,
@@ -38,8 +38,8 @@
       "hardness": 0,
       "maxHp": 0,
       "brokenThreshold": 0,
-      "currentHp": 0
-      // Add item
+      "currentHp": 0,
+      "item": 0
     },
     "classDc": {
       "keyAbility": "",
@@ -58,8 +58,11 @@
     },
     "savingThrows": {
       "fortitude":0,
+      "fortitudeItem":0,
       "will":0,
-      "reflex":0
+      "willItem":0,
+      "reflex":0,
+      "reflexItem":0
     },
     "skills": [
       {
