@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
+  before_action :set_character, only: [:show, :edit, :update, :destroy, :update_life]
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -49,6 +49,21 @@ class CharactersController < ApplicationController
       end
     else
       redirect_to characters_path, alert: "Could not delete."
+    end
+  end
+
+  def update_life
+    currentHp = params[:currentHp]
+    temporary = params[:temporary]
+
+    statistic = JSON.parse(@character.statistic)
+    statistic["character"]["hitPoints"]["currentHp"] = currentHp
+    statistic["character"]["hitPoints"]["temporary"] = temporary
+
+    if @character.update(statistic: statistic.to_json)
+      render plain: "OK", status: :ok
+    else
+      render plain: "HMM", status: :unprocessable_entity
     end
   end
 

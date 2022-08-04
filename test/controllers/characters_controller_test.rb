@@ -91,4 +91,15 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
   end
+
+  test "should update character life" do
+    sign_up
+
+    put character_update_life_path(character), params: {
+      currentHp: '97',
+      temporary: '0'
+    }
+
+    assert_response :ok
+  end
 end

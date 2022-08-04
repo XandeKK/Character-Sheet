@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+<%
+character_json = File.read("#{Rails.root}/app/models/json/character.json")
+character_json = JSON.parse character_json %>
 one:
   name: Percy Jackson
-  statistic: {}
+  statistic: '<%= character_json.to_json %>'
   user: one
   character_category: one
 
 two:
   name: Annabeth
-  statistic: {}
+  statistic: '<%= character_json.to_json %>'
   user: two
   character_category: three

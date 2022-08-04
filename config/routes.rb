@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :characters, except: [:new]
+  put 'character/update_life/:id', to: 'characters#update_life', as: 'character_update_life'
 
   get 'gm', to: 'gm#index'
   get 'npcs', to: 'npcs#index'
