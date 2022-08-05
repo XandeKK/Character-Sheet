@@ -1,5 +1,6 @@
 class Adventure < ApplicationRecord
   belongs_to :user
+  has_many :adventure_participations, dependent: :destroy
 
   validates :name, presence: true
   validates :unique_name, presence: true, uniqueness: true
