@@ -14,6 +14,19 @@
     attack = modifier + proficiency + item
     return attack
   end
+
+  def getSkillModifier(skill, abilities)
+    item = skill["item"].to_i
+    armor = skill["armor"].to_i
+    proficiency = skill["proficiency"].to_i
+    ability = abilities[skill["ability"]].to_i
+
+    abilityModifier = (ability/2).floor - 5
+    skillModifier = item + armor + proficiency + abilityModifier
+    skillModifier = "+" + skillModifier.to_s if skillModifier > 0
+    
+    return  skillModifier
+  end
 %>
 
 <div class="card my-5">
@@ -277,7 +290,7 @@
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
               <span><%= skill["name"]%></span>
               <!-- Observação: isso não está correto, por que não sendo somado pelo item e nem modificador de habilidade -->
-              <span>+<%= skill["proficiency"]%></span>
+              <span><%= getSkillModifier(skill, character_json["ability"]) %></span>
             </li>
           <% end %>
         </ul>
