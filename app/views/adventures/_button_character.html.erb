@@ -1,0 +1,18 @@
+<div class="col-4 row mb-3">
+	<%= image_tag character.character_image, class: "rounded-circle col-12", style: "width: 200px; height: auto" if character.character_image.attached? %>
+	<span class="col-12 text-center fs-6 fw-semibold">
+		<%= character.name %>
+    </span>
+	<%= turbo_frame_tag dom_id(character, :button), class: "col text-center" do %>
+		<% if character.adventure_participations.blank? %>
+			<%= button_to "Add", create_adventure_participation_path(id: adventure), params: { adventure_participation:{ character_id: character }}, class: "btn btn-primary btn-sm" %>
+			<% next %>
+		<% end %>
+
+		<% if character.adventure_participations.first.adventure == @adventure %>
+			<%= button_to "Remove", destroy_adventure_participation_path(id: adventure, adventure_participation_id: character.adventure_participation_ids), method: :delete, class: "btn btn-primary btn-sm" %>
+		<% else %>
+			<%= button_to "Add", create_adventure_participation_path(id: adventure), params: { adventure_participation:{ character_id: character }}, class: "btn btn-primary btn-sm" %>
+		<% end %>
+	<% end %>
+</div>

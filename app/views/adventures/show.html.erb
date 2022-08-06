@@ -1,38 +1,50 @@
 <h1><%= @adventure.name %></h1>
 
-<%= form_with do |form| %>
-	<%= form.label "Server's name:" %>
-	<%= form.label @adventure.unique_name %><br>
+<button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNpc" aria-expanded="false" aria-controls="collapseNpc">Npc</button>
+<button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemy" aria-expanded="false" aria-controls="collapseEnemy">Enemy</button>
 
-	<%= form.label "Password", :password %>
-	<%= form.text_field :password, value: @adventure.password %>
+<div class="collapse" id="collapseNpc">
+  <div class="card p-2">
+    <div class="row justify-content-center" >
+    	<% @allNpcs.each do |character| %>
+    		<%= render partial: "adventures/button_character", locals: { character: character, adventure: @adventure} %>
+    	<% end %>
+    </div>
+  </div>
+</div>
+<div class="my-2"></div>
+<div class="collapse" id="collapseEnemy">
+  <div class="card p-2">
+    <div class="row justify-content-center">
+      <% @allEnemies.each do |character| %>
+        <%= render partial: "adventures/button_character", locals: { character: character, adventure: @adventure} %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-	<%= form.submit "Start Server" %>
+<%= turbo_frame_tag "Npc" do %>
+  <h3 class="border-bottom pb-2">Npc</h3>
+  <% @allNpcs.each do |character| %>
+    <% next if character.adventure_participations.blank? %>
+    <% if character.adventure_participations.first.adventure == @adventure %>
+      <%= render partial: "adventures/character", locals: {character: character} %>
+    <% end %>
+  <% end %>
 <% end %>
 
-<hr>
-<h3>Npcs</h3>
-<ul>
-	<% @npcs.each do |npc| %>
-		<li>
-			<%= link_to npc.name, character_path(npc) %>
-		</li>
-	<% end%>
-</ul>
+<div>
+  <%= turbo_frame_tag "Enemy" do %>
+  <h3 class="border-bottom pb-2">Enemy</h3>
+    <% @allEnemies.each do |character| %>
+      <% next if character.adventure_participations.blank? %>
+      <% if character.adventure_participations.first.adventure == @adventure %>
+        <%= render partial: "adventures/character", locals: {character: character} %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
 
-Add npc
-
-<hr>
-<h3>Enemies</h3>
-<ul>
-	<% @enemies.each do |enemy| %>
-		<li>
-			<%= link_to enemy.name, character_path(enemy) %>
-		</li>
-	<% end%>
-</ul>
-
-Add Enemy
-
-<hr>
-<h3>Players</h3>
+<!-- window.onbeforeunload = function(){
+  return 'Are you sure you want to leave?';
+}; -->

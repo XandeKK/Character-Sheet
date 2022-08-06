@@ -7,10 +7,10 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @npc = CharacterCategory.find_by_name("Npc")
-    @npcs = Character.where(user: current_user, character_category: @npc)
-    @enemy = CharacterCategory.find_by_name("Enemy")
-    @enemies = Character.where(user: current_user, character_category: @enemy)
+    npc = CharacterCategory.find_by_name("Npc")
+    @allNpcs = Character.where(user: current_user, character_category: npc)
+    enemy = CharacterCategory.find_by_name("Enemy")
+    @allEnemies = Character.where(user: current_user, character_category: enemy)
   end
 
   def new

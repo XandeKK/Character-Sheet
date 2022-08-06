@@ -1,0 +1,33 @@
+<%= turbo_frame_tag dom_id(character, :content) do %>
+    <div class="row mb-3 border-bottom">
+        <div class="col-md-3">
+        <%= image_tag character.character_image, class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>
+        </div>
+        <div class="col-md-8 row mb-2">
+          <div class="row col-12">
+            <span class="col fw-semibold fs-5"><%= character.name %></span>
+          </div>
+          <div class="col-12 row">
+            <span class="col-auto fw-semibold text-danger">HP</span>
+            <span class="col-auto ms-2" id="hp">0/0</span>
+          </div>
+          <div class="col mb-3">
+            <div class="input-group btn-group h-25">
+              <input type="number" class="form-control" id="inputHp" placeholder="HP" aria-label="HP">
+              <button type="button" class="btn btn-danger" id="damageBtn">-</button>
+              <button type="button" class="btn btn-success" id="healBtn">+</button>
+            </div>
+          </div>
+          <div class="col-12 row">
+            <span class="col-auto fw-semibold text-danger">Temporary HP</span>
+            <span class="col-auto ms-2" id="temporary">0</span>
+          </div>
+          <div class="col mb-3">
+            <div class="input-group btn-group h-25">
+              <input type="number" class="form-control" id="inputTemporary" placeholder="Temporary HP">
+              <button type="button" class="btn btn-success" id="temporaryBtn">+</button>
+            </div>
+          </div>        
+        </div>
+    </div>
+<% end %>
