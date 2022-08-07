@@ -1,3 +1,4 @@
+// Event
 damageBtnArray = document.querySelectorAll(".damageBtn")
 healBtnArray = document.querySelectorAll(".healBtn")
 temporaryBtnArray = document.querySelectorAll(".temporaryBtn")
@@ -14,6 +15,7 @@ for (var i = 0; i < temporaryBtnArray.length; i++) {
   temporaryBtnArray[i].addEventListener("click", addTemporaryHp)
 }
 
+// Functions
 function updateHp(id) {
   let hp = document.getElementById("hp_character_" + id);
   let temp = document.getElementById("temporary_character_" + id);
@@ -92,64 +94,3 @@ function addTemporaryHp(event) {
   updateHp(id);
   input.value = '';
 }
-
-function sendHP() {
-  let xhttp = new XMLHttpRequest();
-  let csrf = document.querySelector("[name='csrf-token']").content;
-
-  let characterList = localStorage.getItem("characterList");
-  if (characterList === '{}') {return} 
-  let list = {};
-  list["characterList"] = characterList
-  list = JSON.stringify(list)
-
-  xhttp.open("PUT", "http://10.0.0.22:3000/character/update_all_life", true);
-  xhttp.setRequestHeader('X-CSRF-Token', csrf);
-  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.send(list);
-
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      localStorage.setItem("characterList", '{}');
-    }
-  };
-}
-
-function main() {
-  setInterval(sendHP, 60000);
-}
-
-document.addEventListener("DOMContentLoaded", main);
-
-var npc = document.getElementById('Npc');
-var enemy = document.getElementById('Enemy');
-
-var observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.type === 'childList') {
-      damageBtnArray = document.querySelectorAll(".damageBtn")
-      healBtnArray = document.querySelectorAll(".healBtn")
-      temporaryBtnArray = document.querySelectorAll(".temporaryBtn")
-
-      for (var i = 0; i < damageBtnArray.length; i++) {
-        damageBtnArray[i].addEventListener("click", damageHp)
-      }
-
-      for (var i = 0; i < healBtnArray.length; i++) {
-        healBtnArray[i].addEventListener("click", healHp)
-      }
-
-      for (var i = 0; i < temporaryBtnArray.length; i++) {
-        temporaryBtnArray[i].addEventListener("click", addTemporaryHp)
-      }
-    }
-  });
-});
-
-observer.observe(npc, {
-  childList: true
-});
-
-observer.observe(enemy, {
-  childList: true
-});

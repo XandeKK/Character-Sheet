@@ -3,68 +3,40 @@
 <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNpc" aria-expanded="false" aria-controls="collapseNpc">Npc</button>
 <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemy" aria-expanded="false" aria-controls="collapseEnemy">Enemy</button>
 
-<div class="collapse" id="collapseNpc">
-  <div class="card p-2">
-    <div class="row justify-content-center" >
-    	<% @allNpcs.each do |character| %>
-    		<%= render partial: "adventures/button_character", locals: { character: character, adventure: @adventure} %>
-    	<% end %>
-    </div>
-  </div>
-</div>
+<%= render partial: "adventures/characters", locals: { characters: @allNpcs, adventure: @adventure, name: "Npc" }%>
+
 <div class="my-2"></div>
-<div class="collapse" id="collapseEnemy">
-  <div class="card p-2">
-    <div class="row justify-content-center">
-      <% @allEnemies.each do |character| %>
-        <%= render partial: "adventures/button_character", locals: { character: character, adventure: @adventure} %>
-      <% end %>
-    </div>
-  </div>
-</div>
+
+<%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure, name: "Enemy" }%>
 
 <%= turbo_frame_tag "Npc" do %>
   <h3 class="border-bottom pb-2">Npc</h3>
   <% @allNpcs.each do |character| %>
     <% next if character.adventure_participations.blank? %>
     <% if character.adventure_participations.first.adventure == @adventure %>
-      <%= render partial: "adventures/character", locals: {character: character} %>
+      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"]} %>
     <% end %>
   <% end %>
 <% end %>
 
-<div>
-  <%= turbo_frame_tag "Enemy" do %>
+<%= turbo_frame_tag "Enemy" do %>
   <h3 class="border-bottom pb-2">Enemy</h3>
-    <% @allEnemies.each do |character| %>
-      <% next if character.adventure_participations.blank? %>
-      <% if character.adventure_participations.first.adventure == @adventure %>
-        <%= render partial: "adventures/character", locals: {character: character} %>
-      <% end %>
+  <% @allEnemies.each do |character| %>
+    <% next if character.adventure_participations.blank? %>
+    <% if character.adventure_participations.first.adventure == @adventure %>
+      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"]} %>
     <% end %>
   <% end %>
-</div>
+<% end %>
 
 <script>
-  let json
-  <%
-    def getLife array, json
-      array.each do |item|
-        character_json = JSON.parse(item.statistic)["character"]
-        currentHp = character_json["hitPoints"]["currentHp"]
-        temporary = character_json["hitPoints"]["temporary"]
-        maxHp = character_json["hitPoints"]["maxHp"]
-        id = item.id
-        json.store(id, {"maxHp": maxHp, "currentHp": currentHp, "temporary": temporary})
-      end
-    end
-  %>
   json = <%= 
-    json = {}
-    getLife(@allNpcs, json)
-    getLife(@allEnemies, json)
-    raw json.to_json 
+    get_life_array(@json, @allNpcs)
+    get_life_array(@json, @allEnemies)
+    raw @json.to_json 
   %>
 </script>
 
-<%= javascript_include_tag "character/gm/main" %>
+<%= javascript_include_tag "character/gm/observe" %>
+<%= javascript_include_tag "character/life_management" %>
+<%= javascript_include_tag "character/send" %>

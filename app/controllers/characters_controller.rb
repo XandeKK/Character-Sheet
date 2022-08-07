@@ -8,6 +8,8 @@ class CharactersController < ApplicationController
   end
 
   def show
+    @character_json = JSON.parse @character.statistic
+    @character_json = @character_json["character"]
   end
 
   def edit
@@ -52,21 +54,6 @@ class CharactersController < ApplicationController
     end
   end
 
-  def update_life
-    currentHp = params[:currentHp]
-    temporary = params[:temporary]
-
-    statistic = JSON.parse(@character.statistic)
-    statistic["character"]["hitPoints"]["currentHp"] = currentHp
-    statistic["character"]["hitPoints"]["temporary"] = temporary
-
-    if @character.update(statistic: statistic.to_json)
-      render plain: "OK", status: :ok
-    else
-      render plain: "HMM", status: :unprocessable_entity
-    end
-  end
-
   def update_all_life
     characterList = JSON.parse params["characterList"]
     characterList.each do |character|
@@ -81,7 +68,6 @@ class CharactersController < ApplicationController
       @character.update!(statistic: statistic.to_json)
     end
     render plain: "OK", status: :ok
-    # render plain: "HMM", status: :unprocessable_entity
   end
 
   private

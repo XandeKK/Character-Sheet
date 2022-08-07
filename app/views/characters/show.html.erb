@@ -2,4 +2,8 @@
 	<%= button_to "Delete", character_path(@character), method: :delete, class: "btn btn-danger" %>
 </div>
 
-<%= render partial: "display", locals: { character: @character } %>
+<%= render partial: "display", locals: { character: @character, character_json: @character_json } %>
+
+<%= javascript_include_tag "character/onbeforeunload" %>
+<%= javascript_include_tag "character/life_management" %>
+<%= javascript_include_tag "character/send" %>

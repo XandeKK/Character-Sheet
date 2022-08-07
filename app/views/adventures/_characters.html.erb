@@ -1,0 +1,9 @@
+<div class="collapse" id="collapse<%= name %>">
+  <div class="card p-2">
+    <div class="row justify-content-center">
+      <% characters.each do |character| %>
+        <%= render partial: "adventures/participante_character", locals: { character: character, adventure: adventure} %>
+      <% end %>
+    </div>
+  </div>
+</div>

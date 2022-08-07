@@ -1,33 +1,33 @@
 <%= turbo_frame_tag dom_id(character, :content) do %>
-    <div class="row mb-3 border-bottom">
-        <div class="col-md-3">
-        <%= image_tag character.character_image, class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>
-        </div>
-        <div class="col-md-8 row mb-2">
-          <div class="row col-12">
-            <span class="col fw-semibold fs-5"><%= character.name %></span>
-          </div>
-          <div class="col-12 row">
-            <span class="col-auto fw-semibold text-danger">HP</span>
-            <span class="col-auto ms-2 hp" id="<%= dom_id(character, :hp) %>"><%= JSON.parse(character.statistic)["character"]["hitPoints"]["currentHp"] %>/<%= JSON.parse(character.statistic)["character"]["hitPoints"]["maxHp"] %></span>
-          </div>
-          <div class="col mb-3">
-            <div class="input-group btn-group h-25">
-              <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="HP" aria-label="HP">
-              <button type="button" class="btn btn-danger damageBtn" character_id="<%= character.id %>">-</button>
-              <button type="button" class="btn btn-success healBtn" character_id="<%= character.id %>">+</button>
-            </div>
-          </div>
-          <div class="col-12 row">
-            <span class="col-auto fw-semibold text-danger">Temporary HP</span>
-            <span class="col-auto ms-2 temporary" id="<%= dom_id(character, :temporary) %>"><%= JSON.parse(character.statistic)["character"]["hitPoints"]["temporary"] %></span>
-          </div>
-          <div class="col mb-3">
-            <div class="input-group btn-group h-25">
-              <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
-              <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
-            </div>
-          </div>        
-        </div>
+  <div class="row mb-3 border-bottom">
+    <div class="col-md-3">
+    <%= image_tag character.character_image, class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>
     </div>
+    <div class="col-md-8 row mb-2">
+      <div class="row col-12">
+        <span class="col fw-semibold fs-5"><%= character.name %></span>
+      </div>
+      <div class="col-12 row">
+        <span class="col-auto fw-semibold text-danger">HP</span>
+        <span class="col-auto ms-2 hp" id="<%= dom_id(character, :hp) %>"><%=get_current_and_max_hp character_json %></span>
+      </div>
+      <div class="col mb-3">
+        <div class="input-group btn-group h-25">
+          <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="HP" aria-label="HP">
+          <button type="button" class="btn btn-danger damageBtn" character_id="<%= character.id %>">-</button>
+          <button type="button" class="btn btn-success healBtn" character_id="<%= character.id %>">+</button>
+        </div>
+      </div>
+      <div class="col-12 row">
+        <span class="col-auto fw-semibold text-danger">Temporary HP</span>
+        <span class="col-auto ms-2 temporary" id="<%= dom_id(character, :temporary) %>"><%= get_temporary_hp character_json %></span>
+      </div>
+      <div class="col mb-3">
+        <div class="input-group btn-group h-25">
+          <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
+          <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
+        </div>
+      </div>        
+    </div>
+  </div>
 <% end %>

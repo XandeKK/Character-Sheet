@@ -11,6 +11,7 @@ class AdventuresController < ApplicationController
     @allNpcs = Character.where(user: current_user, character_category: npc)
     enemy = CharacterCategory.find_by_name("Enemy")
     @allEnemies = Character.where(user: current_user, character_category: enemy)
+    @json = {}
   end
 
   def new

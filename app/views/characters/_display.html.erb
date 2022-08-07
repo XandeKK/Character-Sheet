@@ -1,89 +1,54 @@
 <%= link_to "edit", edit_character_path(character), class: "btn btn-primary position-fixed bottom-0 end-0 m-4", style: "z-index: 99;", data: {turbo: false} %>
 
-<%
-  character_json = JSON.parse character.statistic
-  character_json = character_json["character"]
-%>
-
-<%
-  # Eu não sei como que vou refatorar isso.
-  def attackRoll weapon
-    modifier = weapon["weaponStrength"].to_i || weapon["weaponDexterity"].to_i
-    proficiency = weapon["proficiency"].to_i
-    item = weapon["item"].to_i
-    attack = modifier + proficiency + item
-    return attack
-  end
-
-  def getSkillModifier(skill, abilities)
-    item = skill["item"].to_i
-    armor = skill["armor"].to_i
-    proficiency = skill["proficiency"].to_i
-    ability = abilities[skill["ability"]].to_i
-
-    abilityModifier = (ability/2).floor - 5
-    skillModifier = item + armor + proficiency + abilityModifier
-    skillModifier = "+" + skillModifier.to_s if skillModifier > 0
-    
-    return  skillModifier
-  end
-%>
-
 <div class="card my-5">
   <div class="card-header">
     <h4>Basics</h4>
   </div>
   <div class="card-body">
     <div id="introduce">
-      <h1 id="characterName">...</h1>
-      <h3 id="classAndLevel">...</h3>
+      <h1 id="characterName"><%= get_name character_json%></h1>
+      <h3 id="classAndLevel"><%= get_class_and_level character_json%></h3>
       <div class="row text-center">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger">Iniciative</span>
-          <span class="col" id="perception">...</span>
+          <span class="col-12 fw-semibold text-danger">Perception</span>
+          <span class="col" id="perception"><%= get_perception character_json %></span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Speed</span>
-          <span class="col" id="speed">...</span>
+          <span class="col" id="speed"><%= get_speed character_json %></span>
         </p>
       </div>
       <div class="row justify-content-center">
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Size</span>
-          <span class="col ms-2" id="size">...</span>
+          <span class="col ms-2" id="size"><%= get_size character_json %></span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Ancestry</span>
-          <span class="col ms-2" id="ancestry">...</span>
+          <span class="col ms-2" id="ancestry"><%= get_ancestry character_json %></span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Heritage</span>
-          <span class="col ms-2" id="heritage">...</span>
+          <span class="col ms-2" id="heritage"><%= get_heritage character_json %></span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Background</span>
-          <span class="col ms-2" id="background">...</span>
+          <span class="col ms-2" id="background"><%= get_background character_json %></span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">Traits</span>
-          <span class="col ms-2" id="traits">...</span>
+          <span class="col ms-2" id="traits"><%= get_traits character_json %></span>
         </p>
         <p class="col row">
 
           <span class="col-12 fw-semibold text-danger">Hero Points</span>
-          <span class="col ms-2" id="heroPoints">...</span>
+          <span class="col ms-2" id="heroPoints"><%= get_hero_points character_json %></span>
         </p>
         <p class="col row">
           <span class="col-12 fw-semibold text-danger">EXP</span>
-          <span class="col ms-2" id="experiencePoints">...</span>
+          <span class="col ms-2" id="experiencePoints"><%= get_experience_points character_json %></span>
         </p>
       </div>
-      <!-- <div>
-        <p class="row">
-          <span class="col-12 fw-semibold text-danger">Description</span>
-          <span class="col ms-2">A sneaky man with a realistic outlook on life. Tall, slim build, sallow pale skin, long scruffy face, sunken cheeks, light blue wide-set eyes, bushy eyebrows.</span>
-        </p>
-      </div> -->
     </div>
   </div>
 </div>
@@ -96,38 +61,38 @@
     <div class="row text-center">
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="strength">STR ...</span>
-          <span class="col " id="strengthModifier">...</span>
+          <span class="col-12 fw-semibold text-danger" id="strength">STR <%= get_ability("strength", character_json) %></span>
+          <span class="col " id="strengthModifier"><%= get_ability_modifier("strength", character_json) %></span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="dexterity">DEX ...</span>
-          <span class="col" id="dexterityModifier">...</span>
+          <span class="col-12 fw-semibold text-danger" id="dexterity">DEX <%= get_ability("dexterity", character_json) %> </span>
+          <span class="col" id="dexterityModifier"><%= get_ability_modifier("dexterity", character_json) %></span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="constitution">CON ...</span>
-          <span class="col" id="constitutionModifier">...</span>
+          <span class="col-12 fw-semibold text-danger" id="constitution">CON <%= get_ability("constitution", character_json) %> </span>
+          <span class="col" id="constitutionModifier"><%= get_ability_modifier("constitution", character_json) %></span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="intelligence">INT ...</span>
-          <span class="col" id="intelligenceModifier">...</span>
+          <span class="col-12 fw-semibold text-danger" id="intelligence">INT <%= get_ability("intelligence", character_json) %></span>
+          <span class="col" id="intelligenceModifier"><%= get_ability_modifier("intelligence", character_json) %></span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="wisdom">WIS ...</span>
-          <span class="col" id="wisdomModifier">...</span>
+          <span class="col-12 fw-semibold text-danger" id="wisdom">WIS <%= get_ability("wisdom", character_json) %></span>
+          <span class="col" id="wisdomModifier"><%= get_ability_modifier("wisdom", character_json) %></span>
         </p>
       </div>
       <div class="col">
         <p class="col row">
-          <span class="col-12 fw-semibold text-danger" id="charisma">CHA ...</span>
-          <span class="col" id="charismaModifier">0</span>
+          <span class="col-12 fw-semibold text-danger" id="charisma">CHA <%= get_ability("charisma", character_json) %></span>
+          <span class="col" id="charismaModifier"><%= get_ability_modifier("charisma", character_json) %></span>
         </p>
       </div>
     </div>
@@ -151,46 +116,46 @@
     <div class="row">
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">HP</span>
-          <span class="col-8 ms-2" id="hp">...</span>
+          <span class="col-auto ms-2 hp" id="<%= dom_id(character, :hp) %>"><%= get_current_and_max_hp character_json %></span>
         </p>
         <div class="col-sm input-group btn-group h-50">
-          <input type="number" class="form-control" id="inputHp" placeholder="HP" aria-label="HP">
-          <button type="button" class="btn btn-danger" id="damageBtn">-</button>
-          <button type="button" class="btn btn-success" id="healBtn">+</button>
+          <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="HP" aria-label="HP">
+          <button type="button" class="btn btn-danger damageBtn" character_id="<%= character.id %>">-</button>
+          <button type="button" class="btn btn-success healBtn" character_id="<%= character.id %>">+</button>
         </div>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Temporary HP</span>
-          <span class="col-8 ms-2" id="temporary">...</span>
+          <span class="col-auto ms-2 temporary" id="<%= dom_id(character, :temporary) %>"><%= get_temporary_hp character_json %></span>
         </p>
         <div class="col-sm input-group btn-group h-50">
-          <input type="number" class="form-control" id="inputTemporary" placeholder="Temporary HP">
-          <button type="button" class="btn btn-success" id="temporaryBtn">+</button>
+          <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
+          <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
         </div>
     </div>
     <div class="row">
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">AC</span>
-          <span class="col-8 ms-2" id="ac">...</span>
+          <span class="col-8 ms-2" id="ac"><%= get_AC character_json %></span>
         </p>
     </div>
     <div class="row">
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Resistances and immunities</span>
-          <span class="col-8 ms-2" id="resistancesAndImmunities">...</span>
+          <span class="col-8 ms-2" id="resistancesAndImmunities"><%= get_resistances_and_immunities character_json %></span>
         </p>
     </div>
     <div class="row">
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Fortitude</span>
-          <span class="col-8 ms-2" id="fortitude">...</span>
+          <span class="col-8 ms-2" id="fortitude"><%= get_saving_throws("fortitude", "constitution", character_json) %></span>
         </p>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Reflex</span>
-          <span class="col-8 ms-2" id="reflex">...</span>
+          <span class="col-8 ms-2" id="reflex"><%= get_saving_throws("reflex", "dexterity", character_json) %></span>
         </p>
         <p class="col-auto row">
           <span class="col-12 fw-semibold text-danger">Will</span>
-          <span class="col-8 ms-2" id="will">...</span>
+          <span class="col-8 ms-2" id="will"><%= get_saving_throws("will", "wisdom", character_json) %></span>
         </p>
     </div>
   </div>
@@ -373,14 +338,6 @@
   </div>
 </div>
 
-<%= javascript_include_tag "character/display/display" %>
-<%= javascript_include_tag "character/display/character" %>
-<%= javascript_include_tag "character/display/life_management" %>
-<%= javascript_include_tag "character/onbeforeunload" %>
-
 <script>
-  const character_id = <%= character.id %>;
-  const main_json = <%= raw character.statistic %>
-  const character = new Character();
-  const display = new Display();
+  json = <%= get_life(character) %>
 </script>

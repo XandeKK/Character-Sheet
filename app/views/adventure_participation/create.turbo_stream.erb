@@ -5,5 +5,5 @@
 <% end %>
 
 <%= turbo_stream.append @character.character_category.name do %>
-    <%= render partial: "adventures/character", locals: {character: @character} %>
+    <%= render partial: "adventures/character", locals: {character: @character, character_json: JSON.parse(@character.statistic)["character"]} %>
 <% end %>
