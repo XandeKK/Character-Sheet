@@ -11,5 +11,5 @@ one:
 two:
   name: Annabeth
   statistic: '<%= character_json.to_json %>'
-  user: two
+  user: one
   character_category: three

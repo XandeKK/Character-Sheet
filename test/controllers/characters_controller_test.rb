@@ -92,12 +92,21 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "You do not have permission.", flash[:alert]
   end
 
-  test "should update character life" do
+  test "should update one character life" do
     sign_up
 
-    put character_update_life_path(character), params: {
-      currentHp: '97',
-      temporary: '0'
+    put character_update_all_life_path(character), params: {
+      characterList: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":15}}"
+    }
+
+    assert_response :ok
+  end
+
+  test "should update multiple characters life" do
+    sign_up
+
+    put character_update_all_life_path(character), params: {
+      characterList: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":14},\"#{characters(:two).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":14}}"
     }
 
     assert_response :ok
