@@ -1,4 +1,5 @@
 // Event
+window.onload = start
 damageBtnArray = document.querySelectorAll(".damageBtn")
 healBtnArray = document.querySelectorAll(".healBtn")
 temporaryBtnArray = document.querySelectorAll(".temporaryBtn")
@@ -16,6 +17,12 @@ for (var i = 0; i < temporaryBtnArray.length; i++) {
 }
 
 // Functions
+function start() {
+  let characterList = localStorage.getItem("characterList");
+  if (characterList === '{}') {return}
+  sendHP()
+}
+
 function updateHp(id) {
   let hp = document.getElementById("hp_character_" + id);
   let temp = document.getElementById("temporary_character_" + id);
@@ -35,6 +42,8 @@ function updateHp(id) {
 
   characterList = JSON.stringify(characterList);
   localStorage.setItem("characterList", characterList);
+  localStorage.setItem("updated", true);
+  saveBtn.disabled = false;
 }
 
 function damageHp(event) {

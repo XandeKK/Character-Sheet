@@ -37,6 +37,9 @@
   %>
 </script>
 
+<button id="saveBtn" class="btn btn-success position-fixed bottom-0 start-0 m-4" style="z-index: 99;" disabled>Save</button>
+
+<%= javascript_include_tag "character/onbeforeunload" %>
 <%= javascript_include_tag "character/gm/observe" %>
 <%= javascript_include_tag "character/life_management" %>
 <%= javascript_include_tag "character/send" %>
