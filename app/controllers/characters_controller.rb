@@ -67,6 +67,23 @@ class CharactersController < ApplicationController
     end
   end
 
+  def update_all_life
+    characterList = JSON.parse params["characterList"]
+    characterList.each do |character|
+      @character = Character.find_by(id: character[0], user: current_user)
+      currentHp = character[1]["currentHp"]
+      temporary = character[1]["temporary"]
+
+      statistic = JSON.parse(@character.statistic)
+      statistic["character"]["hitPoints"]["currentHp"] = currentHp
+      statistic["character"]["hitPoints"]["temporary"] = temporary
+
+      @character.update!(statistic: statistic.to_json)
+    end
+    render plain: "OK", status: :ok
+    # render plain: "HMM", status: :unprocessable_entity
+  end
+
   private
 
   def character_params

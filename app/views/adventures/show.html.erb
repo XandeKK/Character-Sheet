@@ -45,6 +45,26 @@
   <% end %>
 </div>
 
-<!-- window.onbeforeunload = function(){
-  return 'Are you sure you want to leave?';
-}; -->
+<script>
+  let json
+  <%
+    def getLife array, json
+      array.each do |item|
+        character_json = JSON.parse(item.statistic)["character"]
+        currentHp = character_json["hitPoints"]["currentHp"]
+        temporary = character_json["hitPoints"]["temporary"]
+        maxHp = character_json["hitPoints"]["maxHp"]
+        id = item.id
+        json.store(id, {"maxHp": maxHp, "currentHp": currentHp, "temporary": temporary})
+      end
+    end
+  %>
+  json = <%= 
+    json = {}
+    getLife(@allNpcs, json)
+    getLife(@allEnemies, json)
+    raw json.to_json 
+  %>
+</script>
+
+<%= javascript_include_tag "character/gm/main" %>
