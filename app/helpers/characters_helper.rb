@@ -10,7 +10,7 @@ module CharactersHelper
 	end
 
 	def get_speed character
-		character["speed"]["feet"] + "ft"
+		character["speed"]["feet"].to_s + "ft"
 	end
 
 	def get_size character
