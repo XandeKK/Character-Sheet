@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-8 row mb-2">
       <div class="row col-12">
-        <span class="col fw-semibold fs-5"><%= character.name %></span>
+        <span class="col fw-semibold fs-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<%= character.id %>"><%= character.name %></span>
       </div>
       <div class="col-12 row">
         <span class="col-auto fw-semibold text-danger">HP</span>
@@ -27,7 +27,8 @@
           <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
           <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
         </div>
-      </div>        
+      </div>
     </div>
   </div>
+  <%= render partial: "adventures/offcanvas", locals: { id: character.id, character_json: JSON.parse(character.statistic)["character"] } %>
 <% end %>

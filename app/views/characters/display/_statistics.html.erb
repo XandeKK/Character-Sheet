@@ -1,0 +1,54 @@
+<div class="card my-5">
+  <div class="card-header">
+    <h4>Statistics</h4>
+  </div>
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger" id="strength">STR <%= get_ability("strength", character_json) %></span>
+          <span class="col " id="strengthModifier"><%= get_ability_modifier("strength", character_json) %></span>
+        </p>
+      </div>
+      <div class="col">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger" id="dexterity">DEX <%= get_ability("dexterity", character_json) %> </span>
+          <span class="col" id="dexterityModifier"><%= get_ability_modifier("dexterity", character_json) %></span>
+        </p>
+      </div>
+      <div class="col">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger" id="constitution">CON <%= get_ability("constitution", character_json) %> </span>
+          <span class="col" id="constitutionModifier"><%= get_ability_modifier("constitution", character_json) %></span>
+        </p>
+      </div>
+      <div class="col">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger" id="intelligence">INT <%= get_ability("intelligence", character_json) %></span>
+          <span class="col" id="intelligenceModifier"><%= get_ability_modifier("intelligence", character_json) %></span>
+        </p>
+      </div>
+      <div class="col">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger" id="wisdom">WIS <%= get_ability("wisdom", character_json) %></span>
+          <span class="col" id="wisdomModifier"><%= get_ability_modifier("wisdom", character_json) %></span>
+        </p>
+      </div>
+      <div class="col">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger" id="charisma">CHA <%= get_ability("charisma", character_json) %></span>
+          <span class="col" id="charismaModifier"><%= get_ability_modifier("charisma", character_json) %></span>
+        </p>
+      </div>
+    </div>
+    <div class="row row-cols-auto">
+      <span class="col-12 fw-semibold text-danger">Languages</span>
+      <div class="ms-2">
+        <% character_json["languages"].each do |language| %>
+          <%= language["name"] %>
+          /
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

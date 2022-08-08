@@ -1,0 +1,52 @@
+<div class="card my-5">
+  <div class="card-header">
+    <h4>Basics</h4>
+  </div>
+  <div class="card-body">
+    <div id="introduce">
+      <h1 id="characterName"><%= get_name character_json%></h1>
+      <h3 id="classAndLevel"><%= get_class_and_level character_json%></h3>
+      <div class="row text-center">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Perception</span>
+          <span class="col" id="perception"><%= get_perception character_json %></span>
+        </p>
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Speed</span>
+          <span class="col" id="speed"><%= get_speed character_json %></span>
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Size</span>
+          <span class="col ms-2" id="size"><%= get_size character_json %></span>
+        </p>
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Ancestry</span>
+          <span class="col ms-2" id="ancestry"><%= get_ancestry character_json %></span>
+        </p>
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Heritage</span>
+          <span class="col ms-2" id="heritage"><%= get_heritage character_json %></span>
+        </p>
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Background</span>
+          <span class="col ms-2" id="background"><%= get_background character_json %></span>
+        </p>
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">Traits</span>
+          <span class="col ms-2" id="traits"><%= get_traits character_json %></span>
+        </p>
+        <p class="col row">
+
+          <span class="col-12 fw-semibold text-danger">Hero Points</span>
+          <span class="col ms-2" id="heroPoints"><%= get_hero_points character_json %></span>
+        </p>
+        <p class="col row">
+          <span class="col-12 fw-semibold text-danger">EXP</span>
+          <span class="col ms-2" id="experiencePoints"><%= get_experience_points character_json %></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

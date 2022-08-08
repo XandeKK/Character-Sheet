@@ -1,0 +1,73 @@
+<div class="card my-5">
+  <div class="card-header">
+    <h4>Offense</h4>
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <% character_json["meleeStrikes"].each do |melee| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" role="button">
+          <div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Weapon</span>
+              <span class="col-9 ms-3 text-truncate"><%= melee["weapon"] %></span>
+            </div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Attack</span>
+              <span class="col-9 ms-3 text-truncate">+<%= attackRoll(melee) %></span>
+            </div>
+          </div>
+          <div>
+            <div class="col row">
+              <span class="col-12 fw-semibold text-danger">Damage</span>
+              <span class="col ms-3"><%= melee["dice"] %></span>
+            </div>
+            <div class="col row">
+              <span class="col-12 fw-semibold text-danger">Type</span>
+              <span class="col ms-3"><%= melee["types"] %></span>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="btn">
+            <i class="fa-solid fa-dice"></i>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="list-group mt-4">
+      <% character_json["rangedStrikes"].each do |ranged| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" role="button">
+          <div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Weapon</span>
+              <span class="col-9 ms-3 text-truncate"><%= ranged["weapon"] %></span>
+            </div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Attack</span>
+              <span class="col-9 ms-3 text-truncate">+<%= attackRoll(ranged) %></span>
+            </div>
+          </div>
+          <div>
+            <div class="col row">
+              <span class="col-12 fw-semibold text-danger">Damage</span>
+              <span class="col ms-3"><%= ranged["dice"] %></span>
+            </div>
+            <div class="col row">
+              <span class="col-12 fw-semibold text-danger">Type</span>
+              <span class="col ms-3"><%= ranged["types"] %></span>
+            </div>
+            <div class="row">
+              <span class="col-12 fw-semibold text-danger">Range</span>
+              <span class="col-9 ms-3 text-truncate"><%= ranged["range"] %>ft</span>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="btn">
+            <i class="fa-solid fa-dice"></i>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
