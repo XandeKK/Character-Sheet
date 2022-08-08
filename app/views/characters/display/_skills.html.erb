@@ -2,16 +2,16 @@
   <div class="card-header">
     <h3 class="">Skills</h3>
     <ul class="nav nav-pills" role="tablist">
-      <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#card-div-skills" aria-controls="skills" type="button" aria-selected="true" role="tab">Skills</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-skillFeats" aria-controls="skillFeats" type="button" aria-selected="false" role="tab" tabindex="-1">Skill Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-ancestryFeatsAndAbilities" aria-controls="ancestryFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1">Ancestry Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-classFeatsAndAbilities" aria-controls="classFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1">Class Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-generalFeats" aria-controls="generalFeats" type="button" aria-selected="false" role="tab" tabindex="-1">General Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-bonusFeats" aria-controls="bonusFeats" type="button" aria-selected="false" role="tab" tabindex="-1">Bonus Feats</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#card-div-skills-<%= character_json["details"]["name"]%>" aria-controls="skills" type="button" aria-selected="true" role="tab">Skills</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-skillFeats-<%= character_json["details"]["name"]%>" aria-controls="skillFeats" type="button" aria-selected="false" role="tab" tabindex="-1">Skill Feats</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-ancestryFeatsAndAbilities-<%= character_json["details"]["name"]%>" aria-controls="ancestryFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1">Ancestry Feats</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-classFeatsAndAbilities-<%= character_json["details"]["name"]%>" aria-controls="classFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1">Class Feats</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-generalFeats-<%= character_json["details"]["name"]%>" aria-controls="generalFeats" type="button" aria-selected="false" role="tab" tabindex="-1">General Feats</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-bonusFeats-<%= character_json["details"]["name"]%>" aria-controls="bonusFeats" type="button" aria-selected="false" role="tab" tabindex="-1">Bonus Feats</button></li>
     </ul>
   </div>
   <div class="card-body tab-content">
-    <div id="card-div-skills" class="tab-pane fade active show" role="tabpanel">
+    <div id="card-div-skills-<%= character_json["details"]["name"]%>" class="tab-pane fade active show" role="tabpanel">
       <div class="row gx-3 gy-2 align-items-center">
         <ul class="list-group list-group-flush">
           <% character_json["skills"].each do |skill| %>
@@ -24,7 +24,7 @@
         </ul>
       </div>
     </div>
-    <div id="card-div-skillFeats" class="tab-pane fade" role="tabpanel">
+    <div id="card-div-skillFeats-<%= character_json["details"]["name"]%>" class="tab-pane fade" role="tabpanel">
       <div class="row gx-3 gy-2 align-items-center">
         <ul class="list-group list-group-flush">
           <% character_json["skillFeats"].each do |skillFeat| %>
@@ -36,7 +36,7 @@
         </ul>
       </div>
     </div>
-    <div id="card-div-ancestryFeatsAndAbilities" class="tab-pane fade" role="tabpanel">
+    <div id="card-div-ancestryFeatsAndAbilities-<%= character_json["details"]["name"]%>" class="tab-pane fade" role="tabpanel">
       <div class="row gx-3 gy-2 align-items-center">
         <ul class="list-group list-group-flush">
           <% character_json["ancestryFeatsAndAbilities"].each do |ancestryFeatAndAbility| %>
@@ -48,7 +48,7 @@
         </ul>
       </div>
     </div>
-    <div id="card-div-classFeatsAndAbilities" class="tab-pane fade" role="tabpanel">
+    <div id="card-div-classFeatsAndAbilities-<%= character_json["details"]["name"]%>" class="tab-pane fade" role="tabpanel">
       <div class="row gx-3 gy-2 align-items-center">
         <ul class="list-group list-group-flush">
           <% character_json["classFeatsAndAbilities"].each do |classFeatAndAbility| %>
@@ -60,7 +60,7 @@
         </ul>
       </div>
     </div>
-    <div id="card-div-generalFeats" class="tab-pane fade" role="tabpanel">
+    <div id="card-div-generalFeats-<%= character_json["details"]["name"]%>" class="tab-pane fade" role="tabpanel">
       <div class="row gx-3 gy-2 align-items-center">
         <ul class="list-group list-group-flush">
           <% character_json["generalFeats"].each do |generalFeat| %>
@@ -72,7 +72,7 @@
         </ul>
       </div>
     </div>
-    <div id="card-div-bonusFeats" class="tab-pane fade" role="tabpanel">
+    <div id="card-div-bonusFeats-<%= character_json["details"]["name"]%>" class="tab-pane fade" role="tabpanel">
       <div class="row gx-3 gy-2 align-items-center">
         <ul class="list-group list-group-flush">
           <% character_json["bonusFeats"].each do |bonusFeat| %>
