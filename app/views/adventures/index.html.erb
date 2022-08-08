@@ -1,19 +1,12 @@
-<h1>Adventures</h1>
-<br>
-
-<% if @adventures.empty? %>
-	<h3>Has no adventure.</h3>
-<% else %>
-	<ul>
+<h1 class="fw-bold text-secondary text-center">Adventures</h1>
+<div class="list-group text-center">
+	<% if @adventures.empty? %>
+		<h3>Has no adventure.</h3>
+	<% else %>
 		<% @adventures.each do |adventure|  %>
-			<li>
-				<%= link_to adventure.name, adventure_path(adventure) %>
-			</li>
+			<%= link_to adventure.name, adventure_path(adventure), class: "list-group-item list-group-item-action" %>
 		<% end %>
-	</ul>
-<% end %>
+	<% end %>
+</div>
 
-<br>
-
-<%= link_to "New", new_adventure_path %>
-
+<%= link_to "New", new_adventure_path, class:"btn btn-success position-fixed bottom-0 end-0 m-4", data: {turbo: false} %>

@@ -1,18 +1,12 @@
-<h1>Enemy</h1>
-<br>
-
-<% if @enemies.empty? %>
-	<h3>Has no enemy.</h3>
-<% else %>
-	<ul>
+<h1 class="fw-bold text-secondary text-center">Enemy</h1>
+<div class="list-group text-center">
+	<% if @enemies.empty? %>
+		<h3>Has no enemy.</h3>
+	<% else %>
 		<% @enemies.each do |enemy|  %>
-			<li>
-				<%= link_to enemy.name, character_path(enemy) %>
-			</li>
+			<%= link_to enemy.name, character_path(enemy), class: "list-group-item list-group-item-action" %>
 		<% end %>
-	</ul>
-<% end %>
+	<% end %>
+</div>
 
-<br>
-
-<%= button_to "New", characters_path(category: "Enemy"), method: :post %>
+<%= button_to "New", characters_path(category: "Enemy"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>

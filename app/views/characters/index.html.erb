@@ -1,19 +1,12 @@
-<h1>Characters</h1>
-<br>
-
-<% if @characters.empty? %>
-	<h3>Has no character.</h3>
-<% else %>
-	<ul>
+<h1 class="fw-bold text-secondary text-center">Characters</h1>
+<div class="list-group text-center">
+	<% if @characters.empty? %>
+		<h3>Has no character.</h3>
+	<% else %>
 		<% @characters.each do |character|  %>
-			<li>
-				<%= link_to character.name, character_path(character) %>
-			</li>
+			<%= link_to character.name, character_path(character), class: "list-group-item list-group-item-action" %>
 		<% end %>
-	</ul>
-<% end %>
+	<% end %>
+</div>
 
-<br>
-
-<%= button_to "New", characters_path(category: "Player"), method: :post %>
-
+<%= button_to "New", characters_path(category: "Player"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>
