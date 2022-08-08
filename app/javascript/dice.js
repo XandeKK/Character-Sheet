@@ -9,3 +9,7 @@ Box.init().then(() => {});
 Box.onRollComplete = function(dieResult) {
   console.log(dieResult);
 }
+
+export function rollDice(dice) {
+  Box.add(dice);
+}
