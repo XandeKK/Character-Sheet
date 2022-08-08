@@ -17,11 +17,15 @@
   </head>
 
   <body>
-    <%= render partial: "shared/navbar" %>
+    <%= render partial: "shared/navbar" unless controller_name == "campaign_tv" %>
     
-    <div class="container pb-4 my-3">
-      <%= render partial: "shared/flash" %>
+    <% if controller_name != "campaign_tv" %>
+      <div class="container pb-4 my-3">
+        <%= render partial: "shared/flash" %>
+        <%= yield %>
+      </div>
+    <% else %>
       <%= yield %>
-    </div>
+    <% end %>
   </body>
 </html>

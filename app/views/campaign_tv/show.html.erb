@@ -1,2 +1,22 @@
-<h1>CampaignTv#show</h1>
-<p>Find me in app/views/campaign_tv/show.html.erb</p>
+<%= stylesheet_link_tag "tv/dice-box" %>
+
+<div id="form" class="position-absolute top-50 start-50 translate-middle text-bg-light p-3 rounded" style="z-index: 999;">
+	<%= form_with url: sign_up_campaign_tv_path do |form| %>
+		<div class="mb-3">
+			<%= form.label :unique_name, "Server name", class:"form-label"%>
+			<%= form.text_field :unique_name, class: "form-control" %>
+		</div>
+
+		<div class="mb-3">
+			<%= form.label :password, "Password", class:"form-label" %>
+			<%= form.password_field :password, class: "form-control" %>
+		</div>
+		<div class="text-end">
+			<%= form.submit "Connect", class: "btn btn-primary" %>
+		</div>
+	<% end %>
+</div>
+
+<div id="dice-box"></div>
+
+<%= javascript_include_tag "dice.js", type: :module, crossorigin: "anonymous"%>
