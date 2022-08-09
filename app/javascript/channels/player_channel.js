@@ -25,15 +25,17 @@ function rollDice(event) {
   let dice = document.getElementById("dice").value || "d4";
   let bonus = document.getElementById("bonus").value || 0;
   let character = Object.keys(json)[0];
+  let name = characterName.textContent;
   let color = document.getElementById("color").value || "#fff";
   let theme = document.getElementById("theme").value || "default";
 
   playerChannel.send({ 
+    name: name,
     qty: quantity,
     dice: dice,
     bonus: bonus,
     character: character,
     color: color,
     theme: theme
-     });
+  });
 }

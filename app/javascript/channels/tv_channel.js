@@ -18,13 +18,15 @@ function connect(event) {
       let bonus = data["bonus"];
       let color = data["color"];
       let theme = data["theme"];
+      let name = data["name"];
 
       rollDice({
         qty: quantity,
         dice: dice,
         bonus: bonus,
         color: color,
-        theme: theme
+        theme: theme,
+        name: name
       })
     }
   });
