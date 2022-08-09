@@ -111,4 +111,23 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
   end
+
+  test "should not sign up in server" do
+    sign_up
+
+    post sign_up_character_path(characters(:one)), params: {
+      unique_name: adventures(:one).unique_name,
+      password: ''
+    }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not sign up in server without sign up in session" do
+    post sign_up_character_path(characters(:one)), params: {
+      unique_name: adventures(:one).unique_name,
+      password: ''
+    }
+    assert_response :redirect
+    assert_equal "Please sign in to continue.", flash[:alert]
+  end
 end

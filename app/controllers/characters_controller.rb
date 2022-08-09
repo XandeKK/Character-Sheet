@@ -8,8 +8,7 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character_json = JSON.parse @character.statistic
-    @character_json = @character_json["character"]
+    set_character_json
   end
 
   def edit
@@ -70,6 +69,21 @@ class CharactersController < ApplicationController
     render plain: "OK", status: :ok
   end
 
+  def sign_up
+    @adventure = Adventure.find_by(unique_name: params[:unique_name], password: params[:password])
+
+    respond_to do |format|
+      if @adventure.present?
+        format.turbo_stream
+        format.html { render html: "any", status: :ok }
+      else
+        set_character
+        set_character_json
+        format.html {render :show, status: :unprocessable_entity}
+      end
+    end
+  end
+
   private
 
   def character_params
@@ -82,5 +96,10 @@ class CharactersController < ApplicationController
 
   def set_character
     @character = Character.find_by(id: params[:id], user: current_user)
+  end
+
+  def set_character_json
+    @character_json = JSON.parse @character.statistic
+    @character_json = @character_json["character"]
   end
 end

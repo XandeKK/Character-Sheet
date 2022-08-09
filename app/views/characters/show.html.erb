@@ -2,6 +2,23 @@
 	<%= button_to "Delete", character_path(@character), method: :delete, class: "btn btn-danger" %>
 </div>
 
+<div id="form" class="my-3 text-bg-light p-3 rounded">
+	<%= form_with url: sign_up_character_path(@character) do |form| %>
+		<div class="mb-3">
+			<%= form.label :unique_name, "Server name", class:"form-label"%>
+			<%= form.text_field :unique_name, class: "form-control" %>
+		</div>
+
+		<div class="mb-3">
+			<%= form.label :password, "Password", class:"form-label" %>
+			<%= form.password_field :password, class: "form-control" %>
+		</div>
+		<div class="text-end">
+			<%= form.submit "Connect", class: "btn btn-primary" %>
+		</div>
+	<% end %>
+</div>
+
 <button id="saveBtn" class="btn btn-success position-fixed bottom-0 start-0 m-4" style="z-index: 99;" disabled>Save</button>
 
 <%= render partial: "display", locals: { character: @character, character_json: @character_json } %>
@@ -9,3 +26,4 @@
 <%= javascript_include_tag "character/onbeforeunload" %>
 <%= javascript_include_tag "character/life_management" %>
 <%= javascript_include_tag "character/send" %>
+<%= javascript_include_tag "channels/player_channel", type: :module, crossorigin: "anonymous" %>

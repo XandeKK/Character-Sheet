@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :characters, except: [:new]
   put 'character/update_all_life', to: 'characters#update_all_life', as: 'character_update_all_life'
+  post 'character/sign_up/:id', to: 'characters#sign_up', as: 'sign_up_character'
 
   get 'gm', to: 'gm#index'
   get 'npcs', to: 'npcs#index'
