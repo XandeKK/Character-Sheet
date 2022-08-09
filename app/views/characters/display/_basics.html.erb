@@ -4,6 +4,9 @@
   </div>
   <div class="card-body">
     <div id="introduce">
+      <div class="text-center">
+        <%= image_tag( @character.character_image, id: "image" ) if @character.character_image.attached? %>
+      </div>
       <h1 id="characterName"><%= get_name character_json%></h1>
       <h3 id="classAndLevel"><%= get_class_and_level character_json%></h3>
       <div class="row text-center">

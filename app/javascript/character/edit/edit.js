@@ -13,6 +13,7 @@ function saveJson(event) {
 
 	character_statistic.value = JSON.stringify(main_json);
 	setInputName();
+	setImage();
 }
 
 // Save json
@@ -28,6 +29,12 @@ document.addEventListener('keypress', function (e) {
 
 function setInputName() {
 	character_name.value = main_json["character"]["details"]["name"];
+}
+
+function setImage() {
+	vanilla.result({type: 'base64', size: {width:300, height:300}}).then(function(base64) {
+      	character_character_image.setAttribute("value", base64);
+    });
 }
 
 base.createCardTab("basics", "Basics",[

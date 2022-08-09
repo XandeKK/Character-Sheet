@@ -2,7 +2,7 @@ class Character < ApplicationRecord
   # before_update 
   belongs_to :character_category
   belongs_to :user
-  has_one_attached :character_image
+  has_one_base64_attached :character_image
   has_many :adventure_participations, dependent: :destroy
 
   validates :name, presence: true

@@ -28,6 +28,7 @@ function rollDice(event) {
   let name = characterName.textContent;
   let color = document.getElementById("color").value || "#fff";
   let theme = document.getElementById("theme").value || "default";
+  let image = document.getElementById("image").src;
 
   playerChannel.send({ 
     name: name,
@@ -36,6 +37,7 @@ function rollDice(event) {
     bonus: bonus,
     character: character,
     color: color,
-    theme: theme
+    theme: theme,
+    image: image
   });
 }

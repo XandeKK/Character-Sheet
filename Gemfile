@@ -30,6 +30,9 @@ gem "jbuilder"
 # Rails authentication with email & password.
 gem "clearance"
 
+# Base64 support for ActiveStorage
+gem 'active_storage_base64'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

@@ -19,6 +19,7 @@ function connect(event) {
       let color = data["color"];
       let theme = data["theme"];
       let name = data["name"];
+      let image = data["image"];
 
       rollDice({
         qty: quantity,
@@ -26,7 +27,8 @@ function connect(event) {
         bonus: bonus,
         color: color,
         theme: theme,
-        name: name
+        name: name,
+        image: image
       })
     }
   });

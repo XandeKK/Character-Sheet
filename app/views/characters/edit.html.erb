@@ -1,8 +1,17 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js" integrity="sha512-Gs+PsXsGkmr+15rqObPJbenQ2wB3qYvTHuJO6YJzPe/dTLvhy0fmae2BcnaozxDo5iaF8emzmCZWbQ1XXiX2Ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <div class="text-end">
 	<%= button_to "Delete", character_path(@character), method: :delete, class: "btn btn-danger" %>
 </div>
 
 <%= form_with model: @character, url: character_path(@character), id: "form", data: {turbo: false} do |form| %>
+
+	<div>
+		<%= form.hidden_field :character_image %>
+    <div id="croppie"></div>
+    <input id="original" type="file" name="original" accept="image/*">
+	</div>
 	
 	<div>
 		<%= form.label :character_category_id, class: "form-label" %>
@@ -16,10 +25,13 @@
 <% end%>
 
 <script>
-	const main_json = <%= raw @character.statistic %>
+	const main_json = <%= raw @character.statistic %> 
+
+  let url = '<%= url_for(@character.character_image) if @character.character_image.attached? %>' || "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 </script>
 
 <%= javascript_include_tag "character/Base" %>
 <%= javascript_include_tag "character/edit/CharacterUI" %>
 <%= javascript_include_tag "character/edit/main" %>
 <%= javascript_include_tag "character/edit/edit" %>
+<%= javascript_include_tag "character/edit/croppie" %>

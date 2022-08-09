@@ -9,7 +9,7 @@ Box.init().then(() => {});
 export function rollDice(property) {
   let dice = concatenateMixed(property["qty"], property["dice"], property["bonus"]);
 
-  addCharacter(property["name"]);
+  addCharacter(property["name"], property["image"]);
 
   Box.add(dice, {
     themeColor: property["color"],
@@ -34,10 +34,10 @@ Box.onRollComplete = function(dieResult) {
   chat.scrollTo(0, chat.scrollHeight);
 }
 
-function addCharacter(name) {
+function addCharacter(name, image) {
   characters.push({
     name: name,
-    // image: image
+    image: image
   });
 }
 
@@ -55,7 +55,7 @@ function createChat(dieResult) {
   let card = document.createElement("div");
   let cardBody = document.createElement("div");
   let imageDiv = document.createElement("div");
-  let image = document.createElement("image");
+  let image = document.createElement("img");
   let infoDiv = document.createElement("div");
   let nameDiv = document.createElement("div");
   let rollDiv = document.createElement("div");
@@ -67,9 +67,13 @@ function createChat(dieResult) {
   imageDiv.className = "me-3";
   image.className = "rounded-circle";
 
+  image.width = 80;
+  image.height = 80;
+
   // Inner Text
   nameDiv.innerText = "Name: " + characters[dieResult.id]["name"];
   rollDiv.innerHTML = "Result: " + concatenateRolls(dieResult["rolls"], dieResult["modifier"], dieResult["value"]);
+  image.src = characters[dieResult.id]["image"];
 
   // Append Child
   infoDiv.appendChild(nameDiv);

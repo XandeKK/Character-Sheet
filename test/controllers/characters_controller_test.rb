@@ -48,7 +48,8 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     put character_path(character), params: {
       character: {
         name: "Tolo",
-        statistic: '{"You": "Fool"}'
+        statistic: '{"You": "Fool"}',
+      character_image: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
       }
     }
 
@@ -62,7 +63,8 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     put character_path(character), params: {
       character: {
         name: "Tolo",
-        statistic: '{"You": "Fool"}'
+        statistic: '{"You": "Fool"}',
+      character_image: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
       }
     }
 
