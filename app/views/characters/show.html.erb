@@ -21,7 +21,11 @@
 
 <button id="saveBtn" class="btn btn-success position-fixed bottom-0 start-0 m-4" style="z-index: 99;" disabled>Save</button>
 
+<button class="btn btn-dark position-fixed bottom-0 start-50 translate-middle-x my-4" style="z-index: 99;" data-bs-toggle="modal" data-bs-target="#diceRoller">Roller</button>
+
 <%= render partial: "display", locals: { character: @character, character_json: @character_json } %>
+
+<%= render partial: "dice_roller" %>
 
 <%= javascript_include_tag "character/onbeforeunload" %>
 <%= javascript_include_tag "character/life_management" %>

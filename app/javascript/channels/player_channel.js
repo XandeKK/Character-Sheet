@@ -2,10 +2,13 @@ import consumer from "channels/consumer"
 
 document.addEventListener("turbo:submit-end", connect)
 let playerChannel;
+let btn = document.getElementById("diceBtn");
+btn.addEventListener("click", rollDice);
 
 function connect(event) {  
   playerChannel = consumer.subscriptions.create({channel: "PlayerChannel", unique_name: unique_name.value}, {
     connected() {
+      btn.disabled = false;
     },
 
     disconnected() {
@@ -17,12 +20,20 @@ function connect(event) {
   });
 }
 
-let dicesBtn = document.querySelectorAll(".dice");
-for (var i = 0; i < dicesBtn.length; i++) {
-  dicesBtn[i].addEventListener("click", rollDice);
-}
-
 function rollDice(event) {
-  let dice = event.target.getAttribute("dice");
-  playerChannel.send({ dice: dice });
+  let quantity = document.getElementById("quantity").value || 1;
+  let dice = document.getElementById("dice").value || "d4";
+  let bonus = document.getElementById("bonus").value || 0;
+  let character = Object.keys(json)[0];
+  let color = document.getElementById("color").value || "#fff";
+  let theme = document.getElementById("theme").value || "default";
+
+  playerChannel.send({ 
+    qty: quantity,
+    dice: dice,
+    bonus: bonus,
+    character: character,
+    color: color,
+    theme: theme
+     });
 }

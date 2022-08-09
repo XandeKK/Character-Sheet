@@ -13,8 +13,19 @@ function connect(event) {
     },
 
     received(data) {
-      let dice = data["dice"]
-      rollDice(dice)
+      let quantity = data["qty"];
+      let dice = data["dice"];
+      let bonus = data["bonus"];
+      let color = data["color"];
+      let theme = data["theme"];
+
+      rollDice({
+        qty: quantity,
+        dice: dice,
+        bonus: bonus,
+        color: color,
+        theme: theme
+      })
     }
   });
 }
