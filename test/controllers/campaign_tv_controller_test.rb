@@ -17,7 +17,7 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
   test "should sign up in campaign" do
     sign_up
 
-    post sign_up_campaign_tv_path, params: {
+    post sign_up_campaign_tv_path(format: :turbo_stream), params: {
       unique_name: adventures(:one).unique_name,
       password: 123
     }
@@ -27,7 +27,7 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
   test "should not sign up in campaign" do
     sign_up
 
-    post sign_up_campaign_tv_path, params: {
+    post sign_up_campaign_tv_path(format: :turbo_stream), params: {
       unique_name: adventures(:one).unique_name,
       password: ''
     }
@@ -35,7 +35,7 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not sign up in campaign without sign up in session" do
-    post sign_up_campaign_tv_path, params: {
+    post sign_up_campaign_tv_path(format: :turbo_stream), params: {
       unique_name: adventures(:one).unique_name,
       password: ''
     }

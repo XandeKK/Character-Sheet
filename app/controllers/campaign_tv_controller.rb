@@ -7,10 +7,9 @@ class CampaignTvController < ApplicationController
 
     respond_to do |format|
       if adventure.present?
-        format.turbo_stream
-        format.html { render html: "any", status: :ok }
+        format.turbo_stream { render "campaign_tv/create", status: :ok}
       else
-        format.html {render :show, status: :unprocessable_entity}
+        format.turbo_stream { render "campaign_tv/error_create", status: :unprocessable_entity}
       end
     end
   end

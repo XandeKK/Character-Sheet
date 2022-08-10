@@ -114,10 +114,20 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
+  test "should sign up in server" do
+    sign_up
+
+    post sign_up_character_path(characters(:one), format: :turbo_stream), params: {
+      unique_name: adventures(:one).unique_name,
+      password: 123
+    }
+    assert_response :ok
+  end
+
   test "should not sign up in server" do
     sign_up
 
-    post sign_up_character_path(characters(:one)), params: {
+    post sign_up_character_path(characters(:one), format: :turbo_stream), params: {
       unique_name: adventures(:one).unique_name,
       password: ''
     }
@@ -125,7 +135,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not sign up in server without sign up in session" do
-    post sign_up_character_path(characters(:one)), params: {
+    post sign_up_character_path(characters(:one), format: :turbo_stream), params: {
       unique_name: adventures(:one).unique_name,
       password: ''
     }

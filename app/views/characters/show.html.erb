@@ -3,6 +3,7 @@
 </div>
 
 <div id="form" class="my-3 text-bg-light p-3 rounded">
+	<div id="form-error"></div>
 	<%= form_with url: sign_up_character_path(@character) do |form| %>
 		<div class="mb-3">
 			<%= form.label :unique_name, "Server name", class:"form-label"%>

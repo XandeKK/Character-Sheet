@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "tv/dice-box" %>
 
 <div id="form" class="position-absolute top-50 start-50 translate-middle text-bg-light p-3 rounded" style="z-index: 999;">
+	<div id="form-error"></div>
 	<%= form_with url: sign_up_campaign_tv_path do |form| %>
 		<div class="mb-3">
 			<%= form.label :unique_name, "Server name", class:"form-label"%>

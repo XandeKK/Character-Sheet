@@ -71,16 +71,13 @@ class CharactersController < ApplicationController
   end
 
   def sign_up
-    @adventure = Adventure.find_by(unique_name: params[:unique_name], password: params[:password])
+    adventure = Adventure.find_by(unique_name: params[:unique_name], password: params[:password])
 
     respond_to do |format|
-      if @adventure.present?
-        format.turbo_stream
-        format.html { render html: "any", status: :ok }
+      if adventure.present?
+        format.turbo_stream { render "characters/sign_up", status: :ok }
       else
-        set_character
-        set_character_json
-        format.html {render :show, status: :unprocessable_entity}
+        format.turbo_stream { render "characters/error_sign_up", status: :unprocessable_entity }
       end
     end
   end
