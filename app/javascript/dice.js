@@ -26,6 +26,7 @@ Box.onRollComplete = function(dieResult) {
   for (var i = currentIndex; i < dieResult.length; i++) {
     let div = createChat(dieResult[i]);
     chat.appendChild(div);
+    console.log(dieResult);
 
     removeDice(dieResult[i].id, dieResult[i].qty)
   }
@@ -62,28 +63,28 @@ function createChat(dieResult) {
   let imageDiv = document.createElement("div");
   let image = document.createElement("img");
   let infoDiv = document.createElement("div");
-  let nameDiv = document.createElement("div");
-  let rollDiv = document.createElement("div");
-  let resultDiv = document.createElement("div");
+  let nameSpan = document.createElement("span");
+  let rollSpan = document.createElement("span");
+
+  card.style.backgroundColor = dieResult.rolls[0].themeColor + "50";
 
   // Add class name
-  card.className = "card mb-3 shadow border-white bg-ligth w-auto animated fadeInDown";
+  card.className = "rounded mb-3 shadow bg-ligth w-auto animated fadeInDown p-3 fw-bold";
   cardBody.className = "card-body d-inline-flex";
   imageDiv.className = "me-3";
   image.className = "rounded-circle";
 
-  image.width = 50;
-  image.height = 50;
+  image.width = 40;
+  image.height = 40;
 
   // Inner Text
-  nameDiv.innerText = "Name: " + characters[dieResult.id]["name"];
-  rollDiv.innerHTML = "Result: " + concatenateRolls(dieResult["rolls"], dieResult["modifier"], dieResult["value"]);
+  nameSpan.innerText = characters[dieResult.id]["name"] + ": ";
+  rollSpan.innerHTML = concatenateRolls(dieResult["rolls"], dieResult["modifier"], dieResult["value"]);
   image.src = characters[dieResult.id]["image"];
 
   // Append Child
-  infoDiv.appendChild(nameDiv);
-  infoDiv.appendChild(rollDiv);
-  infoDiv.appendChild(resultDiv);
+  infoDiv.appendChild(nameSpan);
+  infoDiv.appendChild(rollSpan);
 
   imageDiv.appendChild(image);
 
