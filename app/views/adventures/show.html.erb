@@ -10,22 +10,22 @@
 
 <%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure, name: "Enemy" }%>
 
+<% participants = get_participants @adventure %>
+
 <%= turbo_frame_tag "Npc" do %>
   <h3 class="border-bottom pb-2">Npc</h3>
-  <% @allNpcs.each do |character| %>
-    <% next if character.adventure_participations.blank? %>
-    <% if character.adventure_participations.first.adventure == @adventure %>
-      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"]} %>
+  <% participants.each do |participant| %>
+    <% if participant[:type] == "Npc" %>
+      <%= render partial: "adventures/character", locals: {character: participant[:character], character_json: participant[:character_json] } %>
     <% end %>
   <% end %>
 <% end %>
 
 <%= turbo_frame_tag "Enemy" do %>
   <h3 class="border-bottom pb-2">Enemy</h3>
-  <% @allEnemies.each do |character| %>
-    <% next if character.adventure_participations.blank? %>
-    <% if character.adventure_participations.first.adventure == @adventure %>
-      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"]} %>
+  <% participants.each do |participant| %>
+    <% if participant[:type] == "Enemy" %>
+      <%= render partial: "adventures/character", locals: {character: participant[:character], character_json: participant[:character_json] } %>
     <% end %>
   <% end %>
 <% end %>

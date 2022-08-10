@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(character, :content) do %>
   <div class="row mb-3 border-bottom">
-    <div class="col-md-3">
+    <div class="col-md-3 mb-2">
     <%= image_tag character.character_image, class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>
     </div>
     <div class="col-md-8 row mb-2">
@@ -30,5 +30,5 @@
       </div>
     </div>
   </div>
-  <%= render partial: "adventures/offcanvas", locals: { id: character.id, character_json: JSON.parse(character.statistic)["character"] } %>
+  <%= render partial: "adventures/offcanvas", locals: { character: character, character_json: JSON.parse(character.statistic)["character"] } %>
 <% end %>

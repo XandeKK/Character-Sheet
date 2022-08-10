@@ -26,7 +26,6 @@ Box.onRollComplete = function(dieResult) {
   for (var i = currentIndex; i < dieResult.length; i++) {
     let div = createChat(dieResult[i]);
     chat.appendChild(div);
-    console.log(dieResult);
 
     removeDice(dieResult[i].id, dieResult[i].qty)
   }
