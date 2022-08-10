@@ -2,6 +2,7 @@ import DiceBox from "@3d-dice/dice-box";
 
 let Box = new DiceBox("#dice-box",{
   assetPath: '/dice-box/',
+  scale: 6
 })
 
 Box.init().then(() => {});
@@ -31,7 +32,11 @@ Box.onRollComplete = function(dieResult) {
   currentIndex = dieResult.length;
   addPopver();
 
-  chat.scrollTo(0, chat.scrollHeight);
+  chat.scrollBy({
+    top: chat.scrollHeight,
+    left: 0,
+    behavior: 'smooth'
+  });
 }
 
 function addCharacter(name, image) {
@@ -62,13 +67,13 @@ function createChat(dieResult) {
   let resultDiv = document.createElement("div");
 
   // Add class name
-  card.className = "card mb-3";
+  card.className = "card mb-3 shadow border-white bg-ligth w-auto animated fadeInDown";
   cardBody.className = "card-body d-inline-flex";
   imageDiv.className = "me-3";
   image.className = "rounded-circle";
 
-  image.width = 80;
-  image.height = 80;
+  image.width = 50;
+  image.height = 50;
 
   // Inner Text
   nameDiv.innerText = "Name: " + characters[dieResult.id]["name"];

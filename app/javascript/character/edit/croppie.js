@@ -8,6 +8,8 @@ vanilla.bind({
   url: url
 });
 
+el.addEventListener("update", update)
+
 let original = document.getElementById('original');
 original.addEventListener("change", previewFile);
 
@@ -26,4 +28,8 @@ function previewFile() {
   } else {
     preview.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   }
+}
+
+function update(event) {
+  isDirtyImage = true;
 }

@@ -8,9 +8,9 @@
 <%= form_with model: @character, url: character_path(@character), id: "form", data: {turbo: false} do |form| %>
 
 	<div>
-		<%= form.hidden_field :character_image %>
+		<%= form.hidden_field :image %>
     <div id="croppie"></div>
-    <input id="original" type="file" name="original" accept="image/*">
+    <input id="original" class="form-control" type="file" name="original" accept="image/*">
 	</div>
 	
 	<div>
@@ -27,7 +27,8 @@
 <script>
 	const main_json = <%= raw @character.statistic %> 
 
-  let url = '<%= url_for(@character.character_image) if @character.character_image.attached? %>' || "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+	let isDirtyImage = false;
+	let url = '<%= url_for(@character.character_image) if @character.character_image.attached? %>' || "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 </script>
 
 <%= javascript_include_tag "character/Base" %>

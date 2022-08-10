@@ -30,8 +30,9 @@ class CharactersController < ApplicationController
   end
 
   def update
+    character_image = params[:character][:image]
     if @character.update(character_params)
-      @character.character_image.attach(data: params[:character][:character_image])
+      @character.character_image.attach(data: character_image) if character_image.present?
       redirect_to character_path(@character), notice: "Character successfully updated"
     else
       @character_categories = CharacterCategory.all
@@ -85,7 +86,7 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :statistic, :character_category_id, character_image: :data )
+    params.require(:character).permit(:name, :statistic, :character_category_id )
   end
 
   def redirect_if_empty

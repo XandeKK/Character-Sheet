@@ -32,9 +32,11 @@ function setInputName() {
 }
 
 function setImage() {
-	vanilla.result({type: 'base64', size: {width:300, height:300}}).then(function(base64) {
-      	character_character_image.setAttribute("value", base64);
-    });
+	if (isDirtyImage) {
+		vanilla.result({type: 'base64', size: {width:300, height:300}}).then(function(base64) {
+	      	character_image.setAttribute("value", base64);
+	    });		
+	}
 }
 
 base.createCardTab("basics", "Basics",[
