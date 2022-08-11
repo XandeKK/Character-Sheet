@@ -1,25 +1,42 @@
 import consumer from "channels/consumer"
 
-
 window.addEventListener("DOMContentLoaded", function() {
+  let gmChannel;
   const serverName = document.getElementById("serverName");
+  const serverBtn = document.getElementById("server");
   const btn = document.getElementById("diceBtn");
-  btn.addEventListener("click", rollDice);
 
-  const gmChannel = consumer.subscriptions.create({channel: "GmChannel", unique_name: serverName.textContent }, {
-    connected() {
-      // Called when the subscription is ready for use on the server
-    },
+  serverBtn.addEventListener("click", server);
 
-    disconnected() {
-      // Called when the subscription has been terminated by the server
-    },
+  function server() { // Initialize or close server
+    if (serverBtn.getAttribute("open") === "true") {
+      gmChannel.unsubscribe();
+      gmChannel = null;
 
-    received(data) {
-      // Called when there's incoming data on the websocket for this channel
+      serverBtn.textContent = "Start server";
+      serverBtn.setAttribute("open", "false");
+
+      btn.removeEventListener("click", rollDice);
+      return;
     }
-  });
+    btn.addEventListener("click", rollDice);
 
+    gmChannel = consumer.subscriptions.create({channel: "GmChannel", unique_name: serverName.textContent }, {
+      connected() {
+        serverBtn.textContent = "Close server";
+        serverBtn.setAttribute("open", "true");
+        // Called when the subscription is ready for use on the server
+      },
+
+      disconnected() {
+        // Called when the subscription has been terminated by the server
+      },
+
+      received(data) {
+        // Called when there's incoming data on the websocket for this channel
+      }
+    });
+  }
 
   function rollDice(event) {
     let quantity = document.getElementById("quantity").value || 1;
