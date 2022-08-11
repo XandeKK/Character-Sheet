@@ -3,8 +3,7 @@ class CharactersController < ApplicationController
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
 
   def index
-    @player = CharacterCategory.find_by_name("Player")
-    @characters = Character.where(user: current_user, character_category: @player)
+    @characters = Character.where(user: current_user, character_category_id: 1) # 1 == Player
   end
 
   def show
@@ -22,8 +21,7 @@ class CharactersController < ApplicationController
     if @character.create_character current_user, category
       redirect_to character_path(@character), notice: "Character created successfully"
     else
-      @player = CharacterCategory.find_by_name("Player")
-      @characters = Character.where(user: current_user, character_category: @player)
+      @characters = Character.where(user: current_user, character_category_id: 1) # 1 == Player
 
       render :index, status: :unprocessable_entity
     end

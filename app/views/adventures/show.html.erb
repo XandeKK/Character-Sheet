@@ -4,28 +4,28 @@
 <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNpc" aria-expanded="false" aria-controls="collapseNpc">Npc</button>
 <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemy" aria-expanded="false" aria-controls="collapseEnemy">Enemy</button>
 
-<%= render partial: "adventures/characters", locals: { characters: @allNpcs, adventure: @adventure, name: "Npc" }%>
+<% participants = get_participants @adventure %>
+
+<%= render partial: "adventures/characters", locals: { characters: @allNpcs, adventure: @adventure, name: "Npc", participants: participants }%>
 
 <div class="my-2"></div>
 
-<%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure, name: "Enemy" }%>
-
-<% participants = get_participants @adventure %>
+<%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure, name: "Enemy", participants: participants }%>
 
 <%= turbo_frame_tag "Npc" do %>
   <h3 class="border-bottom pb-2">Npc</h3>
-  <% participants.each do |participant| %>
-    <% if participant[:type] == "Npc" %>
-      <%= render partial: "adventures/character", locals: {character: participant[:character], character_json: participant[:character_json] } %>
+  <% @allNpcs.each do |character| %>
+    <% if participants.include? character.id %>
+      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"] } %>
     <% end %>
   <% end %>
 <% end %>
 
 <%= turbo_frame_tag "Enemy" do %>
   <h3 class="border-bottom pb-2">Enemy</h3>
-  <% participants.each do |participant| %>
-    <% if participant[:type] == "Enemy" %>
-      <%= render partial: "adventures/character", locals: {character: participant[:character], character_json: participant[:character_json] } %>
+  <% @allEnemies.each do |character| %>
+    <% if participants.include? character.id %>
+      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"] } %>
     <% end %>
   <% end %>
 <% end %>

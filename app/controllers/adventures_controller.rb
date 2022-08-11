@@ -7,10 +7,8 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    npc = CharacterCategory.find_by_name("Npc")
-    @allNpcs = Character.where(user: current_user, character_category: npc)
-    enemy = CharacterCategory.find_by_name("Enemy")
-    @allEnemies = Character.where(user: current_user, character_category: enemy)
+    @allNpcs = Character.where(user: current_user, character_category_id: 3) # 3 == Npc
+    @allEnemies = Character.where(user: current_user, character_category_id: 2) # 3 == Enemy
     @json = {}
   end
 

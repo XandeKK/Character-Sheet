@@ -2,7 +2,7 @@
   <div class="card p-2">
     <div class="row justify-content-center">
       <% characters.each do |character| %>
-        <%= render partial: "adventures/participante_character", locals: { character: character, adventure: adventure} %>
+        <%= render partial: "adventures/participante_character", locals: { character: character, adventure: adventure, added: participants.include?(character.id) } %>
       <% end %>
     </div>
   </div>

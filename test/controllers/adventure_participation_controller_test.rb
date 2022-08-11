@@ -5,7 +5,7 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     assert_difference("AdventureParticipation.count") do
-      post create_adventure_participation_path(adventures(:one)), params: {
+      post create_adventure_participation_path(adventures(:one), format: :turbo_stream), params: {
         adventure_participation: {
           character_id: characters(:one).id
         }
@@ -18,7 +18,7 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
     sign_up_with_other_user
 
     assert_no_difference("AdventureParticipation.count") do
-      post create_adventure_participation_path(adventures(:one)), params: {
+      post create_adventure_participation_path(adventures(:one), format: :turbo_stream), params: {
         adventure_participation: {
           character_id: characters(:one).id
         }
@@ -32,7 +32,7 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     assert_no_difference("AdventureParticipation.count") do
-      post create_adventure_participation_path(adventures(:one)), params: {
+      post create_adventure_participation_path(adventures(:one), format: :turbo_stream), params: {
         adventure_participation: {
           character_id: ''
         }
@@ -46,8 +46,9 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference("AdventureParticipation.count", -1) do
       delete destroy_adventure_participation_path(
-        adventure_participation_id: adventure_participations(:one),
-        id: adventure_participations(:one).adventure
+        character_id: characters(:one).id,
+        id: adventure_participations(:one).adventure,
+        format: :turbo_stream
       )
     end
 
@@ -59,8 +60,9 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_difference("AdventureParticipation.count") do
       delete destroy_adventure_participation_path(
-        adventure_participation_id: adventure_participations(:one),
-        id: adventure_participations(:one).adventure
+        character_id: characters(:one).id,
+        id: adventure_participations(:one).adventure,
+        format: :turbo_stream
       )
     end
 

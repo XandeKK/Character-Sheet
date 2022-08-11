@@ -8,24 +8,26 @@ class AdventureParticipationController < ApplicationController
 
     respond_to do |format|
       if @adventure_participation.save
-        format.html { render html: "any", status: :ok }
-        format.turbo_stream
+        format.turbo_stream { render "adventure_participation/create", status: :ok }
       else
-        format.html { render html: "any", status: :unprocessable_entity }
+        if @character
+          format.turbo_stream { render "adventure_participation/destroy", status: :unprocessable_entity }
+        else
+          format.turbo_stream { render plain: "", status: :unprocessable_entity }
+        end
       end
     end
 	end
 
 	def destroy
-    @adventure_participation = @adventure.adventure_participations.find_by_id(params[:adventure_participation_id])
+    @adventure_participation = @adventure.adventure_participations.find_by(character_id: params[:character_id])
     @character = @adventure_participation.character
 
     respond_to do |format|
       if @adventure_participation.destroy
-        format.html { render html: "any", status: :ok }
-        format.turbo_stream
+        format.turbo_stream { render "adventure_participation/destroy", status: :ok }
       else
-        format.html { render html: "any", status: :unprocessable_entity }
+        format.turbo_stream { render "adventure_participation/create", status: :unprocessable_entity }
       end
     end
 	end
