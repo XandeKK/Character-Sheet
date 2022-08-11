@@ -1,44 +1,52 @@
 import consumer from "channels/consumer"
 
-window.addEventListener("DOMContentLoaded", function() {
-  let gmChannel;
-  const serverName = document.getElementById("serverName");
-  const serverBtn = document.getElementById("server");
-  const btn = document.getElementById("diceBtn");
+class GmChannel {
+  constructor() {
+    this.serverName = document.getElementById("serverName");
+    this.startBtn = document.getElementById("startServer");
+    this.stopBtn = document.getElementById("stopServer");
+    this.btn = document.getElementById("diceBtn");
+    this.eventRollDice = this.rollDice.bind(this)
+    this.addEvent()
+  }
 
-  serverBtn.addEventListener("click", server);
+  addEvent() {
+    this.startBtn.addEventListener("click", this.start.bind(this));
+    this.stopBtn.addEventListener("click", this.stop.bind(this));
+  }
 
-  function server() { // Initialize or close server
-    if (serverBtn.getAttribute("open") === "true") {
-      gmChannel.unsubscribe();
-      gmChannel = null;
+  start() {
+    this.btn.addEventListener("click", this.eventRollDice);
+    this.channel = this.createChannel();
+    this.stopBtn.className = "btn btn-danger";
+    this.startBtn.className = "btn btn-dark d-none";
+  }
 
-      serverBtn.textContent = "Start server";
-      serverBtn.setAttribute("open", "false");
+  stop() {
+    this.channel.unsubscribe();
+    this.channel = null;
 
-      btn.removeEventListener("click", rollDice);
-      return;
-    }
-    btn.addEventListener("click", rollDice);
+    this.stopBtn.className = "btn btn-danger d-none";
+    this.startBtn.className = "btn btn-dark";
 
-    gmChannel = consumer.subscriptions.create({channel: "GmChannel", unique_name: serverName.textContent }, {
+    this.btn.removeEventListener("click", this.eventRollDice);
+  }
+
+  createChannel() {
+    const channel = consumer.subscriptions.create({channel: "GmChannel", unique_name: serverName.textContent }, {
       connected() {
-        serverBtn.textContent = "Close server";
-        serverBtn.setAttribute("open", "true");
-        // Called when the subscription is ready for use on the server
       },
 
       disconnected() {
-        // Called when the subscription has been terminated by the server
       },
 
       received(data) {
-        // Called when there's incoming data on the websocket for this channel
       }
     });
+    return channel;
   }
 
-  function rollDice(event) {
+  rollDice() {
     let quantity = document.getElementById("quantity").value || 1;
     let dice = document.getElementById("dice").value || "d4";
     let bonus = document.getElementById("bonus").value || 0; 
@@ -48,7 +56,7 @@ window.addEventListener("DOMContentLoaded", function() {
     let theme = document.getElementById("theme").value || "default";
     let image = document.getElementById("characterImage").value;
     
-    gmChannel.send({ 
+    this.channel.send({ 
       name: name,
       qty: quantity,
       dice: dice,
@@ -58,5 +66,12 @@ window.addEventListener("DOMContentLoaded", function() {
       theme: theme,
       image: image
     });
+  }
+}
+
+
+window.addEventListener("turbo:load", function() {
+  if (document.getElementById("serverName") !== null) {
+    const gmChannel = new GmChannel();
   }
 })

@@ -1,35 +1,53 @@
 import consumer from "channels/consumer"
 import {rollDice} from "../dice"
 
-document.addEventListener("turbo:submit-end", connect)
-let tvChannel;
+class TvChannel {
+  constructor() {
+    this.addEvent();
+  }
 
-function connect(event) {  
-  tvChannel = consumer.subscriptions.create({channel: "TvChannel", unique_name: unique_name.value}, {
-    connected() {
-    },
+  addEvent() {
+    document.addEventListener("turbo:submit-end", this.start.bind(this));
+  }
 
-    disconnected() {
-    },
+  start() {
+    this.channel = this.createChannel();
+  }
 
-    received(data) {
-      let quantity = data["qty"];
-      let dice = data["dice"];
-      let bonus = data["bonus"];
-      let color = data["color"];
-      let theme = data["theme"];
-      let name = data["name"];
-      let image = data["image"];
+  createChannel() {
+    const tvChannel = consumer.subscriptions.create({channel: "TvChannel", unique_name: unique_name.value}, {
+      connected() {
+      },
 
-      rollDice({
-        qty: quantity,
-        dice: dice,
-        bonus: bonus,
-        color: color,
-        theme: theme,
-        name: name,
-        image: image
-      })
-    }
-  });
+      disconnected() {
+      },
+
+      received(data) {
+        let quantity = data["qty"];
+        let dice = data["dice"];
+        let bonus = data["bonus"];
+        let color = data["color"];
+        let theme = data["theme"];
+        let name = data["name"];
+        let image = data["image"];
+
+        rollDice({
+          qty: quantity,
+          dice: dice,
+          bonus: bonus,
+          color: color,
+          theme: theme,
+          name: name,
+          image: image
+        })
+      }
+    });
+    return tvChannel;
+  }
 }
+
+window.addEventListener("turbo:load", function() {
+  if (document.getElementById("form") !== null) {
+    const tvChannel = new TvChannel();
+  }
+})
