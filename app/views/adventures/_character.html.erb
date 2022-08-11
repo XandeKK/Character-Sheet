@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(character, :content) do %>
   <div class="row mb-3 border-bottom">
     <div class="col-md-3 mb-2">
-    <%= image_tag character.character_image, class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>
+    <%= image_tag character.character_image, id: "image#{character.id}", class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>
     </div>
     <div class="col-md-8 row mb-2">
       <div class="row col-12">
@@ -27,6 +27,9 @@
           <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
           <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
         </div>
+      </div>
+      <div class="">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#diceRoller" data-bs-name="<%= character.name %>" data-bs-id="<%=character.id%>" data-bs-image="image<%=character.id%>">Roller</button>
       </div>
     </div>
   </div>

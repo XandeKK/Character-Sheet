@@ -6,9 +6,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>
-          Saiba que os dados, por enquanto, vai ser visualizado no <a href="/tv">Aqui</a> e também tem que estar conectado.
-        </p>
+        <input type="hidden" class="form-control" id="name">
+        <input type="hidden" class="form-control" id="characterId">
+        <input type="hidden" class="form-control" id="characterImage">
+
         <div class="mb-3">
           <label class="form-label">Dice theme</label>
           <select class="form-select" id="theme">
@@ -39,7 +40,7 @@
           <input id="bonus" type="number" class="form-control" placeholder="Bonus" aria-label="Bonus">
         </div>
         <div class="text-end">
-          <button class="btn btn-dark" id="diceBtn" disabled>
+          <button class="btn btn-dark" id="diceBtn">
             Roll
           </button>
         </div>
