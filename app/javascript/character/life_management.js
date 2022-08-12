@@ -24,7 +24,8 @@ class LifeManagement {
   }
 
   start() {
-    if (localStorage.getItem("characterList") === '{}') return
+    if (localStorage.getItem("characters") === null) localStorage.setItem("characters", '{}');
+    if (localStorage.getItem("characters") === '{}') return
     sendHP();
   }
 
@@ -93,18 +94,18 @@ class LifeManagement {
     hp.innerText = json[id]["currentHp"] + "/" + json[id]["maxHp"];
     temp.innerText = json[id]["temporary"];
 
-    if (localStorage.getItem("characterList") === null) {
+    if (localStorage.getItem("characters") === null) {
       let array = {};
-      localStorage.setItem("characterList", JSON.stringify(array));
+      localStorage.setItem("characters", JSON.stringify(array));
     }
 
-    let characterList = localStorage.getItem("characterList");
-    characterList = JSON.parse(characterList);
+    let characters = localStorage.getItem("characters");
+    characters = JSON.parse(characters);
 
-    characterList[id] = json[id];
+    characters[id] = json[id];
 
-    characterList = JSON.stringify(characterList);
-    localStorage.setItem("characterList", characterList);
+    characters = JSON.stringify(characters);
+    localStorage.setItem("characters", characters);
     localStorage.setItem("updated", true);
 
     this.saveBtn.disabled = false;

@@ -54,8 +54,8 @@ class CharactersController < ApplicationController
   end
 
   def update_all_life
-    character_list = JSON.parse params["characterList"]
-    character_list.each do |character|
+    characters = JSON.parse params["characters"]
+    characters.each do |character|
       character_tmp = Character.find_by(id: character[0], user: current_user)
       character_tmp.update_life character
     end

@@ -2,10 +2,10 @@ function sendHP() {
   let xhttp = new XMLHttpRequest();
   let csrf = document.querySelector("[name='csrf-token']").content;
 
-  let characterList = localStorage.getItem("characterList");
-  if (characterList === '{}') {return} 
+  let characters = localStorage.getItem("characters");
+  if (characters === '{}') {return} 
   let list = {};
-  list["characterList"] = characterList
+  list["characters"] = characters
   list = JSON.stringify(list)
 
   xhttp.open("PUT", "http://10.0.0.22:3000/character/update_all_life", true);
@@ -15,7 +15,7 @@ function sendHP() {
 
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      localStorage.setItem("characterList", '{}');
+      localStorage.setItem("characters", '{}');
       localStorage.setItem("updated", false);;
       saveBtn.disabled = true;
     }
