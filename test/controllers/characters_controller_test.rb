@@ -98,7 +98,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     put character_update_all_life_path(character), params: {
-      characterList: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":15}}"
+      characters: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":15}}"
     }
 
     assert_response :ok
@@ -108,7 +108,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     put character_update_all_life_path(character), params: {
-      characterList: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":14},\"#{characters(:two).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":14}}"
+      characters: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":14},\"#{characters(:two).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":14}}"
     }
 
     assert_response :ok

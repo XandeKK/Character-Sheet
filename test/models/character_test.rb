@@ -6,12 +6,18 @@ class CharacterTest < ActiveSupport::TestCase
       name: "Feel",
       statistic: '{}',
       user: users(:one),
+      slug: "feel",
       character_category: character_categories(:one)
     )
   end
 
   test "should be valid" do
     assert @character.valid?, "Did not validate with character valid"
+  end
+
+  test "should be valid without slug" do
+    @character.slug = nil
+    assert @character.valid?, "Validated the character without slug"
   end
 
   test "should save" do
