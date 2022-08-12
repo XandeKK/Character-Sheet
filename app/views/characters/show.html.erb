@@ -28,6 +28,10 @@
 
 <%= render partial: "dice_roller" %>
 
+<script>
+  json = <%= get_life(@character) %>
+</script>
+
 <%= javascript_include_tag "character/onbeforeunload" %>
 <%= javascript_include_tag "character/life_management" %>
 <%= javascript_include_tag "character/send" %>

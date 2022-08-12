@@ -17,7 +17,6 @@
           <% character_json["skills"].each do |skill| %>
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
               <span><%= skill["name"]%></span>
-              <!-- Observação: isso não está correto, por que não sendo somado pelo item e nem modificador de habilidade -->
               <span><%= getSkillModifier(skill, character_json["ability"]) %></span>
             </li>
           <% end %>

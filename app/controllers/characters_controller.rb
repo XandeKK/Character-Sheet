@@ -54,17 +54,10 @@ class CharactersController < ApplicationController
   end
 
   def update_all_life
-    characterList = JSON.parse params["characterList"]
-    characterList.each do |character|
-      @character = Character.find_by(id: character[0], user: current_user)
-      currentHp = character[1]["currentHp"]
-      temporary = character[1]["temporary"]
-
-      statistic = JSON.parse(@character.statistic)
-      statistic["character"]["hitPoints"]["currentHp"] = currentHp
-      statistic["character"]["hitPoints"]["temporary"] = temporary
-
-      @character.update!(statistic: statistic.to_json)
+    character_list = JSON.parse params["characterList"]
+    character_list.each do |character|
+      character_tmp = Character.find_by(id: character[0], user: current_user)
+      character_tmp.update_life character
     end
     render plain: "OK", status: :ok
   end

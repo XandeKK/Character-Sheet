@@ -218,10 +218,10 @@ class BaseUI {
 
 	renamingIdAndAction(div, number) {
 		let id = div.id;
-		let split_id = id.split("_");
+		let split_id = id.split("_"); // 0 = character, 1 = parent, 2 = index
 
 		split_id[2] = number;
-		id = split_id.join("_");
+		id = split_id.join("_"); // character_parent_index
 		div.id = id;
 
 		let deleteButton = div.getElementsByClassName("delete_button")[0];
@@ -233,10 +233,10 @@ class BaseUI {
 		for (var i = 0; i < array_input.length; i++) {
 		
 			let id = array_input[i].id;
-			let split_id = id.split("_");
+			let split_id = id.split("_"); // 0 = character, 1 = parent, 2 = index, 3 = child
 
 			split_id[2] = number;
-			id = split_id.join("_");
+			id = split_id.join("_"); // character_parent_index_child
 			array_input[i].id = id;
 		}
 	}

@@ -1,10 +1,17 @@
-<h1><%= @adventure.name %></h1>
-<h4>Server name :<span id="serverName"><%= @adventure.unique_name %></span></h4>
-<button class="btn btn-dark" id="startServer">Start Server</button>
-<button class="d-none" id="stopServer">Stop Server</button>
+<h1 class="fw-bold text-secondary text-center"><%= @adventure.name %></h1>
+<h4 class="text-center mb-5">Server name: <span id="serverName"><%= @adventure.unique_name %></span></h4>
 
-<button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNpc" aria-expanded="false" aria-controls="collapseNpc">Npc</button>
-<button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemy" aria-expanded="false" aria-controls="collapseEnemy">Enemy</button>
+<div class="d-flex justify-content-between m-2">
+  <div>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNpc" aria-expanded="false" aria-controls="collapseNpc">Npc</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemy" aria-expanded="false" aria-controls="collapseEnemy">Enemy</button>
+  </div>
+
+  <div class="d-flex">
+    <%= link_to "Edit", edit_adventure_path(@adventure), class: "btn btn-primary mx-2" %>
+    <%= button_to "Delete", adventure_path(@adventure), method: :delete, class: "btn btn-danger mx-2", data: {turbo: false} %>
+  </div>
+</div>
 
 <% participants = get_participants @adventure %>
 
@@ -40,6 +47,11 @@
 
 <button id="saveBtn" class="btn btn-success position-fixed bottom-0 start-0 m-4" style="z-index: 99;" disabled>Save</button>
 
+<div class="position-fixed bottom-0 end-0 m-4">
+  <button class="btn btn-dark" id="startServer">Start Server</button>
+  <button class="d-none" id="stopServer">Stop Server</button>
+</div>
+
 <script>
   json = <%= 
     get_life_array(@json, @allNpcs)
@@ -50,7 +62,7 @@
 
 <%= javascript_include_tag "character/onbeforeunload" %>
 <%= javascript_include_tag "character/gm/observe" %>
-<%= javascript_include_tag "character/gm/dice_roller" %>
+<%= javascript_include_tag "character/gm/modal_dice_roller" %>
 <%= javascript_include_tag "character/life_management" %>
 <%= javascript_include_tag "character/send" %>
 <%= javascript_include_tag "channels/gm_channel", type: :module, crossorigin: "anonymous" %>

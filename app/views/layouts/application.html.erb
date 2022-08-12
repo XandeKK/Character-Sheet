@@ -19,13 +19,9 @@
   <body>
     <%= render partial: "shared/navbar" unless controller_name == "campaign_tv" %>
     
-    <% if controller_name != "campaign_tv" %>
-      <div class="container pb-4 my-3">
+    <div class="<%= "container pb-4 my-3" unless controller_name == "campaign_tv" %>">
         <%= render partial: "shared/flash" %>
         <%= yield %>
-      </div>
-    <% else %>
-      <%= yield %>
-    <% end %>
+    </div>
   </body>
 </html>

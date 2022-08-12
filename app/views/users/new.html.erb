@@ -4,11 +4,11 @@
   <%= form_with model: @user do |form| %>
     <%= render partial: '/users/form', object: form %>
 
-    <div class="submit-field">
-      <%= form.submit %>
+    <div class="text-end">
+      <%= form.submit class: "btn btn-primary" %>
     </div>
 
-    <div class="other-links">
+    <div class="text-center mt-5">
       <%= link_to t(".sign_in"), sign_in_path %>
     </div>
   <% end %>

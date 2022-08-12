@@ -31,7 +31,7 @@
 	let url = '<%= url_for(@character.character_image) if @character.character_image.attached? %>' || "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 </script>
 
-<%= javascript_include_tag "character/Base" %>
+<%= javascript_include_tag "character/edit/Base" %>
 <%= javascript_include_tag "character/edit/CharacterUI" %>
 <%= javascript_include_tag "character/edit/main" %>
 <%= javascript_include_tag "character/edit/edit" %>

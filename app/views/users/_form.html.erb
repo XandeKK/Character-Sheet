@@ -1,13 +1,15 @@
 <% @user.errors.full_messages.each do |message| %>
-  <%= message %>
+  <div class="alert alert-warning" role="alert">
+    <%= message %>
+  </div>
 <% end %>
 
-<div class="text-field">
-  <%= form.label :email %>
-  <%= form.email_field :email %>
+<div class="mb-3">
+  <%= form.label :email, class: "form-label" %>
+  <%= form.email_field :email, class: "form-control" %>
 </div>
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+<div class="mb-3">
+  <%= form.label :password, class: "form-label" %>
+  <%= form.password_field :password, class: "form-control" %>
 </div>

@@ -8,7 +8,7 @@ class GmChannel {
     this.btn = document.getElementById("diceBtn");
     this.playerDiv = document.getElementById("player");
 
-    this.eventRollDice = this.rollDice.bind(this)
+    this.eventRollDice = this.rollDice.bind(this);
     this.addEvent()
 
     this.players = [];

@@ -1,2 +1,22 @@
-<h1>Adventures#edit</h1>
-<p>Find me in app/views/adventures/edit.html.erb</p>
+<h1 class="fw-bold text-secondary text-center">Create Adventure</h1>
+<%= form_with model: @adventure, url: adventure_path, method: :put, data: {turbo: false} do |form| %>
+	<% @adventure.errors.full_messages.each do |message| %>
+		<div class="alert alert-warning" role="alert">
+			<%= message %>
+		</div>
+	<% end %>
+
+	<div class="mb-3">
+		<%= form.label :name, class: "form-label" %>
+		<%= form.text_field :name, class: "form-control" %>
+	</div>
+
+	<div class="mb-3">
+		<%= form.label :password, "Password", class: "form-label" %>
+		<%= form.text_field :password, class: "form-control" %>
+	</div>
+
+	<div class="text-end">
+		<%= form.submit "Edit adventure", class: "btn btn-success" %>
+	</div>
+<% end %>

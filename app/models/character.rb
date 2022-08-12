@@ -19,7 +19,7 @@ class Character < ApplicationRecord
   def create_character current_user, category
     player = CharacterCategory.find_by_name(category)
 
-    self.name = "undefined"
+    self.name = "nameless"
     character_json = File.read("#{Rails.root}/app/models/json/character.json")
     character_json = JSON.parse character_json
     self.statistic = character_json.to_json
@@ -28,5 +28,16 @@ class Character < ApplicationRecord
     self.user = current_user
 
     self.save
+  end
+
+  def update_life data
+    currentHp = data[1]["currentHp"]
+    temporary = data[1]["temporary"]
+
+    statistic = JSON.parse(self.statistic)
+    statistic["character"]["hitPoints"]["currentHp"] = currentHp
+    statistic["character"]["hitPoints"]["temporary"] = temporary
+
+    self.update!(statistic: statistic.to_json)
   end
 end

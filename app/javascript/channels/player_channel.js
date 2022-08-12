@@ -3,8 +3,9 @@ import consumer from "channels/consumer"
 class PlayerChannel {
   constructor() {
     this.btn = document.getElementById("diceBtn");
-    this.eventRollDice = this.rollDice.bind(this)
-    this.addEvent()
+    this.eventRollDice = this.rollDice.bind(this);
+    this.addEvent();
+    this.open = false;
   }
 
   addEvent() {
@@ -21,6 +22,7 @@ class PlayerChannel {
   start() {
     this.channel = this.createChannel()
     this.btn.disabled = false;
+    this.open = true;
   }
 
   createChannel() {
@@ -43,6 +45,8 @@ class PlayerChannel {
   }
 
   updateLife() {
+    if (!this.open) return
+
     let id = Object.keys(json)[0];
     const maxHp = parseInt(json[id]["maxHp"]);
     const currentHp = parseInt(json[id]["currentHp"]);
