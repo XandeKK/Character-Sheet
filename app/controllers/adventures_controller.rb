@@ -59,6 +59,12 @@ class AdventuresController < ApplicationController
   end
 
   def set_adventure
-    @adventure = Adventure.find_by(id: params[:id], user: current_user)
+    begin
+      @adventure = Adventure.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @adventure = nil
+    else
+      @adventure = nil if @adventure.user != current_user
+    end
   end
 end

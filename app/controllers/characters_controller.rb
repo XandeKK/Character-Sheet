@@ -85,7 +85,13 @@ class CharactersController < ApplicationController
   end
 
   def set_character
-    @character = Character.find_by(id: params[:id], user: current_user)
+    begin
+      @character = Character.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @character = nil
+    else
+      @character = nil if @character.user != current_user
+    end
   end
 
   def set_character_json

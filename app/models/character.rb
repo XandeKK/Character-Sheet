@@ -1,5 +1,7 @@
 class Character < ApplicationRecord
-  # before_update 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   belongs_to :character_category
   belongs_to :user
   has_one_base64_attached :character_image
@@ -7,6 +9,10 @@ class Character < ApplicationRecord
 
   validates :name, presence: true
   validate :if_json_valid?
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
   def if_json_valid?
     begin
