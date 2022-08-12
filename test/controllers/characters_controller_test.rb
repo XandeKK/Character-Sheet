@@ -14,13 +14,15 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up
     
     get characters_path
+    assert_select "h1", "Characters"
     assert_response :success
   end
 
   test "should get show" do
     sign_up
     
-    get characters_path(character)
+    get character_path(character)
+    assert_select "h1#characterName", "undefined"
     assert_response :success
   end
 
@@ -28,6 +30,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up_with_other_user
     
     get characters_path(character)
+    assert_select "h1", "Characters"
     assert_response :success
   end
 
@@ -39,21 +42,26 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :redirect
+    follow_redirect!
+    assert_select "h1#characterName", "undefined"
     assert_equal "Character created successfully", flash[:notice]
   end
 
   test "should update character" do
     sign_up
+    character_json = File.read("#{Rails.root}/test/fixtures/files/character_test.json")
 
     put character_path(character), params: {
       character: {
         name: "Tolo",
-        statistic: '{"You": "Fool"}',
+        statistic: character_json,
       character_image: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
       }
     }
 
     assert_response :redirect
+    follow_redirect!
+    assert_select "h1#characterName", "Fool"
     assert_equal "Character successfully updated", flash[:notice]
   end
 
@@ -69,6 +77,8 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_response :redirect
+    follow_redirect!
+    assert_select "h1", "Characters"
     assert_equal "You do not have permission.", flash[:alert]
   end
 
@@ -80,6 +90,8 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :redirect
+    follow_redirect!
+    assert_select "h1", "Characters"
     assert_equal "Character successfully deleted", flash[:notice]
   end
 
@@ -91,17 +103,22 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :redirect
+    follow_redirect!
+    assert_select "h1", "Characters"
     assert_equal "You do not have permission.", flash[:alert]
   end
 
   test "should update one character life" do
     sign_up
 
+    get character_path(character)
+
     put character_update_all_life_path(character), params: {
       characters: "{\"#{characters(:one).id}\":{\"maxHp\":\"0\",\"currentHp\":0,\"temporary\":15}}"
     }
 
     assert_response :ok
+    assert_equal @response.body, "OK"
   end
 
   test "should update multiple characters life" do
@@ -112,6 +129,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_response :ok
+    assert_equal @response.body, "OK"
   end
 
   test "should sign up in server" do
@@ -122,6 +140,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
       password: 123
     }
     assert_response :ok
+    assert_select 'turbo-stream[action="remove"]'
   end
 
   test "should not sign up in server" do
@@ -132,6 +151,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
       password: ''
     }
     assert_response :unprocessable_entity
+    assert_select "div.alert-warning", "Server name or password is wrong."
   end
 
   test "should not sign up in server without sign up in session" do
@@ -141,5 +161,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     }
     assert_response :redirect
     assert_equal "Please sign in to continue.", flash[:alert]
+    follow_redirect!
+    assert_select "input#session_email"
   end
 end

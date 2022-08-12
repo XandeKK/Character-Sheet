@@ -6,12 +6,15 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
 
     get campaign_tv_path(adventures(:one))
     assert_response :success
+    assert_select "div#chat"
   end
 
   test "should not get show" do
     get campaign_tv_path(adventures(:one))
     assert_response :redirect
     assert_equal "Please sign in to continue.", flash[:alert]
+    follow_redirect!
+    assert_select "input#session_email"
   end
 
   test "should sign up in campaign" do
@@ -22,6 +25,7 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
       password: 123
     }
     assert_response :ok
+    assert_select 'turbo-stream[action="remove"]'
   end
 
   test "should not sign up in campaign" do
@@ -32,6 +36,7 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
       password: ''
     }
     assert_response :unprocessable_entity
+    assert_select 'turbo-stream[action="replace"]'
   end
 
   test "should not sign up in campaign without sign up in session" do
@@ -41,5 +46,7 @@ class CampaignTvControllerTest < ActionDispatch::IntegrationTest
     }
     assert_response :redirect
     assert_equal "Please sign in to continue.", flash[:alert]
+    follow_redirect!
+    assert_select "input#session_email"
   end
 end

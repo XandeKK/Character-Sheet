@@ -5,6 +5,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     get npcs_path
+    assert_select "h1", "Npc"
     assert_response :success
   end
 
@@ -13,5 +14,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     assert_equal "Please sign in to continue.", flash[:alert]
+    follow_redirect!
+    assert_select "input#session_email"
   end
 end

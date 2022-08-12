@@ -1,4 +1,4 @@
-<h1 class="fw-bold text-secondary text-center">Create Adventure</h1>
+<h1 class="fw-bold text-secondary text-center">Edit Adventure</h1>
 <%= form_with model: @adventure, url: adventure_path, method: :put, data: {turbo: false} do |form| %>
 	<% @adventure.errors.full_messages.each do |message| %>
 		<div class="alert alert-warning" role="alert">

@@ -12,6 +12,8 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :success
+    assert_select 'turbo-stream[action="replace"]'
+    assert_select "button[character_id=#{characters(:one).id}]"
   end
 
   test "should not create adventure participation which does not belong to the user" do
@@ -24,9 +26,11 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_response :unprocessable_entity
+    assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
-  end
+    follow_redirect!
+    assert_select "h1", "Adventures"
+    end
 
   test "should not create adventure participation without character" do
     sign_up
@@ -39,6 +43,7 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
+    assert_equal @response.body, ""
   end
 
   test "should destroy adventure participation" do
@@ -53,6 +58,8 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :ok
+    assert_select "turbo-stream[action=update]"
+    assert_select "turbo-stream[target=button_character_#{characters(:one).id}]"
   end
 
   test "should destroy adventure participation which does not belong to the user" do
@@ -66,7 +73,9 @@ class AdventureParticipationControllerTest < ActionDispatch::IntegrationTest
       )
     end
 
-    assert_response :unprocessable_entity
+    assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    follow_redirect!
+    assert_select "h1", "Adventures"
   end
 end

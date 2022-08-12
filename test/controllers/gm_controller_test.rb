@@ -5,6 +5,7 @@ class GmControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     get gm_path
+    assert_select "h1", "Gm"
     assert_response :success
   end
 
@@ -12,5 +13,7 @@ class GmControllerTest < ActionDispatch::IntegrationTest
     get gm_path
     assert_response :redirect
     assert_equal "Please sign in to continue.", flash[:alert]
+    follow_redirect!
+    assert_select "input#session_email"
   end
 end

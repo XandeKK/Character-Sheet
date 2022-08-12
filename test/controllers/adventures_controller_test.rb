@@ -10,6 +10,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     get adventures_path
     assert_response :success
+    assert_select "h1", "Adventures"
   end
 
   test "should get show" do
@@ -17,6 +18,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     get adventure_path(adventure)
     assert_response :success
+    assert_select "h1", adventure.name
   end
 
   test "should not get show adventure which does not belong to the user" do
@@ -25,6 +27,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     get adventure_path(adventure)
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    follow_redirect!
+    assert_select "h1", "Adventures"
   end
 
   test "should get new" do
@@ -32,6 +36,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     get new_adventure_path
     assert_response :success
+    assert_select "h1", "Create Adventure"
   end
 
   test "should create adventure" do
@@ -47,6 +52,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :redirect
     assert_equal "Adventure created successfully", flash[:notice]
+    follow_redirect!
+    assert_select "h1", "Pokemon"
   end
 
   test "should not create adventure without name" do
@@ -61,6 +68,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
+    assert_select "div.alert-warning", "Name can't be blank"
   end
 
   test "should get edit" do
@@ -68,6 +76,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     get edit_adventure_path(adventure)
     assert_response :success
+    assert_select "input#adventure_name[value=?]", adventure.name
   end
 
   test "should not get edit adventure which does not belong to the user" do
@@ -76,6 +85,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     get edit_adventure_path(adventure)
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    follow_redirect!
+    assert_select "h1", "Adventures"
   end
 
   test "should update adventure" do
@@ -90,6 +101,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "Adventure successfully updated", flash[:notice]
+    follow_redirect!
+    assert_select "h1", "Bye world"
   end
 
   test "should not update adventure without name" do
@@ -103,6 +116,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_response :unprocessable_entity
+    assert_select "div.alert-warning", "Name can't be blank"
   end
 
   test "should not update adventure which does not belong to the user" do
@@ -117,6 +131,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    follow_redirect!
+    assert_select "h1", "Adventures"
   end
 
   test "should destroy adventure" do
@@ -128,6 +144,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "Adventure successfully deleted", flash[:notice]
+    follow_redirect!
+    assert_select "h1", "Adventures"
   end
 
   test "should destroy adventure which does not belong to the user" do
@@ -139,6 +157,8 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    follow_redirect!
+    assert_select "h1", "Adventures"
   end
 
 end

@@ -12,4 +12,10 @@ two:
   name: Annabeth
   statistic: '<%= character_json.to_json %>'
   user: one
+  character_category: two
+
+three:
+  name: Beth
+  statistic: '<%= character_json.to_json %>'
+  user: one
   character_category: three
