@@ -6,10 +6,17 @@ class PlayerChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
   end
 
   def receive(data)
-    ActionCable.server.broadcast params[:unique_name], data
+    if data["act"] == "takePlayer"
+      ActionCable.server.broadcast("gm_" + params[:unique_name], data)
+    elsif data["act"] == "rollDice"
+      ActionCable.server.broadcast params[:unique_name], data
+    elsif data["act"] == "playerLeaves"
+      ActionCable.server.broadcast("gm_" + params[:unique_name], data)
+    elsif data["act"] == "updateLife"
+      ActionCable.server.broadcast("gm_" + params[:unique_name], data)
+    end
   end
 end

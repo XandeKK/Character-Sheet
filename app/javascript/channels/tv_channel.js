@@ -15,6 +15,7 @@ class TvChannel {
   }
 
   createChannel() {
+    const rollDiceClass = this.rollDice;
     const tvChannel = consumer.subscriptions.create({channel: "TvChannel", unique_name: unique_name.value}, {
       connected() {
       },
@@ -23,26 +24,33 @@ class TvChannel {
       },
 
       received(data) {
-        let quantity = data["qty"];
-        let dice = data["dice"];
-        let bonus = data["bonus"];
-        let color = data["color"];
-        let theme = data["theme"];
-        let name = data["name"];
-        let image = data["image"];
-
-        rollDice({
-          qty: quantity,
-          dice: dice,
-          bonus: bonus,
-          color: color,
-          theme: theme,
-          name: name,
-          image: image
-        })
+        if (data["act"] == "rollDice"){
+          const rollObjects = rollDiceClass(data);
+          rollDice(rollObjects);
+        }
       }
     });
     return tvChannel;
+  }
+
+  rollDice(data) {
+    let quantity = data["qty"];
+    let dice = data["dice"];
+    let bonus = data["bonus"];
+    let color = data["color"];
+    let theme = data["theme"];
+    let name = data["name"];
+    let image = data["image"];
+
+    return {
+      qty: quantity,
+      dice: dice,
+      bonus: bonus,
+      color: color,
+      theme: theme,
+      name: name,
+      image: image
+    };
   }
 }
 
