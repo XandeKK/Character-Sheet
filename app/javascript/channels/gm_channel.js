@@ -34,6 +34,8 @@ class GmChannel {
     this.startBtn.className = "btn btn-dark";
 
     this.btn.removeEventListener("click", this.eventRollDice);
+    this.players = [];
+    this.playerDiv.innerHTML = '<h3 class="border-bottom pb-2">Player</h3>'
   }
 
   createChannel() {
@@ -91,6 +93,7 @@ class GmChannel {
 
     const div = document.createElement("div");
     div.id = data["character_id"];
+    div.className = "animated fadeInDown";
     div.innerHTML = body;
 
     this.playerDiv.appendChild(div);

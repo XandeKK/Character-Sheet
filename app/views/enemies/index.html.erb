@@ -4,7 +4,7 @@
 		<h3>Has no enemy.</h3>
 	<% else %>
 		<% @enemies.each do |enemy|  %>
-			<%= link_to enemy.name, character_path(enemy), class: "list-group-item list-group-item-action" %>
+			<%= link_to enemy.name, character_path(enemy), class: "list-group-item list-group-item-action", data: {turbo: false} %>
 		<% end %>
 	<% end %>
 </div>

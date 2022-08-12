@@ -4,7 +4,7 @@
 		<h3>Has no adventure.</h3>
 	<% else %>
 		<% @adventures.each do |adventure|  %>
-			<%= link_to adventure.name, adventure_path(adventure), class: "list-group-item list-group-item-action" %>
+			<%= link_to adventure.name, adventure_path(adventure), class: "list-group-item list-group-item-action", data: {turbo: false} %>
 		<% end %>
 	<% end %>
 </div>

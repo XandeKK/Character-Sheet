@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(character, :content) do %>
+<%= turbo_frame_tag dom_id(character, :content), class: "animated fadeInDown" do %>
   <div class="row mb-3 border-bottom">
     <div class="col-md-3 mb-2">
     <%= image_tag character.character_image, id: "image#{character.id}", class: "rounded-circle", style: "width: 200px; height: auto" if character.character_image.attached? %>

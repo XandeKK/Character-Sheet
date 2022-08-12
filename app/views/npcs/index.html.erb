@@ -4,7 +4,7 @@
 		<h3>Has no npc.</h3>
 	<% else %>
 		<% @npcs.each do |npc|  %>
-			<%= link_to npc.name, character_path(npc), class: "list-group-item list-group-item-action" %>
+			<%= link_to npc.name, character_path(npc), class: "list-group-item list-group-item-action", data: {turbo: false} %>
 		<% end %>
 	<% end %>
 </div>
