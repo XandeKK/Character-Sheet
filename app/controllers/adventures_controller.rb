@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
 
   def index
-    @adventures = Adventure.all
+    @adventures = Adventure.where(user: current_user)
   end
 
   def show
