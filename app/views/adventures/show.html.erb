@@ -15,11 +15,11 @@
 
 <% participants = get_participants @adventure %>
 
-<%= render partial: "adventures/characters", locals: { characters: @allNpcs, adventure: @adventure, name: "Npc", participants: participants }%>
+<%= render partial: "adventures/characters", locals: { characters: @allNpcs, adventure: @adventure.id, name: "Npc", participants: participants }%>
 
 <div class="my-2"></div>
 
-<%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure, name: "Enemy", participants: participants }%>
+<%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure.id, name: "Enemy", participants: participants }%>
 
 <%= turbo_frame_tag "Npc" do %>
   <h3 class="border-bottom pb-2">Npc</h3>
@@ -61,7 +61,6 @@
 </script>
 
 <%= javascript_include_tag "character/onbeforeunload" %>
-<%= javascript_include_tag "character/gm/observe" %>
 <%= javascript_include_tag "character/gm/modal_dice_roller" %>
 <%= javascript_include_tag "character/life_management" %>
 <%= javascript_include_tag "character/send" %>

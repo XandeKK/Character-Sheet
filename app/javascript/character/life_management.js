@@ -1,26 +1,84 @@
 class LifeManagement {
   constructor() {
     this.start();
+
+    this.npc = document.getElementById('Npc');
+    this.enemy = document.getElementById('Enemy');
     
     this.damageBtnArray = document.querySelectorAll(".damageBtn");
     this.healBtnArray = document.querySelectorAll(".healBtn");
     this.temporaryBtnArray = document.querySelectorAll(".temporaryBtn");
+
+    this.damageHp = this.damageHp.bind(this);
+    this.healHp = this.healHp.bind(this);
+    this.addTemporaryHp = this.addTemporaryHp.bind(this);
+
     this.saveBtn = document.getElementById("saveBtn");
     this.addEvent();
+
+    this.observer = this.mutationObserver();
+    this.observe();
+  }
+
+  restartEvent() {
+    this.removeEvent();
+    this.addEvent();
+  }
+
+  removeEvent() {
+    for (let i = 0; i < this.damageBtnArray.length; i++) {
+      this.damageBtnArray[i].removeEventListener("click", this.damageHp)
+    }
+
+    for (let i = 0; i < this.healBtnArray.length; i++) {
+      this.healBtnArray[i].removeEventListener("click", this.healHp)
+    }
+
+    for (let i = 0; i < this.temporaryBtnArray.length; i++) {
+      this.temporaryBtnArray[i].removeEventListener("click", this.addTemporaryHp)
+    }
+
+    this.damageBtnArray = document.querySelectorAll(".damageBtn");
+    this.healBtnArray = document.querySelectorAll(".healBtn");
+    this.temporaryBtnArray = document.querySelectorAll(".temporaryBtn");
   }
 
   addEvent() {
     for (let i = 0; i < this.damageBtnArray.length; i++) {
-      this.damageBtnArray[i].addEventListener("click", this.damageHp.bind(this))
+      this.damageBtnArray[i].addEventListener("click", this.damageHp)
     }
 
     for (let i = 0; i < this.healBtnArray.length; i++) {
-      this.healBtnArray[i].addEventListener("click", this.healHp.bind(this))
+      this.healBtnArray[i].addEventListener("click", this.healHp)
     }
 
     for (let i = 0; i < this.temporaryBtnArray.length; i++) {
-      this.temporaryBtnArray[i].addEventListener("click", this.addTemporaryHp.bind(this))
+      this.temporaryBtnArray[i].addEventListener("click", this.addTemporaryHp)
     }
+  }
+
+  mutationObserver() {
+    const restartEvent = this.restartEvent.bind(this);
+
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList') {
+          restartEvent();
+        }
+      });
+    });
+    return observer;
+  }
+
+  observe() {
+    if (this.npc === null) return;
+    this.observer.observe(this.npc, {
+      childList: true
+    });
+
+    this.observer.observe(this.enemy, {
+      childList: true
+    });
   }
 
   start() {
