@@ -33,5 +33,7 @@
       </div>
     </div>
   </div>
-  <%= render partial: "adventures/offcanvas", locals: { character: character, character_json: JSON.parse(character.statistic)["character"] } %>
+  <%= turbo_stream.append "offcanvas-mix" do%>
+    <%= render partial: "adventures/offcanvas", locals: { character: character, character_json: JSON.parse(character.statistic)["character"] } %>
+  <% end %>
 <% end %>
