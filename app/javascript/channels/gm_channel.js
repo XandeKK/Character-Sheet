@@ -127,7 +127,7 @@ class GmChannel {
     let image = document.getElementById("characterImage").value;
     
     this.channel.send({
-      act: "sendDice",
+      act: "rollDice",
       name: name,
       qty: quantity,
       dice: dice,

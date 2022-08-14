@@ -111,15 +111,19 @@ module CharactersHelper
 		return  skillModifier
 	end
 
-	def get_life_array json, characters
+	def get_life_array characters
+		json = {}
 		characters.each do |character|
-	    character_json = JSON.parse(character.statistic)["character"]
-	    currentHp = character_json["hitPoints"]["currentHp"]
-	    temporary = character_json["hitPoints"]["temporary"]
-	    maxHp = character_json["hitPoints"]["maxHp"]
-	    id = character.id
-	    json.store(id, {"maxHp": maxHp, "currentHp": currentHp, "temporary": temporary})
-	  end
+			if character.character_category_id == 2 || character.character_category_id == 3
+			    character_json = JSON.parse(character.statistic)["character"]
+			    currentHp = character_json["hitPoints"]["currentHp"]
+			    temporary = character_json["hitPoints"]["temporary"]
+			    maxHp = character_json["hitPoints"]["maxHp"]
+			    id = character.id
+			    json.store(id, {"maxHp": maxHp, "currentHp": currentHp, "temporary": temporary})
+			end
+	  	end
+	  	return json
 	end
 
 	def get_life character

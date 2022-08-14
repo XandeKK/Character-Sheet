@@ -10,7 +10,7 @@ class GmChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    if data["act"] == "sendDice"
+    if data["act"] == "rollDice"
       ActionCable.server.broadcast params[:unique_name], data
     elsif data["act"] == "wantPlayers"
       ActionCable.server.broadcast("player_" + params[:unique_name], data)

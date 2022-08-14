@@ -146,6 +146,9 @@ class LifeManagement {
   }
 
   updateDisplayHp(id) {
+    let updateLife = document.getElementById("update-life");
+    if (updateLife !== null) updateLife.click(); // Trigger an event to send the data to websocket 
+
     let hp = document.getElementById("hp_character_" + id);
     let temp = document.getElementById("temporary_character_" + id);
 

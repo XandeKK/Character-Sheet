@@ -1,10 +1,35 @@
+<% participants = get_participants @adventure %>
+
+<% @characters.each do |character| %>
+  <% if character.character_category_id == 2 %>
+    <% if participants.include? character.id %>
+      <%= turbo_stream.append "Enemy" do %>
+        <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"] } %>
+      <% end %>
+    <% end %>
+    <%= turbo_stream.append "collapse-body-enemy" do %>
+      <%= render partial: "adventures/participante_character", locals: { character: character, adventure_id: @adventure.id, added: participants.include?(character.id) } %>
+    <% end %>
+
+  <% elsif character.character_category_id == 3 %>
+    <% if participants.include? character.id %>
+      <%= turbo_stream.append "Npc" do %>
+        <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"] } %>
+      <% end %>
+    <% end %>
+    <%= turbo_stream.append "collapse-body-npc" do %>
+      <%= render partial: "adventures/participante_character", locals: { character: character, adventure_id: @adventure.id, added: participants.include?(character.id) } %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <h1 class="fw-bold text-secondary text-center"><%= @adventure.name %></h1>
 <h4 class="text-center mb-5">Server name: <span id="serverName"><%= @adventure.unique_name %></span></h4>
 
 <div class="d-flex justify-content-between m-2">
   <div>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNpc" aria-expanded="false" aria-controls="collapseNpc">Npc</button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemy" aria-expanded="false" aria-controls="collapseEnemy">Enemy</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-npc" aria-expanded="false" aria-controls="collapse-npc">Npc</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-enemy" aria-expanded="false" aria-controls="collapse-enemy">Enemy</button>
   </div>
 
   <div class="d-flex">
@@ -13,30 +38,28 @@
   </div>
 </div>
 
-<% participants = get_participants @adventure %>
-
-<%= render partial: "adventures/characters", locals: { characters: @allNpcs, adventure: @adventure.id, name: "Npc", participants: participants }%>
+<div class="collapse" id="collapse-npc">
+  <div class="card p-2">
+    <div class="row justify-content-center" id="collapse-body-npc">
+    </div>
+  </div>
+</div>
 
 <div class="my-2"></div>
 
-<%= render partial: "adventures/characters", locals: { characters: @allEnemies, adventure: @adventure.id, name: "Enemy", participants: participants }%>
+<div class="collapse" id="collapse-enemy">
+  <div class="card p-2">
+    <div class="row justify-content-center" id="collapse-body-enemy">
+    </div>
+  </div>
+</div>
 
 <%= turbo_frame_tag "Npc" do %>
   <h3 class="border-bottom pb-2">Npc</h3>
-  <% @allNpcs.each do |character| %>
-    <% if participants.include? character.id %>
-      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"] } %>
-    <% end %>
-  <% end %>
 <% end %>
 
 <%= turbo_frame_tag "Enemy" do %>
   <h3 class="border-bottom pb-2">Enemy</h3>
-  <% @allEnemies.each do |character| %>
-    <% if participants.include? character.id %>
-      <%= render partial: "adventures/character", locals: {character: character, character_json: JSON.parse(character.statistic)["character"] } %>
-    <% end %>
-  <% end %>
 <% end %>
 
 <div id="player">
@@ -56,10 +79,9 @@
 </div>
 
 <script>
-  json = <%= 
-    get_life_array(@json, @allNpcs)
-    get_life_array(@json, @allEnemies)
-    raw @json.to_json 
+  json = <%=
+    json = get_life_array(@characters)
+    raw json.to_json 
   %>
 </script>
 

@@ -7,9 +7,9 @@
     </span>
 	<%= turbo_frame_tag dom_id(character, :button), class: "col text-center" do %>
     	<% if added %>
-			<%= button_to "Remove", destroy_adventure_participation_path(id: adventure, character_id: character.id), method: :delete, class: "btn btn-primary btn-sm" %>
+			<%= button_to "Remove", destroy_adventure_participation_path(id: adventure_id, character_id: character.id), method: :delete, class: "btn btn-primary btn-sm" %>
 		<% else %>
-			<%= button_to "Add", create_adventure_participation_path(id: adventure), params: { adventure_participation:{ character_id: character.id }}, class: "btn btn-primary btn-sm" %>
+			<%= button_to "Add", create_adventure_participation_path(id: adventure_id), params: { adventure_participation:{ character_id: character.id }}, class: "btn btn-primary btn-sm" %>
 		<% end %>
 	<% end %>
 </div>

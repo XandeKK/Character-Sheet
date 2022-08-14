@@ -13,10 +13,8 @@ class PlayerChannel {
     document.addEventListener("turbo:submit-end", this.start.bind(this));
     window.addEventListener("beforeunload", this.playerLeaves.bind(this));
 
-    const hpBtn = document.getElementsByClassName("hp");
-    for (var i = 0; i < hpBtn.length; i++) {
-      hpBtn[i].addEventListener("click", this.updateLife.bind(this));
-    }
+    const hpBtn = document.getElementById("update-life");
+    hpBtn.addEventListener("click", this.updateLife.bind(this));
   }
 
   start() {
