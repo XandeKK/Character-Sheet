@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: rediss://:p99e6556d9744fd1317c3e2b84c48186b94fb425e33908d090d0616c3074f6ad6@ec2-44-197-0-60.compute-1.amazonaws.com:26080
   channel_prefix: Character_Sheet_production
