@@ -1,6 +1,8 @@
 function sendHP() {
   let xhttp = new XMLHttpRequest();
   let csrf = document.querySelector("[name='csrf-token']").content;
+  let origin = window.location.origin;
+  let url = origin + "/character/update_all_life"
 
   let characters = localStorage.getItem("characters");
   if (characters === '{}') {return} 
@@ -8,7 +10,7 @@ function sendHP() {
   list["characters"] = characters
   list = JSON.stringify(list)
 
-  xhttp.open("PUT", "http://10.0.0.22:3000/character/update_all_life", true);
+  xhttp.open("PUT", url, true);
   xhttp.setRequestHeader('X-CSRF-Token', csrf);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(list);
