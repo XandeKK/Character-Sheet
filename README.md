@@ -3,12 +3,11 @@
 </h1>
 
 <h4 align="center"> 
-	🚧  Character Sheet 🎲 Gave up... 🚧
+	🚧  Character Sheet 🎲 In progress... 🚧
 </h4>
 
 <p align="center">
  <a href="#-about-the-project">About</a> •
- <a href="#-features">Features</a> •
  <a href="#-technologies">Technologies</a> • 
  <a href="#-author">Author</a> • 
  <a href="#user-content--license">License</a>
@@ -18,22 +17,6 @@
 ## 💻 About the project
 
 The "simple" character sheet app for player and GM.
-And this application is going to be focused both to be used as a simple character sheet, but you can also use it to transfer character data to [map tools](https://github.com/RPTools/maptool).
-For the moment, I will do, for now, for the pathfinder system.
-
-
-## ⚙️ Features
-
-- [X] Login/Signup with Email
-- [X] Forgot password
-- [X] Change password
-- [X] Create a character
-- [ ] A screen to show the map
-- [ ] Send dice to screen, using [3D Dice](https://github.com/3d-dice/dice-box)
-- [ ] Send characters' info to GM
-- [ ] Create a NPC
-- [ ] NPC Management
-
 
 ## 🛠 Technologies
 
@@ -41,6 +24,7 @@ The following tools were used in building the project:
 
 -   **[Ruby on rails](https://rubyonrails.org/)**
 -   **[Postgresql](https://www.postgresql.org/)**
+-   **[Dice-box](https://github.com/3d-dice/dice-box)**
 
 ## 📝 License
 
