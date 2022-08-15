@@ -1,5 +1,7 @@
 pt-BR:
   character:
+    name: Nome
+    details: Detalhes
     singular: Personagem
     plural: Personagens
     created: Personagem criado com sucesso!
@@ -8,10 +10,10 @@ pt-BR:
     character category: Categoria do personagem
     dice roller: Rolar os dados
     empty: Não tem personagem.
-    dice: dado
-    dices: dados
-    feet: pés
-    notes: notas
+    dice: Dado
+    dices: Dados
+    feet: Pés
+    notes: Notas
     other: Outros
     item: Item
     armor: Armadura
@@ -26,6 +28,7 @@ pt-BR:
     basics:
       title: Básicos
       perception: Percepção
+      class name: Nome da classe
       speed: Velocidade
       size: Tamanho
       ancestry: Ancestralidade
@@ -38,10 +41,10 @@ pt-BR:
       movement types: Tipos de movimentos
     statistics:
       title: Estatísticas
-      ability: Habilidades
       class dc: CD de classe
-      key ability: chave de habilidade
+      key ability: Chave de habilidade
       ability:
+        title: Habilidades
         str: FOR
         strength: Força
         dex: DES
@@ -51,7 +54,7 @@ pt-BR:
         int: INT
         intelligence: Inteligência
         wis: SAB
-        Wisdom: Sabedoria
+        wisdom: Sabedoria
         cha: CAR
         charisma: Carisma
       languages: Linguagens
@@ -84,17 +87,20 @@ pt-BR:
       weapon: Arma
       attack: Ataque
       damage: Dano
-      type: tipo
-      range: alcance
+      type: Tipo
+      range: Alcance
+      piercing: Perfurante
+      slashing: Cortante
+      bludgeoning: Concussão
       weapon strength: Força da arma
       weapon dexterity: Destreza da arma
-      damage strength: força de dano
-      special: especial
+      damage strength: Força de dano
+      special: Especial
       weapon specialization: Especialização de armas
       weapon proficiencies: Proficiência em armas
     skills:
       title: Habilidades
-      level: nível
+      level: Nível
       skill feats: Talentos de habilidade
       ancestry feats: Talentos de ancestralidade
       class feats: Talentos de classe

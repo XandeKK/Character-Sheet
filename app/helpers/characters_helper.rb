@@ -137,5 +137,11 @@ module CharactersHelper
     json.store(id, {"maxHp": maxHp, "currentHp": currentHp, "temporary": temporary})
     raw json.to_json
 	end
+
+	def current_translations
+	  @translations ||= I18n.backend.send(:translations)
+	  @translations[I18n.locale][:character].with_indifferent_access
+	end
+
 end
 

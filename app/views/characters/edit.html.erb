@@ -25,6 +25,7 @@
 <% end%>
 
 <script>
+  	window.I18n = <%= current_translations.to_json.html_safe %>
 	const main_json = <%= raw @character.statistic %> 
 
 	let isDirtyImage = false;

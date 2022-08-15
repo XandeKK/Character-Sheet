@@ -9,132 +9,134 @@ document.addEventListener('keypress', function (e) {
     }
 });
 
-base.createCardTab("basics", "Basics",[
-	{"id": "details", "name": "Details"},
-	{"id": "perception", "name": "Perception"},
-	{"id": "speed", "name": "Speed"},
-	{"id": "languages", "name": "Languages"},
+base.createCardTab("basics", I18n.basics.title,[
+	{"id": "details", "name": I18n.details},
+	{"id": "perception", "name": I18n.basics.perception},
+	{"id": "speed", "name": I18n.basics.speed},
+	{"id": "languages", "name": I18n.statistics.languages},
 ]);
 
-base.createCardTab("statistics", "Statistics", [
-	{"id": "ability", "name": "Ability"},
-	{"id": "classDc", "name": "Class DC"},
+base.createCardTab("statistics", I18n.statistics.title, [
+	{"id": "ability", "name": I18n.statistics.ability.title},
+	{"id": "classDc", "name": I18n.statistics["class dc"]},
 ]);
 
-base.createCardTab("defense", "Defense", [
-	{"id": "hitPoints", "name": "HP"},
-	{"id": "armorClass", "name": "AC"},
-	{"id": "savingThrows", "name": "Saving Throws"},
+base.createCardTab("defense", I18n.defense.title, [
+	{"id": "hitPoints", "name": I18n.defense.hp},
+	{"id": "armorClass", "name": I18n.defense.ac},
+	{"id": "savingThrows", "name": I18n.defense["saving throws"].title},
 ]);
 
-base.createCardTab("offense", "Offense", [
-	{"id": "meleeStrikes", "name": "Melee Strikes"},
-	{"id": "rangedStrikes", "name": "Ranged Strikes"},
-	{"id": "weaponProficiencies", "name": "Weapon Proficiencies"},
+base.createCardTab("offense", I18n.offense.title, [
+	{"id": "meleeStrikes", "name": I18n.offense["melee strikes"]},
+	{"id": "rangedStrikes", "name": I18n.offense["ranged strikes"]},
+	{"id": "weaponProficiencies", "name": I18n.offense["weapon proficiencies"]},
 ]);
 
-base.createCardTab("skills", "Skills", [
-	{"id": "skills", "name": "Skills"},
-	{"id": "skillFeats", "name": "Skill Feats"},
-	{"id": "ancestryFeatsAndAbilities", "name": "Ancestry Feats"},
-	{"id": "classFeatsAndAbilities", "name": "Class Feats"},
-	{"id": "generalFeats", "name": "General Feats"},
-	{"id": "bonusFeats", "name": "Bonus Feats"},
+base.createCardTab("skills", I18n.skills.title, [
+	{"id": "skills", "name": I18n.skills.title},
+	{"id": "skillFeats", "name": I18n.skills["skill feats"]},
+	{"id": "ancestryFeatsAndAbilities", "name": I18n.skills["ancestry feats"]},
+	{"id": "classFeatsAndAbilities", "name": I18n.skills["class feats"]},
+	{"id": "generalFeats", "name": I18n.skills["general feats"]},
+	{"id": "bonusFeats", "name": I18n.skills["bonus feats"]},
 ]);
 
-base.createCardTab("inventory", "Inventory", [
-	{"id": "inventory", "name": "Inventory"},
-	{"id": "money", "name": "Money"}
+base.createCardTab("inventory", I18n.inventory.title, [
+	{"id": "inventory", "name": I18n.inventory.title},
+	{"id": "money", "name": I18n.inventory.money}
 ]);
 
 // Details
-base.createInput("Name", "name", "details", "text");
-base.createInput("Class Name", "className", "details", "text");
-base.createInput("Ancestry", "ancestry", "details", "text");
-base.createInput("Heritage", "heritage", "details", "text");
-base.createInput("Hero Points", "heroPoints", "details", "number");
-base.createInput("Alignment", "alignment", "details", "text");
-base.createInput("Size", "size", "details", "number");
-base.createInput("Background", "background", "details", "text");
-base.createInput("Traits", "traits", "details", "text");
-base.createInput("Experience Points", "experiencePoints", "details", "number");
-base.createInput("Level", "level", "details", "number");
+base.createInput(I18n.name, "name", "details", "text");
+base.createInput(I18n.basics["class name"], "className", "details", "text");
+base.createInput(I18n.basics.ancestry, "ancestry", "details", "text");
+base.createInput(I18n.basics.heritage, "heritage", "details", "text");
+base.createInput(I18n.basics["hero points"], "heroPoints", "details", "number");
+base.createInput(I18n.basics.alignment, "alignment", "details", "text");
+base.createInput(I18n.basics.size, "size", "details", "number");
+base.createInput(I18n.basics.background, "background", "details", "text");
+base.createInput(I18n.traits, "traits", "details", "text");
+base.createInput(I18n.basics["experience"], "experiencePoints", "details", "number");
+base.createInput(I18n.skills.level, "level", "details", "number");
 
 // Hit Points
-base.createInput("Max Hp", "maxHp", "hitPoints", "number");
-base.createInput("Current Hp", "currentHp", "hitPoints", "number");
-base.createInput("Temporary", "temporary", "hitPoints", "number");
-base.createInput("Resistances and Immunities", "resistancesAndImmunities", "hitPoints", "text");
+base.createInput(I18n.defense["max hp"], "maxHp", "hitPoints", "number");
+base.createInput(I18n.defense["current hp"], "currentHp", "hitPoints", "number");
+base.createInput(I18n.defense["temporary hp"], "temporary", "hitPoints", "number");
+base.createInput(I18n.defense["resistances and immunities"], "resistancesAndImmunities", "hitPoints", "text");
 
 // Ability
-base.createInput("Strength", "strength", "ability", "number");
-base.createInput("Dexterity", "dexterity", "ability", "number");
-base.createInput("Constitution", "constitution", "ability", "number");
-base.createInput("Intelligence", "intelligence", "ability", "number");
-base.createInput("Wisdom", "wisdom", "ability", "number");
-base.createInput("Charisma", "charisma", "ability", "number");
+base.createInput(I18n.statistics.ability.strength, "strength", "ability", "number");
+base.createInput(I18n.statistics.ability.dexterity, "dexterity", "ability", "number");
+base.createInput(I18n.statistics.ability.constitution, "constitution", "ability", "number");
+base.createInput(I18n.statistics.ability.intelligence, "intelligence", "ability", "number");
+base.createInput(I18n.statistics.ability.wisdom, "wisdom", "ability", "number");
+base.createInput(I18n.statistics.ability.charisma, "charisma", "ability", "number");
 
 
 // Armor Class
-base.createInput("Capable", "capable", "armorClass", "number");
-characterUI.createSelectProficiency("Armor Class", "proficiency", "armorClass")
+base.createInput(I18n.defense.capable, "capable", "armorClass", "number");
+characterUI.createSelectProficiency(I18n.defense["armor class"], "proficiency", "armorClass")
 
-characterUI.createSelectProficiency("Unarmored", "unarmored", "armorClass")
-characterUI.createSelectProficiency("Light", "light", "armorClass")
-characterUI.createSelectProficiency("Medium", "medium", "armorClass")
-characterUI.createSelectProficiency("Heavy", "heavy", "armorClass")
+characterUI.createSelectProficiency(I18n.defense.unarmored, "unarmored", "armorClass")
+characterUI.createSelectProficiency(I18n.defense.light, "light", "armorClass")
+characterUI.createSelectProficiency(I18n.defense.medium, "medium", "armorClass")
+characterUI.createSelectProficiency(I18n.defense.heavy, "heavy", "armorClass")
 
-base.createInput("Shield", "shield", "armorClass", "number");
-base.createInput("Hardness", "hardness", "armorClass", "number");
-base.createInput("Max Hp", "maxHp", "armorClass", "number");
-base.createInput("Broken Threshold", "brokenThreshold", "armorClass", "number");
-base.createInput("Current Hp", "currentHp", "armorClass", "number");
-base.createInput("Item", "item", "armorClass", "number");
+base.createInput(I18n.defense.shield, "shield", "armorClass", "number");
+base.createInput(I18n.defense.hardness, "hardness", "armorClass", "number");
+base.createInput(I18n.defense["max hp"], "maxHp", "armorClass", "number");
+base.createInput(I18n.defense["broken threshold"], "brokenThreshold", "armorClass", "number");
+base.createInput(I18n.defense["current hp"], "currentHp", "armorClass", "number");
+base.createInput(I18n.item, "item", "armorClass", "number");
 
 // Class Dc
 
-characterUI.createSelectAbility("Key Ability", "keyAbility", "classDc")
-base.createInput("Item", "item", "classDc", "number");
-characterUI.createSelectProficiency("Proficiency", "proficiency", "classDc")
+characterUI.createSelectAbility(I18n.statistics["key ability"], "keyAbility", "classDc")
+base.createInput(I18n.item, "item", "classDc", "number");
+characterUI.createSelectProficiency(I18n.proficiency.title, "proficiency", "classDc")
 
 // Perception
 
-base.createInput("Item", "item", "perception", "number");
-characterUI.createSelectProficiency("Perception", "proficiency", "perception")
-base.createTextArea("Senses", "senses", "perception");
+base.createInput(I18n.item, "item", "perception", "number");
+characterUI.createSelectProficiency(I18n.basics.perception, "proficiency", "perception")
+base.createTextArea(I18n.basics.senses, "senses", "perception");
 
 // Speed
-base.createInput("Feet", "feet", "speed", "number"); 
-base.createTextArea("Movement Types", "movementTypes", "speed");
-base.createTextArea("Notes", "notes", "speed");
+base.createInput(I18n.feet, "feet", "speed", "number"); 
+base.createTextArea(I18n.basics["movement types"], "movementTypes", "speed");
+base.createTextArea(I18n.notes, "notes", "speed");
 
 // Saving Throws
-characterUI.createSelectProficiency("Fortitude", "fortitude", "savingThrows")
-base.createInput("FortitudeItem", "fortitudeItem", "savingThrows", "number"); 
-characterUI.createSelectProficiency("Will", "will", "savingThrows")
-base.createInput("Will", "willItem", "savingThrows", "number"); 
-characterUI.createSelectProficiency("Reflex", "reflex", "savingThrows")
-base.createInput("Reflex", "reflexItem", "savingThrows", "number"); 
+characterUI.createSelectProficiency(I18n.defense["saving throws"].fortitude, "fortitude", "savingThrows")
+base.createInput(I18n.defense["saving throws"].fortitude + " " + I18n.item, "fortitudeItem", "savingThrows", "number"); 
+characterUI.createSelectProficiency(I18n.defense["saving throws"].will, "will", "savingThrows")
+base.createInput(I18n.defense["saving throws"].will + " " + I18n.item, "willItem", "savingThrows", "number"); 
+characterUI.createSelectProficiency(I18n.defense["saving throws"].reflex, "reflex", "savingThrows")
+base.createInput(I18n.defense["saving throws"].reflex + " " + I18n.item, "reflexItem", "savingThrows", "number"); 
 
 // Skills
 
 var skills = main_json['character']['skills'];
 for (let i = 0; i < skills.length; i++) {
+	characterUI.translationSkill(skills[i], i);
+
 	let id = "character_skills_" + i;
 	base.createDiv(id, "skills", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 
-	base.createInput("Name", "name", id, "text"); 
+	base.createInput(I18n.name, "name", id, "text"); 
 	
-	characterUI.createSelectAbility("Ability", "ability", id)
-	characterUI.createSelectProficiency("Proficiency", "proficiency", id)
+	characterUI.createSelectAbility(I18n.statistics.ability.title, "ability", id)
+	characterUI.createSelectProficiency(I18n.proficiency.title, "proficiency", id)
 
-	base.createInput("Item", "item", id, "number"); 
-	base.createInput("Armor", "armor", id, "number"); 
-	base.createTextArea("Notes", "notes", id);
+	base.createInput(I18n.item, "item", id, "number"); 
+	base.createInput(I18n.defense.armor, "armor", id, "number"); 
+	base.createTextArea(I18n.notes, "notes", id);
 }
 
 // Melee Strikes Weapon
-base.addCreateButton("Melee Strikes", "meleeStrikes");
+base.addCreateButton(I18n.offense["melee strikes"], "meleeStrikes");
 
 var meleeStrikes = main_json['character']['meleeStrikes'];
 for (let i = 0; i < meleeStrikes.length; i++) {
@@ -145,7 +147,7 @@ for (let i = 0; i < meleeStrikes.length; i++) {
 }
 
 // Ranged Strikes Weapon
-base.addCreateButton("Ranged Strikes", "rangedStrikes");
+base.addCreateButton(I18n.offense["ranged strikes"], "rangedStrikes");
 
 var rangedStrikes = main_json['character']['rangedStrikes'];
 for (let i = 0; i < rangedStrikes.length; i++) {
@@ -156,7 +158,7 @@ for (let i = 0; i < rangedStrikes.length; i++) {
 }
 
 // Languages
-base.addCreateButton("Languages", "languages");
+base.addCreateButton(I18n.statistics.languages, "languages");
 
 var languages = main_json['character']['languages'];
 for (let i = 0; i < languages.length; i++) {
@@ -173,8 +175,8 @@ for (let i = 0; i < weaponProficiencies.length; i++) {
 	let id = "character_weaponProficiencies_" + i;
 	base.createDiv(id, "weaponProficiencies", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
-	base.createInput("Name", "name", id, "text"); 
-	characterUI.createSelectProficiency("Proficiency", "proficiency", id)
+	base.createInput(I18n.name, "name", id, "text"); 
+	characterUI.createSelectProficiency(I18n.proficiency.title, "proficiency", id)
 }
 
 // Ancestry Feats And Abilities
@@ -184,9 +186,9 @@ for (let i = 0; i < ancestryFeatsAndAbilities.length; i++) {
 	let id = "character_ancestryFeatsAndAbilities_" + i;
 	base.createDiv(id, "ancestryFeatsAndAbilities", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
-	base.createInput("Level", "level", id, "text"); 
-	base.createInput("Name", "name", id, "text"); 
-	base.createTextArea("Notes", "notes", id);
+	base.createInput(I18n.skills.level, "level", id, "text"); 
+	base.createInput(I18n.name, "name", id, "text"); 
+	base.createTextArea(I18n.notes, "notes", id);
 }
 
 // Skill Feats
@@ -196,9 +198,9 @@ for (let i = 0; i < skillFeats.length; i++) {
 	let id = "character_skillFeats_" + i;
 	base.createDiv(id, "skillFeats", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
-	base.createInput("Level", "level", id, "text"); 
-	base.createInput("Name", "name", id, "text"); 
-	base.createTextArea("Notes", "notes", id);
+	base.createInput(I18n.skills.level, "level", id, "text"); 
+	base.createInput(I18n.name, "name", id, "text"); 
+	base.createTextArea(I18n.notes, "notes", id);
 }
 
 // Class Feats And Abilities
@@ -208,9 +210,9 @@ for (let i = 0; i < classFeatsAndAbilities.length; i++) {
 	let id = "character_classFeatsAndAbilities_" + i;
 	base.createDiv(id, "classFeatsAndAbilities", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
-	base.createInput("Level", "level", id, "text"); 
-	base.createInput("Name", "name", id, "text"); 
-	base.createTextArea("Notes", "notes", id);
+	base.createInput(I18n.skills.level, "level", id, "text"); 
+	base.createInput(I18n.name, "name", id, "text"); 
+	base.createTextArea(I18n.notes, "notes", id);
 }
 
 // General Feats
@@ -220,9 +222,9 @@ for (let i = 0; i < generalFeats.length; i++) {
 	let id = "character_generalFeats_" + i;
 	base.createDiv(id, "generalFeats", "row gx-3 gy-2 align-items-center mb-3 pb-4");
 	
-	base.createInput("Level", "level", id, "text"); 
-	base.createInput("Name", "name", id, "text"); 
-	base.createTextArea("Notes", "notes", id);
+	base.createInput(I18n.skills.level, "level", id, "text"); 
+	base.createInput(I18n.name, "name", id, "text"); 
+	base.createTextArea(I18n.notes, "notes", id);
 }
 
 // Bonus Feats
@@ -237,7 +239,7 @@ for (let i = 0; i < bonusFeats.length; i++) {
 }
 
 // Inventory
-base.addCreateButton("Inventory", "inventory");
+base.addCreateButton(I18n.inventory.title, "inventory");
 
 var inventory = main_json['character']['inventory'];
 for (let i = 0; i < inventory.length; i++) {
@@ -249,7 +251,7 @@ for (let i = 0; i < inventory.length; i++) {
 
 // Money
 
-base.createInput("pp", "pp", "money", "number"); 
-base.createInput("gp", "gp", "money", "number"); 
-base.createInput("sp", "sp", "money", "number"); 
-base.createInput("cp", "cp", "money", "number"); 
+base.createInput(I18n.inventory.pp, "pp", "money", "number"); 
+base.createInput(I18n.inventory.gp, "gp", "money", "number"); 
+base.createInput(I18n.inventory.sp, "sp", "money", "number"); 
+base.createInput(I18n.inventory.cp, "cp", "money", "number"); 

@@ -1,5 +1,7 @@
 en:
   character:
+    name: Name
+    details: Details
     singular: Character
     plural: Characters
     created: Character created successfully!
@@ -26,6 +28,7 @@ en:
     basics:
       title: Basics
       perception: Perception
+      class name: Class name
       speed: speed
       size: Size
       ancestry: Ancestry
@@ -38,10 +41,10 @@ en:
       movement types: Movement types
     statistics:
       title: Statistics
-      ability: Ability
       class dc: Class DC
       key ability: Key ability
       ability:
+        title: Ability
         str: STR
         strength: Strength
         dex: DEX
@@ -86,6 +89,9 @@ en:
       damage: Damage
       type: Type
       range: Range
+      piercing: Piercing
+      slashing: Slashing
+      bludgeoning: Bludgeoning
       weapon strength: Weapon strength
       weapon dexterity: Weapon dexterity
       damage strength: Damage strength

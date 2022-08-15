@@ -1,32 +1,32 @@
 class CharacterUI {
 	createSelectProficiency(name, id, parent) {
 		let options = [
-			{name: "Untrained", value: 0},
-			{name: "Trained", value: 2},
-			{name: "Expert", value: 4},
-			{name: "Master", value: 6},
-			{name: "Legendary", value: 8}
+			{name: I18n.proficiency.untrained, value: 0},
+			{name: I18n.proficiency.trained, value: 2},
+			{name: I18n.proficiency.expert, value: 4},
+			{name: I18n.proficiency.master, value: 6},
+			{name: I18n.proficiency.legendary, value: 8}
 		];
 		base.createSelect(name, id, parent, options)
 	}
 
 	createSelectAbility(name, id, parent) {
 		let options = [
-			{name: "Strength", value: "strength"},
-			{name: "Dexterity", value: "dexterity"},
-			{name: "Constitution", value: "constitution"},
-			{name: "Intelligence", value: "intelligence"},
-			{name: "Wisdom", value: "wisdom"},
-			{name: "Charisma", value: "charisma"}
+			{name: I18n.statistics.ability.strength, value: "strength"},
+			{name: I18n.statistics.ability.dexterity, value: "dexterity"},
+			{name: I18n.statistics.ability.constitution, value: "constitution"},
+			{name: I18n.statistics.ability.intelligence, value: "intelligence"},
+			{name: I18n.statistics.ability.wisdom, value: "wisdom"},
+			{name: I18n.statistics.ability.charisma, value: "charisma"}
 		];
 		base.createSelect(name, id, parent, options)
 	}
 
 	createSelectDamageType(name, id, parent) {
 		let options = [
-			{name: "Piercing", value: "piercing"},
-			{name: "Slashing", value: "slashing"},
-			{name: "Budgeoning", value: "bludgeoning"}
+			{name: I18n.offense.piercing, value: "piercing"},
+			{name: I18n.offense.slashing, value: "slashing"},
+			{name: I18n.offense.bludgeoning, value: "bludgeoning"}
 		];
 		base.createSelect(name, id, parent, options)
 	}
@@ -37,31 +37,31 @@ class CharacterUI {
 			main_json['character'][type][size] = {}
 		}
 
-		base.createInput("Weapon", "weapon", parent, "text");
+		base.createInput(I18n.offense.weapon, "weapon", parent, "text");
 
 		if (type == "meleeStrikes") {
-			base.createInput("Weapon Strength", "weaponStrength", parent, "number");
+			base.createInput(I18n.offense["weapon strength"], "weaponStrength", parent, "number");
 		} else {
-			base.createInput("Weapon Dexterity", "weaponDexterity", parent, "number");
+			base.createInput(I18n.offense["weapon dexterity"], "weaponDexterity", parent, "number");
 		}
 
-		this.createSelectProficiency("Proficiency", "proficiency", parent);
-		base.createInput("Item", "item", parent, "number");
+		this.createSelectProficiency(I18n.proficiency.title, "proficiency", parent);
+		base.createInput(I18n.item, "item", parent, "number");
 
-		base.createInput("Dice", "dice", parent, "text");
-		this.createSelectDamageType("Types", "types", parent);
+		base.createInput(I18n.dice, "dice", parent, "text");
+		this.createSelectDamageType(I18n.offense.type, "types", parent);
 
 		if (type == "meleeStrikes") {
-			base.createInput("Damage Strength", "damageStrength", parent, "text");
+			base.createInput(I18n.offense["damage strength"], "damageStrength", parent, "text");
 		} else {
-			base.createInput("Special", "special", parent, "text");
-			base.createInput("Range", "range", parent, "number");
+			base.createInput(I18n.offense.special, "special", parent, "text");
+			base.createInput(I18n.offense.range, "range", parent, "number");
 		}
 
-		base.createInput("Weapon Specialization", "weaponSpecialization", parent, "text");
-		base.createInput("Traits", "traits", parent, "text");
-		base.createInput("Other", "other", parent, "text");
-		base.createTextArea("Notes", "notes", parent);
+		base.createInput(I18n.offense["weapon specialization"], "weaponSpecialization", parent, "text");
+		base.createInput(I18n.traits, "traits", parent, "text");
+		base.createInput(I18n.other, "other", parent, "text");
+		base.createTextArea(I18n.notes, "notes", parent);
 
 		base.addDeleteButton(parent);
 	}
@@ -72,8 +72,8 @@ class CharacterUI {
 			main_json['character']["languages"][size] = {}
 		}
 
-		base.createInput("Name", "name", parent, "text");
-		base.createTextArea("Notes", "notes", parent);
+		base.createInput(I18n.name, "name", parent, "text");
+		base.createTextArea(I18n.notes, "notes", parent);
 
 		base.addDeleteButton(parent);
 	}
@@ -84,8 +84,8 @@ class CharacterUI {
 			main_json['character']["bonusFeats"][size] = {}
 		}
 
-		base.createInput("Name", "name", parent, "text");
-		base.createTextArea("Notes", "notes", parent);
+		base.createInput(I18n.name, "name", parent, "text");
+		base.createTextArea(I18n.notes, "notes", parent);
 
 		base.addDeleteButton(parent);
 	}
@@ -96,10 +96,10 @@ class CharacterUI {
 			main_json['character']["inventory"][size] = {}
 		}
 
-		base.createInput("Name", "name", parent, "text");
-		base.createInput("Bulk", "bulk", parent, "number");
-		base.createInput("Amount", "amount", parent, "number");
-		base.createTextArea("Notes", "notes", parent);
+		base.createInput(I18n.name, "name", parent, "text");
+		base.createInput(I18n.inventory.bulk, "bulk", parent, "number");
+		base.createInput(I18n.inventory.amount, "amount", parent, "number");
+		base.createTextArea(I18n.notes, "notes", parent);
 
 		base.addDeleteButton(parent);
 	}
@@ -119,5 +119,11 @@ class CharacterUI {
 
 		if (value === undefined) {value = "";}
 		return value;
+	}
+
+	translationSkill(skill, index) {
+		let name = skill["name"];
+		let translatedName = I18n.skills[name];
+		main_json['character']['skills'][index]["name"] = translatedName;
 	}
 }
