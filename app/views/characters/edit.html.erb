@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="text-end">
-	<%= button_to "Delete", character_path(@character), method: :delete, class: "btn btn-danger" %>
+	<%= button_to t(:delete), character_path(@character), method: :delete, class: "btn btn-danger" %>
 </div>
 
 <%= form_with model: @character, url: character_path(@character), id: "form", data: {turbo: false} do |form| %>
@@ -14,14 +14,14 @@
 	</div>
 	
 	<div>
-		<%= form.label :character_category_id, class: "form-label" %>
+		<%= form.label :character_category_id, t("character.character category"), class: "form-label" %>
 		<%= form.select :character_category_id, @character_categories.map { |ca| [ca.name, ca.id]}, {}, class: "form-select" %>
 	</div>
 
 	<%= form.hidden_field :name %>
 	<%= form.hidden_field :statistic %>
 
-	<%= form.submit "Display", id: "submit", class: "btn btn-success position-fixed bottom-0 end-0 m-4", style: "z-index: 99;" %>
+	<%= form.submit t(:display), id: "submit", class: "btn btn-success position-fixed bottom-0 end-0 m-4", style: "z-index: 99;" %>
 <% end%>
 
 <script>

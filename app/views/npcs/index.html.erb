@@ -1,7 +1,7 @@
-<h1 class="fw-bold text-secondary text-center">Npc</h1>
+<h1 class="fw-bold text-secondary text-center"><%= t(:npc)%></h1>
 <div class="list-group text-center">
 	<% if @npcs.empty? %>
-		<h3>Has no npc.</h3>
+		<h3><%= t(:"character.empty") %></h3>
 	<% else %>
 		<% @npcs.each do |npc|  %>
 			<%= link_to npc.name, character_path(npc), class: "list-group-item list-group-item-action", data: {turbo: false} %>
@@ -9,4 +9,4 @@
 	<% end %>
 </div>
 
-<%= button_to "New", characters_path(category: "Npc"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>
+<%= button_to t(:new), characters_path(category: "Npc"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>

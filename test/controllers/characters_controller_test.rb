@@ -44,7 +44,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_select "h1#characterName", "undefined"
-    assert_equal "Character created successfully", flash[:notice]
+    assert_equal "Character created successfully!", flash[:notice]
   end
 
   test "should update character" do
@@ -62,7 +62,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_select "h1#characterName", "Fool"
-    assert_equal "Character successfully updated", flash[:notice]
+    assert_equal "Character successfully updated!", flash[:notice]
   end
 
   test "should not update character which does not belong to the user" do
@@ -92,7 +92,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_select "h1", "Characters"
-    assert_equal "Character successfully deleted", flash[:notice]
+    assert_equal "Character successfully deleted!", flash[:notice]
   end
 
   test "should not destroy character which does not belong to the user" do

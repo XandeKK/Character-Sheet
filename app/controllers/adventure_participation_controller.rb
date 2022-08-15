@@ -39,7 +39,7 @@ class AdventureParticipationController < ApplicationController
   end
 
 	def redirect_if_empty
-		redirect_to adventures_path, alert: "You do not have permission." if @adventure.nil?
+		redirect_to adventures_path, alert: t(:"not have permission") if @adventure.nil?
 	end
 
 	def set_adventure

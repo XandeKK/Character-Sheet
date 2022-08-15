@@ -30,4 +30,38 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  home: Home
+  new: New
+  edit: Edit
+  delete: Delete
+  create: Create
+  create adventure: Create adventure
+  edit adventure: Edit adventure
+  empty adventure: It doesn't have a adventure.
+  adventure created: Adventure created successfully
+  adventure deleted: Adventure successfully deleted
+  adventure updated: Adventure successfully updated
+  connect: Connect
+  name: Name
+  error deleted: Could not delete!
+  server: Server
+  server name: Server name
+  password: Password
+  save: Save
+  roller: Roller
+  error server: Server name or password is wrong.
+  display: Display
+  player: Player
+  gm: GM
+  tv: TV
+  npc: Npc
+  npcs: Npcs
+  enemy: Enemy
+  enemies: Enemies
+  adventure: adventure
+  adventures: Adventures
+  remove: Remove
+  add: Add
+  start server: Start server
+  stop server: Stop server
+  not have permission: You do not have permission.

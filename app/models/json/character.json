@@ -122,7 +122,7 @@
         "notes": ""
       },
       {
-        "name": "Lore",
+        "name": "lore",
         "ability": "intelligence",
         "proficiency": 0,
         "item": 0,
@@ -130,7 +130,7 @@
         "notes": ""
       },
       {
-        "name": "Lore",
+        "name": "lore",
         "ability": "intelligence",
         "proficiency": 0,
         "item": 0,
@@ -269,37 +269,37 @@
     ],
     "ancestryFeatsAndAbilities": [
       {
-        "level": "special1st",
+        "level": "special 1st",
         "name": "",
         "notes": ""
       },
       {
-        "level": "heritage1st",
+        "level": "heritage 1st",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat1st",
+        "level": "feat 1st",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat5th",
+        "level": "feat 5th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat9th",
+        "level": "feat 9th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat13th",
+        "level": "feat 13th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat17th",
+        "level": "feat 17th",
         "name": "",
         "notes": ""
       }
@@ -363,112 +363,112 @@
     ],
     "classFeatsAndAbilities": [
       {
-        "level": "feature1st",
+        "level": "feature 1st",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature1st",
+        "level": "feature 1st",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat1st",
+        "level": "feat 1st",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat2nd",
+        "level": "feat 2nd",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature3rd",
+        "level": "feature 3rd",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat4th",
+        "level": "feat 4th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature5th",
+        "level": "feature 5th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat6th",
+        "level": "feat 6th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature7th",
+        "level": "feature 7th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat8th",
+        "level": "feat 8th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature9th",
+        "level": "feature 9th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat10th",
+        "level": "feat 10th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature11th",
+        "level": "feature 11th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat12th",
+        "level": "feat 12th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature13th",
+        "level": "feature 13th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat14th",
+        "level": "feat 14th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature15th",
+        "level": "feature 15th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat16th",
+        "level": "feat 16th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature17th",
+        "level": "feature 17th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat18th",
+        "level": "feat 18th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feature19th",
+        "level": "feature 19th",
         "name": "",
         "notes": ""
       },
       {
-        "level": "feat20th",
+        "level": "feat 20th",
         "name": "",
         "notes": ""
       }

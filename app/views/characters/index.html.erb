@@ -1,7 +1,7 @@
-<h1 class="fw-bold text-secondary text-center">Characters</h1>
+<h1 class="fw-bold text-secondary text-center"><%= t "character.plural" %></h1>
 <div class="list-group text-center">
 	<% if @characters.empty? %>
-		<h3>Has no character.</h3>
+		<h3><%= t "character.empty" %></h3>
 	<% else %>
 		<% @characters.each do |character|  %>
 			<%= link_to character.name, character_path(character), class: "list-group-item list-group-item-action", data: {turbo: false} %>
@@ -9,4 +9,4 @@
 	<% end %>
 </div>
 
-<%= button_to "New", characters_path(category: "Player"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>
+<%= button_to t(:new), characters_path(category: "Player"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>

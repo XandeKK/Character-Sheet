@@ -8,28 +8,28 @@
         <span class="col fw-semibold fs-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#<%= dom_id(character, "offcanvas") %>"><%= character.name %></span>
       </div>
       <div class="col-12 row">
-        <span class="col-auto fw-semibold text-danger">HP</span>
+        <span class="col-auto fw-semibold text-danger"><%= t("character.defense.hp")%></span>
         <span class="col-auto ms-2 hp" id="<%= dom_id(character, :hp) %>"><%=get_current_and_max_hp character_json %></span>
       </div>
       <div class="col mb-3">
         <div class="input-group btn-group h-25">
-          <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="HP" aria-label="HP">
+          <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="<%= t("character.defense.hp")%>" aria-label="HP">
           <button type="button" class="btn btn-danger damageBtn" character_id="<%= character.id %>">-</button>
           <button type="button" class="btn btn-success healBtn" character_id="<%= character.id %>">+</button>
         </div>
       </div>
       <div class="col-12 row">
-        <span class="col-auto fw-semibold text-danger">Temporary HP</span>
+        <span class="col-auto fw-semibold text-danger"><%= t("character.defense.temporary hp")%></span>
         <span class="col-auto ms-2 temporary" id="<%= dom_id(character, :temporary) %>"><%= get_temporary_hp character_json %></span>
       </div>
       <div class="col mb-3">
         <div class="input-group btn-group h-25">
-          <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
+          <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="<%= t("character.defense.temporary hp")%>">
           <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
         </div>
       </div>
       <div class="">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#diceRoller" data-bs-name="<%= character.name %>" data-bs-id="<%=character.id%>" data-bs-image="image<%=character.id%>">Roller</button>
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#diceRoller" data-bs-name="<%= character.name %>" data-bs-id="<%=character.id%>" data-bs-image="image<%=character.id%>"><%= t(:roller)%></button>
       </div>
     </div>
   </div>

@@ -1,50 +1,50 @@
 <div class="card my-5">
   <div class="card-header">
-    <h4>Defense</h4>
+    <h4><%= t("character.defense.title")%></h4>
   </div>
   <div class="card-body">
     <div class="row">
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">HP</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.hp")%></span>
           <span class="col-auto ms-2" id="<%= dom_id(character, :hp) %>"><%= get_current_and_max_hp character_json %></span>
         </p>
         <div class="col-sm input-group btn-group h-50">
-          <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="HP" aria-label="HP">
+          <input type="number" class="form-control inputHp" id="<%= dom_id(character, :inputHp) %>" placeholder="<%= t("character.defense.hp")%>" aria-label="HP">
           <button type="button" class="btn btn-danger damageBtn" character_id="<%= character.id %>">-</button>
           <button type="button" class="btn btn-success healBtn" character_id="<%= character.id %>">+</button>
         </div>
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">Temporary HP</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.temporary hp")%></span>
           <span class="col-auto ms-2 temporary" id="<%= dom_id(character, :temporary) %>"><%= get_temporary_hp character_json %></span>
         </p>
         <div class="col-sm input-group btn-group h-50">
-          <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="Temporary HP">
+          <input type="number" class="form-control inputTemporary" id="<%= dom_id(character, :inputTemporary) %>" placeholder="<%= t("character.defense.temporary hp")%>">
           <button type="button" class="btn btn-success temporaryBtn" character_id="<%= character.id %>">+</button>
         </div>
     </div>
     <div class="row">
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">AC</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.ac")%></span>
           <span class="col-8 ms-2" id="ac"><%= get_AC character_json %></span>
         </p>
     </div>
     <div class="row">
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">Resistances and immunities</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.resistances and immunities")%></span>
           <span class="col-8 ms-2" id="resistancesAndImmunities"><%= get_resistances_and_immunities character_json %></span>
         </p>
     </div>
     <div class="row">
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">Fortitude</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.saving throws.fortitude")%></span>
           <span class="col-8 ms-2" id="fortitude"><%= get_saving_throws("fortitude", "constitution", character_json) %></span>
         </p>
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">Reflex</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.saving throws.reflex")%></span>
           <span class="col-8 ms-2" id="reflex"><%= get_saving_throws("reflex", "dexterity", character_json) %></span>
         </p>
         <p class="col-auto row">
-          <span class="col-12 fw-semibold text-danger">Will</span>
+          <span class="col-12 fw-semibold text-danger"><%= t("character.defense.saving throws.will")%></span>
           <span class="col-8 ms-2" id="will"><%= get_saving_throws("will", "wisdom", character_json) %></span>
         </p>
     </div>

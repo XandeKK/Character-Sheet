@@ -1,6 +1,6 @@
-<h1 class="fw-bold text-secondary text-center">Home</h1>
+<h1 class="fw-bold text-secondary text-center"><%= t(:home)%></h1>
 <div class="list-group text-center">
-		<%= link_to "Player", characters_path, class: "list-group-item list-group-item-action" %>
-		<%= link_to "Gm", gm_path, class: "list-group-item list-group-item-action" %>
-		<%= link_to "TV", campaign_tv_path, class: "list-group-item list-group-item-action", data: {turbo: false} %>
+		<%= link_to t(:player), characters_path, class: "list-group-item list-group-item-action" %>
+		<%= link_to t(:gm), gm_path, class: "list-group-item list-group-item-action" %>
+		<%= link_to t(:tv), campaign_tv_path, class: "list-group-item list-group-item-action", data: {turbo: false} %>
 </div>

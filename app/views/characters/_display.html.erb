@@ -1,4 +1,4 @@
-<%= link_to "edit", edit_character_path(character), class: "btn btn-primary position-fixed bottom-0 end-0 m-4", style: "z-index: 99;", data: {turbo: false} %>
+<%= link_to t(:edit), edit_character_path(character), class: "btn btn-primary position-fixed bottom-0 end-0 m-4", style: "z-index: 99;", data: {turbo: false} %>
 
 <%= render partial: "characters/display/basics", locals: { character: character, character_json: character_json} %>
 

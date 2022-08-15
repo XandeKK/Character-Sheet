@@ -21,7 +21,7 @@ class AdventuresController < ApplicationController
     @adventure.create_unique_name
 
     if @adventure.save
-      redirect_to adventure_path(@adventure), notice: "Adventure created successfully"
+      redirect_to adventure_path(@adventure), notice: t(:"adventure created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class AdventuresController < ApplicationController
 
   def update
     if @adventure.update(adventure_params)
-      redirect_to adventure_path(@adventure), notice: "Adventure successfully updated"
+      redirect_to adventure_path(@adventure), notice: t(:"adventure updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,9 +40,9 @@ class AdventuresController < ApplicationController
 
   def destroy
     if @adventure.destroy
-      redirect_to adventures_path, notice: "Adventure successfully deleted"
+      redirect_to adventures_path, notice: t(:"adventure deleted")
     else
-      redirect_to adventures_path, alert: "Could not delete."
+      redirect_to adventures_path, alert: t(:"error deleted")
     end
   end
 
@@ -53,7 +53,7 @@ class AdventuresController < ApplicationController
   end
 
   def redirect_if_empty
-    redirect_to adventures_path, alert: "You do not have permission." if @adventure.nil?
+    redirect_to adventures_path, alert: t(:"not have permission") if @adventure.nil?
   end
 
   def set_adventure

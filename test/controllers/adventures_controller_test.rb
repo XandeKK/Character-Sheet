@@ -36,7 +36,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     get new_adventure_path
     assert_response :success
-    assert_select "h1", "Create Adventure"
+    assert_select "h1", "Create adventure"
   end
 
   test "should create adventure" do

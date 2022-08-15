@@ -1,13 +1,13 @@
 <div class="card my-5">
   <div class="card-header">
-    <h3 class="">Skills</h3>
+    <h3 class=""><%= t("character.skills.title")%></h3>
     <ul class="nav nav-pills" role="tablist">
-      <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#card-div-skills-<%= character_json["details"]["name"]%>" aria-controls="skills" type="button" aria-selected="true" role="tab">Skills</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-skillFeats-<%= character_json["details"]["name"]%>" aria-controls="skillFeats" type="button" aria-selected="false" role="tab" tabindex="-1">Skill Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-ancestryFeatsAndAbilities-<%= character_json["details"]["name"]%>" aria-controls="ancestryFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1">Ancestry Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-classFeatsAndAbilities-<%= character_json["details"]["name"]%>" aria-controls="classFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1">Class Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-generalFeats-<%= character_json["details"]["name"]%>" aria-controls="generalFeats" type="button" aria-selected="false" role="tab" tabindex="-1">General Feats</button></li>
-      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-bonusFeats-<%= character_json["details"]["name"]%>" aria-controls="bonusFeats" type="button" aria-selected="false" role="tab" tabindex="-1">Bonus Feats</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#card-div-skills-<%= character_json["details"]["name"]%>" aria-controls="skills" type="button" aria-selected="true" role="tab"><%= t("character.skills.title")%></button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-skillFeats-<%= character_json["details"]["name"]%>" aria-controls="skillFeats" type="button" aria-selected="false" role="tab" tabindex="-1"><%= t("character.skills.skill feats")%></button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-ancestryFeatsAndAbilities-<%= character_json["details"]["name"]%>" aria-controls="ancestryFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1"><%= t("character.skills.ancestry feats")%></button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-classFeatsAndAbilities-<%= character_json["details"]["name"]%>" aria-controls="classFeatsAndAbilities" type="button" aria-selected="false" role="tab" tabindex="-1"><%= t("character.skills.class feats")%></button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-generalFeats-<%= character_json["details"]["name"]%>" aria-controls="generalFeats" type="button" aria-selected="false" role="tab" tabindex="-1"><%= t("character.skills.general feats")%></button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#card-div-bonusFeats-<%= character_json["details"]["name"]%>" aria-controls="bonusFeats" type="button" aria-selected="false" role="tab" tabindex="-1"><%= t("character.skills.bonus feats")%></button></li>
     </ul>
   </div>
   <div class="card-body tab-content">
@@ -16,7 +16,7 @@
         <ul class="list-group list-group-flush">
           <% character_json["skills"].each do |skill| %>
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
-              <span><%= skill["name"]%></span>
+              <span><%= t("character.skills.#{skill["name"]}")%></span>
               <span><%= getSkillModifier(skill, character_json["ability"]) %></span>
             </li>
           <% end %>
@@ -29,7 +29,7 @@
           <% character_json["skillFeats"].each do |skillFeat| %>
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
               <span><%= skillFeat["name"]%></span>
-              <span>Level: <%= skillFeat["level"]%></span>
+              <span><%= t("character.skills.level")%>: <%= skillFeat["level"]%></span>
             </li>
           <% end %>
         </ul>
@@ -41,7 +41,7 @@
           <% character_json["ancestryFeatsAndAbilities"].each do |ancestryFeatAndAbility| %>
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
               <span><%= ancestryFeatAndAbility["name"]%></span>
-              <span>Level: <%= ancestryFeatAndAbility["level"]%></span>
+              <span><%= t("character.skills.level")%>: <%= ancestryFeatAndAbility["level"]%></span>
             </li>
           <% end %>
         </ul>
@@ -53,7 +53,7 @@
           <% character_json["classFeatsAndAbilities"].each do |classFeatAndAbility| %>
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
               <span><%= classFeatAndAbility["name"]%></span>
-              <span>Level: <%= classFeatAndAbility["level"]%></span>
+              <span><%= t("character.skills.level")%>: <%= classFeatAndAbility["level"]%></span>
             </li>
           <% end %>
         </ul>
@@ -65,7 +65,7 @@
           <% character_json["generalFeats"].each do |generalFeat| %>
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" role="button">
               <span><%= generalFeat["name"]%></span>
-              <span>Level: <%= generalFeat["level"]%></span>
+              <span><%= t("character.skills.level")%>: <%= generalFeat["level"]%></span>
             </li>
           <% end %>
         </ul>

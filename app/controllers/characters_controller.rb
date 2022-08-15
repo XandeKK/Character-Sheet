@@ -19,7 +19,7 @@ class CharactersController < ApplicationController
     category = params[:category]
 
     if @character.create_character current_user, category
-      redirect_to character_path(@character), notice: "Character created successfully"
+      redirect_to character_path(@character), notice: t("character.created")
     else
       @characters = Character.where(user: current_user, character_category_id: 1) # 1 == Player
 
@@ -31,7 +31,7 @@ class CharactersController < ApplicationController
     character_image = params[:character][:image]
     if @character.update(character_params)
       @character.character_image.attach(data: character_image) if character_image.present?
-      redirect_to character_path(@character), notice: "Character successfully updated"
+      redirect_to character_path(@character), notice: t("character.updated")
     else
       @character_categories = CharacterCategory.all
       render :edit, status: :unprocessable_entity
@@ -41,15 +41,16 @@ class CharactersController < ApplicationController
   def destroy
     category = @character.character_category.name
     if @character.destroy
+      flash[:notice] = t("character.deleted")
       if category == "Player"
-        redirect_to characters_path, notice: "Character successfully deleted"
+        redirect_to characters_path
       elsif category == "Npc"
-        redirect_to npcs_path, notice: "Character successfully deleted"
+        redirect_to npcs_path
       else
-        redirect_to enemies_path, notice: "Character successfully deleted"
+        redirect_to enemies_path
       end
     else
-      redirect_to characters_path, alert: "Could not delete."
+      redirect_to characters_path, alert: t("error deleted")
     end
   end
 
