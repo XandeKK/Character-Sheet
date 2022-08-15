@@ -40,13 +40,11 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  config.web_socket_server_url = "wss://character-sheetx.herokuapp/api/v1/cable"
+  config.web_socket_server_url = ENV["WEB_SOCKET_SERVER_URL"]
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = "rediss://:p99e6556d9744fd1317c3e2b84c48186b94fb425e33908d090d0616c3074f6ad6@ec2-44-197-0-60.compute-1.amazonaws.com:26080"
-  config.action_cable.allowed_request_origins = [ "https://character-sheetx.herokuapp.com/", /http:\/\/character-sheetx.herokuapp.*/ ]
-
+  config.action_cable.allowed_request_origins = ENV["ALLOWED_REQUEST_ORIGINS"]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true

@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://:p99e6556d9744fd1317c3e2b84c48186b94fb425e33908d090d0616c3074f6ad6@ec2-44-197-0-60.compute-1.amazonaws.com:26079
+  url: <%= ENV["REDIS_URL"] %>
   channel_prefix: Character_Sheet_production
