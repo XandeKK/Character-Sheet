@@ -90,7 +90,12 @@ class PlayerChannel {
     let name = characterName.textContent;
     let color = document.getElementById("color").value || "#fff";
     let theme = document.getElementById("theme").value || "default";
-    let image = document.getElementById("image").src;
+    let image = document.getElementById("image");
+    if (image === null) {
+      image = ""
+    } else {
+      image = document.getElementById("image").src;
+    }
 
     this.channel.send({
       act: "rollDice", 

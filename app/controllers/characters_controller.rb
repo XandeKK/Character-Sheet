@@ -58,7 +58,7 @@ class CharactersController < ApplicationController
     characters = JSON.parse params["characters"]
     characters.each do |character|
       character_tmp = Character.find_by(id: character[0], user: current_user)
-      character_tmp.update_life character
+      character_tmp.update_life character if character_tmp.present?
     end
     render plain: "OK", status: :ok
   end

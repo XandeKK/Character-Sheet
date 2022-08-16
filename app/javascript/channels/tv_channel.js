@@ -1,5 +1,4 @@
 import consumer from "channels/consumer"
-import {rollDice} from "../dice"
 
 class TvChannel {
   constructor() {

@@ -7,7 +7,7 @@ let Box = new DiceBox("#dice-box",{
 
 Box.init().then(() => {});
 
-export function rollDice(property) {
+function rollDice(property) {
   let dice = concatenateMixed(property["qty"], property["dice"], property["bonus"]);
 
   addCharacter(property["name"], property["image"]);
@@ -17,6 +17,8 @@ export function rollDice(property) {
     theme: property["theme"]
    });
 }
+
+window.rollDice = rollDice;
 
 let currentIndex = 0;
 let removed = 0;
