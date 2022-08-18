@@ -23,6 +23,8 @@ module CharacterSheet
       end if File.exists?(env_file)
     end
 
+    # Autoload lib
+    config.autoload_paths << "#{root}/lib"
 
     # Configuration for the application, engines, and railties goes here.
     #

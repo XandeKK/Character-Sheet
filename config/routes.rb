@@ -14,4 +14,13 @@ Rails.application.routes.draw do
   
   get 'tv', to: 'campaign_tv#show', as: 'campaign_tv'
   post 'tv/sign_up', to: 'campaign_tv#create', as: 'sign_up_campaign_tv'
+
+  get 'account', to: 'account#show'
+  post 'create_token', to: 'json_web_token#create'
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :characters, only: [:index, :show]
+    end
+  end
 end

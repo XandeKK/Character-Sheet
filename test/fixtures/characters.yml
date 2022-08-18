@@ -7,15 +7,18 @@ one:
   statistic: '<%= character_json.to_json %>'
   user: one
   character_category: one
+  slug: percy_jackson
 
 two:
   name: Annabeth
   statistic: '<%= character_json.to_json %>'
   user: one
   character_category: two
+  slug: annabeth
 
 three:
   name: Beth
   statistic: '<%= character_json.to_json %>'
   user: one
   character_category: three
+  slug: beth

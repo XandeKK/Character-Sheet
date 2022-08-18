@@ -1,0 +1,5 @@
+<%= turbo_stream.remove 'create_token' %>
+
+<%= turbo_stream.replace 'token' do %>
+  <%= @token %>
+<% end %>
