@@ -1,22 +1,30 @@
+
 <h1 align="center">
     Character Sheet
 </h1>
 
 <h4 align="center"> 
-    🚧  Character Sheet 🎲 Finished 🚧
+    🚧  Character Sheet 🎲 Finished 🚧 
 </h4>
+
 
 <p align="center">
  <a href="#-about-the-project">About</a> •
  <a href="#-setup">Setup</a> • 
  <a href="#-usage">Usage</a> • 
  <a href="#-technologies">Technologies</a> • 
- <a href="#-author">Author</a> • 
  <a href="#user-content--license">License</a>
 </p>
 
+---
+<h4 align="center"> 
+    <a href="https://character-sheetx.herokuapp.com/">Demo</a>
+    <div>Warning: The site, every day, will be restarting the database, that is, it will delete everything.<div>
+</h4>
+
 
 ## 💻 About the project
+
 
 The "simple" character sheet app for player and GM.
 But it was also made to play during a session, where you can manage your character, watch the dice roll on TV.
