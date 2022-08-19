@@ -87,11 +87,9 @@ class CharactersController < ApplicationController
 
   def set_character
     begin
-      @character = Character.friendly.find(params[:id])
+      @character = current_user.characters.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       @character = nil
-    else
-      @character = nil if @character.user != current_user
     end
   end
 

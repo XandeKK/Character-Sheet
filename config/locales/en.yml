@@ -65,3 +65,6 @@ en:
   start server: Start server
   stop server: Stop server
   not have permission: You do not have permission.
+  account: Account
+  create token: Create token
+  token created: Token created

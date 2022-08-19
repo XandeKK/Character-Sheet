@@ -1,5 +1,7 @@
-<%= turbo_stream.remove 'create_token' %>
+<%= turbo_stream.replace 'create_token' do %>
+  <button class="btn btn-primary" disabled><%= t(:"token created")%></button>
+<% end %>
 
 <%= turbo_stream.replace 'token' do %>
-  <%= @token %>
+  <input id="token" class="form-control mt-2" value="<%= @token %>" disabled readonly></input>
 <% end %>

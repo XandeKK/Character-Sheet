@@ -1,6 +1,5 @@
 <h1 class="fw-bold text-secondary text-center">Account</h1>
 
-<%= button_to "Create token", create_token_path, method: :post, class: "btn btn-primary", id: 'create_token'%>
-<div id="token">
-	
-</div>
+<%= button_to t(:"create token"), create_token_path, method: :post, class: "btn btn-primary", id: 'create_token'%>
+<input id="token" class="form-control mt-2" value="Token" disabled readonly>
+</input>
