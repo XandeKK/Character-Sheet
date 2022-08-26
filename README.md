@@ -17,11 +17,6 @@
 </p>
 
 ---
-<h4 align="center"> 
-    <a href="https://character-sheetx.herokuapp.com/">Demo</a>
-    <div>Warning: The site, every day, will be restarting the database, that is, it will delete everything.<div>
-</h4>
-
 
 ## 💻 About the project
 
