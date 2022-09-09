@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weapon: MyString
+  weapon_strength: MyString
+  proficiency: 1
+  item: 1
+  dice: 1
+  types: MyString
+  damage_strength: MyString
+  weapon_specialization: MyString
+  traits: MyString
+  other: MyString
+  notes: MyText
+  character: one
+
+two:
+  weapon: MyString
+  weapon_strength: MyString
+  proficiency: 1
+  item: 1
+  dice: 1
+  types: MyString
+  damage_strength: MyString
+  weapon_specialization: MyString
+  traits: MyString
+  other: MyString
+  notes: MyText
+  character: two

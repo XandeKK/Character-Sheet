@@ -1,0 +1,8 @@
+<div>
+  <h1 class="font-bold text-4xl">Characters</h1>
+  <% @characters.each do |character| %>
+    <p>
+      <%= character.pathfinder_detail.name %>
+    </p>
+  <% end %>
+</div>

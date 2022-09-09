@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key_ability: MyString
+  item: 1
+  proficiency: 1
+  character: one
+
+two:
+  key_ability: MyString
+  item: 1
+  proficiency: 1
+  character: two

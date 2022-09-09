@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  capable: 1
+  proficiency: 1
+  unarmored: 1
+  light: 1
+  medium: 1
+  heavy: 1
+  shield: 1
+  hardness: 1
+  maxHp: 1
+  broken_threshold: 1
+  current_hp: 1
+  item: 1
+  character: one
+
+two:
+  capable: 1
+  proficiency: 1
+  unarmored: 1
+  light: 1
+  medium: 1
+  heavy: 1
+  shield: 1
+  hardness: 1
+  maxHp: 1
+  broken_threshold: 1
+  current_hp: 1
+  item: 1
+  character: two

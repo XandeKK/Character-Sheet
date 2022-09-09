@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  character_category: one
+  character_system: one
+
+two:
+  user: two
+  character_category: two
+  character_system: one
+
+three:
+  user: two
+  character_category: three
+  character_system: one

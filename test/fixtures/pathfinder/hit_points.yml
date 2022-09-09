@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  max_hp: 1
+  current_hp: 1
+  temporary_hp: 1
+  resistances_and_immunities: MyString
+  character: one
+
+two:
+  max_hp: 1
+  current_hp: 1
+  temporary_hp: 1
+  resistances_and_immunities: MyString
+  character: two

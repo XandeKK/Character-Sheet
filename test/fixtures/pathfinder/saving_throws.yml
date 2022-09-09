@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fortitude: 1
+  fortitude_item: 1
+  will: 1
+  will_item: 1
+  reflex: 1
+  reflex_item: 1
+  character: one
+
+two:
+  fortitude: 1
+  fortitude_item: 1
+  will: 1
+  will_item: 1
+  reflex: 1
+  reflex_item: 1
+  character: two
