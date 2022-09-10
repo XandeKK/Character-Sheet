@@ -9,11 +9,17 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "flowbite/load_color" %>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <%= render partial: "shared/navbar" %>
+    <%= render partial: "shared/drawer" %>
+    <main class="">
       <%= yield %>
     </main>
+
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
   </body>
 </html>

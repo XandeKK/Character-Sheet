@@ -1,0 +1,16 @@
+<nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="container flex flex-wrap justify-between items-center mx-auto">
+      <button class="px-5 py-2.5 mr-2" type="button" data-controller="flowbite" data-action="flowbite#toggleDrawer" aria-controls="drawer-navigation">
+        <div class="space-y-2">
+          <span class="block w-8 h-0.5 bg-black dark:bg-gray-400"></span>
+          <span class="block w-8 h-0.5 bg-black dark:bg-gray-400"></span>
+          <span class="block w-8 h-0.5 bg-black dark:bg-gray-400"></span>
+        </div>
+      </button>
+      <!-- Button Navbar -->
+      <%= render partial: "shared/dropdown_characters" if controller_name == "characters" %>
+      <%= render partial: "shared/dropdown_adventures" if controller_name == "adventures" %>
+      <div class="flex md:order-2">
+      </div>
+    </div>
+  </nav>
