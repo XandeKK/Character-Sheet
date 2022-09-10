@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
   </head>
 
-  <body>
-    <%= render partial: "shared/navbar" %>
-    <%= render partial: "shared/drawer" %>
-    <main class="">
+  <body class="dark:bg-slate-900">
+    <% unless ["sessions", "users", "passwords"].include?(controller_name) %>
+      <%= render partial: "shared/navbar" %>
+      <%= render partial: "shared/drawer" %>
+    <% end %>
+    <main>
       <%= yield %>
     </main>
-
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
   </body>
 </html>
