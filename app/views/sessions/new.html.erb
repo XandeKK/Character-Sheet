@@ -1,6 +1,10 @@
-<div id="clearance" class="sign-in">
-  <h2><%= t(".title") %></h2>
+<div class="container mx-auto flex justify-center mt-32">
+  <div class="p-4 w-full max-w-sm bg-white border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 rounded-lg md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <h2 class="text-xl font-medium text-gray-900 dark:text-white">
+      <%= t(".title") %>    
+    </h2>
 
-  <%= render partial: '/sessions/form' %>
+    <%= render partial: '/sessions/form' %>
 
+  </div>
 </div>
