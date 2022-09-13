@@ -3,10 +3,10 @@ class NpcsController < ApplicationController
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
 
   def index
-    @characters = Character
-      .joins(:pathfinder_detail, :character_category)
-      .where(user: current_user, "character_category.name": "Npc")
-      .all
+    # @characters = Character
+    #   .joins(:pathfinder_detail, :character_category)
+    #   .where(user: current_user, "character_category.name": "Npc")
+    #   .all
   end
 
   def show
