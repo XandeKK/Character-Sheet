@@ -1,4 +1,36 @@
-<div>
-  <h1 class="font-bold text-4xl"><%= @character.pathfinder_detail.name %></h1>
-  <p>Find me in app/views/characters/show.html.erb</p>
+<%= render partial: "characters/side_bar"%>
+<div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200">
+  
+  <%= render partial: "characters/basics" %>
+
+  <%= render partial: "characters/statistics" %>
+
+  <%= render partial: "characters/equipament" %>
+
+  <%= render partial: "characters/defense" %>
+
+  <%= render partial: "characters/offense" %>
+  
+  <%= render partial: "characters/skills" %>
+
+  <%= render partial: "characters/spells" %>
+
+  <%= render partial: "characters/notes" %>
+
+  <%#= @character.pathfinder_detail.inspect %>
+  <%#= @character.pathfinder_hit_point.inspect %>
+  <%#= @character.pathfinder_ability.inspect %>
+  <%#= @character.pathfinder_armor_class.inspect %>
+  <%#= @character.pathfinder_class_dc.inspect %>
+  <%#= @character.pathfinder_perception.inspect %>
+  <%#= @character.pathfinder_speed.inspect %>
+  <%#= @character.pathfinder_saving_throw.inspect %>
+  <%#= @character.pathfinder_skills.inspect %>
+  <%#= @character.pathfinder_melee_strikes.inspect %>
+  <%#= @character.pathfinder_ranged_strikes.inspect %>
+  <%#= @character.pathfinder_languages.inspect %>
+  <%#= @character.pathfinder_weapon_profics.inspect %>
+  <%#= @character.pathfinder_feats.inspect %>
+  <%#= @character.pathfinder_inventories.inspect %>
+  <%#= @character.pathfinder_money.inspect %>
 </div>
