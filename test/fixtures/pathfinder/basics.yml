@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Paulo
+  class_name: Wizard
+  ancestry: Human
+  heritage: Trouxa
+  heritage_note: Lorem
+  background: Detective
+  alignment: Neutro
+  deity: Nenhum
+  key_ability: str
+  age: 15
+  level: 1
+  hero_points: 0
+  size: 180
+  speed: 60ft
+  speed_note: nao voa
+  description: um cara trouxa
+  character: one
+
+two:
+  name: Ana
+  class_name: Bruxa
+  ancestry: Human
+  heritage: Normal
+  heritage_note: MyText
+  background: Vendedor
+  alignment: Bom
+  deity: Sei la
+  key_ability: cha
+  age: 16
+  level: 1
+  hero_points: 1
+  size: 160
+  speed: 30ft
+  speed_note: MyText
+  description: Mulher
+  character: two
