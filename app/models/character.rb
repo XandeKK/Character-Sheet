@@ -5,4 +5,5 @@ class Character < ApplicationRecord
   
   has_one :pathfinder_basics, class_name: "Pathfinder::Basic", dependent: :destroy
   has_one :pathfinder_abilities, class_name: "Pathfinder::Ability", dependent: :destroy
+  has_one :pathfinder_feats, class_name: "Pathfinder::Feat", dependent: :destroy
 end
