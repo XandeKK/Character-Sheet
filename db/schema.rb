@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_234530) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_235253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,6 +147,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_234530) do
     t.index ["character_id"], name: "index_pathfinder_money_on_character_id"
   end
 
+  create_table "pathfinder_saving_throws", force: :cascade do |t|
+    t.integer "fortitude_total"
+    t.integer "reflex_total"
+    t.integer "will_total"
+    t.integer "fortitude_proficiency"
+    t.integer "reflex_proficiency"
+    t.integer "will_proficiency"
+    t.integer "fortitude_item"
+    t.integer "reflex_item"
+    t.integer "will_item"
+    t.integer "fortitude_misc"
+    t.integer "reflex_misc"
+    t.integer "will_misc"
+    t.integer "fortitude_penalty"
+    t.integer "reflex_penalty"
+    t.integer "will_penalty"
+    t.text "saving_throw_notes"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_pathfinder_saving_throws_on_character_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -170,4 +193,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_234530) do
   add_foreign_key "pathfinder_items", "characters"
   add_foreign_key "pathfinder_languages", "characters"
   add_foreign_key "pathfinder_money", "characters"
+  add_foreign_key "pathfinder_saving_throws", "characters"
 end
