@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_231410) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_232625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,43 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_231410) do
     t.index ["character_category_id"], name: "index_characters_on_character_category_id"
     t.index ["character_system_id"], name: "index_characters_on_character_system_id"
     t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "pathfinder_abilities", force: :cascade do |t|
+    t.integer "str_total"
+    t.integer "str_free"
+    t.integer "str_class"
+    t.integer "str_ascentry"
+    t.integer "str_background"
+    t.integer "dex_total"
+    t.integer "dex_free"
+    t.integer "dex_class"
+    t.integer "dex_ascentry"
+    t.integer "dex_background"
+    t.integer "con_total"
+    t.integer "con_free"
+    t.integer "con_class"
+    t.integer "con_ascentry"
+    t.integer "con_background"
+    t.integer "int_total"
+    t.integer "int_free"
+    t.integer "int_class"
+    t.integer "int_ascentry"
+    t.integer "int_background"
+    t.integer "wis_total"
+    t.integer "wis_free"
+    t.integer "wis_class"
+    t.integer "wis_ascentry"
+    t.integer "wis_background"
+    t.integer "cha_total"
+    t.integer "cha_free"
+    t.integer "cha_class"
+    t.integer "cha_ascentry"
+    t.integer "cha_background"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_pathfinder_abilities_on_character_id"
   end
 
   create_table "pathfinder_basics", force: :cascade do |t|
@@ -87,5 +124,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_231410) do
   add_foreign_key "characters", "character_categories"
   add_foreign_key "characters", "character_systems"
   add_foreign_key "characters", "users"
+  add_foreign_key "pathfinder_abilities", "characters"
   add_foreign_key "pathfinder_basics", "characters"
 end

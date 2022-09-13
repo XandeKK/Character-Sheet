@@ -1,0 +1,67 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  str_total: 10
+  str_free: 10
+  str_class: 10
+  str_ascentry: 10
+  str_background: 10
+  dex_total: 10
+  dex_free: 10
+  dex_class: 10
+  dex_ascentry: 10
+  dex_background: 10
+  con_total: 10
+  con_free: 10
+  con_class: 10
+  con_ascentry: 10
+  con_background: 10
+  int_total: 10
+  int_free: 10
+  int_class: 10
+  int_ascentry: 10
+  int_background: 10
+  wis_total: 10
+  wis_free: 10
+  wis_class: 10
+  wis_ascentry: 10
+  wis_background: 10
+  cha_total: 10
+  cha_free: 10
+  cha_class: 10
+  cha_ascentry: 10
+  cha_background: 10
+  character: one
+
+two:
+  str_total: 10
+  str_free: 10
+  str_class: 10
+  str_ascentry: 10
+  str_background: 10
+  dex_total: 10
+  dex_free: 10
+  dex_class: 10
+  dex_ascentry: 10
+  dex_background: 10
+  con_total: 10
+  con_free: 10
+  con_class: 10
+  con_ascentry: 10
+  con_background: 10
+  int_total: 10
+  int_free: 10
+  int_class: 10
+  int_ascentry: 10
+  int_background: 10
+  wis_total: 10
+  wis_free: 10
+  wis_class: 10
+  wis_ascentry: 10
+  wis_background: 10
+  cha_total: 10
+  cha_free: 10
+  cha_class: 10
+  cha_ascentry: 10
+  cha_background: 10
+  character: two
