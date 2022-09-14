@@ -37,3 +37,22 @@ two:
   speed_note: MyText
   description: Mulher
   character: two
+
+three:
+  name: Ana
+  class_name: Bruxa
+  ancestry: Human
+  heritage: Normal
+  heritage_note: MyText
+  background: Vendedor
+  alignment: Bom
+  deity: Sei la
+  key_ability: cha
+  age: 16
+  level: 1
+  hero_points: 1
+  size: 160
+  speed: 30ft
+  speed_note: MyText
+  description: Mulher
+  character: three

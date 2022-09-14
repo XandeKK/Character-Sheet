@@ -13,7 +13,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up
     
     get character_path(character)
-    assert_select "h1", character.pathfinder_detail.name
+    assert_select "h1", character.pathfinder_basic.name
     assert_response :success
   end
 
@@ -30,14 +30,14 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     get new_character_path
-    assert_select "h1", "New Character"
+    assert_select "h2", "New Character"
     assert_response :success
   end
 
   test "should create character" do
     sign_up
 
-    assert_difference("Pathfinder::Detail.count") do
+    assert_difference("Pathfinder::Basic.count") do
       assert_difference("Character.count") do
         post characters_path, params: { system: character_systems(:one).id }
       end
@@ -54,13 +54,13 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
 
     put character_path(character), params: {
       character: {
-        pathfinder_detail_attributes: {"name": "Tolo"}
+        pathfinder_basic_attributes: {"name": "Tolo"}
       }
     }
 
     assert_response :redirect
     follow_redirect!
-    assert_select "h1", "Tolo"
+    assert_select "#character-name", "Tolo"
     assert_equal "Character successfully updated!", flash[:notice]
   end
 

@@ -34,6 +34,8 @@ class CharactersController < ApplicationController
       else
         render :edit, status: :unprocessable_entity
       end
+    else
+
     end
   end
 
@@ -48,7 +50,7 @@ class CharactersController < ApplicationController
   private
 
   def set_character
-    @character = Character.character(params[:id], current_user).first
+    @character = current_user.characters.find_by(id: params[:id])
   end
 
   def redirect_if_empty
