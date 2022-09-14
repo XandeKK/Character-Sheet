@@ -1,0 +1,51 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  magic_tradition: MyString
+  spellcasting_type: MyString
+  attack_proficiency: 1
+  attack_bonus: 1
+  attack_penalty: 1
+  cd_proficiency: 1
+  cd_bonus: 1
+  cd_penalty: 1
+  max_focus_points: 1
+  current_focus_points: 1
+  level_0: 1
+  level_1: 1
+  level_2: 1
+  level_3: 1
+  level_4: 1
+  level_5: 1
+  level_6: 1
+  level_7: 1
+  level_8: 1
+  level_9: 1
+  level_10: 1
+  notes: MyText
+  character: one
+
+two:
+  magic_tradition: MyString
+  spellcasting_type: MyString
+  attack_proficiency: 1
+  attack_bonus: 1
+  attack_penalty: 1
+  cd_proficiency: 1
+  cd_bonus: 1
+  cd_penalty: 1
+  max_focus_points: 1
+  current_focus_points: 1
+  level_0: 1
+  level_1: 1
+  level_2: 1
+  level_3: 1
+  level_4: 1
+  level_5: 1
+  level_6: 1
+  level_7: 1
+  level_8: 1
+  level_9: 1
+  level_10: 1
+  notes: MyText
+  character: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_095725) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_100246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -237,6 +237,35 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_095725) do
     t.index ["character_id"], name: "index_pathfinder_skills_on_character_id"
   end
 
+  create_table "pathfinder_spell_casters", force: :cascade do |t|
+    t.string "magic_tradition"
+    t.string "spellcasting_type"
+    t.integer "attack_proficiency"
+    t.integer "attack_bonus"
+    t.integer "attack_penalty"
+    t.integer "cd_proficiency"
+    t.integer "cd_bonus"
+    t.integer "cd_penalty"
+    t.integer "max_focus_points"
+    t.integer "current_focus_points"
+    t.integer "level_0"
+    t.integer "level_1"
+    t.integer "level_2"
+    t.integer "level_3"
+    t.integer "level_4"
+    t.integer "level_5"
+    t.integer "level_6"
+    t.integer "level_7"
+    t.integer "level_8"
+    t.integer "level_9"
+    t.integer "level_10"
+    t.text "notes"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_pathfinder_spell_casters_on_character_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -265,4 +294,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_095725) do
   add_foreign_key "pathfinder_rangeds", "characters"
   add_foreign_key "pathfinder_saving_throws", "characters"
   add_foreign_key "pathfinder_skills", "characters"
+  add_foreign_key "pathfinder_spell_casters", "characters"
 end
