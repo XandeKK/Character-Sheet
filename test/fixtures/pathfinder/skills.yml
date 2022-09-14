@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  note: MyText
+  proficiency: 1
+  item: 1
+  armor: 1
+  character: one
+
+two:
+  name: MyString
+  note: MyText
+  proficiency: 1
+  item: 1
+  armor: 1
+  character: two
