@@ -15,7 +15,7 @@ class Character < ApplicationRecord
   has_many :pathfinder_rangeds, class_name: "Pathfinder::Ranged", dependent: :destroy
   has_many :pathfinder_skills, class_name: "Pathfinder::Skill", dependent: :destroy
   has_one :pathfinder_spell_caster, class_name: "Pathfinder::SpellCaster", dependent: :destroy
-  # has_many :pathfinder_spells, class_name: "Pathfinder::Spell", dependent: :destroy
+  has_many :pathfinder_spells, class_name: "Pathfinder::Spell", dependent: :destroy
   # has_many :pathfinder_innate_spells, class_name: "Pathfinder::InnateSpell", dependent: :destroy
   # has_many :pathfinder_focus_spells, class_name: "Pathfinder::FocusSpell", dependent: :destroy
   # has_many :pathfinder_weapon_proficiencies, class_name: "Pathfinder::WeaponProficiency", dependent: :destroy
