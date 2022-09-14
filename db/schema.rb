@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_102344) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_102622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -216,6 +216,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102344) do
     t.index ["character_id"], name: "index_pathfinder_money_on_character_id"
   end
 
+  create_table "pathfinder_notes", force: :cascade do |t|
+    t.string "name"
+    t.text "note"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_pathfinder_notes_on_character_id"
+  end
+
   create_table "pathfinder_perceptions", force: :cascade do |t|
     t.integer "item"
     t.integer "proficiency"
@@ -358,6 +367,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102344) do
   add_foreign_key "pathfinder_languages", "characters"
   add_foreign_key "pathfinder_melees", "characters"
   add_foreign_key "pathfinder_money", "characters"
+  add_foreign_key "pathfinder_notes", "characters"
   add_foreign_key "pathfinder_perceptions", "characters"
   add_foreign_key "pathfinder_rangeds", "characters"
   add_foreign_key "pathfinder_saving_throws", "characters"

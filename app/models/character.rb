@@ -21,7 +21,7 @@ class Character < ApplicationRecord
   has_many :pathfinder_weapon_proficiencies, class_name: "Pathfinder::WeaponProficiency", dependent: :destroy
   has_one :pathfinder_perception, class_name: "Pathfinder::Perception", dependent: :destroy
   has_one :pathfinder_class_dc, class_name: "Pathfinder::ClassDc", dependent: :destroy
-  # has_many :pathfinder_notes, class_name: "Pathfinder::Note", dependent: :destroy
+  has_many :pathfinder_notes, class_name: "Pathfinder::Note", dependent: :destroy
 end
 
 
