@@ -22,23 +22,23 @@ class Pathfinder::DefenseTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @defense.valid?, "Did not validate with character valid"
+    assert @defense.valid?, "Did not validate with defense valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Defense.count") do
-      assert @defense.save, "Did not save with character valid"
+      assert @defense.save, "Did not save with defense valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Defense.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_defenses(:one).destroy, "Did not destroy defense"
     end
   end
 
   test "should be invalid without character" do
     @defense.character = nil
-    assert @defense.invalid?, "Validated the character without character"
+    assert @defense.invalid?, "Validated the defense without character"
   end
 end

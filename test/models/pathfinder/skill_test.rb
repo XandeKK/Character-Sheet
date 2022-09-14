@@ -13,24 +13,24 @@ class Pathfinder::SkillTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @skill.valid?, "Did not validate with character valid"
+    assert @skill.valid?, "Did not validate with skill valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Skill.count") do
-      assert @skill.save, "Did not save with character valid"
+      assert @skill.save, "Did not save with skill valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Skill.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_skills(:one).destroy, "Did not destroy skill"
     end
   end
 
   test "should be invalid without character" do
     @skill.character = nil
-    assert @skill.invalid?, "Validated the character without character"
+    assert @skill.invalid?, "Validated the skill without character"
   end
 
 end

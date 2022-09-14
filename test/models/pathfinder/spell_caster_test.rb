@@ -30,24 +30,24 @@ class Pathfinder::SpellCasterTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @spellcaster.valid?, "Did not validate with character valid"
+    assert @spellcaster.valid?, "Did not validate with spellcaster valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::SpellCaster.count") do
-      assert @spellcaster.save, "Did not save with character valid"
+      assert @spellcaster.save, "Did not save with spellcaster valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::SpellCaster.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_spell_casters(:one).destroy, "Did not destroy spellcaster"
     end
   end
 
   test "should be invalid without character" do
     @spellcaster.character = nil
-    assert @spellcaster.invalid?, "Validated the character without character"
+    assert @spellcaster.invalid?, "Validated the spellcaster without character"
   end
 
 end

@@ -11,24 +11,24 @@ class Pathfinder::PerceptionTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @perception.valid?, "Did not validate with character valid"
+    assert @perception.valid?, "Did not validate with perception valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Perception.count") do
-      assert @perception.save, "Did not save with character valid"
+      assert @perception.save, "Did not save with perception valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Perception.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_perceptions(:one).destroy, "Did not destroy perception"
     end
   end
 
   test "should be invalid without character" do
     @perception.character = nil
-    assert @perception.invalid?, "Validated the character without character"
+    assert @perception.invalid?, "Validated the perception without character"
   end
 
 end

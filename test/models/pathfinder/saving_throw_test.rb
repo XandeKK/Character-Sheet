@@ -24,23 +24,23 @@ class Pathfinder::SavingThrowTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @saving.valid?, "Did not validate with character valid"
+    assert @saving.valid?, "Did not validate with saving valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::SavingThrow.count") do
-      assert @saving.save, "Did not save with character valid"
+      assert @saving.save, "Did not save with saving valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::SavingThrow.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_saving_throws(:one).destroy, "Did not destroy saving"
     end
   end
 
   test "should be invalid without character" do
     @saving.character = nil
-    assert @saving.invalid?, "Validated the character without character"
+    assert @saving.invalid?, "Validated the saving without character"
   end
 end

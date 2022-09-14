@@ -10,24 +10,24 @@ class Pathfinder::WeaponProficiencyTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @weapon_proficiency.valid?, "Did not validate with character valid"
+    assert @weapon_proficiency.valid?, "Did not validate with weapon_proficiency valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::WeaponProficiency.count") do
-      assert @weapon_proficiency.save, "Did not save with character valid"
+      assert @weapon_proficiency.save, "Did not save with weapon_proficiency valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::WeaponProficiency.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_weapon_proficiencies(:one).destroy, "Did not destroy weapon_proficiency"
     end
   end
 
   test "should be invalid without character" do
     @weapon_proficiency.character = nil
-    assert @weapon_proficiency.invalid?, "Validated the character without character"
+    assert @weapon_proficiency.invalid?, "Validated the weapon_proficiency without character"
   end
 
 end

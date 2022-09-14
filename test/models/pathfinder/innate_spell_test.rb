@@ -13,24 +13,24 @@ class Pathfinder::InnateSpellTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @innate_spell.valid?, "Did not validate with character valid"
+    assert @innate_spell.valid?, "Did not validate with innate_spell valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::InnateSpell.count") do
-      assert @innate_spell.save, "Did not save with character valid"
+      assert @innate_spell.save, "Did not save with innate_spell valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::InnateSpell.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_innate_spells(:one).destroy, "Did not destroy innate_spell"
     end
   end
 
   test "should be invalid without character" do
     @innate_spell.character = nil
-    assert @innate_spell.invalid?, "Validated the character without character"
+    assert @innate_spell.invalid?, "Validated the innate_spell without character"
   end
 
 end

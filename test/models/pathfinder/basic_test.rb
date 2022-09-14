@@ -24,18 +24,18 @@ class Pathfinder::BasicTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @basic.valid?, "Did not validate with character valid"
+    assert @basic.valid?, "Did not validate with basic valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Basic.count") do
-      assert @basic.save, "Did not save with character valid"
+      assert @basic.save, "Did not save with basic valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Basic.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_basics(:one).destroy, "Did not destroy basic"
     end
   end
 
@@ -46,6 +46,6 @@ class Pathfinder::BasicTest < ActiveSupport::TestCase
 
   test "should be invalid without character" do
     @basic.character = nil
-    assert @basic.invalid?, "Validated the character without character"
+    assert @basic.invalid?, "Validated the basic without character"
   end
 end

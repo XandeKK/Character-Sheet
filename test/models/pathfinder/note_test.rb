@@ -10,24 +10,24 @@ class Pathfinder::NoteTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @note.valid?, "Did not validate with character valid"
+    assert @note.valid?, "Did not validate with note valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Note.count") do
-      assert @note.save, "Did not save with character valid"
+      assert @note.save, "Did not save with note valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Note.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_notes(:one).destroy, "Did not destroy note"
     end
   end
 
   test "should be invalid without character" do
     @note.character = nil
-    assert @note.invalid?, "Validated the character without character"
+    assert @note.invalid?, "Validated the note without character"
   end
 
 end

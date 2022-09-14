@@ -12,23 +12,23 @@ class Pathfinder::MoneyTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @money.valid?, "Did not validate with character valid"
+    assert @money.valid?, "Did not validate with money valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Money.count") do
-      assert @money.save, "Did not save with character valid"
+      assert @money.save, "Did not save with money valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Money.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_money(:one).destroy, "Did not destroy money"
     end
   end
 
   test "should be invalid without character" do
     @money.character = nil
-    assert @money.invalid?, "Validated the character without character"
+    assert @money.invalid?, "Validated the money without character"
   end
 end

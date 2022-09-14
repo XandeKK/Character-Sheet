@@ -14,24 +14,24 @@ class Pathfinder::SpellTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @spell.valid?, "Did not validate with character valid"
+    assert @spell.valid?, "Did not validate with spell valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Spell.count") do
-      assert @spell.save, "Did not save with character valid"
+      assert @spell.save, "Did not save with spell valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Spell.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_spells(:one).destroy, "Did not destroy spell"
     end
   end
 
   test "should be invalid without character" do
     @spell.character = nil
-    assert @spell.invalid?, "Validated the character without character"
+    assert @spell.invalid?, "Validated the spell without character"
   end
 
 end

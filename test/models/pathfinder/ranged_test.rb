@@ -17,23 +17,23 @@ class Pathfinder::RangedTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @ranged.valid?, "Did not validate with character valid"
+    assert @ranged.valid?, "Did not validate with ranged valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Ranged.count") do
-      assert @ranged.save, "Did not save with character valid"
+      assert @ranged.save, "Did not save with ranged valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Ranged.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_rangeds(:one).destroy, "Did not destroy ranged"
     end
   end
 
   test "should be invalid without character" do
     @ranged.character = nil
-    assert @ranged.invalid?, "Validated the character without character"
+    assert @ranged.invalid?, "Validated the ranged without character"
   end
 end

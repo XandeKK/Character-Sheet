@@ -17,18 +17,18 @@ class Pathfinder::MeleeTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @melee.valid?, "Did not validate with character valid"
+    assert @melee.valid?, "Did not validate with melee valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Melee.count") do
-      assert @melee.save, "Did not save with character valid"
+      assert @melee.save, "Did not save with melee valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Melee.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_melees(:one).destroy, "Did not destroy melee"
     end
   end
 

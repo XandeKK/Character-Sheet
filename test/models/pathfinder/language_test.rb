@@ -10,23 +10,23 @@ class Pathfinder::LanguageTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @language.valid?, "Did not validate with character valid"
+    assert @language.valid?, "Did not validate with language valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Language.count") do
-      assert @language.save, "Did not save with character valid"
+      assert @language.save, "Did not save with language valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Language.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_languages(:one).destroy, "Did not destroy language"
     end
   end
 
   test "should be invalid without character" do
     @language.character = nil
-    assert @language.invalid?, "Validated the character without character"
+    assert @language.invalid?, "Validated the language without character"
   end
 end

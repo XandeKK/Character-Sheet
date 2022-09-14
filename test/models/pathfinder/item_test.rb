@@ -11,23 +11,23 @@ class Pathfinder::ItemTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    assert @item.valid?, "Did not validate with character valid"
+    assert @item.valid?, "Did not validate with item valid"
   end
 
   test "should save" do
     assert_difference("Pathfinder::Item.count") do
-      assert @item.save, "Did not save with character valid"
+      assert @item.save, "Did not save with item valid"
     end
   end
 
   test "should destroy" do
     assert_difference("Pathfinder::Item.count", -1) do
-      assert characters(:one).destroy, "Did not destroy character"
+      assert pathfinder_items(:one).destroy, "Did not destroy item"
     end
   end
 
   test "should be invalid without character" do
     @item.character = nil
-    assert @item.invalid?, "Validated the character without character"
+    assert @item.invalid?, "Validated the item without character"
   end
 end
