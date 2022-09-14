@@ -12,7 +12,7 @@ class Character < ApplicationRecord
   has_one :pathfinder_saving_throw, class_name: "Pathfinder::SavingThrow", dependent: :destroy
   has_one :pathfinder_defense, class_name: "Pathfinder::Defense", dependent: :destroy
   has_many :pathfinder_melees, class_name: "Pathfinder::Melee", dependent: :destroy
-  # has_many :pathfinder_rangeds, class_name: "Pathfinder::Ranged", dependent: :destroy
+  has_many :pathfinder_rangeds, class_name: "Pathfinder::Ranged", dependent: :destroy
   # has_many :pathfinder_skills, class_name: "Pathfinder::Skill", dependent: :destroy
   # has_one :pathfinder_spell_casters, class_name: "Pathfinder::SpellCaster", dependent: :destroy
   # has_many :pathfinder_spell, class_name: "Pathfinder::Spell", dependent: :destroy

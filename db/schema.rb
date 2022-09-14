@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_235910) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_095329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -184,6 +184,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_235910) do
     t.index ["character_id"], name: "index_pathfinder_money_on_character_id"
   end
 
+  create_table "pathfinder_rangeds", force: :cascade do |t|
+    t.string "name"
+    t.integer "qty"
+    t.string "types"
+    t.string "range"
+    t.integer "proficiency"
+    t.string "other"
+    t.string "traits"
+    t.string "weapon_specialization"
+    t.integer "special"
+    t.string "die"
+    t.integer "item"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_pathfinder_rangeds_on_character_id"
+  end
+
   create_table "pathfinder_saving_throws", force: :cascade do |t|
     t.integer "fortitude_total"
     t.integer "reflex_total"
@@ -232,5 +250,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_235910) do
   add_foreign_key "pathfinder_languages", "characters"
   add_foreign_key "pathfinder_melees", "characters"
   add_foreign_key "pathfinder_money", "characters"
+  add_foreign_key "pathfinder_rangeds", "characters"
   add_foreign_key "pathfinder_saving_throws", "characters"
 end
