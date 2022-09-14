@@ -22,7 +22,7 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
     
     get enemies_path
     assert_select "h1", "Enemies"
-    assert_select "p", pathfinder_details(:three).name
+    assert_select "p", pathfinder_basics(:three).name
     assert_response :success
   end
 
@@ -30,7 +30,7 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
     sign_up_with_other_user
     
     get enemy_path(enemy)
-    assert_select "h1", enemy.pathfinder_detail.name
+    assert_select "h1", enemy.pathfinder_basic.name
     assert_response :success
   end
 
@@ -54,7 +54,7 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
   test "should create enemy" do
     sign_up_with_other_user
 
-    assert_difference("Pathfinder::Detail.count") do
+    assert_difference("Pathfinder::Basic.count") do
       assert_difference("Character.count") do
         post enemies_path, params: { system: character_systems(:one).id }
       end
@@ -71,7 +71,7 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
 
     put enemy_path(enemy), params: {
       character: {
-        pathfinder_detail_attributes: {"name": "Tolo"}
+        pathfinder_basic_attributes: {"name": "Tolo"}
       }
     }
 
