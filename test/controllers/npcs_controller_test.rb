@@ -22,7 +22,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
     
     get npcs_path
     assert_select "h1", "Npcs"
-    assert_select "p", pathfinder_details(:two).name
+    assert_select "p", pathfinder_basics(:two).name
     assert_response :success
   end
 
@@ -30,7 +30,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
     sign_up_with_other_user
     
     get npc_path(npc)
-    assert_select "h1", npc.pathfinder_detail.name
+    assert_select "h1", npc.pathfinder_basic.name
     assert_response :success
   end
 
@@ -54,7 +54,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
   test "should create npc" do
     sign_up_with_other_user
 
-    assert_difference("Pathfinder::Detail.count") do
+    assert_difference("Pathfinder::Basic.count") do
       assert_difference("Character.count") do
         post npcs_path, params: { system: character_systems(:one).id }
       end
@@ -71,7 +71,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
 
     put npc_path(npc), params: {
       character: {
-        pathfinder_detail_attributes: {"name": "Tolo"}
+        pathfinder_basic_attributes: {"name": "Tolo"}
       }
     }
 
