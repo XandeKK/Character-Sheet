@@ -14,7 +14,7 @@ class PlayerControllerTest < ActionDispatch::IntegrationTest
     
     get player_path
     assert_select "h1", "Characters"
-    assert_select "p", pathfinder_details(:one).name
+    assert_select ".character-name-#{pathfinder_basics(:one).name}"
     assert_response :success
   end
 end

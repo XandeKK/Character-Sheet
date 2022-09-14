@@ -8,9 +8,9 @@
       <div class="p-6 flex justify-between">
         <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
           <div>
-            <img class="w-20 h-20 rounded-full" src="" alt="<%= character.pathfinder_detail.name %>">
+            <img class="character-name-<%= character.pathfinder_basic.name %> w-20 h-20 rounded-full" src="" alt="<%= character.pathfinder_basic.name %>">
           </div>
-          <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.pathfinder_detail.name %></div>
+          <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.pathfinder_basic.name %></div>
         </div>
         <%= render partial: "player/dropdown_character", locals: {id: character.id} %>
       </div>
