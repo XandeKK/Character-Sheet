@@ -279,6 +279,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102622) do
   create_table "pathfinder_skills", force: :cascade do |t|
     t.string "name"
     t.text "note"
+    t.string "key_ability"
     t.integer "proficiency"
     t.integer "item"
     t.integer "armor"

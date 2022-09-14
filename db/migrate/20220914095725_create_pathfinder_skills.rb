@@ -3,6 +3,7 @@ class CreatePathfinderSkills < ActiveRecord::Migration[7.0]
     create_table :pathfinder_skills do |t|
       t.string :name
       t.text :note
+      t.string :key_ability
       t.integer :proficiency
       t.integer :item
       t.integer :armor

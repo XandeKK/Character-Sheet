@@ -6,6 +6,7 @@ class Pathfinder::SkillTest < ActiveSupport::TestCase
       name: "Acrobatics",
       note: "",
       proficiency: 3,
+      key_ability: 3,
       item: 2,
       armor: 2,
       character: characters(:one)

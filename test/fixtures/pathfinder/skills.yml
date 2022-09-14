@@ -4,6 +4,7 @@ one:
   name: MyString
   note: MyText
   proficiency: 1
+  key_ability: "str"
   item: 1
   armor: 1
   character: one
@@ -12,6 +13,7 @@ two:
   name: MyString
   note: MyText
   proficiency: 1
+  key_ability: "str"
   item: 1
   armor: 1
   character: two
