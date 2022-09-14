@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_101041) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_101439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_101041) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_pathfinder_feats_on_character_id"
+  end
+
+  create_table "pathfinder_focus_spells", force: :cascade do |t|
+    t.string "name"
+    t.text "notes"
+    t.string "spell_component"
+    t.string "action"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_pathfinder_focus_spells_on_character_id"
   end
 
   create_table "pathfinder_innate_spells", force: :cascade do |t|
@@ -312,6 +323,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_101041) do
   add_foreign_key "pathfinder_basics", "characters"
   add_foreign_key "pathfinder_defenses", "characters"
   add_foreign_key "pathfinder_feats", "characters"
+  add_foreign_key "pathfinder_focus_spells", "characters"
   add_foreign_key "pathfinder_innate_spells", "characters"
   add_foreign_key "pathfinder_items", "characters"
   add_foreign_key "pathfinder_languages", "characters"
