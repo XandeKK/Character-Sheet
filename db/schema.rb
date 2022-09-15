@@ -131,6 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102622) do
     t.integer "heavy_proficiency"
     t.integer "medium_proficiency"
     t.integer "light_proficiency"
+    t.integer "unarmored_proficiency"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

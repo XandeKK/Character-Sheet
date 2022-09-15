@@ -15,6 +15,7 @@ class CreatePathfinderDefenses < ActiveRecord::Migration[7.0]
       t.integer :heavy_proficiency
       t.integer :medium_proficiency
       t.integer :light_proficiency
+      t.integer :unarmored_proficiency
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

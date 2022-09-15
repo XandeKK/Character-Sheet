@@ -17,6 +17,7 @@ class Pathfinder::DefenseTest < ActiveSupport::TestCase
       heavy_proficiency: 1,
       medium_proficiency: 1,
       light_proficiency: 1,
+      unarmored_proficiency: 1,
       character: characters(:one)
     )
   end
