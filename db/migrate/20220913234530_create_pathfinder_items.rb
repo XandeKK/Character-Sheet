@@ -4,6 +4,7 @@ class CreatePathfinderItems < ActiveRecord::Migration[7.0]
       t.string :name
       t.integer :quatity
       t.integer :weight
+      t.text :notes
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

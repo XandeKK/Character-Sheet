@@ -6,6 +6,7 @@ class Pathfinder::ItemTest < ActiveSupport::TestCase
       name: "Chef",
       quatity: 3,
       weight: 1,
+      notes: "Porque?",
       character: characters(:one)
     )
   end
