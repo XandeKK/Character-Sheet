@@ -128,6 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102622) do
     t.integer "wounded"
     t.integer "armor_class_item"
     t.integer "armor_class_proficiency"
+    t.integer "max_dex"
     t.integer "heavy_proficiency"
     t.integer "medium_proficiency"
     t.integer "light_proficiency"

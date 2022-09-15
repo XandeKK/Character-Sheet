@@ -14,6 +14,7 @@ class Pathfinder::DefenseTest < ActiveSupport::TestCase
       wounded: 1,
       armor_class_item: 1,
       armor_class_proficiency: 1,
+      max_dex: 0,
       heavy_proficiency: 1,
       medium_proficiency: 1,
       light_proficiency: 1,

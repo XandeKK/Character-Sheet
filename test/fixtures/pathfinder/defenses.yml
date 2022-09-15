@@ -12,6 +12,7 @@ one:
   wounded: 1
   armor_class_item: 1
   armor_class_proficiency: 1
+  max_dex: 0
   unarmored_proficiency: 1
   heavy_proficiency: 1
   medium_proficiency: 1
@@ -30,6 +31,7 @@ two:
   wounded: 1
   armor_class_item: 1
   armor_class_proficiency: 1
+  max_dex: 0
   unarmored_proficiency: 1
   heavy_proficiency: 1
   medium_proficiency: 1

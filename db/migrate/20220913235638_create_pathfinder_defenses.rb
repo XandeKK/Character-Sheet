@@ -12,6 +12,7 @@ class CreatePathfinderDefenses < ActiveRecord::Migration[7.0]
       t.integer :wounded
       t.integer :armor_class_item
       t.integer :armor_class_proficiency
+      t.integer :max_dex
       t.integer :heavy_proficiency
       t.integer :medium_proficiency
       t.integer :light_proficiency
