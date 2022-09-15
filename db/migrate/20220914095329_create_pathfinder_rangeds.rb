@@ -12,6 +12,7 @@ class CreatePathfinderRangeds < ActiveRecord::Migration[7.0]
       t.integer :special
       t.string :die
       t.integer :item
+      t.text :notes
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

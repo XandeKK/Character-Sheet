@@ -12,6 +12,7 @@ one:
   special: 1
   die: d8
   item: 1
+  notes: MyText
   character: one
 
 two:
@@ -26,4 +27,5 @@ two:
   special: 1
   die: MyString
   item: 1
+  notes: MyText
   character: two

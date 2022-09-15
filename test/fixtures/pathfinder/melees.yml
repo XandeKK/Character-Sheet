@@ -10,6 +10,7 @@ one:
   die: MyString
   item: 1
   other: MyString
+  notes: MyText
   character: one
 
 two:
@@ -22,4 +23,5 @@ two:
   die: MyString
   item: 1
   other: MyString
+  notes: MyText
   character: two

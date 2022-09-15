@@ -12,6 +12,7 @@ class Pathfinder::RangedTest < ActiveSupport::TestCase
       special: 3,
       die: "d6",
       item: 1,
+      notes: "sadas",
       character: characters(:one)
     )
   end

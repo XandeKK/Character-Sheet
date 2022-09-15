@@ -202,6 +202,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102622) do
     t.string "die"
     t.integer "item"
     t.string "other"
+    t.text "notes"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -250,6 +251,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102622) do
     t.integer "special"
     t.string "die"
     t.integer "item"
+    t.text "notes"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

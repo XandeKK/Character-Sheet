@@ -10,6 +10,7 @@ class CreatePathfinderMelees < ActiveRecord::Migration[7.0]
       t.string :die
       t.integer :item
       t.string :other
+      t.text :notes
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

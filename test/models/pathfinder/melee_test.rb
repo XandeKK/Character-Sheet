@@ -12,6 +12,7 @@ class Pathfinder::MeleeTest < ActiveSupport::TestCase
       die: "1d8",
       item: 3,
       other: "str",
+      notes: "str",
       character: characters(:one)
     )
   end
