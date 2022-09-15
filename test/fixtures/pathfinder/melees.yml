@@ -6,7 +6,7 @@ one:
   types: MyString
   proficiency: 1
   traits: MyString
-  weapon_specialization: MyString
+  weapon_specialization: 1
   die: MyString
   item: 1
   other: MyString
@@ -18,7 +18,7 @@ two:
   types: MyString
   proficiency: 1
   traits: MyString
-  weapon_specialization: MyString
+  weapon_specialization: 1
   die: MyString
   item: 1
   other: MyString

@@ -8,7 +8,7 @@ one:
   proficiency: 1
   other: MyString
   traits: MyString
-  weapon_specialization: MyString
+  weapon_specialization: 1
   special: 1
   die: d8
   item: 1
@@ -22,7 +22,7 @@ two:
   proficiency: 1
   other: MyString
   traits: MyString
-  weapon_specialization: MyString
+  weapon_specialization: 1
   special: 1
   die: MyString
   item: 1
