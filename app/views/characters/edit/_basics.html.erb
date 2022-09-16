@@ -167,8 +167,6 @@
           <img class="min-w-full rounded-full" src="<%= url_for(@character.character_image) if @character.character_image.attached? %>" data-edit-character--cropper-target="character_image" data-action="ready->edit-character--cropper#setBase64 cropend->edit-character--cropper#setBase64 zoom->edit-character--cropper#setBase64">
         </div>
       </div>
-
-      <%= javascript_include_tag "cropper" %>
     </div>
   </div>
 </div>
