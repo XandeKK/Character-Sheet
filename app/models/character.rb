@@ -1,4 +1,5 @@
 class Character < ApplicationRecord
+  has_one_base64_attached :character_image
   belongs_to :user
   belongs_to :character_category
   belongs_to :character_system

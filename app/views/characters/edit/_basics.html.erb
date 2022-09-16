@@ -18,6 +18,9 @@
       <li class="mr-2" role="presentation">
         <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="senses-tab" data-tabs-target="#senses" type="button" role="tab" aria-controls="senses" aria-selected="false">Senses</button>
       </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="image-tab" data-tabs-target="#image" type="button" role="tab" aria-controls="image" aria-selected="false">Image</button>
+      </li>
     </ul>
   </div>
   <div id="basicsTabContent">
@@ -133,6 +136,39 @@
           </div>
         <% end %>
       </div>
+    </div>
+    <div class="hidden" id="image" role="tabpanel" aria-labelledby="image-tab" data-controller="edit-character--cropper">
+      <% content_for :head do %>
+        <%= javascript_import_module_tag "cropperjs" %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style type="text/css">
+            .cropper-view-box,
+            .cropper-face {
+              border-radius: 50%;
+            }
+
+            /* The css styles for `outline` do not follow `border-radius` on iOS/Safari (#979). */
+            .cropper-view-box {
+                outline: 0;
+                box-shadow: 0 0 0 1px #39f;
+            }
+        </style>
+      <% end %>
+
+      <%= form.text_field :character_image, class: "hidden", "data-edit-character--cropper-target":"image_base64_input" %>
+
+      <div class="p-6">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload image</label>
+        <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept="image/*" data-action="change->edit-character--cropper#changeImage" data-edit-character--cropper-target="image_input">
+      </div>
+
+      <div class="p-6">
+        <div class="mx-auto w-96 h-96">
+          <img class="min-w-full rounded-full" src="<%= url_for(@character.character_image) if @character.character_image.attached? %>" data-edit-character--cropper-target="character_image" data-action="ready->edit-character--cropper#setBase64 cropend->edit-character--cropper#setBase64 zoom->edit-character--cropper#setBase64">
+        </div>
+      </div>
+
+      <%= javascript_include_tag "cropper" %>
     </div>
   </div>
 </div>

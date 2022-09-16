@@ -30,6 +30,7 @@ class CharactersController < ApplicationController
   def update
     if @character.character_system.name == "Pathfinder"
       if @character.update(PathfinderCharacter::character_params(params))
+        @character.character_image.attach(data: params[:character][:character_image])
         redirect_to character_path(@character), notice: "Character successfully updated!"
       else
         render :edit, status: :unprocessable_entity

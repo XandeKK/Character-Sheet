@@ -2,6 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import scrollSpy from 'simple-scrollspy'
+import Cropper from 'cropperjs';
+
+window.Cropper = Cropper;
 
 window.addEventListener("turbo:load", function() {
   const mainMenu = document.getElementById('main-menu');
