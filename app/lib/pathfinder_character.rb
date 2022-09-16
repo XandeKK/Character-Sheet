@@ -27,6 +27,7 @@ module PathfinderCharacter
   def self.character_params params
     params.require(:character).permit(
       pathfinder_basic_attributes: [
+        :id,
         :name,
         :class_name,
         :ancestry,
@@ -45,6 +46,7 @@ module PathfinderCharacter
         :description
       ],
       pathfinder_ability_attributes: [
+        :id,
         :str_total,
         :str_free,
         :str_class,
@@ -77,12 +79,14 @@ module PathfinderCharacter
         :cha_background
       ],
       pathfinder_money_attributes: [
+        :id,
         :platinum,
         :gold,
         :silver,
         :copper
       ],
       pathfinder_saving_throw_attributes: [
+        :id,
         :fortitude_total,
         :reflex_total,
         :will_total,
@@ -101,6 +105,7 @@ module PathfinderCharacter
         :saving_throw_notes
       ],
       pathfinder_defense_attributes: [
+        :id,
         :max_hp,
         :current_hp,
         :ancestry_hp,
@@ -117,6 +122,7 @@ module PathfinderCharacter
         :light_proficiency
       ],
       pathfinder_spell_caster_attributes: [
+        :id,
         :magic_tradition,
         :spellcasting_type,
         :attack_proficiency,
@@ -141,23 +147,28 @@ module PathfinderCharacter
         :notes
       ],
       pathfinder_perception_attributes: [
+        :id,
         :item,
         :proficiency,
         :senses
       ],
       pathfinder_class_dc_attributes: [
+        :id,
         :item,
         :proficiency
       ],
       pathfinder_spells_attributes: [
+        :id,
         :level,
         :name,
         :notes,
         :prepared,
         :spell_component,
-        :action
+        :action,
+        :_destroy
       ],
       pathfinder_melees_attributes: [
+        :id,
         :name,
         :qty,
         :types,
@@ -166,23 +177,31 @@ module PathfinderCharacter
         :weapon_specialization,
         :die,
         :item,
-        :other
+        :other,
+        :_destroy
       ],
       pathfinder_items_attributes: [
+        :id,
         :name,
         :quatity,
-        :weight
+        :weight,
+        :_destroy
       ],
       pathfinder_feats_attributes: [
+        :id,
         :name,
         :types,
-        :notes
+        :notes,
+        :_destroy
       ],
       pathfinder_languages_attributes: [
+        :id,
         :name,
-        :notes
+        :notes,
+        :_destroy
       ],
       pathfinder_rangeds_attributes: [
+        :id,
         :name,
         :qty,
         :types,
@@ -193,38 +212,49 @@ module PathfinderCharacter
         :weapon_specialization,
         :special,
         :die,
-        :item
+        :item,
+        :_destroy
       ],
       pathfinder_skills_attributes: [
+        :id,
         :name,
         :note,
         :proficiency,
         :key_ability,
         :item,
-        :armor
+        :armor,
+        :_destroy
       ],
       pathfinder_focus_spells_attributes: [
+        :id,
         :level,
         :name,
         :notes,
         :prepared,
         :spell_component,
-        :action
+        :action,
+        :_destroy
       ],
       pathfinder_weapon_proficiencies_attributes: [
+        :id,
         :name,
-        :proficiency
+        :proficiency,
+        :_destroy
       ],
       pathfinder_innate_spells_attributes: [
+        :id,
         :name,
         :notes,
         :frequency,
         :spell_component,
-        :action
+        :action,
+        :_destroy
       ],
       pathfinder_notes_attributes: [
+        :id,
         :name,
-        :note
+        :note,
+        :_destroy
       ]
     )
   end

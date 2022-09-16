@@ -1,0 +1,74 @@
+<div id="skills" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M13 10v4h6v-4h-6zm-2 0H5v4h6v-4zm2 9h6v-3h-6v3zm-2 0v-3H5v3h6zm2-14v3h6V5h-6zm-2 0H5v3h6V5zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" /></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Skills
+    </h1>
+  </div>
+  <!--  -->
+  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="skillsTab" data-tabs-toggle="#skillsTabContent" role="tablist">
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="skills-tab" data-tabs-target="#skills" type="button" role="tab" aria-controls="skills" aria-selected="true">skills</button>
+      </li>
+    </ul>
+  </div>
+  <!--  -->
+  <div id="skillsTabContent">
+    <div class="" id="skills" role="tabpanel" aria-labelledby="skills-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Skills
+        </div>
+        <div id="body-skills" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--skills" data-action="click->edit-character--skills#addSkill" data-edit-character--skills-count-param="<%= @character.pathfinder_skills.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_skills do |form_skills| %>
+          <div id="skills-<%= form_skills.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_skills.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_skills.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--skills" data-action="click->edit-character--skills#removeSkill" data-edit-character--skills-id-param="<%= form_skills.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_skills.label :key_ability, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_skills.select :key_ability, abilities, {}, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_skills.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_skills.select :proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_skills.label :item, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_skills.number_field :item, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_skills.label :armor, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_skills.number_field :armor, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div>
+              <%= form_skills.label :note, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_skills.text_area :note, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_skills.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

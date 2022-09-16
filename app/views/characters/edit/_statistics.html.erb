@@ -1,0 +1,305 @@
+<div id="statistics" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" class="menu-item w-7 h-7 hover:fill-rose-300 dark:hover:fill-rose-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M6.75 2.5A4.25 4.25 0 0 1 11 6.75V11H6.75a4.25 4.25 0 1 1 0-8.5zM9 9V6.75A2.25 2.25 0 1 0 6.75 9H9zm-2.25 4H11v4.25A4.25 4.25 0 1 1 6.75 13zm0 2A2.25 2.25 0 1 0 9 17.25V15H6.75zm10.5-12.5a4.25 4.25 0 1 1 0 8.5H13V6.75a4.25 4.25 0 0 1 4.25-4.25zm0 6.5A2.25 2.25 0 1 0 15 6.75V9h2.25zM13 13h4.25A4.25 4.25 0 1 1 13 17.25V13zm2 2v2.25A2.25 2.25 0 1 0 17.25 15H15z" /></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Statistics
+    </h1>
+  </div>
+  <!--  -->
+  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="statisticsTab" data-tabs-toggle="#statisticsTabContent" role="tablist">
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="abilities-tab" data-tabs-target="#abilities" type="button" role="tab" aria-controls="abilities" aria-selected="true">Abilities</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="feats-tab" data-tabs-target="#feats" type="button" role="tab" aria-controls="feats" aria-selected="false">Feats</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="languages-tab" data-tabs-target="#languages" type="button" role="tab" aria-controls="languages" aria-selected="false">languages</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="class-dc-tab" data-tabs-target="#class-dc" type="button" role="tab" aria-controls="class-dc" aria-selected="false">Class DC</button>
+      </li>
+    </ul>
+  </div>
+  <!--  -->
+  <div id="statisticsTabContent">
+    <div class="" id="abilities" role="tabpanel" aria-labelledby="abilities-tab" data-controller="edit-character--abilities">
+      <%= form.fields_for :pathfinder_ability do |form_ability| %>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Strength
+        </div>
+        <div class="w-full">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotalStrength">
+            <div class="flex-1">
+              <%= form_ability.label :str_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :str_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--abilities-target":"str_total" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :str_background, "Background", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :str_background, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"str_background" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :str_class, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :str_class, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"str_class" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :str_ascentry, "Ancestry", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :str_ascentry, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"str_ascentry" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :str_free, "Free", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :str_free, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"str_free" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Dexterity
+        </div>
+        <div class="w-full">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotalDexterity change->edit-character--event-trigger#updateReflex">
+            <div class="flex-1">
+              <%= form_ability.label :dex_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :dex_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--abilities-target":"dex_total" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :dex_background, "Background", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :dex_background, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"dex_background" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :dex_class, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :dex_class, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"dex_class" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :dex_ascentry, "Ancestry", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :dex_ascentry, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"dex_ascentry" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :dex_free, "Free", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :dex_free, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"dex_free" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Constitution
+        </div>
+        <div class="w-full">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotalConstitution change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude">
+            <div class="flex-1">
+              <%= form_ability.label :con_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :con_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--abilities-target":"con_total" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :con_background, "Background", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :con_background, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"con_background" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :con_class, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :con_class, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"con_class" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :con_ascentry, "Ancestry", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :con_ascentry, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"con_ascentry" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :con_free, "Free", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :con_free, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"con_free" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Intelligence
+        </div>
+        <div class="w-full">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotalIntelligence">
+            <div class="flex-1">
+              <%= form_ability.label :int_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :int_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--abilities-target":"int_total" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :int_background, "Background", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :int_background, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"int_background" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :int_class, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :int_class, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"int_class" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :int_ascentry, "Ancestry", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :int_ascentry, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"int_ascentry" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :int_free, "Free", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :int_free, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"int_free" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Wisdom
+        </div>
+        <div class="w-full">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotalWisdom change->edit-character--event-trigger#updateWill">
+            <div class="flex-1">
+              <%= form_ability.label :wis_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :wis_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--abilities-target":"wis_total" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :wis_background, "Background", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :wis_background, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"wis_background" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :wis_class, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :wis_class, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"wis_class" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :wis_ascentry, "Ancestry", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :wis_ascentry, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"wis_ascentry" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :wis_free, "Free", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :wis_free, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"wis_free" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Charisma
+        </div>
+        <div class="w-full">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotalCharisma">
+            <div class="flex-1">
+              <%= form_ability.label :cha_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :cha_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--abilities-target":"cha_total" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :cha_background, "Background", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :cha_background, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"cha_background" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :cha_class, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :cha_class, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"cha_class" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :cha_ascentry, "Ancestry", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :cha_ascentry, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"cha_ascentry" %>
+            </div>
+            <div class="flex-1">
+              <%= form_ability.label :cha_free, "Free", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_ability.number_field :cha_free, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--abilities-target":"cha_free" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <div class="" id="feats" role="tabpanel" aria-labelledby="feats-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Feats
+        </div>
+        <div id="body-feats" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--feats" data-action="click->edit-character--feats#addFeat" data-edit-character--feats-count-param="<%= @character.pathfinder_feats.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_feats do |form_feats| %>
+          <div id="feats-<%= form_feats.index %>">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_feats.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_feats.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_feats.label :types, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_feats.select :types, types_feats, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--feats" data-action="click->edit-character--feats#removeFeat" data-edit-character--feats-id-param="<%= form_feats.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= form_feats.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_feats.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_feats.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <div class="" id="languages" role="tabpanel" aria-labelledby="languages-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Languages
+        </div>
+        <div id="body-languages" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--languages" data-action="click->edit-character--languages#addLanguage" data-edit-character--languages-count-param="<%= @character.pathfinder_languages.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_languages do |form_languages| %>
+          <div id="languages-<%= form_languages.index %>">
+            <div class="flex">
+              <div>
+                <%= form_languages.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_languages.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div>
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--languages" data-action="click->edit-character--languages#removeLanguage" data-edit-character--languages-id-param="<%= form_languages.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= form_languages.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_languages.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_languages.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <div class="" id="class-dc" role="tabpanel" aria-labelledby="class-dc-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Class DC
+        </div>
+        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <%= form.fields_for :pathfinder_class_dc do |form_class_dc| %>
+          <div>
+            <%= form_class_dc.label :item, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_class_dc.number_field :item, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_class_dc.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_class_dc.select :proficiency, proficiencies, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,138 @@
+<div id="basics" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M4 22a8 8 0 1 1 16 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z" /></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Basics
+    </h1>
+  </div>
+  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="basicsTab" data-tabs-toggle="#basicsTabContent" role="tablist">
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="character-tab" data-tabs-target="#character" type="button" role="tab" aria-controls="character" aria-selected="true">Character</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="ancestry-tab" data-tabs-target="#ancestry" type="button" role="tab" aria-controls="ancestry" aria-selected="false">Ancestry</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="senses-tab" data-tabs-target="#senses" type="button" role="tab" aria-controls="senses" aria-selected="false">Senses</button>
+      </li>
+    </ul>
+  </div>
+  <div id="basicsTabContent">
+    <%= form.fields_for :pathfinder_basic do |form_basic| %>
+    <div class="" id="character" role="tabpanel" aria-labelledby="character-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          <%= form_basic.label :name %>
+        </div>
+        <div class="w-full">
+          <%= form_basic.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        </div>
+      </div>
+      <!--  -->
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Details
+        </div>
+        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <div>
+            <%= form_basic.label :class_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :class_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :key_ability, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.select :key_ability, abilities, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :background, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :background, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :alignment, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.select :alignment, alignment, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :deity, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :deity, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :age, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.number_field :age, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :level, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.number_field :level, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-action":"change->edit-character--event-trigger#updateMaxHp"%>
+          </div>
+          <div>
+            <%= form_basic.label :hero_points, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.number_field :hero_points, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :size, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :size, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :speed, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :speed, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div class="mm:col-span-2 md:col-span-2">
+            <%= form_basic.label :speed_note, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_area :speed_note, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
+          </div>
+          <div class="mm:col-span-2 md:col-span-3">
+            <%= form_basic.label :description, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_area :description, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+    <div class="hidden" id="ancestry" role="tabpanel" aria-labelledby="ancestry-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Ancestry
+        </div>
+        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <div>
+            <%= form_basic.label :ancestry, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :ancestry, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_basic.label :heritage, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_field :heritage, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div class="mm:col-span-2 md:col-span-3">
+            <%= form_basic.label :heritage_note, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_basic.text_area :heritage_note, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class="hidden" id="senses" role="tabpanel" aria-labelledby="senses-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Senses
+        </div>
+        <%= form.fields_for :pathfinder_perception do |form_perception| %>
+          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <div>
+            <%= form_perception.label :senses, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_perception.text_field :senses, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_perception.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_perception.select :proficiency, proficiencies, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_perception.label :item, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_perception.number_field :item, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
