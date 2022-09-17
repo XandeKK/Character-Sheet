@@ -50,7 +50,7 @@ export default class extends Controller {
   }
 
   setBase64() {
-    let croppedCanvas = this.cropper.getCroppedCanvas({maxWidth: 384, maxHeight: 384});
+    let croppedCanvas = this.cropper.getCroppedCanvas();
     this.image_base64_inputTarget.value = croppedCanvas.toDataURL();
   }
 }
