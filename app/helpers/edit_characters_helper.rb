@@ -1,4 +1,4 @@
-module CharactersHelper
+module EditCharactersHelper
   def proficiencies
     [
       ["Untrained", 0],

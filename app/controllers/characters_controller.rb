@@ -1,8 +1,11 @@
 class CharactersController < ApplicationController
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
+  before_action :set_character, only: [:edit, :update, :destroy]
+  before_action :redirect_if_empty, only: [:edit, :update, :destroy]
 
   def show
+    @character = current_user.characters
+      .includes(:pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes)
+      .find_by(id: params[:id])
   end
 
   def new
