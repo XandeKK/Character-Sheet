@@ -5,7 +5,7 @@ class Pathfinder::ItemTest < ActiveSupport::TestCase
     @item = Pathfinder::Item.new(
       name: "Chef",
       quatity: 3,
-      weight: 1,
+      volume: 1,
       notes: "Porque?",
       character: characters(:one)
     )

@@ -184,7 +184,8 @@ module PathfinderCharacter
         :id,
         :name,
         :quatity,
-        :weight,
+        :volume,
+        :notes,
         :_destroy
       ],
       pathfinder_feats_attributes: [
