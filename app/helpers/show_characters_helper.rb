@@ -19,4 +19,23 @@ module ShowCharactersHelper
       ""
     end
   end
+
+  def get_volume
+    @character.pathfinder_items.map(&:volume).inject(0, :+)
+  end
+
+  def get_total_gold
+    copper = @character.pathfinder_money.copper || 0
+    silver = @character.pathfinder_money.silver || 0
+    gold = @character.pathfinder_money.gold || 0
+    platinum = @character.pathfinder_money.platinum || 0
+
+    total = 0
+
+    total += (copper/100);
+    total += (silver/10);
+    total += (platinum*10);
+    total += gold
+
+  end
 end
