@@ -203,7 +203,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_185050) do
   create_table "pathfinder_items", force: :cascade do |t|
     t.string "name"
     t.integer "quatity"
-    t.integer "weight"
+    t.integer "volume"
     t.text "notes"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
