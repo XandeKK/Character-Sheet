@@ -10,278 +10,134 @@
   <!-- Ability -->
   <div class="p-6 flex flex-wrap gap-6 justify-center">
     <div class="flex space-x-4">
-      <div>
+      <div class="<%= key_ability? 'str' %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
-          STR 10
+          STR <span class="text-2xl"><%= @character.pathfinder_ability.str_total || 0 %></span>
         </h3>
-        <p class="text-center text-2xl">
-          +20
+        <p class="text-center text-3xl">
+          <%= get_modifier "str" %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div>
+      <div class="<%= key_ability? 'dex' %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
-          DEX 20
+          DEX <span class="text-2xl"><%= @character.pathfinder_ability.dex_total || 0 %></span>
         </h3>
-        <p class="text-center text-2xl">
-          +20
+        <p class="text-center text-3xl">
+          <%= get_modifier "dex" %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div>
+      <div class="<%= key_ability? 'con' %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
-          CON 14
+          CON <span class="text-2xl"><%= @character.pathfinder_ability.con_total || 0 %></span>
         </h3>
-        <p class="text-center text-2xl">
-          +20
+        <p class="text-center text-3xl">
+          <%= get_modifier "con" %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div>
+      <div class="<%= key_ability? 'int' %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
-          INT 28
+          INT <span class="text-2xl"><%= @character.pathfinder_ability.int_total || 0 %></span>
         </h3>
-        <p class="text-center text-2xl">
-          +20
+        <p class="text-center text-3xl">
+          <%= get_modifier "int" %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div>
+      <div class="<%= key_ability? 'wis' %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
-          WIS 10
+          WIS <span class="text-2xl"><%= @character.pathfinder_ability.wis_total || 0 %></span>
         </h3>
-        <p class="text-center text-2xl">
-          +20
+        <p class="text-center text-3xl">
+          <%= get_modifier "wis" %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div>
+      <div class="<%= key_ability? 'cha' %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
-          CHA 30
+          CHA <span class="text-2xl"><%= @character.pathfinder_ability.cha_total || 0 %></span>
         </h3>
-        <p class="text-center text-2xl">
-          +20
+        <p class="text-center text-3xl">
+          <%= get_modifier "cha" %>
         </p>
       </div>
     </div>
   </div>
-  <!-- Abilities, feats etc -->
+  <!--  -->
+  <% @character.pathfinder_feats.each do |feat| %>
+    <%= turbo_stream.append "feats-#{feat.types.downcase}" do %>
+      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= feat.name %>" data-flowbite-note-param="<%= feat.notes %>">
+        <p>
+          <%= feat.name %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+  <!-- Feats -->
   <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
     <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
-      Abilities
+      Feats Ancestry
     </div>
-    <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane Bondssssss dsa dasd as
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane School
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Cantrips
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Elven Magic
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Foretell
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Forewarned
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Keen Senses
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Low-Light Vision
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Scribe Scroll
-        </p>
-      </div>
+    <div id="feats-ancestry" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
     </div>
   </div>
+  <!--  -->
   <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
     <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
-      Feats
+      Feats Class
     </div>
-    <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane Bondssssss dsa dasd as
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane School
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Cantrips
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Elven Magic
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Foretell
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Forewarned
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Keen Senses
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Low-Light Vision
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Scribe Scroll
-        </p>
-      </div>
+    <div id="feats-class" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
     </div>
   </div>
+  <!--  -->
   <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
     <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
-      Traits
+      Feats Skill
     </div>
-    <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane Bondssssss dsa dasd as
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane School
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Cantrips
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Elven Magic
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Foretell
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Forewarned
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Keen Senses
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Low-Light Vision
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Scribe Scroll
-        </p>
-      </div>
+    <div id="feats-skill" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
     </div>
   </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats General
+    </div>
+    <div id="feats-general" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats Bonus
+    </div>
+    <div id="feats-bonus" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
   <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
     <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
       Languages
     </div>
     <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane Bondssssss dsa dasd as
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane School
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Cantrips
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Elven Magic
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Foretell
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Forewarned
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Keen Senses
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Low-Light Vision
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Scribe Scroll
-        </p>
-      </div>
+      <% @character.pathfinder_languages.each do |language| %>
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= language.name %>" data-flowbite-note-param="<%= language.notes %>">
+          <p>
+            <%= language.name %>
+          </p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

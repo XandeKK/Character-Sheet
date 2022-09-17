@@ -11,4 +11,12 @@ module ShowCharactersHelper
     score = @character.pathfinder_ability["#{ability}_total"] || 0
     ((score/2) - 5).floor
   end
+
+  def key_ability? ability
+    if @character.pathfinder_basic.key_ability == ability
+      "bg-rose-300/50 dark:bg-rose-700/30"
+    else
+      ""
+    end
+  end
 end
