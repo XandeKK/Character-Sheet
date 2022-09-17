@@ -30,7 +30,7 @@ class CharactersController < ApplicationController
   def update
     if @character.character_system.name == "Pathfinder"
       if @character.update(PathfinderCharacter::character_params(params))
-        @character.character_image.attach(data: params[:character][:character_image])
+        save_image
         redirect_to character_path(@character), notice: "Character successfully updated!"
       else
         render :edit, status: :unprocessable_entity
@@ -56,5 +56,11 @@ class CharactersController < ApplicationController
 
   def redirect_if_empty
     redirect_to player_path, alert: "You do not have permission." if @character.nil?
+  end
+
+  def save_image
+    unless params[:character][:image].empty?
+      @character.character_image.attach(data: params[:character][:image])
+    end
   end
 end
