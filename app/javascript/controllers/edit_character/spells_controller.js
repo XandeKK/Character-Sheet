@@ -1,19 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  data = "";
-  connect() {
-    this.data = document.querySelector("[data-edit-character--spells-count-param]");
-  }
-
   addSpell(event) {
-    let value = this.data.getAttribute("data-edit-character--spells-count-param");
+    let value = event.params.count;
     value = parseInt(value);
 
     appendSpellInForm(value);
 
     value += 1;
-    this.data.setAttribute("data-edit-character--spells-count-param", value)
+    event.target.setAttribute("data-edit-character--spells-count-param", value)
   }
 
   removeSpell(event) {
@@ -66,6 +61,16 @@ function appendSpellInForm(value) {
           `<option value="Somatic">Somatic</option>`,
           `<option value="Verbal">Verbal</option>`,
         `</select>`,
+      `</div>`,
+    `</div>`,
+    `<div class="flex">`,
+      `<div class="flex-1">`,
+        `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="character_pathfinder_spells_attributes_${value}_duration">Duration</label>`,
+        `<input class="rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="character[pathfinder_spells_attributes][${value}][duration]" id="character_pathfinder_spells_attributes_${value}_duration">`,
+      `</div>`,
+      `<div class="flex-1">`,
+        `<label class="truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="character_pathfinder_spells_attributes_${value}_range">Range</label>`,
+        `<input class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="character[pathfinder_spells_attributes][${value}][range]" id="character_pathfinder_spells_attributes_${value}_range">`,
       `</div>`,
     `</div>`,
     `<div>`,

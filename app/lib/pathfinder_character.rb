@@ -165,6 +165,8 @@ module PathfinderCharacter
         :notes,
         :prepared,
         :spell_component,
+        :duration,
+        :range,
         :action,
         :_destroy
       ],
@@ -236,6 +238,8 @@ module PathfinderCharacter
         :notes,
         :prepared,
         :spell_component,
+        :duration,
+        :range,
         :action,
         :_destroy
       ],
@@ -251,6 +255,8 @@ module PathfinderCharacter
         :notes,
         :frequency,
         :spell_component,
+        :duration,
+        :range,
         :action,
         :_destroy
       ],
