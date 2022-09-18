@@ -41,8 +41,8 @@ function appendNoteInForm(value) {
       `</div>`,
     `</div>`,
     `<div>`,
-      `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="character_pathfinder_notes_attributes_${value}_notes">Notes</label>`,
-      `<textarea class="rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="character[pathfinder_notes_attributes][${value}][notes]" id="character_pathfinder_notes_attributes_${value}_notes"></textarea>`,
+      `<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="character_pathfinder_notes_attributes_${value}_note">Notes</label>`,
+      `<textarea class="rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="character[pathfinder_notes_attributes][${value}][note]" id="character_pathfinder_notes_attributes_${value}_note"></textarea>`,
     `</div>`,
     `<input class="hidden" type="checkbox" value="1" name="character[pathfinder_notes_attributes][${value}][_destroy]" id="character_pathfinder_notes_attributes_${value}__destroy">`
   ].join('');
