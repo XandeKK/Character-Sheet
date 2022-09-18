@@ -9,6 +9,8 @@ one:
   other: MyString
   traits: MyString
   weapon_specialization: 1
+  multiple_attack_penalty_2: 0
+  multiple_attack_penalty_3: 0
   special: 1
   die: d8
   item: 1
@@ -24,6 +26,8 @@ two:
   other: MyString
   traits: MyString
   weapon_specialization: 1
+  multiple_attack_penalty_2: 0
+  multiple_attack_penalty_3: 0
   special: 1
   die: MyString
   item: 1

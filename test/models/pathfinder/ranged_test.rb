@@ -9,6 +9,8 @@ class Pathfinder::RangedTest < ActiveSupport::TestCase
       other: "Mulato",
       traits: "Neutro",
       weapon_specialization: "Nenhum",
+      multiple_attack_penalty_2: 0,
+      multiple_attack_penalty_3: 0,
       special: 3,
       die: "d6",
       item: 1,

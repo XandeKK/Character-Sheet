@@ -7,6 +7,8 @@ one:
   proficiency: 1
   traits: MyString
   weapon_specialization: 1
+  multiple_attack_penalty_2: 0
+  multiple_attack_penalty_3: 0
   die: MyString
   item: 1
   other: MyString
@@ -20,6 +22,8 @@ two:
   proficiency: 1
   traits: MyString
   weapon_specialization: 1
+  multiple_attack_penalty_2: 0
+  multiple_attack_penalty_3: 0
   die: MyString
   item: 1
   other: MyString

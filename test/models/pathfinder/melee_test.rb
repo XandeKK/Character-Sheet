@@ -9,6 +9,8 @@ class Pathfinder::MeleeTest < ActiveSupport::TestCase
       proficiency: 3,
       traits: "s",
       weapon_specialization: 0,
+      multiple_attack_penalty_2: 0,
+      multiple_attack_penalty_3: 0,
       die: "1d8",
       item: 3,
       other: "str",

@@ -9,6 +9,8 @@ class CreatePathfinderRangeds < ActiveRecord::Migration[7.0]
       t.string :other
       t.string :traits
       t.integer :weapon_specialization
+      t.integer :multiple_attack_penalty_2
+      t.integer :multiple_attack_penalty_3
       t.integer :special
       t.string :die
       t.integer :item
