@@ -6,72 +6,58 @@
     </h1>
   </div>
   <!--  -->
-  <div class="px-9 py-6 flex flex-wrap gap-6">
-    <div class="flex mb-6 gap-6">
-      <div>
-        <h3 class="italic text-rose-700 dark:text-rose-500">
-          Melee
-        </h3>
-        <span class="text-2xl pl-3">
-          +8
-        </span>
-      </div>
-      <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-    </div>
-    <div class="flex mb-6 gap-6">
-      <div>
-        <h3 class="italic text-rose-700 dark:text-rose-500">
-          Ranged
-        </h3>
-        <span class="text-2xl pl-3">
-          +8
-        </span>
-      </div>
-    </div>
-  </div>
-  <!--  -->
   <div class="p-6">
     <ul class="flex flex-col space-y-4">
-      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700">
+      <% @character.pathfinder_melees.each do |melee| %>
+      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700" data-action="click->flowbite#toggleDrawerWeapon" data-flowbite-name-param="<%= melee.name %>" data-flowbite-note-param="<%= melee.notes %>" data-flowbite-other-param="<%= melee.other %>" data-flowbite-traits-param="<%= melee.traits %>">
         <div>
           <h3 class="italic text-rose-700 dark:text-rose-500">
             Weapon
           </h3>
           <span class="pl-3">
-            Dagger
+            <%= melee.name %>
           </span>
         </div>
         <div class="flex flex-wrap gap-6">
           <div class="flex space-x-4">
-            <div>
+            <div data-popover-target="popover-attack-melee-<%= melee.id %>">
               <h3 class="italic text-rose-700 dark:text-rose-500">
                 Attack
               </h3>
               <p class="text-center">
-                +7
+                <%= get_attack_melee(melee) %>
               </p>
+            </div>
+            <div data-popover id="popover-attack-melee-<%= melee.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    str: <%= get_modifier "str"%><br>
+                    item: <%= melee.item || 0%><br>
+                    proficiency: <%= melee.proficiency || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
             </div>
             <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
           </div>
           <div class="flex space-x-4">
-            <div>
+            <div data-popover-target="popover-damage-melee-<%= melee.id %>">
               <h3 class="italic text-rose-700 dark:text-rose-500">
                 Damage
               </h3>
               <p class="text-center">
-                1d4+1
+                <%= melee.qty %><%= melee.die %> 
+                <%= bonus_damage_melee melee  %>
               </p>
             </div>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-          </div>
-          <div class="flex space-x-4">
-            <div>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Critical
-              </h3>
-              <p class="text-center">
-                19–20/x2
-              </p>
+            <div data-popover id="popover-damage-melee-<%= melee.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    str: <%= get_modifier "str"%><br>
+                    weapon specialization: <%= melee.weapon_specialization || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
             </div>
             <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
           </div>
@@ -81,57 +67,68 @@
                 Type
               </h3>
               <p class="text-center">
-                Slashing/Piercing
+                <%= melee.types %>
               </p>
             </div>
           </div>
         </div>
       </li>
+      <% end %>
     </ul>
   </div>
   <!--  -->
   <div class="p-6">
     <ul class="flex flex-col space-y-4">
-      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700">
+      <% @character.pathfinder_rangeds.each do |ranged| %>
+      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700" data-action="click->flowbite#toggleDrawerWeapon" data-flowbite-name-param="<%= ranged.name %>" data-flowbite-note-param="<%= ranged.notes %>" data-flowbite-other-param="<%= ranged.other %>" data-flowbite-traits-param="<%= ranged.traits %>">
         <div>
           <h3 class="italic text-rose-700 dark:text-rose-500">
             Weapon
           </h3>
           <span class="pl-3">
-            Dagger
+            <%= ranged.name %>
           </span>
         </div>
         <div class="flex flex-wrap gap-6">
           <div class="flex space-x-4">
-            <div>
+            <div data-popover-target="popover-attack-ranged-<%= ranged.id %>">
               <h3 class="italic text-rose-700 dark:text-rose-500">
                 Attack
               </h3>
               <p class="text-center">
-                +7
+                <%= get_attack_ranged ranged %>
               </p>
+            </div>
+            <div data-popover id="popover-attack-ranged-<%= ranged.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    dex: <%= get_modifier "dex"%><br>
+                    item: <%= ranged.item || 0%><br>
+                    proficiency: <%= ranged.proficiency || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
             </div>
             <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
           </div>
           <div class="flex space-x-4">
-            <div>
+            <div data-popover-target="popover-damage-ranged-<%= ranged.id %>">
               <h3 class="italic text-rose-700 dark:text-rose-500">
                 Damage
               </h3>
               <p class="text-center">
-                1d4+1
+                <%= ranged.qty %><%= ranged.die %> 
+                <%= bonus_damage_ranged ranged  %>
               </p>
             </div>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-          </div>
-          <div class="flex space-x-4">
-            <div>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Critical
-              </h3>
-              <p class="text-center">
-                19–20/x2
-              </p>
+            <div data-popover id="popover-damage-ranged-<%= ranged.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    Weapon specialization: <%= ranged.weapon_specialization || 0%><br>
+                    special: <%= ranged.special || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
             </div>
             <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
           </div>
@@ -141,7 +138,7 @@
                 Type
               </h3>
               <p class="text-center">
-                Slashing/Piercing
+                <%= ranged.types %>
               </p>
             </div>
             <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
@@ -152,12 +149,13 @@
                 Range
               </h3>
               <p class="text-center">
-                60 ft
+                <%= ranged.range %>
               </p>
             </div>
           </div>
         </div>
       </li>
+      <% end %>
     </ul>
   </div>
 </div>

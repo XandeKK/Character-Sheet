@@ -178,6 +178,7 @@ module PathfinderCharacter
         :weapon_specialization,
         :die,
         :item,
+        :notes,
         :other,
         :_destroy
       ],
@@ -214,6 +215,7 @@ module PathfinderCharacter
         :weapon_specialization,
         :special,
         :die,
+        :notes,
         :item,
         :_destroy
       ],

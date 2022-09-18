@@ -48,4 +48,46 @@ module ShowCharactersHelper
     total += (platinum*10);
     total += gold
   end
+
+  def get_attack_melee weapon
+    str = get_modifier "str"
+    item = weapon.item || 0
+    proficiency = weapon.proficiency || 0
+
+    str + item + proficiency
+  end
+
+  def bonus_damage_melee weapon
+    str = get_modifier "str"
+    weapon_specialization = weapon.weapon_specialization || 0
+
+    bonus = str + weapon_specialization
+
+    if bonus > 0
+      "+ #{bonus}" 
+    else
+      "- #{bonus.abs}"
+    end
+  end
+
+  def get_attack_ranged weapon
+    dex = get_modifier "dex"
+    item = weapon.item || 0
+    proficiency = weapon.proficiency || 0
+
+    dex + item + proficiency
+  end
+
+  def bonus_damage_ranged weapon
+    weapon_specialization = weapon.weapon_specialization || 0
+    special = weapon.special || 0
+
+    bonus = special + weapon_specialization
+
+    if bonus > 0
+      "+ #{bonus}" 
+    else
+      "- #{bonus.abs}"
+    end
+  end
 end

@@ -18,14 +18,28 @@ export default class extends Controller {
   }
 
   toggleDrawerRight(event) {
-    this.drawer_character_titleTarget.textContent = event.params.name
+    let name = event.params.name
+    let note = event.params.note
 
     if (event.params.volume) {
       let body = `Volume: ${event.params.volume} Quatity: ${event.params.quatity}\n\n`
-      this.drawer_character_noteTarget.textContent = body + event.params.note
-    } else {
-      this.drawer_character_noteTarget.textContent = event.params.note
+      note = body + note
     }
+
+    this.drawer_character_titleTarget.textContent = name
+    this.drawer_character_noteTarget.textContent = note
+    this.drawerRight.toggle();
+  }
+
+  toggleDrawerWeapon(event) {
+    let name = event.params.name;
+    let note = event.params.note;
+    let other = event.params.other;
+    let traits = event.params.traits;
+
+    this.drawer_character_titleTarget.textContent = name
+
+    this.drawer_character_noteTarget.textContent = `Other: ${other}\n\nTraits: ${traits}\n\nNote: \n${note}`
 
     this.drawerRight.toggle();
   }
