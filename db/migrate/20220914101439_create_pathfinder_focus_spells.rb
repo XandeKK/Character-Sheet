@@ -4,7 +4,9 @@ class CreatePathfinderFocusSpells < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :notes
       t.string :spell_component
-      t.string :action
+      t.string :duration
+      t.integer :action
+      t.integer :range
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

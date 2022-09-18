@@ -7,6 +7,8 @@ class Pathfinder::InnateSpellTest < ActiveSupport::TestCase
       notes: "MyText",
       frequency: 1,
       spell_component: "Material",
+      duration: 0,
+      range: 0,
       action: 1,
       character: characters(:one)
     )

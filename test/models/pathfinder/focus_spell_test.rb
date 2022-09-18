@@ -7,6 +7,8 @@ class Pathfinder::FocusSpellTest < ActiveSupport::TestCase
       notes: "MyText",
       spell_component: "Material",
       action: 2,
+      duration: 0,
+      range: 0,
       character: characters(:one)
     )
   end

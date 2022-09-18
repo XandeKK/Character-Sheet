@@ -9,6 +9,8 @@ class Pathfinder::SpellTest < ActiveSupport::TestCase
       prepared: 1,
       spell_component: "Material",
       action: 1,
+      duration: 0,
+      range: 0,
       character: characters(:one)
     )
   end

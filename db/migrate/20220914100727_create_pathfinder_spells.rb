@@ -3,10 +3,12 @@ class CreatePathfinderSpells < ActiveRecord::Migration[7.0]
     create_table :pathfinder_spells do |t|
       t.integer :level
       t.string :name
-      t.text :notes
-      t.integer :prepared
       t.string :spell_component
-      t.string :action
+      t.string :duration
+      t.integer :prepared
+      t.integer :action
+      t.integer :range
+      t.text :notes
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

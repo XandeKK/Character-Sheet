@@ -3,17 +3,21 @@
 one:
   level: 1
   name: Bola
-  notes: MyText
   prepared: 1
   spell_component: Material
   action: 1
+  duration: 0
+  range: 0
+  notes: MyText
   character: one
 
 two:
   level: 1
   name: MyString
-  notes: MyText
   prepared: 1
   spell_component: MyString
-  action: MyString
+  action: 1
+  duration: 0
+  range: 0
+  notes: MyText
   character: two

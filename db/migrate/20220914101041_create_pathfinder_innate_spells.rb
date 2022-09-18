@@ -3,9 +3,11 @@ class CreatePathfinderInnateSpells < ActiveRecord::Migration[7.0]
     create_table :pathfinder_innate_spells do |t|
       t.string :name
       t.text :notes
-      t.integer :frequency
       t.string :spell_component
-      t.string :action
+      t.string :duration
+      t.integer :frequency
+      t.integer :range
+      t.integer :action
       t.references :character, null: false, foreign_key: true
 
       t.timestamps

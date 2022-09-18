@@ -181,7 +181,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_185050) do
     t.string "name"
     t.text "notes"
     t.string "spell_component"
-    t.string "action"
+    t.string "duration"
+    t.integer "action"
+    t.integer "range"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -191,9 +193,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_185050) do
   create_table "pathfinder_innate_spells", force: :cascade do |t|
     t.string "name"
     t.text "notes"
-    t.integer "frequency"
     t.string "spell_component"
-    t.string "action"
+    t.string "duration"
+    t.integer "frequency"
+    t.integer "range"
+    t.integer "action"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -354,10 +358,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_185050) do
   create_table "pathfinder_spells", force: :cascade do |t|
     t.integer "level"
     t.string "name"
-    t.text "notes"
-    t.integer "prepared"
     t.string "spell_component"
-    t.string "action"
+    t.string "duration"
+    t.integer "prepared"
+    t.integer "action"
+    t.integer "range"
+    t.text "notes"
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

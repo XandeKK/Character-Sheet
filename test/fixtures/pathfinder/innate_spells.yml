@@ -5,6 +5,8 @@ one:
   notes: MyText
   frequency: 1
   spell_component: "Material"
+  duration: 0
+  range: 0
   action: 1
   character: one
 
@@ -13,5 +15,7 @@ two:
   notes: MyText
   frequency: 1
   spell_component: MyString
-  action: MyString
+  duration: 0
+  range: 0
+  action: 1
   character: two
