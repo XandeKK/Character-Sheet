@@ -99,4 +99,22 @@ module ShowCharactersHelper
 
     ability + item + proficiency - armor
   end
+
+  def get_attack_spell
+    ability = get_modifier @character.pathfinder_basic.key_ability
+    proficiency = @character.pathfinder_spell_caster.attack_proficiency || 0
+    bonus = @character.pathfinder_spell_caster.attack_bonus || 0
+    penalty = @character.pathfinder_spell_caster.attack_penalty || 0
+
+    ability + proficiency + bonus - penalty
+  end
+
+  def get_cd_spell
+    ability = get_modifier @character.pathfinder_basic.key_ability
+    proficiency = @character.pathfinder_spell_caster.cd_proficiency || 0
+    bonus = @character.pathfinder_spell_caster.cd_bonus || 0
+    penalty = @character.pathfinder_spell_caster.cd_penalty || 0
+
+    10 + ability + proficiency + bonus - penalty
+  end
 end
