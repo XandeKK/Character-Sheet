@@ -90,4 +90,13 @@ module ShowCharactersHelper
       "- #{bonus.abs}"
     end
   end
+
+  def score_skill skill
+    ability = get_modifier skill.key_ability
+    item = skill.item || 0
+    proficiency = skill.proficiency || 0
+    armor = skill.armor || 0
+
+    ability + item + proficiency - armor
+  end
 end

@@ -10,86 +10,26 @@
   <!--  -->
   <div class="p-6 w-full">
     <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
+      <% @character.pathfinder_skills.each do |skill| %>
+      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= skill.name %>" data-flowbite-note-param="<%= skill.note %>">
         <p>
-          Arcane Bondssssss dsa dasd as
+          <%= skill.name %>
         </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane Bondssssss dsa dasd as
-        </p>
-        <p>
-          +0
+        <p data-popover-target="popover-skill-<%= skill.id %>">
+          <%= score_skill skill %>
         </p>
       </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Arcane School
-        </p>
-        <p>
-          +0
-        </p>
+      <div data-popover id="popover-skill-<%= skill.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="py-2 px-3">
+            <p>
+              <%= "#{skill.key_ability}: #{get_modifier skill.key_ability}" %><br>
+              item: <%= skill.item || 0%><br>
+              proficiency: <%= skill.proficiency || 0%><br>
+            </p>
+        </div>
+        <div data-popper-arrow></div>
       </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Cantrips
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Elven Magic
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Foretell
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Forewarned
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Keen Senses
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Low-Light Vision
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
-        <p>
-          Scribe Scroll
-        </p>
-        <p>
-          +0
-        </p>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
