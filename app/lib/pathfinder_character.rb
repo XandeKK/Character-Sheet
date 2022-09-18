@@ -115,6 +115,7 @@ module PathfinderCharacter
         :conditions,
         :dying,
         :wounded,
+        :max_dex,
         :armor_class_item,
         :armor_class_proficiency,
         :heavy_proficiency,

@@ -12,6 +12,17 @@ module ShowCharactersHelper
     ((score/2) - 5).floor
   end
 
+  def get_armor_class
+    dex = get_modifier("dex")
+    item = @character.pathfinder_defense.armor_class_item || 0
+    proficiency = @character.pathfinder_defense.armor_class_proficiency || 0
+    max_dex = @character.pathfinder_defense.max_dex
+
+    dex = max_dex if !max_dex.nil? && dex > max_dex
+
+    10 + dex + item + proficiency
+  end
+
   def key_ability? ability
     if @character.pathfinder_basic.key_ability == ability
       "bg-rose-300/50 dark:bg-rose-700/30"
@@ -36,6 +47,5 @@ module ShowCharactersHelper
     total += (silver/10);
     total += (platinum*10);
     total += gold
-
   end
 end
