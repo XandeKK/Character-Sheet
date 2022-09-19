@@ -6,6 +6,7 @@ class CharactersController < ApplicationController
     @character = current_user.characters
       .includes(:pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes)
       .find_by(id: params[:id])
+    redirect_if_empty
   end
 
   def new
