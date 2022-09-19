@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [
   "drawer_navigation", "drawer_character",
-  "drawer_character_title", "drawer_character_note"
+  "drawer_character_title", "drawer_character_note", "dice_div"
     ]
   connect() {
     this.drawerLeft = new Drawer(this.drawer_navigationTarget);
@@ -26,6 +26,7 @@ export default class extends Controller {
       note = body + note
     }
 
+    this.dice_divTarget.classList.add("hidden")
     this.drawer_character_titleTarget.textContent = name
     this.drawer_character_noteTarget.textContent = note
     this.drawerRight.toggle();
@@ -42,6 +43,7 @@ export default class extends Controller {
     this.drawer_character_noteTarget.textContent = `Other: ${other}\n\nTraits: ${traits}\n\nNote: \n${note}`
 
     this.drawerRight.toggle();
+    this.dice_divTarget.classList.remove("hidden")
   }
 }
 
