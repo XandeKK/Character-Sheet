@@ -20,4 +20,3 @@ window.addEventListener("turbo:load", function() {
     scrollSpy(mainMenu, options);
   }  
 })
-
