@@ -1,7 +1,7 @@
 <div class="md:container px-3 md:px-0 md:mx-auto mt-6 mb-36">
   <h1 class="font-bold mb-6 text-center text-black dark:text-white text-3xl">Adventurtes</h1>
 
-  <% @adventures.each do |character| %>
+  <% @adventures.each do |adventure| %>
     <div class="mb-6 block w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 relative">
       <%= link_to adventure_path(adventure), class: "absolute h-full w-full" do %>
       <% end %>
@@ -9,7 +9,7 @@
         <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
           <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= adventure.name %></div>
         </div>
-        <%= render partial: "adventures/dropdown_adventure", locals: {id: character.id} %>
+        <%= render partial: "adventures/dropdown_adventure", locals: {id: adventure.id} %>
       </div>
     </div>
   <% end %>

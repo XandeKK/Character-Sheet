@@ -1,0 +1,23 @@
+<div id="server" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 3h16a1 1 0 0 1 1 1v7H3V4a1 1 0 0 1 1-1zM3 13h18v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7zm4 3v2h3v-2H7zM7 6v2h3V6H7z"/></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Server
+    </h1>
+  </div>
+  <div class="md:py-3">
+    <h1 class="p-3 text-center text-3xl"><%= @adventure.name %></h1>
+    <h2 class="p-6 text-xl">Server name: 
+      <span data-adventure--server-target="serverName"><%= @adventure.server_name %></span>
+    </h2>
+  </div>
+  <div class="flex flex-row-reverse p-6">
+
+    <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-adventure--server-target="startButton" data-action="adventure--server#startServer">
+      Start Server
+    </button>
+    <button class= "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hidden" data-adventure--server-target="terminateButton" data-action="adventure--server#terminateServer">
+      Stop Server
+    </button>
+  </div>
+</div>
