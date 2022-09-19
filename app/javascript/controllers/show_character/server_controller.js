@@ -3,7 +3,7 @@ import consumer from "../../channels/consumer"
 
 export default class extends Controller {
   static targets = [
-    "serverName", "startButton", "terminateButton"
+    "serverName", "password", "formServer", "terminateButton"
   ]
 
   connect() {
@@ -11,10 +11,12 @@ export default class extends Controller {
 
   startServer() {
     this.channel = consumer.subscriptions.create(
-      {channel: "AdventureChannel", server_name: this.serverNameTarget.textContent},
+      {channel: "CharacterChannel", server_name: this.serverNameTarget.value,
+      password: this.passwordTarget.value},
       {
         connected: this._cableConnected.bind(this),
         received: this._cableReceived.bind(this),
+        rejected: this._cableRejected.bind(this),
     })
   }
 
@@ -22,16 +24,20 @@ export default class extends Controller {
     this.channel.unsubscribe();
     this.channel = null;
     this.terminateButtonTarget.classList.add("hidden");
-    this.startButtonTarget.classList.remove("hidden");
+    this.formServerTarget.classList.remove("hidden");
   }
 
   _cableConnected() {
-    this.startButtonTarget.classList.add("hidden");
+    this.formServerTarget.classList.add("hidden");
     this.terminateButtonTarget.classList.remove("hidden");
   }
 
   _cableReceived(data) {
     console.log(data)
+  }
+
+  _cableRejected() {
+    console.log("rejected")
   }
 }
 
