@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :npcs
     resources :enemies
     resources :adventures
+    post :adventure_participation, to: "adventure_participation#create"
+    delete :adventure_participation, to: "adventure_participation#destroy"
   end
 
   get 'tv', to: "tv#index"
