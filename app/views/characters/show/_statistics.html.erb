@@ -10,67 +10,67 @@
   <!-- Ability -->
   <div class="p-6 flex flex-wrap gap-6 justify-center">
     <div class="flex space-x-4">
-      <div class="<%= key_ability? 'str' %> rounded p-1 ">
+      <div class="<%= key_ability?(@character, 'str') %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
           STR <span class="text-2xl"><%= @character.pathfinder_ability.str_total || 0 %></span>
         </h3>
         <p class="text-center text-3xl">
-          <%= get_modifier "str" %>
+          <%= get_modifier(@character, "str") %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div class="<%= key_ability? 'dex' %> rounded p-1 ">
+      <div class="<%= key_ability?(@character, 'dex') %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
           DEX <span class="text-2xl"><%= @character.pathfinder_ability.dex_total || 0 %></span>
         </h3>
         <p class="text-center text-3xl">
-          <%= get_modifier "dex" %>
+          <%= get_modifier(@character, "dex") %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div class="<%= key_ability? 'con' %> rounded p-1 ">
+      <div class="<%= key_ability?(@character, 'con') %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
           CON <span class="text-2xl"><%= @character.pathfinder_ability.con_total || 0 %></span>
         </h3>
         <p class="text-center text-3xl">
-          <%= get_modifier "con" %>
+          <%= get_modifier(@character, "con") %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div class="<%= key_ability? 'int' %> rounded p-1 ">
+      <div class="<%= key_ability?(@character, 'int') %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
           INT <span class="text-2xl"><%= @character.pathfinder_ability.int_total || 0 %></span>
         </h3>
         <p class="text-center text-3xl">
-          <%= get_modifier "int" %>
+          <%= get_modifier(@character, "int") %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div class="<%= key_ability? 'wis' %> rounded p-1 ">
+      <div class="<%= key_ability?(@character, 'wis') %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
           WIS <span class="text-2xl"><%= @character.pathfinder_ability.wis_total || 0 %></span>
         </h3>
         <p class="text-center text-3xl">
-          <%= get_modifier "wis" %>
+          <%= get_modifier(@character, "wis") %>
         </p>
       </div>
       <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
     </div>
     <div class="flex space-x-4">
-      <div class="<%= key_ability? 'cha' %> rounded p-1 ">
+      <div class="<%= key_ability?(@character, 'cha') %> rounded p-1 ">
         <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
           CHA <span class="text-2xl"><%= @character.pathfinder_ability.cha_total || 0 %></span>
         </h3>
         <p class="text-center text-3xl">
-          <%= get_modifier "cha" %>
+          <%= get_modifier(@character, "cha") %>
         </p>
       </div>
     </div>

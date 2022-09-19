@@ -25,13 +25,13 @@
                 Attack
               </h3>
               <p class="text-center">
-                <%= get_attack_melee(melee) %>
+                <%= get_attack_melee(@character, melee) %>
               </p>
             </div>
             <div data-popover id="popover-attack-melee-<%= melee.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
               <div class="py-2 px-3">
                   <p>
-                    str: <%= get_modifier "str"%><br>
+                    str: <%= get_modifier(@character, "str") %><br>
                     item: <%= melee.item || 0%><br>
                     proficiency: <%= melee.proficiency || 0%><br>
                   </p>
@@ -47,13 +47,13 @@
               </h3>
               <p class="text-center">
                 <%= melee.qty %><%= melee.die %> 
-                <%= bonus_damage_melee melee  %>
+                <%= bonus_damage_melee(@character, melee)  %>
               </p>
             </div>
             <div data-popover id="popover-damage-melee-<%= melee.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
               <div class="py-2 px-3">
                   <p>
-                    str: <%= get_modifier "str"%><br>
+                    str: <%= get_modifier(@character, "str") %><br>
                     weapon specialization: <%= melee.weapon_specialization || 0%><br>
                   </p>
               </div>
@@ -96,13 +96,13 @@
                 Attack
               </h3>
               <p class="text-center">
-                <%= get_attack_ranged ranged %>
+                <%= get_attack_ranged(@character, ranged) %>
               </p>
             </div>
             <div data-popover id="popover-attack-ranged-<%= ranged.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
               <div class="py-2 px-3">
                   <p>
-                    dex: <%= get_modifier "dex"%><br>
+                    dex: <%= get_modifier(@character, "dex") %><br>
                     item: <%= ranged.item || 0%><br>
                     proficiency: <%= ranged.proficiency || 0%><br>
                   </p>
@@ -118,7 +118,7 @@
               </h3>
               <p class="text-center">
                 <%= ranged.qty %><%= ranged.die %> 
-                <%= bonus_damage_ranged ranged  %>
+                <%= bonus_damage_ranged(@character, ranged)  %>
               </p>
             </div>
             <div data-popover id="popover-damage-ranged-<%= ranged.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">

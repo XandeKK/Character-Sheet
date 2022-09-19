@@ -45,13 +45,13 @@
               Attack
             </h3>
             <span class="pl-3">
-              <%= get_attack_spell %>
+              <%= get_attack_spell @character %>
             </span>
           </div>
           <div data-popover id="popover-attack-spell-caster" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
             <div class="py-2 px-3">
               <p>
-                <%= @character.pathfinder_basic.key_ability %>: <%= get_modifier @character.pathfinder_basic.key_ability %><br>
+                <%= @character.pathfinder_basic.key_ability %>: <%= get_modifier(@character, @character.pathfinder_basic.key_ability) %><br>
                 proficiency: <%= @character.pathfinder_spell_caster.attack_proficiency || 0 %><br>
                 bonus = <%= @character.pathfinder_spell_caster.attack_bonus || 0 %><br>
                 penalty = <%= @character.pathfinder_spell_caster.attack_penalty || 0 %>
@@ -67,14 +67,14 @@
               DC
             </h3>
             <span class="pl-3">
-              <%= get_cd_spell %>
+              <%= get_cd_spell @character %>
             </span>
           </div>
           <div data-popover id="popover-cd-spell-caster" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
             <div class="py-2 px-3">
               <p>
                 base: 10 <br>
-                <%= @character.pathfinder_basic.key_ability %>: <%= get_modifier @character.pathfinder_basic.key_ability %><br>
+                <%= @character.pathfinder_basic.key_ability %>: <%= get_modifier(@character, @character.pathfinder_basic.key_ability) %><br>
                 proficiency: <%= @character.pathfinder_spell_caster.cd_proficiency || 0 %><br>
                 bonus = <%= @character.pathfinder_spell_caster.cd_bonus || 0 %><br>
                 penalty = <%= @character.pathfinder_spell_caster.cd_penalty || 0 %>
