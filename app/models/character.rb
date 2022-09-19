@@ -4,6 +4,8 @@ class Character < ApplicationRecord
   belongs_to :character_category
   belongs_to :character_system
   
+  has_many :adventure_participations, dependent: :destroy
+
   has_one :pathfinder_basic, class_name: "Pathfinder::Basic", dependent: :destroy
   has_one :pathfinder_ability, class_name: "Pathfinder::Ability", dependent: :destroy
   has_one :pathfinder_money, class_name: "Pathfinder::Money", dependent: :destroy
