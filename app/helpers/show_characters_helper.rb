@@ -57,6 +57,24 @@ module ShowCharactersHelper
     str + item + proficiency
   end
 
+  def get_second_attack_melee(character, weapon)
+    str = get_modifier(character, "str")
+    item = weapon.item || 0
+    proficiency = weapon.proficiency || 0
+    penalty = weapon.multiple_attack_penalty_2 || -5
+
+    str + item + proficiency + penalty
+  end
+
+  def get_third_attack_melee(character, weapon)
+    str = get_modifier(character, "str")
+    item = weapon.item || 0
+    proficiency = weapon.proficiency || 0
+    penalty = weapon.multiple_attack_penalty_3 || -10
+
+    str + item + proficiency + penalty
+  end
+
   def bonus_damage_melee(character, weapon)
     str = get_modifier(character, "str")
     weapon_specialization = weapon.weapon_specialization || 0
@@ -76,6 +94,24 @@ module ShowCharactersHelper
     proficiency = weapon.proficiency || 0
 
     dex + item + proficiency
+  end
+
+  def get_second_attack_ranged(character, weapon)
+    dex = get_modifier(character, "dex")
+    item = weapon.item || 0
+    proficiency = weapon.proficiency || 0
+    penalty = weapon.multiple_attack_penalty_2 || -5
+
+    dex + item + proficiency + penalty
+  end
+
+  def get_third_attack_ranged(character, weapon)
+    dex = get_modifier(character, "dex")
+    item = weapon.item || 0
+    proficiency = weapon.proficiency || 0
+    penalty = weapon.multiple_attack_penalty_3 || -10
+
+    dex + item + proficiency + penalty
   end
 
   def bonus_damage_ranged weapon
