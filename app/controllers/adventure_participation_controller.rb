@@ -3,9 +3,15 @@ class AdventureParticipationController < ApplicationController
     @adventure_participation = AdventureParticipation.new(adventure_participation_params)
 
     if @adventure_participation.save
-      head :ok
+      respond_to do |format|
+        format.turbo_stream {
+          render "adventure_participation/create",
+            locals: {participation: @adventure_participation},
+            status: :ok
+        }
+      end
     else
-      render nothing: true, status: :unprocessable_entity
+      render json: nil, status: :unprocessable_entity
     end
   end
 
@@ -14,10 +20,14 @@ class AdventureParticipationController < ApplicationController
       character_id: params[:character_id], adventure_id: params[:adventure_id]
     )
 
-    if @adventure_participation.destroy
-      head :ok
+    unless @adventure_participation.nil?
+      if @adventure_participation.destroy
+        head :ok
+      else
+        render json: nil, status: :unprocessable_entity
+      end
     else
-      render nothing: true, status: :unprocessable_entity
+      render json: nil, status: :unprocessable_entity
     end
   end
 

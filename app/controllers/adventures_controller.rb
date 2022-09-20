@@ -7,6 +7,34 @@ class AdventuresController < ApplicationController
   end
 
   def show
+    @adventure_participations = @adventure.adventure_participations
+      .includes(
+        :character_category,
+        :character,
+        :character_image_blob,
+        :pathfinder_basic,
+        :pathfinder_ability,
+        :pathfinder_money,
+        :pathfinder_saving_throw,
+        :pathfinder_defense,
+        :pathfinder_spell_caster,
+        :pathfinder_perception,
+        :pathfinder_class_dc,
+        :pathfinder_spells,
+        :pathfinder_melees,
+        :pathfinder_items,
+        :pathfinder_feats,
+        :pathfinder_languages,
+        :pathfinder_rangeds,
+        :pathfinder_skills,
+        :pathfinder_focus_spells,
+        :pathfinder_weapon_proficiencies,
+        :pathfinder_innate_spells,
+        :pathfinder_notes
+      )
+
+    @npc_and_enemy = current_user.characters.where.not("character_category.name": "Player")
+      .includes(:character_category, :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes)
   end
 
   def new
