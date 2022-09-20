@@ -12,7 +12,7 @@
           </div>
           <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.name %></div>
         </div>
-        <%= render partial: "player/dropdown_character", locals: {id: character.id} %>
+        <%= render partial: "player/dropdown_character", locals: {id: character.id, path_edit: edit_character_path(character), path_delete: character_path(character)} %>
       </div>
     </div>
   <% end %>
