@@ -3,10 +3,11 @@ class EnemiesController < ApplicationController
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
 
   def index
-    @characters = Character
-      .joins(:character_category)
-      .where(user: current_user, "character_category.name": "Enemy")
-      .includes(:pathfinder_basic)
+    @enemies = current_user.characters
+      .select("characters.id, pathfinder_basics.name")
+      .joins(:character_category, :pathfinder_basic)
+      .where("character_category.name": "Enemy")
+      .includes(character_image_attachment: :blob)
   end
 
   def show

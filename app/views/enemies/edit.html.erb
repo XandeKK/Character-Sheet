@@ -1,4 +1,24 @@
-<div>
-  <h1 class="font-bold text-4xl">Edit Enemy</h1>
-  <p>Find me in app/views/enemies/edit.html.erb</p>
+<%= render partial: "characters/side_bar"%>
+<div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="edit-character--event-trigger">
+  <%= form_with model: @character, url: enemy_path, method: :put, html: {"autocomplete":"off"}, data: {turbo:false} do |form| %>
+    <%= render partial: "characters/edit/basics", locals: { form: form } %>
+    
+    <%= render partial: "characters/edit/statistics", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/equipament", locals: { form: form } %>
+    
+    <%= render partial: "characters/edit/defense", locals: { form: form } %>
+    
+    <%= render partial: "characters/edit/offense", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/skills", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/spells", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/notes", locals: { form: form } %>
+
+    <%= form.submit "Update", class:"fixed bottom-3 right-3 md:bottom-8 md:right-8 md:mr-6 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" %>
+  <% end %>
+
+
 </div>
