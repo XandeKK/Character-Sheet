@@ -52,6 +52,21 @@ class CharactersController < ApplicationController
     end
   end
 
+  def update_hp
+    characters = params[:characters]
+    characters.each do |character|
+      character_id = character[0]
+      current_hp = character[1][:current_hp]
+      temp_hp = character[1][:temp_hp]
+
+      character_defense = Pathfinder::Defense.find_by(character_id: character_id)
+      character_defense.update(
+        current_hp: current_hp, temp_hp: temp_hp
+      )
+    end
+    head :ok
+  end
+
   private
 
   def set_character

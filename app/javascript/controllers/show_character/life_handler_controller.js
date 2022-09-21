@@ -8,6 +8,14 @@ export default class extends Controller {
     this.characters = {};
   }
 
+  sendToLifeSender(id) {
+    this.dispatch("send", { 
+      detail: 
+        { id: id, character: this.characters[id] }
+      }
+    );
+  }
+
   healHp(event) {
     let id = event.params.id;
     let current_hp = document.getElementById(`current_hp_character_${id}`);
@@ -20,6 +28,9 @@ export default class extends Controller {
 
     this.characters[id].current_hp += value;
     this.characters[id].dirty = true;
+
+    this.setCharacterInLocalStorage();
+    this.sendToLifeSender(id);
 
     if (this.characters[id].current_hp > this.characters[id].max_hp) {
       this.characters[id].current_hp = this.characters[id].max_hp;
@@ -45,6 +56,9 @@ export default class extends Controller {
     this.characters[id].current_hp -= value;
     this.characters[id].dirty = true;
 
+    this.setCharacterInLocalStorage();
+    this.sendToLifeSender(id);
+
     if (this.characters[id].current_hp < 0) {
       this.characters[id].current_hp = 0;
     }
@@ -60,8 +74,13 @@ export default class extends Controller {
     let temp_hp_input = document.getElementById(`temp_hp_input_character_${id}`);
     let value = parseInt(temp_hp_input.value) || 1;
 
+    this.setCharacterIfNotExist(id);
+
     this.characters[id].temp_hp += value;
     this.characters[id].dirty = true;
+
+    this.setCharacterInLocalStorage();
+    this.sendToLifeSender(id);
 
     temp_hp.textContent = this.characters[id].temp_hp;
     temp_hp_input.value = "";
@@ -94,6 +113,13 @@ export default class extends Controller {
         "temp_hp": temp_hp,
         "dirty": false
       }
+    }
+  }
+
+  setCharacterInLocalStorage() {
+    if (storageAvailable('localStorage')) {
+      let characters = JSON.stringify(this.characters);
+      localStorage.setItem("characters", characters);
     }
   }
 }

@@ -50,11 +50,11 @@
       <div class="inline-flex rounded-md shadow-sm" role="group">
         <input id="<%= dom_id(participation.character, :hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-zinc-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="HP" tabindex="-1">
 
-        <button type="button" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life#damageHp" data-show-character--life-id-param="<%= participation.character.id %>">
+        <button type="button" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#damageHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
           Damage
         </button>
         <!-- Colocar id aqui -->
-        <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life#healHp" data-show-character--life-id-param="<%= participation.character.id %>">
+        <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#healHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
           Heal
         </button>
       </div>
@@ -64,7 +64,7 @@
       <div class="inline-flex rounded-md shadow-sm" role="group">
         <input id="<%= dom_id(participation.character, :temp_hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Temp HP" tabindex="-1">
         
-        <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life#addTempHp" data-show-character--life-id-param="<%= participation.character.id %>">
+        <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#addTempHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
           Add
         </button>
       </div>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'player', to: 'player#index'
   
   resources :characters, path: '/player/characters', except: :index
+  put "/hit_point", to: "characters#update_hp"
 
   get 'gm', to: 'gm#index'
   scope '/gm' do
