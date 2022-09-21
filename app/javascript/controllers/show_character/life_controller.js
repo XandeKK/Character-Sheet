@@ -2,63 +2,99 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [
-    "current_hp", "max_hp", "temp_hp", "hp_input", "temp_hp_input"
   ]
 
   connect() {
-    this.max_hp = parseInt(this.max_hpTarget.textContent);
-    this.current_hp = parseInt(this.current_hpTarget.textContent);
-    this.temp_hp = parseInt(this.temp_hpTarget.textContent);
+    this.characters = {};
   }
 
-  healHp() {
-    let value = parseInt(this.hp_inputTarget.value) || 1;
+  healHp(event) {
+    let id = event.params.id;
+    let current_hp = document.getElementById(`current_hp_character_${id}`);
+    let hp_input = document.getElementById(`hp_input_character_${id}`);
+    let value = parseInt(hp_input.value) || 1;
+
     value = Math.abs(value);
 
-    this.current_hp += value;
+    this.setCharacterIfNotExist(id);
 
-    if (this.current_hp > this.max_hp) {
-      this.current_hp = this.max_hp;
+    this.characters[id].current_hp += value;
+    this.characters[id].dirty = true;
+
+    if (this.characters[id].current_hp > this.characters[id].max_hp) {
+      this.characters[id].current_hp = this.characters[id].max_hp;
     }
 
-    this.current_hpTarget.textContent = this.current_hp;
-    this.hp_inputTarget.value = "";
+    current_hp.textContent = this.characters[id].current_hp;
+    hp_input.value = "";
   }
 
-  damageHp() {
-    let value = parseInt(this.hp_inputTarget.value) || 1;
+  damageHp(event) {
+    let id = event.params.id;
+    let current_hp = document.getElementById(`current_hp_character_${id}`);
+    let temp_hp = document.getElementById(`temp_hp_character_${id}`);
+    let hp_input = document.getElementById(`hp_input_character_${id}`);
+    let value = parseInt(hp_input.value) || 1;
+
     value = Math.abs(value);
 
-    value = this.damageTempHp(value);
+    this.setCharacterIfNotExist(id);
 
-    this.current_hp -= value;
+    value = this.damageTempHp(id, value);
 
-    if (this.current_hp < 0) {
-      this.current_hp = 0;
+    this.characters[id].current_hp -= value;
+    this.characters[id].dirty = true;
+
+    if (this.characters[id].current_hp < 0) {
+      this.characters[id].current_hp = 0;
     }
 
-    this.current_hpTarget.textContent = this.current_hp;
-    this.temp_hpTarget.textContent = this.temp_hp;
-    this.hp_inputTarget.value = "";
+    current_hp.textContent = this.characters[id].current_hp;
+    temp_hp.textContent = this.characters[id].temp_hp;
+    hp_input.value = "";
   }
 
-  addTempHp() {
-    let value = parseInt(this.temp_hp_inputTarget.value) || 1;
-    this.temp_hp += value;
+  addTempHp(event) {
+    let id = event.params.id;
+    let temp_hp = document.getElementById(`temp_hp_character_${id}`);
+    let temp_hp_input = document.getElementById(`temp_hp_input_character_${id}`);
+    let value = parseInt(temp_hp_input.value) || 1;
 
-    this.temp_hpTarget.textContent = this.temp_hp;
-    this.temp_hp_inputTarget.value = "";
+    this.characters[id].temp_hp += value;
+    this.characters[id].dirty = true;
+
+    temp_hp.textContent = this.characters[id].temp_hp;
+    temp_hp_input.value = "";
   }
 
-  damageTempHp(value) {
-    let damage = value - this.temp_hp;
+  damageTempHp(id, value) {
+    let damage = value - this.characters[id].temp_hp;
     if(damage <= 0) {
-      this.temp_hp -= value;
+      this.characters[id].temp_hp -= value;
       return 0;
     } 
 
-    this.temp_hp = 0;
+    this.characters[id].temp_hp = 0;
     return damage;
+  }
+
+  setCharacterIfNotExist(id) {
+    if (this.characters[id] === undefined) {
+      let max_hp = document.getElementById(`max_hp_character_${id}`);
+      let current_hp = document.getElementById(`current_hp_character_${id}`);
+      let temp_hp = document.getElementById(`temp_hp_character_${id}`);
+
+      max_hp = parseInt(max_hp.textContent) || 0;
+      current_hp = parseInt(current_hp.textContent) || 0;
+      temp_hp = parseInt(temp_hp.textContent) || 0;
+
+      this.characters[id] = {
+        "max_hp": max_hp,
+        "current_hp": current_hp,
+        "temp_hp": temp_hp,
+        "dirty": false
+      }
+    }
   }
 }
 
