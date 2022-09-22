@@ -30,11 +30,12 @@ export default class extends Controller {
     this.characters[id].dirty = true;
 
     this.setCharacterInLocalStorage();
-    this.sendToLifeSender(id);
 
     if (this.characters[id].current_hp > this.characters[id].max_hp) {
       this.characters[id].current_hp = this.characters[id].max_hp;
     }
+
+    this.sendToLifeSender(id);
 
     current_hp.textContent = this.characters[id].current_hp;
     hp_input.value = "";
@@ -57,11 +58,12 @@ export default class extends Controller {
     this.characters[id].dirty = true;
 
     this.setCharacterInLocalStorage();
-    this.sendToLifeSender(id);
 
     if (this.characters[id].current_hp < 0) {
       this.characters[id].current_hp = 0;
     }
+    
+    this.sendToLifeSender(id);
 
     current_hp.textContent = this.characters[id].current_hp;
     temp_hp.textContent = this.characters[id].temp_hp;

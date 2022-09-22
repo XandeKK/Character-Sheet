@@ -22,10 +22,10 @@
       <div class="md:py-3">
         <div class="flex flex-col md:flex-row">
           <div class="flex justify-center md:basis-64 relative w-full h-64">
-            <%= image_tag @character.character_image, class: "absolute -top-3 md:-top-0 md:-left-6 rounded-full drop-shadow-lg w-64 h-64 bg-white" if @character.character_image.attached? %>
+            <%= image_tag @character.character_image, id:"character-image", class: "absolute -top-3 md:-top-0 md:-left-6 rounded-full drop-shadow-lg w-64 h-64 bg-white" if @character.character_image.attached? %>
           </div>
           <div class="space-y-6 p-6 md:p-0 flex-1">
-            <h1 id="character-name" class="md:mt-6 text-3xl">
+            <h1 id="character-name" class="md:mt-6 text-3xl" data-id="<%= @character.id %>">
               <%= @character.pathfinder_basic.name %>
             </h1>
             <h2 class="text-2xl">
@@ -171,18 +171,18 @@
     </div>
     <div class="py-6" id="server" role="tabpanel" aria-labelledby="server-tab">
       <div class="mx-auto p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-transparent dark:border-gray-700">
-        <div class="space-y-6" data-show-character--server-target="formServer">
+        <div class="space-y-6" data-channels--character-target="formServer">
           <div>
             <label for="server-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Server name</label>
-            <input type="text" name="server-name" id="server-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-show-character--server-target="serverName">
+            <input type="text" name="server-name" id="server-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="serverName">
           </div>
           <div>
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-show-character--server-target="password">
+            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="password">
           </div>
-          <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-action="show-character--server#startServer">Connect</button>
+          <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-action="channels--character#startServer">Connect</button>
         </div>
-        <button class="hidden space-y-6" data-show-character--server-target="terminateButton" data-action="show-character--server#terminateServer">
+        <button class="hidden space-y-6" data-channels--character-target="terminateButton" data-action="channels--character#terminateServer">
           Stop Server
         </button>
       </div>

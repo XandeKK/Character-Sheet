@@ -10,4 +10,14 @@ class CharacterChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
+
+  def receive data
+    if data["act"] == "putMeOnAdventure"
+      ActionCable.server.broadcast("adventure_#{params[:server_name]}", data)
+    elsif data["act"] == "characterExit"
+      ActionCable.server.broadcast("adventure_#{params[:server_name]}", data)
+    elsif data["act"] == "updateHp"
+      ActionCable.server.broadcast("adventure_#{params[:server_name]}", data)
+    end
+  end
 end
