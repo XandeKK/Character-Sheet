@@ -6,7 +6,9 @@ export default class extends Controller {
   "drawer_character_title", "drawer_character_note", "dice_div"
     ]
   connect() {
-    this.drawerLeft = new Drawer(this.drawer_navigationTarget);
+    if (this.hasDrawer_navigationTarget) {
+      this.drawerLeft = new Drawer(this.drawer_navigationTarget);
+    }
 
     if (this.hasDrawer_characterTarget) {
       this.drawerRight = new Drawer(this.drawer_characterTarget, {placement: "right"});

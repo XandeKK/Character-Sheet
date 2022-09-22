@@ -15,7 +15,7 @@
   </head>
 
   <body class="bg-gray-100 dark:bg-black" data-controller="flowbite">
-    <% unless ["sessions", "users", "passwords"].include?(controller_name) %>
+    <% unless ["sessions", "users", "passwords", "tv"].include?(controller_name) %>
       <header class="z-20 h-15 sticky top-0">
         <%= render partial: "shared/navbar" %>
       </header>

@@ -1,4 +1,35 @@
-<div>
-  <h1 class="font-bold text-4xl">Tv#index</h1>
-  <p>Find me in app/views/tv/index.html.erb</p>
+<div class="m-0 p-0 w-screen h-screen antialiased overflow-hidden bg-[url('https://img.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg?w=2000')] bg-cover" data-controller="channels--tv">
+  <div class="mx-auto mt-28 p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-900 dark:border-gray-700" data-channels--tv-target="formServer">
+    <div class="space-y-6" >
+      <div>
+        <label for="server-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Server name</label>
+        <input type="text" name="server-name" id="server-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--tv-target="serverName">
+      </div>
+      <div>
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
+        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--tv-target="password">
+      </div>
+      <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-action="channels--tv#startServer">Connect</button>
+    </div>
+    <button class="hidden space-y-6" data-channels--tv-target="terminateButton" data-action="channels--tv#terminateServer">
+      Stop Server
+    </button>
+  </div>
+
+  <div id="chat" class="absolute bottom-0 left-0 w-screen md:w-5/12 h-72 bg-white border border-gray-200 shadow-md p-3 dark:bg-gray-800 dark:border-gray-700 rounded-lg dark:bg-gray-800 space-y-4 overscroll-auto overflow-auto">
+    <div class="w-full h-20 bg-white rounded-lg shadow-md p-2 flex space-x-4">
+      <img class="rounded-full w-16 h-16" src="https://xandekk.github.io/portfolio-github/assets/character-sheet/4.png">
+      <div class="text-lg ">
+        <p><span class="font-bold">Name:</span>Action</p>
+        <p class="ml-3" data-popover-target="popover-id">Result</p>
+      </div>
+      <div data-popover id="popover-id" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+          <div class="py-2 px-3">
+              <p>dice or\and bonus</p>
+          </div>
+          <div data-popper-arrow></div>
+      </div>
+    </div>
+  </div>
+  <div id="dice-box" class="shadow-md fixed pointer-events-none box-border w-full h-full"></div>
 </div>
