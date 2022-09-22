@@ -1,24 +1,36 @@
 <div id="drawer-character" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white mm:w-80 md:w-96 dark:bg-gray-800 transition-transform right-0 top-0 translate-x-full" tabindex="-1" aria-labelledby="drawer-right-label" aria-hidden="true" data-flowbite-target="drawer_character">
-    <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400" data-flowbite-target="drawer_character_title"></h5>
-    <div class="hidden" data-flowbite-target="dice_div">
-        <div class="flex flex-wrap items-center mb-6">
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d4</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d6</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d8</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d10</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d12</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d20</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">1d100</button>
-        </div>
-        <div class="flex flex-wrap items-center">
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">0</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">-5</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">-10</button>
-        </div>
-        <div class="flex flex-wrap items-center">
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Damage</button>
-            <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Critical</button>
-        </div>
+  <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400" data-flowbite-target="drawer_character_title"></h5>
+  <div class="hidden" data-flowbite-target="dice_div">
+    <div class="mb-3">
+      <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Color Dice</label>
+      <input type="color" id="color" class="block w-full bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputColor">
     </div>
-    <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 whitespace-pre-line" data-flowbite-target="drawer_character_note"></p>
+    <div class="mb-3">
+      <label for="theme-dice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Dice theme</label>
+      <select id="theme-dice" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputTheme">
+        <option value="default">default</option>
+        <option value="blueGreenMetal">blueGreenMetal</option>
+        <option value="diceOfRolling">diceOfRolling</option>
+        <option value="rock">rock</option>
+        <option value="rust">rust</option>
+        <option value="smooth">smooth</option>
+        <option value="wooden">wooden</option>
+      </select>
+    </div>
+    <div class="flex flex-wrap items-center mb-6">
+      <% ["4", "6", "8", "10", "12", "20", "100"].each do |dice| %>
+        <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" data-channels--character-dice-param="1d<%= dice %>" data-action="channels--character#diceAttack">1d<%= dice %></button>
+      <% end %>
+    </div>
+    <div class="flex flex-wrap items-center">
+      <% ["attack", "second_attack", "third_attack"].each do |attack| %>
+      <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" data-flowbite-target="<%= attack %>" data-channels--character-dice-param="1d20" data-action="channels--character#diceAttack">0</button>
+      <% end %>
+    </div>
+    <div class="flex flex-wrap items-center">
+      <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" data-flowbite-target="damage" data-channels--character-damage-param="" data-action="channels--character#diceDamage">Damage</button>
+      <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Critical</button>
+    </div>
+  </div>
+  <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 whitespace-pre-line" data-flowbite-target="drawer_character_note"></p>
 </div>

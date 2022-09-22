@@ -3,7 +3,8 @@ import consumer from "../../channels/consumer"
 
 export default class extends Controller {
   static targets = [
-    "serverName", "password", "formServer", "terminateButton"
+    "serverName", "password", "formServer", "terminateButton",
+    "inputColor", "inputTheme"
   ]
 
   connect() {
@@ -97,6 +98,36 @@ export default class extends Controller {
     delete dataToSend.max_hp;
 
     this.channel.send(dataToSend); 
+  }
+
+  sendDice(dice) {
+    if (!this.channel) return;
+
+    let color = this.inputColorTarget.value;
+    let theme = this.inputThemeTarget.value;
+    let id = this.character.id;
+    let dataToSend = Object.assign({}, this.character)
+
+    dataToSend.act = "rollDice";
+    dataToSend.color = color;
+    dataToSend.theme = theme;
+    dataToSend.dice = dice;
+
+    delete dataToSend.max_hp;
+    delete dataToSend.current_hp;
+    delete dataToSend.temp_hp;
+
+    this.channel.send(dataToSend);
+  }
+
+  diceDamage(event) {
+    let damage = event.params.damage;
+    this.sendDice(damage);
+  }
+
+  diceAttack(event) {
+    let dice = event.params.dice;
+    this.sendDice(dice);
   }
 
   updateHp({ detail: { id, character }}) {

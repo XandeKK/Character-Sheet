@@ -18,6 +18,8 @@ class CharacterChannel < ApplicationCable::Channel
       ActionCable.server.broadcast("adventure_#{params[:server_name]}", data)
     elsif data["act"] == "updateHp"
       ActionCable.server.broadcast("adventure_#{params[:server_name]}", data)
+    elsif data["act"] == "rollDice"
+      ActionCable.server.broadcast("tv_#{params[:server_name]}", data)
     end
   end
 end
