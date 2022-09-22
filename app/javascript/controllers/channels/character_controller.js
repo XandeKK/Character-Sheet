@@ -19,6 +19,7 @@ export default class extends Controller {
     current_hp = parseInt(current_hp.textContent) || 0;
     temp_hp = parseInt(temp_hp.textContent) || 0;
 
+    this.weapon = null;
     this.channel = null;
     this.character = {
       id: id,
@@ -120,14 +121,41 @@ export default class extends Controller {
     this.channel.send(dataToSend);
   }
 
-  diceDamage(event) {
-    let damage = event.params.damage;
-    this.sendDice(damage);
+  diceNormal(event) {
+    let dice = event.params.dice;
+    this.sendDice(dice);
+  }
+
+  diceDamage() {
+    let bonus = this.weapon.bonus;
+    let qty = this.weapon.qty;
+    let dice = this.weapon.dice;
+
+    dice = `${qty}${dice}`
+
+    if (bonus != 0) {
+      dice = `${dice}${bonus}`
+    }
+
+    this.sendDice(dice);
+  }
+
+  diceCritical() {
+
   }
 
   diceAttack(event) {
-    let dice = event.params.dice;
+    let attack = this.weapon[event.params.attack];
+    let dice = "1d20";
+
+    if (attack != 0) {
+      dice += attack;
+    }
     this.sendDice(dice);
+  }
+
+  setWeapon(event) {
+    this.weapon = event.params;
   }
 
   updateHp({ detail: { id, character }}) {

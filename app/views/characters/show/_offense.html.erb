@@ -9,7 +9,21 @@
   <div class="p-6">
     <ul class="flex flex-col space-y-4">
       <% @character.pathfinder_melees.each do |melee| %>
-      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700" data-action="click->flowbite#toggleDrawerWeapon" data-flowbite-name-param="<%= melee.name %>" data-flowbite-note-param="<%= melee.notes %>" data-flowbite-other-param="<%= melee.other %>" data-flowbite-traits-param="<%= melee.traits %>" data-flowbite-attack-param="<%= get_attack_melee(@character, melee) %>" data-flowbite-second-attack-param="<%= get_second_attack_melee(@character, melee) %>" data-flowbite-third-attack-param="<%= get_third_attack_melee(@character, melee) %>" data-flowbite-damage-param="<%= "#{melee.qty || 1}#{melee.die}#{bonus_damage_melee(@character, melee)}"  %>">
+      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
+      data-action="click->flowbite#toggleDrawerWeapon click->channels--character#setWeapon"
+      data-flowbite-name-param="<%= melee.name %>"
+      data-flowbite-note-param="<%= melee.notes %>"
+      data-flowbite-other-param="<%= melee.other %>"
+      data-flowbite-traits-param="<%= melee.traits %>"
+      data-flowbite-attack-param="<%= get_attack_melee(@character, melee) %>"
+      data-flowbite-second-attack-param="<%= get_second_attack_melee(@character, melee) %>"
+      data-flowbite-third-attack-param="<%= get_third_attack_melee(@character, melee) %>"
+      data-channels--character-attack-param="<%= get_attack_melee(@character, melee) %>"
+      data-channels--character-second-attack-param="<%= get_second_attack_melee(@character, melee) %>"
+      data-channels--character-third-attack-param="<%= get_third_attack_melee(@character, melee) %>"
+      data-channels--character-qty-param="<%= melee.qty || 1 %>"
+      data-channels--character-dice-param="<%= melee.die %>"
+      data-channels--character-bonus-param="<%= bonus_damage_melee(@character, melee)  %>">
         <div>
           <h3 class="italic text-rose-700 dark:text-rose-500">
             Weapon
@@ -80,7 +94,21 @@
   <div class="p-6">
     <ul class="flex flex-col space-y-4">
       <% @character.pathfinder_rangeds.each do |ranged| %>
-      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700" data-action="click->flowbite#toggleDrawerWeapon" data-flowbite-name-param="<%= ranged.name %>" data-flowbite-note-param="<%= ranged.notes %>" data-flowbite-other-param="<%= ranged.other %>" data-flowbite-traits-param="<%= ranged.traits %>" data-flowbite-attack-param="<%= get_attack_ranged(@character, ranged) %>" data-flowbite-second-attack-param="<%= get_second_attack_ranged(@character, ranged) %>" data-flowbite-third-attack-param="<%= get_third_attack_ranged(@character, ranged) %>" data-flowbite-damage-param="<%= "#{ranged.qty || 1}#{ranged.die}#{bonus_damage_ranged(@character, ranged)}"  %>">
+      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
+      data-action="click->flowbite#toggleDrawerWeapon click->channels--character#setWeapon"
+      data-flowbite-name-param="<%= ranged.name %>"
+      data-flowbite-note-param="<%= ranged.notes %>"
+      data-flowbite-other-param="<%= ranged.other %>"
+      data-flowbite-traits-param="<%= ranged.traits %>"
+      data-flowbite-attack-param="<%= get_attack_ranged(@character, ranged) %>"
+      data-flowbite-second-attack-param="<%= get_second_attack_ranged(@character, ranged) %>"
+      data-flowbite-third-attack-param="<%= get_third_attack_ranged(@character, ranged) %>"
+      data-channels--character-attack-param="<%= get_attack_ranged(@character, ranged) %>"
+      data-channels--character-second-attack-param="<%= get_second_attack_ranged(@character, ranged) %>"
+      data-channels--character-third-attack-param="<%= get_third_attack_ranged(@character, ranged) %>"
+      data-channels--character-qty-param="<%= ranged.qty || 1 %>"
+      data-channels--character-dice-param="<%= ranged.die %>"
+      data-channels--character-bonus-param="<%= bonus_damage_ranged(ranged)  %>">
         <div>
           <h3 class="italic text-rose-700 dark:text-rose-500">
             Weapon

@@ -55,13 +55,12 @@ module ShowCharactersHelper
     proficiency = weapon.proficiency || 0
 
     attack = str + item + proficiency
-    if attack == 0
-      "+#{attack}"
-    elsif attack > 0
-      "+#{attack}" 
-    else
-      "-#{attack.abs}"
+    if attack > 0
+      return "+#{attack}" 
+    elsif attack < 0
+      return "-#{attack.abs}"
     end
+    nil
   end
 
   def get_second_attack_melee(character, weapon)
@@ -71,13 +70,12 @@ module ShowCharactersHelper
     penalty = weapon.multiple_attack_penalty_2 || -5
 
     attack = str + item + proficiency + penalty
-    if attack == 0
-      "+#{attack}"
-    elsif attack > 0
-      "+#{attack}" 
-    else
-      "-#{attack.abs}"
+    if attack > 0
+      return "+#{attack}" 
+    elsif attack < 0
+      return "-#{attack.abs}"
     end
+    nil
   end
 
   def get_third_attack_melee(character, weapon)
@@ -87,13 +85,12 @@ module ShowCharactersHelper
     penalty = weapon.multiple_attack_penalty_3 || -10
 
     attack = str + item + proficiency + penalty
-    if attack == 0
-      "+#{attack}"
-    elsif attack > 0
-      "+#{attack}" 
-    else
-      "-#{attack.abs}"
+    if attack > 0
+      return "+#{attack}" 
+    elsif attack < 0
+      return "-#{attack.abs}"
     end
+    nil
   end
 
   def bonus_damage_melee(character, weapon)

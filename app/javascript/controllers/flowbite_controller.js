@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [
     "drawer_navigation", "drawer_character",
     "drawer_character_title", "drawer_character_note", "dice_div",
-    "attack", "second_attack", "third_attack", "damage",
+    "attack", "secondAttack", "thirdAttack", "damage",
   ]
   connect() {
     if (this.hasDrawer_navigationTarget) {
@@ -43,17 +43,12 @@ export default class extends Controller {
     let attack = event.params.attack;
     let secondAttack = event.params.secondAttack;
     let thirdAttack = event.params.thirdAttack;
-    let damage = event.params.damage;
 
     this.drawer_character_titleTarget.textContent = name
     this.drawer_character_noteTarget.textContent = `Other: ${other}\n\nTraits: ${traits}\n\nNote: \n${note}`
     this.attackTarget.textContent = attack;
-    this.attackTarget.setAttribute("data-channels--character-dice-param", `1d20${attack}`);
-    this.second_attackTarget.textContent = secondAttack;
-    this.second_attackTarget.setAttribute("data-channels--character-dice-param", `1d20${secondAttack}`);
-    this.third_attackTarget.textContent = thirdAttack;
-    this.third_attackTarget.setAttribute("data-channels--character-dice-param", `1d20${thirdAttack}`);
-    this.damageTarget.setAttribute("data-channels--character-damage-param", damage);
+    this.secondAttackTarget.textContent = secondAttack;
+    this.thirdAttackTarget.textContent = thirdAttack;
 
     this.drawerRight.toggle();
     this.dice_divTarget.classList.remove("hidden")
