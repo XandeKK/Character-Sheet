@@ -18,6 +18,7 @@ export default class extends Controller {
     current_hp = parseInt(current_hp.textContent) || 0;
     temp_hp = parseInt(temp_hp.textContent) || 0;
 
+    this.channel = null;
     this.character = {
       id: id,
       name: name,
@@ -85,6 +86,8 @@ export default class extends Controller {
   }
 
   sendUptadedHp() {
+    if (!this.channel) return;
+
     let id = this.character.id;
     let dataToSend = Object.assign({}, this.character)
     dataToSend.act = "updateHp";
