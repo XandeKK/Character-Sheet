@@ -7,6 +7,9 @@ export default class extends Controller {
   ]
 
   connect() {
+    this.act = {
+      "rollDice": this.sendDice.bind(this),
+    }
   }
 
   startServer() {
@@ -37,10 +40,15 @@ export default class extends Controller {
   }
 
   _cableReceived(data) {
+    this.act[data["act"]](data);
   }
 
   _cableRejected() {
     console.log("rejected")
+  }
+
+  sendDice(data) {
+    this.dispatch("sendDice", { detail: { data: data } })
   }
 }
 
