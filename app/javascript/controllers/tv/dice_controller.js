@@ -8,6 +8,7 @@ export default class extends Controller {
     this.characters = {};
     this.charactersEvents = [];
     this.currentIndex = 0;
+    this.accumulatorRoll = 0;
 
     this.box = new DiceBox("#dice-box", {
       id: "dice-canvas",
@@ -39,8 +40,13 @@ export default class extends Controller {
 
   rollComplete(dieResult) {
     for(let i = this.currentIndex; i < dieResult.length; i++) {
+      let groupId = dieResult[i].id;
+      let qty = dieResult[i].qty;
       let item = this.createItemChat(i, dieResult[i]);
       this.chatTarget.appendChild(item);
+
+      this.removeDice(groupId, qty);
+
       this.chatTarget.scrollBy({
         top: this.chatTarget.scrollHeight,
         left: 0,
@@ -49,6 +55,17 @@ export default class extends Controller {
     }
     this.currentIndex = dieResult.length;
   }
+
+  removeDice(groupId, qty) {
+    setTimeout(this.timeoutRemove.bind(this, groupId, qty), 8000); // 8 seconds
+  }
+
+  timeoutRemove(groupId, qty) {
+    for (let i = this.accumulatorRoll; i < qty + this.accumulatorRoll; i++) {
+      this.box.remove({groupId: groupId, rollId: i});
+    }
+    this.accumulatorRoll += qty;
+  } 
 
   getDices({ detail: { data }}) {
     this.rollDice(data)
@@ -77,19 +94,20 @@ export default class extends Controller {
 
     // Set ClassName
     mainDiv.className = "w-full h-20 rounded-lg shadow-md p-2 flex space-x-4";
-    contentDiv.className = "text-lg";
+    contentDiv.className = "text-xl";
     popoverDiv.className = "inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800";
     popoverContentDiv.className = "py-2 px-3";
 
     img.className = "rounded-full w-16 h-16";
 
+    pText.className = "text-black dark:text-white"
     spanName.className = "font-bold";
 
     // Set style
     let isDark = document.documentElement.classList.contains("dark");
 
     if (isDark) {
-      mainDiv.style.backgroundColor = `${character.color}75`
+      mainDiv.style.backgroundColor = `${character.color}20`
     } else {
       mainDiv.style.backgroundColor = `${character.color}50`
     }
@@ -98,8 +116,6 @@ export default class extends Controller {
     popoverDiv.setAttribute("data-popover", "");
     popoverDiv.setAttribute("role", "tooltip");
     popperArrow.setAttribute("data-popper-arrow", "");
-
-    // spanResult.setAttribute("data-popover-target", `popover-${index}`);
 
     // Set text Content
     spanName.textContent = `${character.name}: `;
@@ -113,12 +129,12 @@ export default class extends Controller {
     let popoverText = null;
 
     if (dieResult.modifier != 0) {
-      popoverText = `rolls: ${rolls} | bonus: ${dieResult.modifier}`;
+      popoverText = `dice: ${dieResult.qty}d${dieResult.sides}</br>rolls: ${rolls} | bonus: ${dieResult.modifier}`;
     } else {
-      popoverText = `rolls: ${rolls}`;
+      popoverText = `dice: ${dieResult.qty}d${dieResult.sides}</br>rolls: ${rolls}`;
     }
 
-    pPopoverText.textContent = popoverText
+    pPopoverText.innerHTML = popoverText
 
     // Append element
     mainDiv.appendChild(img);
@@ -136,7 +152,6 @@ export default class extends Controller {
     mainDiv.appendChild(popoverDiv);
 
     // Add Event
-
     const popover = new Popover(popoverDiv, spanResult);
 
     return mainDiv;
