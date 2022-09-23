@@ -39,9 +39,6 @@ gem "clearance"
 # Base64 support for ActiveStorage
 gem 'active_storage_base64'
 
-# FriendlyId is the “Swiss Army bulldozer” of slugging and permalink plugins for ActiveRecord. It allows you to create pretty URL’s and work with human-friendly strings as if they were numeric ids for ActiveRecord models.
-gem 'friendly_id', '~> 5.4.0'
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
