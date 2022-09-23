@@ -15,8 +15,6 @@
   </head>
 
   <body class="bg-gray-100 dark:bg-black" data-controller="flowbite">
-    <%= render partial: "shared/flash" %>
-
     <% unless ["sessions", "users", "passwords", "tv"].include?(controller_name) %>
       <header class="z-20 h-15 sticky top-0">
         <%= render partial: "shared/navbar" %>
@@ -24,6 +22,7 @@
       <%= render partial: "shared/drawer" %>
     <% end %>
     <main>
+      <%= render partial: "shared/flash" %>
       <%= yield %>
     </main>
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
