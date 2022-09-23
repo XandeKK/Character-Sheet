@@ -1,10 +1,19 @@
 module ShowCharactersHelper
+  def get_score_level(character, proficiency)
+    if proficiency > 0
+      character.pathfinder_basic.level.to_i
+    else
+      0
+    end
+  end
+
   def get_perception character
     modifier = get_modifier(character, 'wis')
     item = character.pathfinder_perception.item || 0
     proficiency = character.pathfinder_perception.proficiency || 0
+    level = get_score_level(character, proficiency)
 
-    modifier + item + proficiency
+    modifier + item + proficiency + level
   end
 
   def get_modifier(character, ability)
@@ -16,11 +25,12 @@ module ShowCharactersHelper
     dex = get_modifier(character, "dex")
     item = character.pathfinder_defense.armor_class_item || 0
     proficiency = character.pathfinder_defense.armor_class_proficiency || 0
+    level = get_score_level(character, proficiency)
     max_dex = character.pathfinder_defense.max_dex
 
     dex = max_dex if !max_dex.nil? && dex > max_dex
 
-    10 + dex + item + proficiency
+    10 + dex + item + proficiency + level
   end
 
   def key_ability?(character, ability)
@@ -53,8 +63,10 @@ module ShowCharactersHelper
     str = get_modifier(character, "str")
     item = weapon.item || 0
     proficiency = weapon.proficiency || 0
+    level = get_score_level(character, proficiency)
 
-    attack = str + item + proficiency
+    attack = str + item + proficiency + level
+
     if attack > 0
       return "+#{attack}" 
     elsif attack < 0
@@ -67,9 +79,11 @@ module ShowCharactersHelper
     str = get_modifier(character, "str")
     item = weapon.item || 0
     proficiency = weapon.proficiency || 0
+    level = get_score_level(character, proficiency)
     penalty = weapon.multiple_attack_penalty_2 || -5
 
-    attack = str + item + proficiency + penalty
+    attack = str + item + proficiency + penalty + level
+
     if attack > 0
       return "+#{attack}" 
     elsif attack < 0
@@ -82,9 +96,10 @@ module ShowCharactersHelper
     str = get_modifier(character, "str")
     item = weapon.item || 0
     proficiency = weapon.proficiency || 0
+    level = get_score_level(character, proficiency)
     penalty = weapon.multiple_attack_penalty_3 || -10
 
-    attack = str + item + proficiency + penalty
+    attack = str + item + proficiency + penalty + level
     if attack > 0
       return "+#{attack}" 
     elsif attack < 0
@@ -110,26 +125,29 @@ module ShowCharactersHelper
     dex = get_modifier(character, "dex")
     item = weapon.item || 0
     proficiency = weapon.proficiency || 0
+    level = get_score_level(character, proficiency)
 
-    dex + item + proficiency
+    dex + item + proficiency + level
   end
 
   def get_second_attack_ranged(character, weapon)
     dex = get_modifier(character, "dex")
     item = weapon.item || 0
     proficiency = weapon.proficiency || 0
+    level = get_score_level(character, proficiency)
     penalty = weapon.multiple_attack_penalty_2 || -5
 
-    dex + item + proficiency + penalty
+    dex + item + proficiency + penalty + level
   end
 
   def get_third_attack_ranged(character, weapon)
     dex = get_modifier(character, "dex")
     item = weapon.item || 0
     proficiency = weapon.proficiency || 0
+    level = get_score_level(character, proficiency)
     penalty = weapon.multiple_attack_penalty_3 || -10
 
-    dex + item + proficiency + penalty
+    dex + item + proficiency + penalty + level
   end
 
   def bonus_damage_ranged weapon
@@ -149,26 +167,29 @@ module ShowCharactersHelper
     ability = get_modifier(character, skill.key_ability)
     item = skill.item || 0
     proficiency = skill.proficiency || 0
+    level = get_score_level(character, proficiency)
     armor = skill.armor || 0
 
-    ability + item + proficiency - armor
+    ability + item + proficiency - armor + level
   end
 
   def get_attack_spell character
     ability = get_modifier(character, character.pathfinder_basic.key_ability)
     proficiency = character.pathfinder_spell_caster.attack_proficiency || 0
+    level = get_score_level(character, proficiency)
     bonus = character.pathfinder_spell_caster.attack_bonus || 0
     penalty = character.pathfinder_spell_caster.attack_penalty || 0
 
-    ability + proficiency + bonus - penalty
+    ability + proficiency + bonus - penalty + level
   end
 
   def get_cd_spell character
     ability = get_modifier(character, character.pathfinder_basic.key_ability)
     proficiency = character.pathfinder_spell_caster.cd_proficiency || 0
+    level = get_score_level(character, proficiency)
     bonus = character.pathfinder_spell_caster.cd_bonus || 0
     penalty = character.pathfinder_spell_caster.cd_penalty || 0
 
-    10 + ability + proficiency + bonus - penalty
+    10 + ability + proficiency + bonus - penalty + level
   end
 end
