@@ -14,6 +14,9 @@ export default class extends Controller {
     let max_hp = document.getElementById(`max_hp_character_${id}`);
     let current_hp = document.getElementById(`current_hp_character_${id}`);
     let temp_hp = document.getElementById(`temp_hp_character_${id}`);
+    let image = document.getElementById(`character-image`);
+
+    image = image ? image.src : ""
 
     max_hp = parseInt(max_hp.textContent) || 0;
     current_hp = parseInt(current_hp.textContent) || 0;
@@ -27,7 +30,7 @@ export default class extends Controller {
       max_hp: max_hp,
       current_hp: current_hp,
       temp_hp: temp_hp,
-      image: document.getElementById("character-image").src,
+      image: image,
     };
   }
 

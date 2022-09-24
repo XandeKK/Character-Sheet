@@ -269,6 +269,13 @@ module PathfinderCharacter
         :name,
         :note,
         :_destroy
+      ],
+      dices_attributes: [
+        :id,
+        :name,
+        :notation,
+        :notes,
+        :_destroy
       ]
     )
   end

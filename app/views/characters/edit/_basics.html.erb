@@ -19,6 +19,9 @@
         <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="senses-tab" data-tabs-target="#senses" type="button" role="tab" aria-controls="senses" aria-selected="false">Senses</button>
       </li>
       <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="dices-tab" data-tabs-target="#dices" type="button" role="tab" aria-controls="dices" aria-selected="false">Dice</button>
+      </li>
+      <li class="mr-2" role="presentation">
         <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="image-tab" data-tabs-target="#image" type="button" role="tab" aria-controls="image" aria-selected="false">Image</button>
       </li>
     </ul>
@@ -135,6 +138,45 @@
           </div>
           </div>
         <% end %>
+      </div>
+    </div>
+    <div class="hidden" id="dices" role="tabpanel" aria-labelledby="dices-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Macro
+        </div>
+        <div id="body-dices" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--dices" data-action="click->edit-character--dices#addDice" data-edit-character--dices-count-param="<%= @character.dices.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :dices do |form_dices| %>
+          <div id="dices-<%= form_dices.index %>">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_dices.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_dices.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--dices" data-action="click->edit-character--dices#removeDice" data-edit-character--dices-id-param="<%= form_dices.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= form_dices.label :notation, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_dices.text_field :notation, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <div>
+              <%= form_dices.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_dices.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_dices.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="hidden" id="image" role="tabpanel" aria-labelledby="image-tab" data-controller="edit-character--cropper">
