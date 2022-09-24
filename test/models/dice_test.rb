@@ -4,6 +4,7 @@ class DiceTest < ActiveSupport::TestCase
   def setup
     @dice = Dice.new(
       name: "atack",
+      notation: "1d20",
       notes: "a simple attack",
       character: characters(:one)
     )
@@ -25,8 +26,21 @@ class DiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "should be invalid without dice" do
+  test "should be invalid without character" do
     @dice.character = nil
     assert @dice.invalid?, "Validated the dice without character"
   end
+
+  test "should be invalid without name" do
+    @dice.name = nil
+    assert @dice.invalid?, "Validated the dice without name"
+  end
+
+  test "should be invalid without notation" do
+    @dice.notation = nil
+    assert @dice.invalid?, "Validated the dice without notation"
+  end
+
+  # A future test notation
+  # where will check if the notation is correct
 end
