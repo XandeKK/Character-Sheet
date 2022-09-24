@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_154107) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_215243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_154107) do
     t.index ["character_category_id"], name: "index_characters_on_character_category_id"
     t.index ["character_system_id"], name: "index_characters_on_character_system_id"
     t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "dices", force: :cascade do |t|
+    t.string "notation"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_dices_on_character_id"
   end
 
   create_table "pathfinder_abilities", force: :cascade do |t|
@@ -413,6 +421,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_154107) do
   add_foreign_key "characters", "character_categories"
   add_foreign_key "characters", "character_systems"
   add_foreign_key "characters", "users"
+  add_foreign_key "dices", "characters"
   add_foreign_key "pathfinder_abilities", "characters"
   add_foreign_key "pathfinder_basics", "characters"
   add_foreign_key "pathfinder_class_dcs", "characters"
