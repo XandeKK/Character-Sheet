@@ -3,7 +3,8 @@ require "test_helper"
 class DiceTest < ActiveSupport::TestCase
   def setup
     @dice = Dice.new(
-      notation: "1d20",
+      name: "atack",
+      notes: "a simple attack",
       character: characters(:one)
     )
   end
@@ -24,7 +25,7 @@ class DiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "should be invalid without dice category" do
+  test "should be invalid without dice" do
     @dice.character = nil
     assert @dice.invalid?, "Validated the dice without character"
   end

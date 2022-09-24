@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  name: MyString
   notation: MyString
+  notes: MyText
   character: one
 
 two:
+  name: MyString
   notation: MyString
+  notes: MyText
   character: two

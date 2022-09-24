@@ -25,10 +25,11 @@ class Character < ApplicationRecord
   has_many :pathfinder_weapon_proficiencies, class_name: "Pathfinder::WeaponProficiency", dependent: :destroy
   has_many :pathfinder_innate_spells, class_name: "Pathfinder::InnateSpell", dependent: :destroy
   has_many :pathfinder_notes, class_name: "Pathfinder::Note", dependent: :destroy
+  has_many :dices, dependent: :destroy
 
   accepts_nested_attributes_for :pathfinder_basic, :pathfinder_ability, :pathfinder_money, :pathfinder_saving_throw, :pathfinder_defense, :pathfinder_spell_caster, :pathfinder_perception, :pathfinder_class_dc, update_only: true
 
-  accepts_nested_attributes_for :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes, :dices, reject_if: :all_blank, allow_destroy: true
 end
 
 
