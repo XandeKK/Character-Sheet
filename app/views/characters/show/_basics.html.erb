@@ -181,8 +181,10 @@
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
             <% @character.dices.each do |dice| %>
             <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
-              data-action="click->channels--character#diceNormal"
-              data-channels--character-dice-param="<%= dice.notation %>">
+              data-action="click->flowbite#toggleDrawerMacro"
+              data-flowbite-name-param="<%= dice.name %>"
+              data-flowbite-notation-param="<%= dice.notation %>"
+              data-flowbite-note-param="<%= dice.notes %>">
               <p>
                 <%= dice.name %>
               </p>

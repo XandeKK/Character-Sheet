@@ -24,20 +24,26 @@
         data-action="channels--character#diceNormal">1d<%= dice %></button>
       <% end %>
     </div>
-    <div class="flex flex-wrap items-center">
-      <% ["attack", "secondAttack", "thirdAttack"].each do |attack| %>
-      <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
-      data-flowbite-target="<%= attack %>" 
-      data-action="channels--character#diceAttack"
-      data-channels--character-attack-param="<%= attack %>"
-      >0</button>
-      <% end %>
+    <div data-flowbite-target="weaponDice" class="hidden">
+      <div class="flex flex-wrap items-center">
+        <% ["attack", "secondAttack", "thirdAttack"].each do |attack| %>
+        <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
+        data-flowbite-target="<%= attack %>" 
+        data-action="channels--character#diceAttack"
+        data-channels--character-attack-param="<%= attack %>"
+        >0</button>
+        <% end %>
+      </div>
+      <div class="flex flex-wrap items-center">
+        <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
+        data-action="channels--character#diceDamage">Damage</button>
+        <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" data-action="channels--character#diceCritical">Critical</button>
+      </div>
     </div>
-    <div class="flex flex-wrap items-center">
-      <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
-      data-action="channels--character#diceDamage">Damage</button>
-      <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" data-action="channels--character#diceCritical">Critical</button>
-    </div>
+    <button type="button" class="hidden w-full flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
+      data-flowbite-target="macro"
+      data-channels--character-dice-param="" 
+      data-action="channels--character#diceNormal"></button>
   </div>
   <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 whitespace-pre-line" data-flowbite-target="drawer_character_note"></p>
 </div>
