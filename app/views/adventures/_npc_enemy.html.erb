@@ -47,17 +47,17 @@
 <% end %>
 
 <% @npc_and_enemy.each do |character| %>
-  <%= turbo_stream.append "#{character.character_category.name.downcase}-modal" do %>
+  <%= turbo_stream.append "#{character.character_category_name.downcase}-modal" do %>
     <% any = @adventure_participations.any? { |participation| participation.character == character } %>
     <div>
       <h2 class="text-center text-xl">
-        <%= character.pathfinder_basic.name %>
+        <%= character.name %>
       </h2>
       <%= image_tag character.character_image, class: "rounded-full" if character.character_image.attached? %>
 
-      <%= button_to "Remove", adventure_participation_path, method: :delete, params: {character_id: character, adventure_id: @adventure}, data: {action: "remove", character: character.id, category: character.character_category.name.downcase }, form: {id: "form-remove-#{character.id}", class: "#{"hidden" unless any}"} %>
+      <%= button_to "Remove", adventure_participation_path, method: :delete, params: {character_id: character, adventure_id: @adventure}, data: {action: "remove", character: character.id, category: character.character_category_name.downcase }, form: {id: "form-remove-#{character.id}", class: "#{"hidden" unless any}"} %>
     
-      <%= button_to "Add", adventure_participation_path, params: {character_id: character, adventure_id: @adventure}, data: {action: "add", character: character.id, category: character.character_category.name.downcase }, form: {id: "form-add-#{character.id}", class: "#{"hidden" if any}"} %>
+      <%= button_to "Add", adventure_participation_path, params: {character_id: character, adventure_id: @adventure}, data: {action: "add", character: character.id, category: character.character_category_name.downcase }, form: {id: "form-add-#{character.id}", class: "#{"hidden" if any}"} %>
     </div>
   <% end %>
 <% end %>

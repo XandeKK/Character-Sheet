@@ -14,27 +14,22 @@ class AdventuresController < ApplicationController
         :character_image_blob,
         :pathfinder_basic,
         :pathfinder_ability,
-        :pathfinder_money,
         :pathfinder_saving_throw,
         :pathfinder_defense,
-        :pathfinder_spell_caster,
         :pathfinder_perception,
         :pathfinder_class_dc,
-        :pathfinder_spells,
         :pathfinder_melees,
-        :pathfinder_items,
-        :pathfinder_feats,
         :pathfinder_languages,
         :pathfinder_rangeds,
         :pathfinder_skills,
-        :pathfinder_focus_spells,
-        :pathfinder_weapon_proficiencies,
-        :pathfinder_innate_spells,
         :pathfinder_notes
       )
 
-    @npc_and_enemy = current_user.characters.where.not("character_category.name": "Player")
-      .includes(:character_category, :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes)
+    @npc_and_enemy = current_user.characters
+      .select("characters.id, pathfinder_basics.name, character_category.name as character_category_name")
+      .joins(:character_category, :pathfinder_basic)
+      .where.not("character_category.name": "Player")
+      .includes(character_image_attachment: :blob)
   end
 
   def new
