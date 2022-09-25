@@ -3,11 +3,13 @@ import consumer from "../../channels/consumer"
 
 export default class extends Controller {
   static targets = [
-    "serverName", "startButton", "terminateButton", "bodyPlayers"
+    "serverName", "startButton", "terminateButton", "bodyPlayers",
+    "inputColor", "inputTheme"
   ]
 
   connect() {
-    this.characters = {};
+    this.weapon = null;
+    this.characters_ids = {};
     this.act = {
       "putMeOnAdventure": this.putOnAdventure.bind(this),
       "characterExit": this.removeCharacter.bind(this),
@@ -43,11 +45,11 @@ export default class extends Controller {
 
   putOnAdventure(data) {
     let id = data.id;
-    if (this.characters[id]) {
+    if (this.characters_ids[id]) {
       return;
     } else {
       delete data.act;
-      this.characters[id] = data;
+      this.characters_ids[id] = data;
 
       let name = data.name;
       let image = data.image;
@@ -108,12 +110,77 @@ export default class extends Controller {
   removeCharacter(data) {
     console.log(data);
     let id = data.id;
-    if (this.characters[id] === undefined) {
+    if (this.characters_ids[id] === undefined) {
       return;
     } else {
       document.getElementById(`character-${id}`).remove();
-      delete this.characters[id];
+      delete this.characters_ids[id];
     }
+  }
+
+  sendDice(dice) {
+    if (!this.channel) return;
+
+    let color = this.inputColorTarget.value;
+    let theme = this.inputThemeTarget.value;
+    let id = this.characters.id;
+    let dataToSend = Object.assign({}, this.characters)
+
+    dataToSend.act = "rollDice";
+    dataToSend.color = color;
+    dataToSend.theme = theme;
+    dataToSend.dice = dice;
+
+    this.channel.send(dataToSend);
+  }
+
+  diceNormal(event) {
+    let dice = event.params.dice;
+    this.sendDice(dice);
+  }
+
+  diceDamage() {
+    let bonus = this.weapon.bonus;
+    let qty = this.weapon.qty;
+    let dice = this.weapon.dice;
+
+    dice = `${qty}${dice}`
+
+    if (bonus != 0) {
+      dice = `${dice}${bonus}`
+    }
+
+    this.sendDice(dice);
+  }
+
+  diceCritical() {
+
+  }
+
+  diceAttack(event) {
+    let attack = this.weapon[event.params.attack];
+    let dice = "1d20";
+
+    if (attack != 0) {
+      dice += attack;
+    }
+    this.sendDice(dice);
+  }
+
+  setWeaponAndCharacter(event) {
+    this.characters = {
+      id: event.params.id,
+      name: event.params.name,
+      image: event.params.image,
+    };
+    this.weapon = {
+      attack: event.params.attack,
+      secondAttack: event.params.secondAttack,
+      thirdAttack: event.params.thirdAttack,
+      qty: event.params.qty,
+      dice: event.params.dice,
+      bonus: event.params.bonus,
+    };
   }
 
   updateHp(data) {

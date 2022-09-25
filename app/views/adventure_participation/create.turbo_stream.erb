@@ -202,8 +202,14 @@
       <div class="px-3 grid grid-cols-1 gap-4 w-full">
         <% participation.dices.each do |dice| %>
         <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
-          data-action="click->channels--character#diceNormal"
-          data-channels--character-dice-param="<%= dice.notation %>">
+            data-action="click->adventure--drawer#toggleDrawerMacro click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-name-param="<%= dice.name %>"
+            data-adventure--drawer-notation-param="<%= dice.notation %>"
+            data-adventure--drawer-note-param="<%= dice.notes %>"
+            data-channels--adventure-id-param="<%= participation.id %>"
+            data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
+            data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
+            >
           <p>
             <%= dice.name %>
           </p>
@@ -220,7 +226,23 @@
         <div class="px-3 grid grid-cols-1 gap-4 w-full">
           <% participation.pathfinder_melees.each do |melee| %>
             <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
-              data-action="click->channels--character#diceNormal">
+            data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-name-param="<%= melee.name %>"
+            data-adventure--drawer-note-param="<%= melee.notes %>"
+            data-adventure--drawer-other-param="<%= melee.other %>"
+            data-adventure--drawer-traits-param="<%= melee.traits %>"
+            data-adventure--drawer-attack-param="<%= get_attack_melee(participation, melee) || 0 %>"
+            data-adventure--drawer-second-attack-param="<%= get_second_attack_melee(participation, melee) || 0 %>"
+            data-adventure--drawer-third-attack-param="<%= get_third_attack_melee(participation, melee) || 0  %>"
+            data-channels--adventure-id-param="<%= participation.id %>"
+            data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
+            data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
+            data-channels--adventure-attack-param="<%= get_attack_melee(participation, melee) %>"
+            data-channels--adventure-second-attack-param="<%= get_second_attack_melee(participation, melee) %>"
+            data-channels--adventure-third-attack-param="<%= get_third_attack_melee(participation, melee) %>"
+            data-channels--adventure-qty-param="<%= melee.qty || 1 %>"
+            data-channels--adventure-dice-param="<%= melee.die %>"
+            data-channels--adventure-bonus-param="<%= bonus_damage_melee(participation, melee)  %>">
               <p>
                 <%= melee.name %>
               </p>
@@ -245,7 +267,23 @@
         <div class="px-3 grid grid-cols-1 gap-4 w-full">
           <% participation.pathfinder_rangeds.each do |ranged| %>
             <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
-              data-action="click->channels--character#diceNormal">
+            data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-name-param="<%= ranged.name %>"
+            data-adventure--drawer-note-param="<%= ranged.notes %>"
+            data-adventure--drawer-other-param="<%= ranged.other %>"
+            data-adventure--drawer-traits-param="<%= ranged.traits %>"
+            data-adventure--drawer-attack-param="<%= get_attack_ranged(participation, ranged) || 0 %>"
+            data-adventure--drawer-second-attack-param="<%= get_second_attack_ranged(participation, ranged) || 0 %>"
+            data-adventure--drawer-third-attack-param="<%= get_third_attack_ranged(participation, ranged) || 0  %>"
+            data-channels--adventure-id-param="<%= participation.id %>"
+            data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
+            data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
+            data-channels--adventure-attack-param="<%= get_attack_ranged(participation, ranged) %>"
+            data-channels--adventure-second-attack-param="<%= get_second_attack_ranged(participation, ranged) %>"
+            data-channels--adventure-third-attack-param="<%= get_third_attack_ranged(participation, ranged) %>"
+            data-channels--adventure-qty-param="<%= ranged.qty || 1 %>"
+            data-channels--adventure-dice-param="<%= ranged.die %>"
+            data-channels--adventure-bonus-param="<%= bonus_damage_ranged(ranged) %>">
               <p>
                 <%= ranged.name %>
               </p>
@@ -276,7 +314,7 @@
           <%= note.name %>
         </h1>
         <div class="ml-2">
-          <%= note.note %> lore
+          <%= note.note %>
         </div>
         <% end %>
       </div>

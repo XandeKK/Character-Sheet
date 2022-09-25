@@ -8,6 +8,10 @@ class AdventureChannel < ApplicationCable::Channel
   end
 
   def receive data
-    ActionCable.server.broadcast("character_#{params[:server_name]}", data)
+    if data["act"] == "wantPlayers"
+      ActionCable.server.broadcast("character_#{params[:server_name]}", data)
+    elsif data["act"] == "rollDice"
+      ActionCable.server.broadcast("tv_#{params[:server_name]}", data)
+    end
   end
 end
