@@ -30,6 +30,8 @@ class Character < ApplicationRecord
   accepts_nested_attributes_for :pathfinder_basic, :pathfinder_ability, :pathfinder_money, :pathfinder_saving_throw, :pathfinder_defense, :pathfinder_spell_caster, :pathfinder_perception, :pathfinder_class_dc, update_only: true
 
   accepts_nested_attributes_for :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes, :dices, reject_if: :all_blank, allow_destroy: true
+
+  scope :pathfinder, -> { includes(:pathfinder_basic, :pathfinder_ability, :pathfinder_money, :pathfinder_saving_throw, :pathfinder_defense, :pathfinder_spell_caster, :pathfinder_perception, :pathfinder_class_dc, :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes, :dices) }
 end
 
 

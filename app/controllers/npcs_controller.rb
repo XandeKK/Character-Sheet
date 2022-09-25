@@ -56,7 +56,7 @@ class NpcsController < ApplicationController
   private
 
   def set_character
-    @character = current_user.characters.find_by(id: params[:id])
+    @character = current_user.characters.pathfinder.find_by(id: params[:id])
   end
 
   def redirect_if_empty
