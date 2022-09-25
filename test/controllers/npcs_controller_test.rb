@@ -22,7 +22,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
     
     get npcs_path
     assert_select "h1", "Npcs"
-    assert_select "p", pathfinder_basics(:two).name
+    assert_select "#npc-#{pathfinder_basics(:two).name}"
     assert_response :success
   end
 
@@ -47,7 +47,7 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
     sign_up_with_other_user
 
     get new_npc_path
-    assert_select "h1", "New Npc"
+    assert_select "h2", "New Npc"
     assert_response :success
   end
 

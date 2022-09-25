@@ -10,7 +10,7 @@
           <div>
             <%= image_tag(npc.character_image, class: "w-20 h-20 rounded-full", alt:"#{npc.name}") if npc.character_image.attached?%>
           </div>
-          <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= npc.name %></div>
+          <div id="npc-<%= npc.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= npc.name %></div>
         </div>
         <%= render partial: "player/dropdown_character", locals: {id: npc.id, path_edit: edit_npc_path(npc), path_delete: npc_path(npc)} %>
       </div>
