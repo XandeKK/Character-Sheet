@@ -10,7 +10,7 @@
           <div>
             <%= image_tag(character.character_image, class: "w-20 h-20 rounded-full", alt:"#{character.name}") if character.character_image.attached?%>
           </div>
-          <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.name %></div>
+          <div id="character-<%= character.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.name %></div>
         </div>
         <%= render partial: "player/dropdown_character", locals: {id: character.id, path_edit: edit_character_path(character), path_delete: character_path(character)} %>
       </div>
