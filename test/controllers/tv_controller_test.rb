@@ -5,6 +5,7 @@ class TvControllerTest < ActionDispatch::IntegrationTest
     sign_up
 
     get tv_path
+    assert_select "#server-name"
     assert_response :success
   end
 
