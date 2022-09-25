@@ -1,6 +1,7 @@
 class EnemiesController < ApplicationController
   before_action :set_character, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
+  before_action :get_characters, only: [:show, :edit]
 
   def index
     @enemies = current_user.characters

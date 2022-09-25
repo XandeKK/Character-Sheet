@@ -1,12 +1,9 @@
 class CharactersController < ApplicationController
-  before_action :set_character, only: [:edit, :update, :destroy]
+  before_action :set_character, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_empty, only: [:edit, :update, :destroy]
+  before_action :get_characters, only: [:show, :edit]
 
   def show
-    @character = current_user.characters
-      .pathfinder
-      .find_by(id: params[:id])
-    redirect_if_empty
   end
 
   def new
@@ -70,7 +67,9 @@ class CharactersController < ApplicationController
   private
 
   def set_character
-    @character = current_user.characters.find_by(id: params[:id])
+    @character = current_user.characters
+      .pathfinder
+      .find_by(id: params[:id])
   end
 
   def redirect_if_empty

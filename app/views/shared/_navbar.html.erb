@@ -9,6 +9,8 @@
     </button>
     <!-- Button Navbar -->
     <%= render partial: "shared/dropdown_characters" if ["show", "edit"].include?(action_name) && controller_name == "characters" %>
+    <%= render partial: "shared/dropdown_npcs" if ["show", "edit"].include?(action_name) && controller_name == "npcs" %>
+    <%= render partial: "shared/dropdown_enemies" if ["show", "edit"].include?(action_name) && controller_name == "enemies" %>
     <%= render partial: "shared/dropdown_adventures" if ["show", "edit"].include?(action_name) && controller_name == "adventures" %>
     <div class="flex md:order-2">
     </div>
