@@ -22,7 +22,8 @@ class AdventuresController < ApplicationController
         :pathfinder_languages,
         :pathfinder_rangeds,
         :pathfinder_skills,
-        :pathfinder_notes
+        :pathfinder_notes,
+        :dices
       )
 
     @npc_and_enemy = current_user.characters

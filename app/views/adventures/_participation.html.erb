@@ -1,6 +1,6 @@
-<div id="character-<%= participation.character_id %>" class="flex flex-col md:flex-row mx-6 rounded-lg border border-gray-200 shadow-md dark:border-gray-700">
+<div id="character-<%= participation.character_id %>" class="flex flex-col md:flex-row mx-6 rounded-lg border border-gray-200 shadow-md dark:border-gray-700 p-3">
   <div class="flex justify-center md:basis-64 relative w-full h-64">
-    <%= image_tag participation.character.character_image, class: "absolute -top-3 md:-top-0 md:-left-6 rounded-full drop-shadow-lg w-64 h-64 bg-white" if participation.character.character_image.attached? %>
+    <%= image_tag participation.character.character_image, class: "rounded-full drop-shadow-lg w-64 h-64 bg-white" if participation.character.character_image.attached? %>
   </div>
   <div class="space-y-3 p-6 md:p-0 flex-1">
     <h1 id="character-name" class="md:mt-6 text-3xl">
@@ -165,12 +165,14 @@
           <%= participation.pathfinder_defense.max_hp || 0 %>;
         </span>&nbsp;
         <!--  -->
-        <span class="font-bold text-rose-700 dark:text-rose-500">
-          Resistances
-        </span>
-        <span>
-          <%= participation.pathfinder_defense.resistances_and_immunities %>
-        </span>&nbsp;
+        <% if participation.pathfinder_defense.resistances_and_immunities.present? %>
+          <span class="font-bold text-rose-700 dark:text-rose-500">
+            Resistances
+          </span>
+          <span>
+            <%= participation.pathfinder_defense.resistances_and_immunities %>
+          </span>&nbsp;
+        <% end %>
       </div>
     </div>
     <!--  -->
@@ -195,52 +197,66 @@
     </div>
     <!--  -->
     <div>
-      <div>
-        <% participation.pathfinder_melees.each do |melee| %>
-        <span class="font-bold text-rose-700 dark:text-rose-500">
-          Melee
-        </span>
-        <span>
-          <%= melee.name %>
-          <%= get_attack_melee(participation, melee)%>
-          [
-          <%= get_second_attack_melee(participation, melee)%>/
-          <%= get_third_attack_melee(participation, melee)%>]
-        </span>
-        <span class="font-bold text-rose-700 dark:text-rose-500">
-          Damage
-        </span>
-        <span>
-          <%= melee.qty %>
-          <%= melee.die %>
-          <%= bonus_damage_melee(participation, melee)  %>
-        </span>
+      <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Macros" unless participation.dices.empty? %></h1>
+      <div class="px-3 grid grid-cols-1 gap-4 w-full">
+        <% participation.dices.each do |dice| %>
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
+          <p>
+            <%= dice.name %>
+          </p>
+          <p>
+            <%= dice.notation %>
+          </p>
+        </div>
         <% end %>
       </div>
     </div>
     <!--  -->
     <div>
-      <div>
-        <% participation.pathfinder_rangeds.each do |ranged| %>
-        <span class="font-bold text-rose-700 dark:text-rose-500">
-          ranged
-        </span>
-        <span>
-          <%= ranged.name %>
-          <%= get_attack_ranged(participation, ranged)%>
-          [
-          <%= get_second_attack_ranged(participation, ranged)%>/
-          <%= get_third_attack_ranged(participation, ranged)%>]
-        </span>
-        <span class="font-bold text-rose-700 dark:text-rose-500">
-          Damage
-        </span>
-        <span>
-          <%= ranged.qty %>
-          <%= ranged.die %>
-          <%= bonus_damage_ranged ranged  %>
-        </span>
-        <% end %>
+      <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Melees" unless participation.pathfinder_melees.empty? %></h1>
+        <div class="px-3 grid grid-cols-1 gap-4 w-full">
+          <% participation.pathfinder_melees.each do |melee| %>
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
+              <p>
+                <%= melee.name %>
+              </p>
+              <p>
+                <%= get_attack_melee(participation, melee)%>
+              [
+              <%= get_second_attack_melee(participation, melee)%>/
+              <%= get_third_attack_melee(participation, melee)%> ]
+              </p>
+              <p>
+                <%= melee.qty %>
+                <%= melee.die %>
+                <%= bonus_damage_melee(participation, melee)  %>
+              </p>
+            </div>
+          <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Rangeds" unless participation.pathfinder_rangeds.empty? %></h1>
+        <div class="px-3 grid grid-cols-1 gap-4 w-full">
+          <% participation.pathfinder_rangeds.each do |ranged| %>
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500">
+              <p>
+                <%= ranged.name %>
+              </p>
+              <p>
+                <%= get_attack_ranged(participation, ranged)%>
+              [
+              <%= get_second_attack_ranged(participation, ranged)%>/
+              <%= get_third_attack_ranged(participation, ranged)%> ]
+              </p>
+              <p>
+                <%= ranged.qty %>
+                <%= ranged.die %>
+                <%= bonus_damage_ranged(ranged)  %>
+              </p>
+            </div>
+          <% end %>
       </div>
     </div>
     <!--  -->
@@ -248,7 +264,7 @@
     <div>
       <div>
         <span class="font-bold text-rose-700 dark:text-rose-500">
-          Notes
+          <%= "Notes" unless participation.pathfinder_notes.empty? %>
         </span>
         <% participation.pathfinder_notes.each do |note| %>
         <h1 class="font-bold text-rose-700 dark:text-rose-500 ml-1">

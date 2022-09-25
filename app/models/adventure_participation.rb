@@ -22,4 +22,5 @@ class AdventureParticipation < ApplicationRecord
   has_many :pathfinder_weapon_proficiencies, through: :character
   has_many :pathfinder_innate_spells, through: :character
   has_many :pathfinder_notes, through: :character
+  has_many :dices, through: :character
 end
