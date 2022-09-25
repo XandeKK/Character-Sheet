@@ -54,7 +54,8 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
 
     put character_path(character), params: {
       character: {
-        pathfinder_basic_attributes: {"name": "Tolo"}
+        pathfinder_basic_attributes: {"name": "Tolo"},
+        image: ""
       }
     }
 
