@@ -22,7 +22,7 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
     
     get enemies_path
     assert_select "h1", "Enemies"
-    assert_select "p", pathfinder_basics(:three).name
+    assert_select "#enemy-#{pathfinder_basics(:three).name}"
     assert_response :success
   end
 
@@ -47,7 +47,7 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
     sign_up_with_other_user
 
     get new_enemy_path
-    assert_select "h1", "New Enemy"
+    assert_select "h2", "New Enemy"
     assert_response :success
   end
 

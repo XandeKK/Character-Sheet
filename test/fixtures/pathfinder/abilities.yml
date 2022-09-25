@@ -65,3 +65,36 @@ two:
   cha_ascentry: 0
   cha_background: 2
   character: two
+
+three:
+  str_total: 8
+  str_free: 0
+  str_class: 0
+  str_ascentry: 0
+  str_background: -2
+  dex_total: 16
+  dex_free: 0
+  dex_class: 0
+  dex_ascentry: 4
+  dex_background: 2
+  con_total: 8
+  con_free: 0
+  con_class: -2
+  con_ascentry: 0
+  con_background: 0
+  int_total: 20
+  int_free: 2
+  int_class: 4
+  int_ascentry: 2
+  int_background: 2
+  wis_total: 22
+  wis_free: 4
+  wis_class: 2
+  wis_ascentry: 4
+  wis_background: 2
+  cha_total: 14
+  cha_free: 2
+  cha_class: 0
+  cha_ascentry: 0
+  cha_background: 2
+  character: three

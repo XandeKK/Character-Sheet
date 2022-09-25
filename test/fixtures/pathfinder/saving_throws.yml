@@ -37,3 +37,22 @@ two:
   will_penalty: 1
   saving_throw_notes: MyText
   character: two
+
+three:
+  fortitude_total: 1
+  reflex_total: 1
+  will_total: 1
+  fortitude_proficiency: 1
+  reflex_proficiency: 1
+  will_proficiency: 1
+  fortitude_item: 1
+  reflex_item: 1
+  will_item: 1
+  fortitude_misc: 1
+  reflex_misc: 1
+  will_misc: 1
+  fortitude_penalty: 1
+  reflex_penalty: 1
+  will_penalty: 1
+  saving_throw_notes: MyText
+  character: three

@@ -10,7 +10,7 @@
           <div>
             <%= image_tag(enemy.character_image, class: "w-20 h-20 rounded-full", alt:"#{enemy.name}") if enemy.character_image.attached?%>
           </div>
-          <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= enemy.name %></div>
+          <div id="enemy-<%= enemy.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= enemy.name %></div>
         </div>
         <%= render partial: "player/dropdown_character", locals: {id: enemy.id, path_edit: edit_enemy_path(enemy), path_delete: enemy_path(enemy)} %>
       </div>

@@ -37,3 +37,22 @@ two:
   medium_proficiency: 4
   light_proficiency: 2
   character: two
+
+three:
+  max_hp: 40
+  current_hp: 40
+  ancestry_hp: 20
+  class_hp: 10
+  temp_hp: 13
+  resistances_and_immunities: none
+  conditions: none
+  dying: 1
+  wounded: 0
+  armor_class_item: 2
+  armor_class_proficiency: 6
+  max_dex: 3
+  unarmored_proficiency: 8
+  heavy_proficiency: 6
+  medium_proficiency: 4
+  light_proficiency: 2
+  character: three

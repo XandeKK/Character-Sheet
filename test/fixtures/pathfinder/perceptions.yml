@@ -11,3 +11,9 @@ two:
   proficiency: 1
   senses: MyString
   character: two
+
+three:
+  item: 1
+  proficiency: 1
+  senses: MyString
+  character: three
