@@ -192,4 +192,24 @@ module ShowCharactersHelper
 
     10 + ability + proficiency + bonus - penalty + level
   end
+
+  def format_macro_notation(character, macro)
+    str = get_modifier(character, :str)
+    dex = get_modifier(character, :dex)
+    con = get_modifier(character, :con)
+    int = get_modifier(character, :int)
+    wis = get_modifier(character, :wis)
+    cha = get_modifier(character, :cha)
+    level = character.pathfinder_basic.level || "0"
+
+    macro.gsub! "str", str.to_s
+    macro.gsub! "dex", dex.to_s
+    macro.gsub! "con", con.to_s
+    macro.gsub! "int", int.to_s
+    macro.gsub! "wis", wis.to_s
+    macro.gsub! "cha", cha.to_s
+    macro.gsub! "level", level.to_s
+
+    macro
+  end
 end

@@ -183,13 +183,13 @@
             <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
               data-action="click->flowbite#toggleDrawerMacro"
               data-flowbite-name-param="<%= dice.name %>"
-              data-flowbite-notation-param="<%= dice.notation %>"
+              data-flowbite-notation-param="<%= format_macro_notation(@character, dice.notation) %>"
               data-flowbite-note-param="<%= dice.notes %>">
               <p>
                 <%= dice.name %>
               </p>
               <p>
-                <%= dice.notation %>
+                <%= format_macro_notation(@character, dice.notation) %>
               </p>
             </div>
             <% end %>
