@@ -9,20 +9,20 @@
   </div>
   <!--  -->
   <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="defensesTab" data-tabs-toggle="#defensesTabContent" role="tablist">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" id="defensesTab" data-tabs-toggle="#defensesTabContent" role="tablist">
       <li class="mr-2" role="presentation">
         <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="hp-tab" data-tabs-target="#hp" type="button" role="tab" aria-controls="hp" aria-selected="true">HP</button>
       </li>
       <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="armor-class-tab" data-tabs-target="#armor-class" type="button" role="tab" aria-controls="armor-class" aria-selected="false">Armor Class</button>
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 dark:border-transparent border-gray-100 dark:border-gray-700" id="armor-class-tab" data-tabs-target="#armor-class" type="button" role="tab" aria-controls="armor-class" aria-selected="false">Armor Class</button>
       </li>
       <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="saving-throw-tab" data-tabs-target="#saving-throw" type="button" role="tab" aria-controls="saving-throw" aria-selected="false">Saving Throw</button>
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 dark:border-transparent border-gray-100 dark:border-gray-700" id="saving-throw-tab" data-tabs-target="#saving-throw" type="button" role="tab" aria-controls="saving-throw" aria-selected="false">Saving Throw</button>
       </li>
     </ul>
   </div>
   <!--  -->
-  <div id="defensesTabContent">
+  <div id="defensesTabContent" class="text-sm text-gray-900 dark:text-gray-300">
     <%= form.fields_for :pathfinder_defense do |form_defense| %>
     <div class="" id="hp" role="tabpanel" aria-labelledby="hp-tab">
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
@@ -32,46 +32,46 @@
         <div class="w-full space-y-6">
           <div class="flex" data-controller="edit-character--hp" data-action="change->edit-character--hp#updateMaxHp" data-edit-character--event-trigger-target="hp">
             <div>
-              <%= form_defense.label :max_hp, "Max", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.number_field :max_hp, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--hp-target":"max_hp" %>
+              <%= form_defense.label :max_hp, "Max", class: "block mb-2 font-medium" %>
+              <%= form_defense.number_field :max_hp, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--hp-target":"max_hp" %>
             </div>
             <div>
-              <%= form_defense.label :current_hp, "Current", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.number_field :current_hp, class: "rounded-none bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--hp-target":"current_hp"  %>
+              <%= form_defense.label :current_hp, "Current", class: "block mb-2 font-medium" %>
+              <%= form_defense.number_field :current_hp, class: "rounded-none bg-gray-300 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--hp-target":"current_hp"  %>
             </div>
             <div>
-              <%= form_defense.label :ancestry_hp, "Ancestry", class: "truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.number_field :ancestry_hp, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--hp-target":"ancestry_hp" %>
+              <%= form_defense.label :ancestry_hp, "Ancestry", class: "truncate block mb-2 font-medium" %>
+              <%= form_defense.number_field :ancestry_hp, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--hp-target":"ancestry_hp" %>
             </div>
             <div>
-              <%= form_defense.label :class_hp, "Class", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.number_field :class_hp, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-tooltip-target":"tooltip-animation", "data-edit-character--hp-target":"class_hp" %>
-              <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+              <%= form_defense.label :class_hp, "Class", class: "block mb-2 font-medium" %>
+              <%= form_defense.number_field :class_hp, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-tooltip-target":"tooltip-animation", "data-edit-character--hp-target":"class_hp" %>
+              <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                 Only base health is needed, rest will be calculated according to your level and constitution.
                 <div class="tooltip-arrow" data-popper-arrow></div>
               </div>
             </div>
             <div>
-              <%= form_defense.label :temp_hp, "Temp", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.number_field :temp_hp, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :temp_hp, "Temp", class: "block mb-2 font-medium" %>
+              <%= form_defense.number_field :temp_hp, class: "rounded-none rounded-r-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
           </div>
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
             <div>
-              <%= form_defense.label :dying, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.text_field :dying, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :dying, class: "block mb-2 font-medium" %>
+              <%= form_defense.text_field :dying, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
             <div>
-              <%= form_defense.label :wounded, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.text_field :wounded, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :wounded, class: "block mb-2 font-medium" %>
+              <%= form_defense.text_field :wounded, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
             <div class="mm:col-span-2 md:col-span-3">
-              <%= form_defense.label :resistances_and_immunities, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.text_field :resistances_and_immunities, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :resistances_and_immunities, class: "block mb-2 font-medium" %>
+              <%= form_defense.text_field :resistances_and_immunities, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
             <div class="mm:col-span-2 md:col-span-3">
-              <%= form_defense.label :conditions, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.text_field :conditions, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :conditions, class: "block mb-2 font-medium" %>
+              <%= form_defense.text_field :conditions, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
           </div>
         </div>
@@ -85,35 +85,35 @@
         <div class="space-y-6">
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
             <div>
-              <%= form_defense.label :armor_class_item, "Item", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.text_field :armor_class_item, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :armor_class_item, "Item", class: "block mb-2 font-medium" %>
+              <%= form_defense.text_field :armor_class_item, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
             <div>
-              <%= form_defense.label :armor_class_proficiency, "Proficiency", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.select :armor_class_proficiency, proficiencies, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :armor_class_proficiency, "Proficiency", class: "block mb-2 font-medium" %>
+              <%= form_defense.select :armor_class_proficiency, proficiencies, {}, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
             <div>
-              <%= form_defense.label :max_dex, "Cap", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_defense.text_field :max_dex, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_defense.label :max_dex, "Cap", class: "block mb-2 font-medium" %>
+              <%= form_defense.text_field :max_dex, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
             </div>
           </div>
           <div class="w-full">
             <div class="flex">
               <div class="flex-1">
-                <%= form_defense.label :unarmored_proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_defense.select :unarmored_proficiency, proficiencies, {}, class: "rounded-none rounded-l-lg g-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_defense.label :unarmored_proficiency, class: "block mb-2 font-medium" %>
+                <%= form_defense.select :unarmored_proficiency, proficiencies, {}, class: "rounded-none rounded-l-lg g-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
               </div>
               <div class="flex-1">
-                <%= form_defense.label :light_proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_defense.select :light_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_defense.label :light_proficiency, class: "block mb-2 font-medium" %>
+                <%= form_defense.select :light_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
               </div>
               <div class="flex-1">
-                <%= form_defense.label :medium_proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_defense.select :medium_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_defense.label :medium_proficiency, class: "block mb-2 font-medium" %>
+                <%= form_defense.select :medium_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
               </div>
               <div class="flex-1">
-                <%= form_defense.label :heavy_proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_defense.select :heavy_proficiency, proficiencies, {}, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_defense.label :heavy_proficiency, class: "block mb-2 font-medium" %>
+                <%= form_defense.select :heavy_proficiency, proficiencies, {}, class: "rounded-none rounded-r-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
               </div>
             </div>
           </div>
@@ -130,24 +130,24 @@
         <div class="w-full">
           <div class="flex" data-action="change->edit-character--saving-throw#updateFortitude">
             <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :fortitude_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--saving-throw-target":"fortitude_total" %>
+              <%= form_saving_throw.label :fortitude_total, "Total", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :fortitude_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--saving-throw-target":"fortitude_total" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_proficiency, "Proficiency", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.select :fortitude_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_proficiency" %>
+              <%= form_saving_throw.label :fortitude_proficiency, "Proficiency", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.select :fortitude_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_proficiency" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_item, "Item", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :fortitude_item, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_item" %>
+              <%= form_saving_throw.label :fortitude_item, "Item", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :fortitude_item, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_item" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_misc, "Misc", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :fortitude_misc, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_misc" %>
+              <%= form_saving_throw.label :fortitude_misc, "Misc", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :fortitude_misc, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_misc" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_penalty, "Penalty", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :fortitude_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_penalty" %>
+              <%= form_saving_throw.label :fortitude_penalty, "Penalty", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :fortitude_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"fortitude_penalty" %>
             </div>
           </div>
         </div>
@@ -159,24 +159,24 @@
         <div class="w-full">
           <div class="flex" data-action="change->edit-character--saving-throw#updateReflex">
             <div class="flex-1">
-              <%= form_saving_throw.label :reflex_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :reflex_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--saving-throw-target":"reflex_total" %>
+              <%= form_saving_throw.label :reflex_total, "Total", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :reflex_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--saving-throw-target":"reflex_total" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :reflex_proficiency, "Proficiency", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.select :reflex_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_proficiency" %>
+              <%= form_saving_throw.label :reflex_proficiency, "Proficiency", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.select :reflex_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_proficiency" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :reflex_item, "Item", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :reflex_item, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_item" %>
+              <%= form_saving_throw.label :reflex_item, "Item", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :reflex_item, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_item" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :reflex_misc, "Misc", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :reflex_misc, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_misc" %>
+              <%= form_saving_throw.label :reflex_misc, "Misc", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :reflex_misc, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_misc" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :reflex_penalty, "Penalty", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :reflex_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_penalty" %>
+              <%= form_saving_throw.label :reflex_penalty, "Penalty", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :reflex_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"reflex_penalty" %>
             </div>
           </div>
         </div>
@@ -188,24 +188,24 @@
         <div class="w-full">
           <div class="flex" data-action="change->edit-character--saving-throw#updateWill">
             <div class="flex-1">
-              <%= form_saving_throw.label :will_total, "Total", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :will_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--saving-throw-target":"will_total" %>
+              <%= form_saving_throw.label :will_total, "Total", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :will_total, class: "rounded-none rounded-l-lg bg-gray-300 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", readonly: "", "data-edit-character--saving-throw-target":"will_total" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :will_proficiency, "Proficiency", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.select :will_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_proficiency" %>
+              <%= form_saving_throw.label :will_proficiency, "Proficiency", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.select :will_proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_proficiency" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :will_item, "Item", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :will_item, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_item" %>
+              <%= form_saving_throw.label :will_item, "Item", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :will_item, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_item" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :will_misc, "Misc", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :will_misc, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_misc" %>
+              <%= form_saving_throw.label :will_misc, "Misc", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :will_misc, class: "rounded-none bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_misc" %>
             </div>
             <div class="flex-1">
-              <%= form_saving_throw.label :will_penalty, "Penalty", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_saving_throw.number_field :will_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_penalty" %>
+              <%= form_saving_throw.label :will_penalty, "Penalty", class: "block mb-2 font-medium" %>
+              <%= form_saving_throw.number_field :will_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", "data-edit-character--saving-throw-target":"will_penalty" %>
             </div>
           </div>
         </div>
@@ -215,8 +215,8 @@
           Notes
         </div>
         <div class="w-full">
-          <%= form_saving_throw.label :saving_throw_notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-          <%= form_saving_throw.text_area :saving_throw_notes, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
+          <%= form_saving_throw.label :saving_throw_notes, class: "block mb-2 font-medium" %>
+          <%= form_saving_throw.text_area :saving_throw_notes, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
         </div>
       </div>
       <% end %>
