@@ -10,3 +10,6 @@ pin "cropperjs", to: "https://ga.jspm.io/npm:cropperjs@1.5.12/dist/cropper.js"
 pin "@rails/actioncable", to: "actioncable.esm.js"
 pin_all_from "app/javascript/channels", under: "channels"
 pin "@3d-dice/dice-box", to: "https://ga.jspm.io/npm:@3d-dice/dice-box@1.0.5/dist/dice-box.es.js"
+pin "@3d-dice/dice-parser-interface", to: "@3d-dice--dice-parser-interface.js" # @0.2.0
+pin "@3d-dice/dice-roller-parser", to: "@3d-dice--dice-roller-parser.js" # @0.2.6
+pin "advanced-roller", to: "advanced-roller.js" # @0.2.6
