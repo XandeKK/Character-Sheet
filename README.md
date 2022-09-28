@@ -10,10 +10,11 @@
 
 <p align="center">
  <a href="#-about-the-project">About</a> •
+ <a href="#screenshots">Screenshots</a> • 
  <a href="#-setup">Setup</a> • 
  <!-- <a href="#-usage">Usage</a> •  -->
  <a href="#-technologies">Technologies</a> • 
- <a href="#user-content--license">License</a>
+ <a href="#-license">License</a>
 </p>
 
 ---
@@ -26,6 +27,20 @@ The "simple" character sheet app for player and GM.
 But it was also made to play during a session, where you can manage your character, watch the dice roll on TV.
 
 Just to let you know that the application was designed to play with everyone together in a room, where you have a tv with internet, if you are thinking of using it to play with other people online, unfortunately it won't work, but you can use it. it as character management, that's all.
+
+## Screenshots
+
+<div style="display: grid">
+<img src="./screenshots/0.png" alt="0" width="500"/>
+<img src="./screenshots/1.png" alt="1" width="500"/>
+<img src="./screenshots/2.png" alt="2" width="500"/>
+<img src="./screenshots/3.gif" alt="3" width="500"/>
+<img src="./screenshots/3.png" alt="3" width="500"/>
+<img src="./screenshots/4.png" alt="4" width="500"/>
+<img src="./screenshots/5.gif" alt="5" width="500"/>
+<img src="./screenshots/5.png" alt="5" width="500"/>
+<img src="./screenshots/6.png" alt="6" width="500"/>
+</div>
 
 ## ⚙️ Setup
 ### Prerequisites to run on local machine
