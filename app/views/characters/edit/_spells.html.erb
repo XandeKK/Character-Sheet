@@ -1,0 +1,347 @@
+<div id="spells" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14 1 0 2.5 0 5-2.47.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z" /></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Spells
+    </h1>
+  </div>
+  <!--  -->
+  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="spellsTab" data-tabs-toggle="#spellsTabContent" role="tablist">
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="spell-caster-tab" data-tabs-target="#spell-caster" type="button" role="tab" aria-controls="spell-caster" aria-selected="true">Spell Caster</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="spell-tab" data-tabs-target="#spell" type="button" role="tab" aria-controls="spell" aria-selected="false">Spells</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="innate-spells-tab" data-tabs-target="#innate-spells" type="button" role="tab" aria-controls="innate-spells" aria-selected="false">Innate Spells</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="focus-spells-tab" data-tabs-target="#focus-spells" type="button" role="tab" aria-controls="focus-spells" aria-selected="false">Focus Spells</button>
+      </li>
+    </ul>
+  </div>
+  <!--  -->
+  <div id="spellsTabContent">
+    <%= form.fields_for :pathfinder_spell_caster do |form_spell_caster| %>
+    <div class="" id="spell-caster" role="tabpanel" aria-labelledby="spell-caster-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Spell Caster
+        </div>
+        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <div>
+            <%= form_spell_caster.label :magic_tradition, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.select :magic_tradition, magic_tradition, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :spellcasting_type, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.select :spellcasting_type, spellcasting_type, {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Attack
+        </div>
+        <div class="w-full">
+          <div class="flex">
+            <div class="flex-1">
+              <%= form_spell_caster.label :attack_proficiency, "Proficiency", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spell_caster.select :attack_proficiency, proficiencies, {}, class: "rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <div class="flex-1">
+              <%= form_spell_caster.label :attack_bonus, "Bonus", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spell_caster.number_field :attack_bonus, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <div class="flex-1">
+              <%= form_spell_caster.label :attack_penalty, "Penalty", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spell_caster.number_field :attack_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          CD
+        </div>
+        <div class="w-full">
+          <div class="flex">
+            <div class="flex-1">
+              <%= form_spell_caster.label :cd_proficiency, "Proficiency", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spell_caster.select :cd_proficiency, proficiencies, {}, class: "rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <div class="flex-1">
+              <%= form_spell_caster.label :cd_bonus, "Bonus", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spell_caster.number_field :cd_bonus, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <div class="flex-1">
+              <%= form_spell_caster.label :cd_penalty, "Penalty", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spell_caster.number_field :cd_penalty, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Level
+        </div>
+        <div class="grid mm:grid-cols-3 md:grid-cols-5 gap-4 w-full">
+          <div>
+            <%= form_spell_caster.label :level_0, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_0, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_1, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_1, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_2, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_2, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_3, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_3, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_4, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_4, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_5, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_5, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_6, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_6, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_7, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_7, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_8, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_8, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_9, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_9, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div>
+            <%= form_spell_caster.label :level_10, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.text_field :level_10, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Notes
+        </div>
+        <div class="w-full">
+          <%= form_spell_caster.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+          <%= form_spell_caster.text_area :notes, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
+        </div>
+      </div>
+    </div>
+    <div class="" id="spell" role="tabpanel" aria-labelledby="spell-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Spells
+        </div>
+        <div id="body-spells" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--spells" data-action="click->edit-character--spells#addSpell" data-edit-character--spells-count-param="<%= @character.pathfinder_spells.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_spells do |form_spells| %>
+          <div id="spells-<%= form_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_spells.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--spells" data-action="click->edit-character--spells#removeSpell" data-edit-character--spells-id-param="<%= form_spells.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_spells.label :level, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.number_field :level, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_spells.label :prepared, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.number_field :prepared, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_spells.label :action, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.select :action, actions, {}, class: "font-pathfinder rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_spells.label :spell_component, class: "truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.select :spell_component, spell_component, {}, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_spells.label :duration, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.text_field :duration, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_spells.label :range, class: "truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_spells.number_field :range, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div>
+              <%= form_spells.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_spells.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_spells.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="" id="innate-spells" role="tabpanel" aria-labelledby="innate-spells-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Innate Spells
+        </div>
+        <div id="body-innate-spells" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#addInnateSpell" data-edit-character--innate-spells-count-param="<%= @character.pathfinder_innate_spells.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_innate_spells do |form_innate_spells| %>
+          <div id="innate-spells-<%= form_innate_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_innate_spells.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_innate_spells.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#removeInnateSpell" data-edit-character--innate-spells-id-param="<%= form_innate_spells.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_innate_spells.label :frequency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_innate_spells.number_field :frequency, class: "rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_innate_spells.label :action, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_innate_spells.select :action, actions, {}, class: "font-pathfinder rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_innate_spells.label :spell_component, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_innate_spells.select :spell_component, spell_component, {}, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_innate_spells.label :duration, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_innate_spells.text_field :duration, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_innate_spells.label :range, class: "truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_innate_spells.number_field :range, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div>
+              <%= form_innate_spells.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_innate_spells.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_innate_spells.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="" id="focus-spells" role="tabpanel" aria-labelledby="focus-spells-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Focus Spell
+        </div>
+        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <div class="flex-1">
+            <%= form_spell_caster.label :max_focus_points, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.number_field :max_focus_points, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+          <div class="flex-1">
+            <%= form_spell_caster.label :current_focus_points, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= form_spell_caster.number_field :current_focus_points, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Spells
+        </div>
+        <div id="body-focus-spells" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#addFocusSpell" data-edit-character--focus-spells-count-param="<%= @character.pathfinder_focus_spells.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_focus_spells do |form_focus_spells| %>
+          <div id="focus-spells-<%= form_focus_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_focus_spells.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_focus_spells.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#removeFocusSpell" data-edit-character--focus-spells-id-param="<%= form_focus_spells.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_focus_spells.label :action, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_focus_spells.select :action, actions, {}, class: "font-pathfinder rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_focus_spells.label :spell_component, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_focus_spells.select :spell_component, spell_component, {}, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_focus_spells.label :duration, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_focus_spells.text_field :duration, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <%= form_focus_spells.label :range, class: "truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_focus_spells.number_field :range, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+            </div>
+            <div>
+              <%= form_focus_spells.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_focus_spells.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_focus_spells.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

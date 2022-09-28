@@ -1,14 +1,13 @@
 class TvChannel < ApplicationCable::Channel
   def subscribed
-    if Adventure.find_by(unique_name: params[:unique_name])
-      stream_from params[:unique_name]
+    if Adventure.find_by(server_name: params[:server_name])&.authenticate(params[:password])
+      stream_from "tv_#{params[:server_name]}"
+    else 
+      reject
     end
   end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
-  end
-
-  def receive(data)
   end
 end

@@ -1,0 +1,219 @@
+<div id="basics" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M4 22a8 8 0 1 1 16 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z" /></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Basics
+    </h1>
+  </div>
+  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="basicsTab" data-tabs-toggle="#basicsTabContent" role="tablist">
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="character-tab" data-tabs-target="#character" type="button" role="tab" aria-controls="character" aria-selected="true">Character</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="dices-tab" data-tabs-target="#dices" type="button" role="tab" aria-controls="dices" aria-selected="false">Dice</button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="server-tab" data-tabs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="false">Server</button>
+      </li>
+    </ul>
+  </div>
+  <div id="basicsTabContent">
+    <div id="character" role="tabpanel" aria-labelledby="character-tab">
+      <div class="md:py-3">
+        <div class="flex flex-col md:flex-row">
+          <div class="flex justify-center md:basis-64 relative w-full h-64">
+            <%= image_tag @character.character_image, id:"character-image", class: "absolute -top-3 md:-top-0 md:-left-6 rounded-full drop-shadow-lg w-64 h-64 bg-white" if @character.character_image.attached? %>
+          </div>
+          <div class="space-y-6 p-6 md:p-0 flex-1">
+            <h1 id="character-name" class="md:mt-6 text-3xl" data-id="<%= @character.id %>">
+              <%= @character.pathfinder_basic.name %>
+            </h1>
+            <h2 class="text-2xl">
+              <%= @character.pathfinder_basic.class_name %>
+              <%= @character.pathfinder_basic.level %>
+            </h2>
+            <div class="flex space-x-4">
+              <div>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Perception
+                </h3>
+                <span class="pl-3">
+                  <%= get_perception @character %>
+                </span>
+              </div>
+              <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+              <div>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Land Speed
+                </h3>
+                <span class="pl-2" data-popover-target="popover-speed">
+                  <%= @character.pathfinder_basic.speed %>
+                </span>
+                <div data-popover id="popover-speed" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                  <div class="py-2 px-3">
+                    <p>
+                      <%= @character.pathfinder_basic.speed_note %>
+                    </p>
+                  </div>
+                  <div data-popper-arrow></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-6 flex flex-wrap gap-3">
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Aligment
+            </h3>
+            <span class="pl-3">
+              <%= @character.pathfinder_basic.alignment %>
+            </span>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Size
+            </h3>
+            <span class="pl-3">
+              <%= @character.pathfinder_basic.size %>
+            </span>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Ancestry
+            </h3>
+            <span class="pl-2">
+              <%= @character.pathfinder_basic.ancestry %>
+            </span>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Heritage
+            </h3>
+            <span class="pl-2" data-popover-target="popover-heritage">
+              <%= @character.pathfinder_basic.heritage %>
+            </span>
+          </div>
+          <div data-popover id="popover-heritage" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            <div class="py-2 px-3">
+              <p>
+                <%= @character.pathfinder_basic.heritage_note %>
+              </p>
+            </div>
+            <div data-popper-arrow></div>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Background
+            </h3>
+            <span class="pl-2">
+              <%= @character.pathfinder_basic.background %>
+            </span>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Deity
+            </h3>
+            <span class="pl-2">
+              <%= @character.pathfinder_basic.deity %>
+            </span>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Age
+            </h3>
+            <span class="pl-2">
+              <%= @character.pathfinder_basic.age %>
+            </span>
+          </div>
+          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+        <div class="flex mb-6 gap-3">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Hero Points
+            </h3>
+            <span class="pl-2">
+              <%= @character.pathfinder_basic.hero_points %>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="px-6 pb-6">
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Description
+        </h3>
+        <p class="pl-3">
+          <%= @character.pathfinder_basic.description %>
+        </p>
+      </div>
+    </div>
+    <div id="dices" role="tabpanel" aria-labelledby="dices-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+          Macros
+        </div>
+        <div class="space-y-3 w-full">
+          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+            <% @character.dices.each do |dice| %>
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+              data-action="click->flowbite#toggleDrawerMacro"
+              data-flowbite-name-param="<%= dice.name %>"
+              data-flowbite-notation-param="<%= format_macro_notation(@character, dice.notation) %>"
+              data-flowbite-note-param="<%= dice.notes %>">
+              <p>
+                <%= dice.name %>
+              </p>
+              <p>
+                <%= format_macro_notation(@character, dice.notation) %>
+              </p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-6" id="server" role="tabpanel" aria-labelledby="server-tab">
+      <div class="mx-auto p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-transparent dark:border-gray-700">
+        <div class="space-y-6 text-sm text-gray-900" data-channels--character-target="formServer">
+          <div>
+            <label for="server-name" class="block mb-2 font-medium dark:text-gray-300">Server name</label>
+            <input type="text" name="server-name" id="server-name" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="serverName">
+          </div>
+          <div>
+            <label for="password" class="block mb-2 font-medium dark:text-gray-300">Password</label>
+            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="password">
+          </div>
+          <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-action="channels--character#startServer">Connect</button>
+        </div>
+        <button class="hidden space-y-6" data-channels--character-target="terminateButton" data-action="channels--character#terminateServer">
+          Stop Server
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

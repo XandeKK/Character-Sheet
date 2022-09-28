@@ -23,6 +23,5 @@ module ApplicationCable
     def user_from_remember_token(token)
       Clearance.configuration.user_model.where(remember_token: token).first
     end
-
   end
 end

@@ -1,24 +1,25 @@
-<%= form_for :session, url: session_path do |form| %>
-  <div class="mb-3">
-    <%= form.label :email, class: "form-label" %>
-    <%= form.email_field :email, class: "form-control" %>
+<%= form_for :session, url: session_path, class: "space-y-6 text-sm" do |form| %>
+  <div class="relative z-0 mb-6 w-full group">
+    <%= form.email_field :email, class: session_form_field, placeholder:" ", required:"" %>
+    <%= form.label :email, class: session_form_label %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :password, class: "form-label" %>
-    <%= form.password_field :password, class: "form-control" %>
-    <div class="text-end my-2">
-      <%= link_to t(".forgot_password"), new_password_path %>
+  <div class="relative z-0 mb-6 w-full group">
+    <%= form.password_field :password, class: session_form_field, placeholder:" ", required:"" %>
+    <%= form.label :password, class: session_form_label %>
+  </div>
+
+  <div class="flex items-start">
+    <div class="flex items-start">
     </div>
+    <%= link_to t(".forgot_password"), new_password_path, class: "ml-auto text-blue-700 hover:underline dark:text-blue-500" %>
   </div>
+    
+  <%= form.submit class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
 
-  <div class="text-end">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
-
-  <div class="text-center my-4">
+  <div class="font-medium text-gray-500 dark:text-gray-300">
     <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path %>
+      <%= link_to t(".sign_up"), sign_up_path, class: "text-blue-700 hover:underline dark:text-blue-500" %>
     <% end %>
   </div>
 <% end %>

@@ -1,46 +1,18 @@
-<nav class="navbar navbar-light navbar-expand-md navbar-dark bg-primary justify-content-center">
-  <div class="container-fluid">
-    <%= link_to t(:home), root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
-      <span class="navbar-toggler-icon"></span>
+<nav class="bg-rose-800 py-2 dark:bg-rose-800 w-full top-0 left-0">
+  <div class="container flex flex-wrap justify-between items-center mx-6">
+    <button class="py-2.5" type="button" data-action="click->flowbite#toggleDrawerLeft" aria-controls="drawer-navigation">
+      <div class="space-y-2">
+        <span class="block w-8 h-0.5 bg-white"></span>
+        <span class="block w-8 h-0.5 bg-white"></span>
+        <span class="block w-8 h-0.5 bg-white"></span>
+      </div>
     </button>
-
-    <div class="navbar-collapse collapse" id="collapsingNavbar3">
-      <ul class="navbar-nav w-100 justify-content-center">
-      </ul>
-      <ul class="navbar-nav w-100 justify-content-center">
-        <li class="nav-item text-center">
-          <%= link_to t(:player), characters_path, class:"nav-link" %>
-        </li>
-        <li class="nav-item text-center">
-          <%= link_to t(:gm), gm_path, class:"nav-link" %>
-        </li>
-        <li class="nav-item text-center">
-          <%= link_to t(:tv), campaign_tv_path, class: "nav-link" %>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
-        <!-- <li class="nav-item text-center">
-          <a class="nav-link" href="#">Right</a>
-        </li> -->
-        <li class="nav-item text-center">
-          <div class="dropdown">
-            <button class="btn bg-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <% if signed_in? %>
-                  <%= button_to t(:account), account_path, method: :get, class: "dropdown-item"%>
-                  <%= button_to t(:"layouts.application.sign_out"), sign_out_path, method: :delete, class: "dropdown-item"%>
-                <% else %>
-                  <%= button_to t(:"layouts.application.sign_in"), sign_in_path, method: :get, class: "dropdown-item" unless signed_in?%>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+    <!-- Button Navbar -->
+    <%= render partial: "shared/dropdown_characters" if ["show", "edit"].include?(action_name) && controller_name == "characters" %>
+    <%= render partial: "shared/dropdown_npcs" if ["show", "edit"].include?(action_name) && controller_name == "npcs" %>
+    <%= render partial: "shared/dropdown_enemies" if ["show", "edit"].include?(action_name) && controller_name == "enemies" %>
+    <%= render partial: "shared/dropdown_adventures" if ["show", "edit"].include?(action_name) && controller_name == "adventures" %>
+    <div class="flex md:order-2">
     </div>
   </div>
 </nav>

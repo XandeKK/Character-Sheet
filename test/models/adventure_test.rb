@@ -5,9 +5,7 @@ class AdventureTest < ActiveSupport::TestCase
     @adventure = Adventure.new(
       name: "One piece",
       password: "Luffy",
-      unique_name: "randomname123",
-      online: false,
-      slug: "one-piece",
+      server_name: "randomname123",
       user: users(:one)
     )
   end
@@ -16,19 +14,14 @@ class AdventureTest < ActiveSupport::TestCase
     assert @adventure.valid?, "Did not validate with adventure valid"
   end
 
-  test "should be valid without slug" do
-    @adventure.slug = nil
-    assert @adventure.valid?, "Validated the adventure without slug"
-  end
-
   test "should be invalid without name" do
     @adventure.name = nil
     assert @adventure.invalid?, "Validated the adventure without name"
   end
 
-  test "should be invalid without unique_name" do
-    @adventure.unique_name = nil
-    assert @adventure.invalid?, "Validated the adventure without unique_name"
+  test "should be invalid without server name" do
+    @adventure.server_name = nil
+    assert @adventure.invalid?, "Validated the adventure without server name"
   end
 
   test "should be invalid without user" do

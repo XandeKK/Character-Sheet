@@ -1,49 +1,43 @@
 class Character < ApplicationRecord
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-  
-  belongs_to :character_category
-  belongs_to :user
   has_one_base64_attached :character_image
+  belongs_to :user
+  belongs_to :character_category
+  belongs_to :character_system
+  
   has_many :adventure_participations, dependent: :destroy
 
-  validates :name, presence: true
-  validate :if_json_valid?
+  has_one :pathfinder_basic, class_name: "Pathfinder::Basic", dependent: :destroy
+  has_one :pathfinder_ability, class_name: "Pathfinder::Ability", dependent: :destroy
+  has_one :pathfinder_money, class_name: "Pathfinder::Money", dependent: :destroy
+  has_one :pathfinder_saving_throw, class_name: "Pathfinder::SavingThrow", dependent: :destroy
+  has_one :pathfinder_defense, class_name: "Pathfinder::Defense", dependent: :destroy
+  has_one :pathfinder_spell_caster, class_name: "Pathfinder::SpellCaster", dependent: :destroy
+  has_one :pathfinder_perception, class_name: "Pathfinder::Perception", dependent: :destroy
+  has_one :pathfinder_class_dc, class_name: "Pathfinder::ClassDc", dependent: :destroy
+  has_many :pathfinder_spells, class_name: "Pathfinder::Spell", dependent: :destroy
+  has_many :pathfinder_melees, class_name: "Pathfinder::Melee", dependent: :destroy
+  has_many :pathfinder_items, class_name: "Pathfinder::Item", dependent: :destroy
+  has_many :pathfinder_feats, class_name: "Pathfinder::Feat", dependent: :destroy
+  has_many :pathfinder_languages, class_name: "Pathfinder::Language", dependent: :destroy
+  has_many :pathfinder_rangeds, class_name: "Pathfinder::Ranged", dependent: :destroy
+  has_many :pathfinder_skills, class_name: "Pathfinder::Skill", dependent: :destroy
+  has_many :pathfinder_focus_spells, class_name: "Pathfinder::FocusSpell", dependent: :destroy
+  has_many :pathfinder_weapon_proficiencies, class_name: "Pathfinder::WeaponProficiency", dependent: :destroy
+  has_many :pathfinder_innate_spells, class_name: "Pathfinder::InnateSpell", dependent: :destroy
+  has_many :pathfinder_notes, class_name: "Pathfinder::Note", dependent: :destroy
+  has_many :dices, dependent: :destroy
 
-  def should_generate_new_friendly_id?
-    name_changed?
-  end
+  accepts_nested_attributes_for :pathfinder_basic, :pathfinder_ability, :pathfinder_money, :pathfinder_saving_throw, :pathfinder_defense, :pathfinder_spell_caster, :pathfinder_perception, :pathfinder_class_dc, update_only: true
 
-  def if_json_valid?
-    begin
-      JSON.parse self.statistic
-    rescue
-      errors.add(:statistic, "could not save with json invalid.")
-    end
-  end
+  accepts_nested_attributes_for :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes, :dices, reject_if: :all_blank, allow_destroy: true
 
-  def create_character current_user, category
-    player = CharacterCategory.find_by_name(category)
-
-    self.name = "nameless"
-    character_json = File.read("#{Rails.root}/app/models/json/character.json")
-    character_json = JSON.parse character_json
-    self.statistic = character_json.to_json
-
-    self.character_category = player
-    self.user = current_user
-
-    self.save
-  end
-
-  def update_life data
-    currentHp = data[1]["currentHp"]
-    temporary = data[1]["temporary"]
-
-    statistic = JSON.parse(self.statistic)
-    statistic["character"]["hitPoints"]["currentHp"] = currentHp
-    statistic["character"]["hitPoints"]["temporary"] = temporary
-
-    self.update!(statistic: statistic.to_json)
-  end
+  scope :pathfinder, -> { includes(:pathfinder_basic, :pathfinder_ability, :pathfinder_money, :pathfinder_saving_throw, :pathfinder_defense, :pathfinder_spell_caster, :pathfinder_perception, :pathfinder_class_dc, :pathfinder_spells, :pathfinder_melees, :pathfinder_items, :pathfinder_feats, :pathfinder_languages, :pathfinder_rangeds, :pathfinder_skills, :pathfinder_focus_spells, :pathfinder_weapon_proficiencies, :pathfinder_innate_spells, :pathfinder_notes, :dices) }
 end
+
+
+
+
+
+
+
+

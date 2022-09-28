@@ -1,0 +1,189 @@
+<div id="offense" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.05 13.406l3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531 3 3zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535L17.457 3z"/></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Offense
+    </h1>
+  </div>
+  <!--  -->
+  <div class="p-6">
+    <ul class="flex flex-col space-y-4">
+      <% @character.pathfinder_melees.each do |melee| %>
+      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
+      data-action="click->flowbite#toggleDrawerWeapon click->channels--character#setWeapon"
+      data-flowbite-name-param="<%= melee.name %>"
+      data-flowbite-note-param="<%= melee.notes %>"
+      data-flowbite-other-param="<%= melee.other %>"
+      data-flowbite-traits-param="<%= melee.traits %>"
+      data-flowbite-attack-param="<%= get_attack_melee(@character, melee) || 0 %>"
+      data-flowbite-second-attack-param="<%= get_second_attack_melee(@character, melee) || 0 %>"
+      data-flowbite-third-attack-param="<%= get_third_attack_melee(@character, melee) || 0  %>"
+      data-channels--character-attack-param="<%= get_attack_melee(@character, melee) %>"
+      data-channels--character-second-attack-param="<%= get_second_attack_melee(@character, melee) %>"
+      data-channels--character-third-attack-param="<%= get_third_attack_melee(@character, melee) %>"
+      data-channels--character-qty-param="<%= melee.qty || 1 %>"
+      data-channels--character-dice-param="<%= melee.die %>"
+      data-channels--character-bonus-param="<%= bonus_damage_melee(@character, melee)  %>">
+        <div>
+          <h3 class="italic text-rose-700 dark:text-rose-500">
+            Weapon
+          </h3>
+          <span class="pl-3">
+            <%= melee.name %>
+          </span>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <div class="flex space-x-4">
+            <div data-popover-target="popover-attack-melee-<%= melee.id %>">
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Attack
+              </h3>
+              <p class="text-center">
+                <%= get_attack_melee(@character, melee) %>
+              </p>
+            </div>
+            <div data-popover id="popover-attack-melee-<%= melee.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    str: <%= get_modifier(@character, "str") %><br>
+                    item: <%= melee.item || 0%><br>
+                    proficiency: <%= melee.proficiency || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          </div>
+          <div class="flex space-x-4">
+            <div data-popover-target="popover-damage-melee-<%= melee.id %>">
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Damage
+              </h3>
+              <p class="text-center">
+                <%= melee.qty %><%= melee.die %> 
+                <%= bonus_damage_melee(@character, melee)  %>
+              </p>
+            </div>
+            <div data-popover id="popover-damage-melee-<%= melee.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    str: <%= get_modifier(@character, "str") %><br>
+                    weapon specialization: <%= melee.weapon_specialization || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          </div>
+          <div class="flex space-x-4">
+            <div>
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Type
+              </h3>
+              <p class="text-center">
+                <%= melee.types %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <!--  -->
+  <div class="p-6">
+    <ul class="flex flex-col space-y-4">
+      <% @character.pathfinder_rangeds.each do |ranged| %>
+      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
+      data-action="click->flowbite#toggleDrawerWeapon click->channels--character#setWeapon"
+      data-flowbite-name-param="<%= ranged.name %>"
+      data-flowbite-note-param="<%= ranged.notes %>"
+      data-flowbite-other-param="<%= ranged.other %>"
+      data-flowbite-traits-param="<%= ranged.traits %>"
+      data-flowbite-attack-param="<%= get_attack_ranged(@character, ranged) || 0 %>"
+      data-flowbite-second-attack-param="<%= get_second_attack_ranged(@character, ranged) || 0 %>"
+      data-flowbite-third-attack-param="<%= get_third_attack_ranged(@character, ranged) || 0 %>"
+      data-channels--character-attack-param="<%= get_attack_ranged(@character, ranged) %>"
+      data-channels--character-second-attack-param="<%= get_second_attack_ranged(@character, ranged) %>"
+      data-channels--character-third-attack-param="<%= get_third_attack_ranged(@character, ranged) %>"
+      data-channels--character-qty-param="<%= ranged.qty || 1 %>"
+      data-channels--character-dice-param="<%= ranged.die %>"
+      data-channels--character-bonus-param="<%= bonus_damage_ranged(ranged)  %>">
+        <div>
+          <h3 class="italic text-rose-700 dark:text-rose-500">
+            Weapon
+          </h3>
+          <span class="pl-3">
+            <%= ranged.name %>
+          </span>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <div class="flex space-x-4">
+            <div data-popover-target="popover-attack-ranged-<%= ranged.id %>">
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Attack
+              </h3>
+              <p class="text-center">
+                <%= get_attack_ranged(@character, ranged) %>
+              </p>
+            </div>
+            <div data-popover id="popover-attack-ranged-<%= ranged.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    dex: <%= get_modifier(@character, "dex") %><br>
+                    item: <%= ranged.item || 0%><br>
+                    proficiency: <%= ranged.proficiency || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          </div>
+          <div class="flex space-x-4">
+            <div data-popover-target="popover-damage-ranged-<%= ranged.id %>">
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Damage
+              </h3>
+              <p class="text-center">
+                <%= ranged.qty %><%= ranged.die %> 
+                <%= bonus_damage_ranged ranged  %>
+              </p>
+            </div>
+            <div data-popover id="popover-damage-ranged-<%= ranged.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+              <div class="py-2 px-3">
+                  <p>
+                    Weapon specialization: <%= ranged.weapon_specialization || 0%><br>
+                    special: <%= ranged.special || 0%><br>
+                  </p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          </div>
+          <div class="flex space-x-4">
+            <div>
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Type
+              </h3>
+              <p class="text-center">
+                <%= ranged.types %>
+              </p>
+            </div>
+            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          </div>
+          <div class="flex space-x-4">
+            <div>
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Range
+              </h3>
+              <p class="text-center">
+                <%= ranged.range %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

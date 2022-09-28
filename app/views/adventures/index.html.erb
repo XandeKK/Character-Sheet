@@ -1,12 +1,17 @@
-<h1 class="fw-bold text-secondary text-center"><%= t(:adventures)%></h1>
-<div class="list-group text-center">
-	<% if @adventures.empty? %>
-		<h3><%= t(:"empty adventure")%></h3>
-	<% else %>
-		<% @adventures.each do |adventure|  %>
-			<%= link_to adventure.name, adventure_path(adventure), class: "list-group-item list-group-item-action", data: {turbo: false} %>
-		<% end %>
-	<% end %>
-</div>
+<div class="md:container px-3 md:px-0 md:mx-auto mt-6 mb-36">
+  <h1 class="font-bold mb-6 text-center text-black dark:text-white text-3xl">Adventures</h1>
 
-<%= link_to t(:new), new_adventure_path, class:"btn btn-success position-fixed bottom-0 end-0 m-4", data: {turbo: false} %>
+  <% @adventures.each do |adventure| %>
+    <div class="mb-6 block w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 relative">
+      <%= link_to adventure_path(adventure), class: "absolute h-full w-full" do %>
+      <% end %>
+      <div class="p-6 flex justify-between">
+        <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
+          <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= adventure.name %></div>
+        </div>
+        <%= render partial: "adventures/dropdown_adventure", locals: {id: adventure.id} %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "New Adventure", new_adventure_path, class: "z-20 fixed bottom-3 right-3 md:bottom-8 md:right-8 md:mr-6 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " %>
+</div>

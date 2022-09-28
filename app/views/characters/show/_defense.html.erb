@@ -1,0 +1,140 @@
+<div id="defense" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800" data-controller="show-character--life-handler show-character--life-sender" data-action="show-character--life-handler:send->show-character--life-sender#setCharacter show-character--life-handler:send->channels--character#updateHp">
+  <!-- Put send life -->
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976z" /></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Defense
+    </h1>
+  </div>
+  <!--  -->
+  <div class="px-6 py-3 flex flex-wrap gap-6">
+    <div class="flex mb-6 gap-6">
+      <div>
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          HP
+        </h3>
+        <span class="text-2xl pl-3">
+          <span id="<%= dom_id(@character, :current_hp) %>">
+            <%= @character.pathfinder_defense.current_hp || 0 %>
+          </span>
+          /
+          <span id="<%= dom_id(@character, :max_hp) %>">
+            <%= @character.pathfinder_defense.max_hp || 0 %>
+          </span>
+        </span>
+      </div>
+      <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex mb-6 gap-6">
+      <div>
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Temp HP
+        </h3>
+        <span id="<%= dom_id(@character, :temp_hp)%>" class="text-2xl pl-3">
+          <%= @character.pathfinder_defense.temp_hp || 0 %>
+        </span>
+      </div>
+      <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex mb-6 gap-6">
+      <div>
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          AC
+        </h3>
+        <span class="text-2xl pl-3">
+          <%= get_armor_class @character %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  <div class="px-6 py-3 space-y-3 flex flex-col w-96 text-gray-900 text-sm dark:text-white">
+    <h3 class="italic text-rose-700 dark:text-rose-500 text-base">
+      HP
+    </h3>
+    <div class="inline-flex rounded-md shadow-sm" role="group">
+      <input id="<%= dom_id(@character, :hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 border-gray-300 p-2.5 dark:bg-transparent dark:border-zinc-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="HP"   tabindex="-1">
+
+      <button type="button" class="py-2 px-4 font-medium bg-white border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#damageHp" data-show-character--life-handler-id-param="<%= @character.id %>">
+        Damage
+      </button>
+
+      <button type="button" class="rounded-r-md py-2 px-4 font-medium bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#healHp" data-show-character--life-handler-id-param="<%= @character.id %>">
+        Heal
+      </button>
+    </div>
+    <h3 class="italic text-rose-700 dark:text-rose-500 text-base">
+      Temp HP
+    </h3>
+    <div class="inline-flex rounded-md shadow-sm" role="group">
+      <input id="<%= dom_id(@character, :temp_hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Temp HP" tabindex="-1">
+
+      <button type="button" class="rounded-r-md py-2 px-4 font-medium bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#addTempHp" data-show-character--life-handler-id-param="<%= @character.id %>">
+        Add
+      </button>
+    </div>
+  </div>
+  <!--  -->
+  <div class="px-6 pb-6">
+    <h3 class="italic text-rose-700 dark:text-rose-500">
+      Resistances and immunities
+    </h3>
+    <p class="pl-3">
+      <%= @character.pathfinder_defense.resistances_and_immunities %>
+    </p>
+  </div>
+  <div class="px-6 pb-6">
+    <h3 class="italic text-rose-700 dark:text-rose-500">
+      Conditions
+    </h3>
+    <p class="pl-3">
+      <%= @character.pathfinder_defense.conditions %>
+    </p>
+  </div>
+  <!--  -->
+  <div class="px-6 py-3 flex flex-wrap gap-6">
+    <div class="flex mb-6 gap-6">
+      <div>
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Fortitude
+        </h3>
+        <span class="text-2xl pl-3">
+          <%= @character.pathfinder_saving_throw.fortitude_total || 0 %>
+        </span>
+      </div>
+      <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex mb-6 gap-6">
+      <div>
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Reflex
+        </h3>
+        <span class="text-2xl pl-3">
+          <%= @character.pathfinder_saving_throw.reflex_total || 0%>
+        </span>
+      </div>
+      <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex mb-6 gap-6">
+      <div>
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Will
+        </h3>
+        <span class="text-2xl pl-3">
+          <%= @character.pathfinder_saving_throw.will_total || 0 %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  <div class="px-6 pb-6">
+    <h3 class="italic text-rose-700 dark:text-rose-500">
+      Saving throw Notes
+    </h3>
+    <p class="pl-3">
+      <%= @character.pathfinder_saving_throw.saving_throw_notes %>
+    </p>
+  </div>
+</div>

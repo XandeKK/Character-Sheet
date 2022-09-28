@@ -1,0 +1,83 @@
+<div id="equipament" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3z"/></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Equipament
+    </h1>
+  </div>
+  <!-- Equipament -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Items
+    </div>
+    <div class="space-y-3 w-full">
+      <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+        <% @character.pathfinder_items.each do |item| %>
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= item.name %>" data-flowbite-note-param="<%= item.notes %>" data-flowbite-quatity-param="<%= item.quatity %>" data-flowbite-volume-param="<%= item.volume %>">
+          <p>
+            <%= item.name %>
+          </p>
+          <p>
+            <%= item.quatity %>
+          </p>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="pt-3">
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Volume
+        </h3>
+        <span class="pl-3">
+          <%= get_volume @character %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Money
+    </div>
+    <div class="space-y-3">
+      <div class="flex gap-4">
+        <div class="flex flex-wrap gap-3">
+          <p>
+            <%= @character.pathfinder_money.platinum || 0 %> <span class="text-gray-600 dark:text-gray-500">PP</span>
+          </p>
+          <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <p>
+            <%= @character.pathfinder_money.gold || 0 %> <span class="text-gray-600 dark:text-gray-500">GP</span>
+          </p>
+          <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <p>
+            <%= @character.pathfinder_money.silver || 0 %> <span class="text-gray-600 dark:text-gray-500">SP</span>
+          </p>
+          <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <p>
+            <%= @character.pathfinder_money.copper || 0 %> <span class="text-gray-600 dark:text-gray-500">CP</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-3">
+        <h3 class="italic text-rose-700 dark:text-rose-500">
+          Total
+        </h3>
+        <span class="text-xl pl-3">
+          <%= get_total_gold @character %> <span class="text-gray-600 dark:text-gray-500">GP</span>
+        </span>
+      </div>
+    </div>
+    
+  </div>
+</div>

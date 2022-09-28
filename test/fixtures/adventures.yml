@@ -1,15 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  password: 123
-  unique_name: <%= SecureRandom.hex(4) %>
-  online: false
+  name: Skyfall
+  server_name: <%= SecureRandom.hex(4) %>
+  password_digest: password
   user: one
 
 two:
-  name: MyString
-  password: 123
-  unique_name: <%= SecureRandom.hex(4) %>
-  online: false
+  name: PopWorld
+  server_name: <%= SecureRandom.hex(4) %>
+  password_digest: password
   user: two

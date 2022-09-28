@@ -1,26 +1,31 @@
 Rails.application.routes.draw do
   root 'home#index'
+  resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+  resource :session, controller: "clearance/sessions", only: [:create]
 
-  resources :characters, except: [:new]
-  put 'character/update_all_life', to: 'characters#update_all_life', as: 'character_update_all_life'
-  post 'character/sign_up/:id', to: 'characters#sign_up', as: 'sign_up_character'
+  resources :users, controller: "users", only: [:create] do
+    resource :password,
+      controller: "clearance/passwords",
+      only: [:edit, :update]
+  end
+
+  get "/sign_in" => "clearance/sessions#new", as: "sign_in"
+  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+  get "/sign_up" => "users#new", as: "sign_up"
+
+  get 'player', to: 'player#index'
+  
+  resources :characters, path: '/player/characters', except: :index
+  put "/hit_point", to: "characters#update_hp"
 
   get 'gm', to: 'gm#index'
-  get 'npcs', to: 'npcs#index'
-  get 'enemies', to: 'enemies#index'
-  resources :adventures
-  post 'adventure_participation/:id', to: 'adventure_participation#create', as: 'create_adventure_participation'
-  delete 'adventure_participation/:id', to: 'adventure_participation#destroy', as: 'destroy_adventure_participation'
-  
-  get 'tv', to: 'campaign_tv#show', as: 'campaign_tv'
-  post 'tv/sign_up', to: 'campaign_tv#create', as: 'sign_up_campaign_tv'
-
-  get 'account', to: 'account#show'
-  post 'create_token', to: 'json_web_token#create'
-
-  namespace :api, defaults: { format: :json } do
-    namespace :v1 do
-      resources :characters, only: [:index, :show]
-    end
+  scope '/gm' do
+    resources :npcs
+    resources :enemies
+    resources :adventures
+    post :adventure_participation, to: "adventure_participation#create"
+    delete :adventure_participation, to: "adventure_participation#destroy"
   end
+
+  get 'tv', to: "tv#index"
 end

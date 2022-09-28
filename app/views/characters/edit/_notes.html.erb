@@ -1,0 +1,55 @@
+<div id="notes" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 9v11.993A1 1 0 0 1 20.007 22H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.447 2 3.998 2H14v6a1 1 0 0 0 1 1h6zm0-2h-5V2.003L21 7zM8 7v2h3V7H8zm0 4v2h8v-2H8zm0 4v2h8v-2H8z"/></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Notes
+    </h1>
+  </div>
+  <!--  -->
+    <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="notesTab" data-tabs-toggle="#notesTabContent" role="tablist">
+      <li class="mr-2" role="presentation">
+        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="note-tab" data-tabs-target="#note" type="button" role="tab" aria-controls="note" aria-selected="true">Notes</button>
+      </li>
+    </ul>
+  </div>
+  <!--  -->
+  <div id="spellsTabContent">
+    <div class="" id="note" role="tabpanel" aria-labelledby="note-tab">
+      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+          Notes
+        </div>
+        <div id="body-notes" class="w-full space-y-6">
+          <div class="w-full flex flex-row-reverse">
+            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--notes" data-action="click->edit-character--notes#addNote" data-edit-character--notes-count-param="<%= @character.pathfinder_notes.count %>">
+              +
+            </div>
+          </div>
+          <%= form.fields_for :pathfinder_notes do |form_notes| %>
+          <div id="notes-<%= form_notes.index %>">
+            <div class="flex">
+              <div class="flex-1">
+                <%= form_notes.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form_notes.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              </div>
+              <div class="flex-1">
+                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--notes" data-action="click->edit-character--notes#removeNote" data-edit-character--notes-id-param="<%= form_notes.index %>">
+                  -
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= form_notes.label :note, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= form_notes.text_area :note, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            </div>
+            <%= form_notes.check_box :_destroy, class: "hidden" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

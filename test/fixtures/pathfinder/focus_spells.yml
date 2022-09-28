@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Alarm
+  notes: Is alerted if a creature enters the protected area
+  spell_component: Material
+  action: 2
+  duration: 10m
+  range: 80
+  character: one
+
+two:
+  name: RIGHT TARGET
+  notes: You delve into the possible futures of the next few seconds to understand all the ways your target can avoid injury, and then convey a vision of that future to those around you.
+  spell_component: MyString
+  action: 1
+  duration: 0
+  range: 120
+  character: two

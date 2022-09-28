@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Attack
+  notation: 1d20+4
+  notes: "a strong attack"
+  character: one
+
+two:
+  name: fireball
+  notation: 6d8
+  notes: bummmm
+  character: two

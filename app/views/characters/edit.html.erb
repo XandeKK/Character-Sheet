@@ -1,39 +1,24 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js" integrity="sha512-Gs+PsXsGkmr+15rqObPJbenQ2wB3qYvTHuJO6YJzPe/dTLvhy0fmae2BcnaozxDo5iaF8emzmCZWbQ1XXiX2Ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<%= render partial: "characters/side_bar"%>
+<div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="edit-character--event-trigger">
+  <%= form_with model: @character, url: character_path, method: :put, html: {"autocomplete":"off"}, data: {turbo:false} do |form| %>
+    <%= render partial: "characters/edit/basics", locals: { form: form } %>
+    
+    <%= render partial: "characters/edit/statistics", locals: { form: form } %>
 
-<div class="text-end">
-	<%= button_to t(:delete), character_path(@character), method: :delete, class: "btn btn-danger" %>
+    <%= render partial: "characters/edit/equipament", locals: { form: form } %>
+    
+    <%= render partial: "characters/edit/defense", locals: { form: form } %>
+    
+    <%= render partial: "characters/edit/offense", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/skills", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/spells", locals: { form: form } %>
+
+    <%= render partial: "characters/edit/notes", locals: { form: form } %>
+
+    <%= form.submit "Update", class:"fixed bottom-3 right-3 md:bottom-8 md:right-8 md:mr-6 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" %>
+  <% end %>
+
+
 </div>
-
-<%= form_with model: @character, url: character_path(@character), id: "form", data: {turbo: false} do |form| %>
-
-	<div>
-		<%= form.hidden_field :image %>
-    <div id="croppie"></div>
-    <input id="original" class="form-control" type="file" name="original" accept="image/*">
-	</div>
-	
-	<div>
-		<%= form.label :character_category_id, t("character.character category"), class: "form-label" %>
-		<%= form.select :character_category_id, @character_categories.map { |ca| [ca.name, ca.id]}, {}, class: "form-select" %>
-	</div>
-
-	<%= form.hidden_field :name %>
-	<%= form.hidden_field :statistic %>
-
-	<%= form.submit t(:display), id: "submit", class: "btn btn-success position-fixed bottom-0 end-0 m-4", style: "z-index: 99;" %>
-<% end%>
-
-<script>
-  	window.I18n = <%= current_translations.to_json.html_safe %>
-	const main_json = <%= raw @character.statistic %> 
-
-	let isDirtyImage = false;
-	let url = '<%= url_for(@character.character_image) if @character.character_image.attached? %>' || "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-</script>
-
-<%= javascript_include_tag "character/edit/Base" %>
-<%= javascript_include_tag "character/edit/CharacterUI" %>
-<%= javascript_include_tag "character/edit/main" %>
-<%= javascript_include_tag "character/edit/edit" %>
-<%= javascript_include_tag "character/edit/croppie" %>

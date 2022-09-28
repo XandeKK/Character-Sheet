@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: CHANGING REALITY
+  notes: You use your occult lore and the power of your mind to manipulate the spiritual multiverse,
+  frequency: 2
+  spell_component: "Material"
+  duration: 0
+  range: 0
+  action: 3
+  character: one
+
+two:
+  name: WALK on AR
+  notes: The target can walk on air as if on solid ground.
+  frequency: 1
+  spell_component: MyString
+  duration: 0
+  range: 10
+  action: 1
+  character: two

@@ -1,0 +1,322 @@
+<div id="character-<%= participation.character_id %>" class="flex flex-col md:flex-row mx-6 rounded-lg border border-gray-200 shadow-md dark:border-gray-700 p-3">
+  <div class="flex justify-center md:basis-64 relative w-full h-64">
+    <%= image_tag participation.character.character_image, class: "rounded-full drop-shadow-lg w-64 h-64 bg-white" if participation.character.character_image.attached? %>
+  </div>
+  <div class="space-y-3 p-6 md:p-0 flex-1">
+    <h1 id="character-name" class="md:mt-6 text-3xl">
+      <%= participation.pathfinder_basic.name %>
+    </h1>
+    <!--  -->
+    <h2 class="text-2xl">
+      <%= participation.pathfinder_basic.class_name %>
+      <%= participation.pathfinder_basic.level %>
+    </h2>
+    <!--  -->
+    <div class="px-6 py-3 flex flex-wrap gap-6">
+      <div class="flex mb-6 gap-6">
+        <div>
+          <h3 class="italic text-rose-700 dark:text-rose-500">
+            HP
+          </h3>
+          <span class="text-2xl pl-3">
+            <span id="<%= dom_id(participation.character, :current_hp) %>">
+              <%= participation.pathfinder_defense.current_hp || 0 %>
+            </span>
+            /
+            <span id="<%= dom_id(participation.character, :max_hp) %>">
+              <%= participation.pathfinder_defense.max_hp || 0 %>
+            </span>
+          </span>
+        </div>
+        <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+      </div>
+      <div class="flex mb-6 gap-6">
+        <div>
+          <h3 class="italic text-rose-700 dark:text-rose-500">
+            Temp HP
+          </h3>
+          <span id="<%= dom_id(participation.character, :temp_hp) %>" class="text-2xl pl-3">
+            <%= participation.pathfinder_defense.temp_hp || 0 %>
+          </span>
+        </div>
+        <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+      </div>
+    </div>
+    <!--  -->
+    <div class="px-6 py-3 space-y-3 flex flex-col mm:80 md:w-96">
+      <h3 class="italic text-rose-700 dark:text-rose-500">
+        HP
+      </h3>
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <input id="<%= dom_id(participation.character, :hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-zinc-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="HP" tabindex="-1">
+
+        <button type="button" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#damageHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
+          Damage
+        </button>
+        <!-- Colocar id aqui -->
+        <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#healHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
+          Heal
+        </button>
+      </div>
+      <h3 class="italic text-rose-700 dark:text-rose-500">
+        Temp HP
+      </h3>
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <input id="<%= dom_id(participation.character, :temp_hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Temp HP" tabindex="-1">
+        
+        <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#addTempHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
+          Add
+        </button>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500" data-popover-target="popover-perception-<%= participation.id %>">
+          Perception
+        </span>
+        <span>
+          <%= get_perception participation %>
+        </span>
+      </div>
+      <div data-popover id="popover-perception-<%= participation.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="py-2 px-3">
+          <p>
+            <%= participation.pathfinder_perception.senses %>
+          </p>
+        </div>
+        <div data-popper-arrow></div>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          Languages
+        </span>
+        <% participation.pathfinder_languages.each do |language| %>
+        <%= language.name %>,
+        <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          Skills
+        </span>
+        <% participation.pathfinder_skills.each do |skill| %>
+        <%= "#{skill.name.titleize} #{score_skill(participation, skill)}" %>,
+        <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <div>
+        <% ["str","dex","con","int","wis","cha"].each do |ability| %>
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          <%= ability.titleize %>
+        </span>
+        <%= get_modifier(participation, ability) %>
+        &nbsp;&nbsp;
+        <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <hr>
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          AC
+        </span>
+        <span>
+          <%= get_armor_class participation %>;
+        </span>&nbsp;
+        <!--  -->
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          Fort
+        </span>
+        <span>
+          <%= participation.pathfinder_saving_throw.fortitude_total || 0 %>
+        </span>&nbsp;
+        <!--  -->
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          Ref
+        </span>
+        <span>
+          <%= participation.pathfinder_saving_throw.reflex_total || 0 %>
+        </span>&nbsp;
+        <!--  -->
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          Will
+        </span>
+        <span>
+          <%= participation.pathfinder_saving_throw.will_total || 0 %>
+        </span>&nbsp;
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          HP
+        </span>
+        <span>
+          <%= participation.pathfinder_defense.max_hp || 0 %>;
+        </span>&nbsp;
+        <!--  -->
+        <% if participation.pathfinder_defense.resistances_and_immunities.present? %>
+          <span class="font-bold text-rose-700 dark:text-rose-500">
+            Resistances
+          </span>
+          <span>
+            <%= participation.pathfinder_defense.resistances_and_immunities %>
+          </span>&nbsp;
+        <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <hr>
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500" data-popover-target="popover-speed-<%= participation.id %>">
+          Speed
+        </span>
+        <span>
+          <%= participation.pathfinder_basic.speed %>ft
+        </span>
+      </div>
+      <div data-popover id="popover-speed-<%= participation.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="py-2 px-3">
+          <p>
+            <%= participation.pathfinder_perception.senses %>
+          </p>
+        </div>
+        <div data-popper-arrow></div>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Macros" unless participation.dices.empty? %></h1>
+      <div class="px-3 grid grid-cols-1 gap-4 w-full">
+        <% participation.dices.each do |dice| %>
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+            data-action="click->adventure--drawer#toggleDrawerMacro click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-name-param="<%= dice.name %>"
+            data-adventure--drawer-notation-param="<%= dice.notation %>"
+            data-adventure--drawer-note-param="<%= dice.notes %>"
+            data-channels--adventure-id-param="<%= participation.id %>"
+            data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
+            data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
+            >
+          <p>
+            <%= dice.name %>
+          </p>
+          <p>
+            <%= dice.notation %>
+          </p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Melees" unless participation.pathfinder_melees.empty? %></h1>
+        <div class="px-3 grid grid-cols-1 gap-4 w-full">
+          <% participation.pathfinder_melees.each do |melee| %>
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+            data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-name-param="<%= melee.name %>"
+            data-adventure--drawer-note-param="<%= melee.notes %>"
+            data-adventure--drawer-other-param="<%= melee.other %>"
+            data-adventure--drawer-traits-param="<%= melee.traits %>"
+            data-adventure--drawer-attack-param="<%= get_attack_melee(participation, melee) || 0 %>"
+            data-adventure--drawer-second-attack-param="<%= get_second_attack_melee(participation, melee) || 0 %>"
+            data-adventure--drawer-third-attack-param="<%= get_third_attack_melee(participation, melee) || 0  %>"
+            data-channels--adventure-id-param="<%= participation.id %>"
+            data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
+            data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
+            data-channels--adventure-attack-param="<%= get_attack_melee(participation, melee) %>"
+            data-channels--adventure-second-attack-param="<%= get_second_attack_melee(participation, melee) %>"
+            data-channels--adventure-third-attack-param="<%= get_third_attack_melee(participation, melee) %>"
+            data-channels--adventure-qty-param="<%= melee.qty || 1 %>"
+            data-channels--adventure-dice-param="<%= melee.die %>"
+            data-channels--adventure-bonus-param="<%= bonus_damage_melee(participation, melee)  %>">
+              <p>
+                <%= melee.name %>
+              </p>
+              <p>
+                <%= get_attack_melee(participation, melee)%>
+              [
+              <%= get_second_attack_melee(participation, melee)%>/
+              <%= get_third_attack_melee(participation, melee)%> ]
+              </p>
+              <p>
+                <%= melee.qty %>
+                <%= melee.die %>
+                <%= bonus_damage_melee(participation, melee)  %>
+              </p>
+            </div>
+          <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <div>
+      <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Rangeds" unless participation.pathfinder_rangeds.empty? %></h1>
+        <div class="px-3 grid grid-cols-1 gap-4 w-full">
+          <% participation.pathfinder_rangeds.each do |ranged| %>
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+            data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-name-param="<%= ranged.name %>"
+            data-adventure--drawer-note-param="<%= ranged.notes %>"
+            data-adventure--drawer-other-param="<%= ranged.other %>"
+            data-adventure--drawer-traits-param="<%= ranged.traits %>"
+            data-adventure--drawer-attack-param="<%= get_attack_ranged(participation, ranged) || 0 %>"
+            data-adventure--drawer-second-attack-param="<%= get_second_attack_ranged(participation, ranged) || 0 %>"
+            data-adventure--drawer-third-attack-param="<%= get_third_attack_ranged(participation, ranged) || 0  %>"
+            data-channels--adventure-id-param="<%= participation.id %>"
+            data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
+            data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
+            data-channels--adventure-attack-param="<%= get_attack_ranged(participation, ranged) %>"
+            data-channels--adventure-second-attack-param="<%= get_second_attack_ranged(participation, ranged) %>"
+            data-channels--adventure-third-attack-param="<%= get_third_attack_ranged(participation, ranged) %>"
+            data-channels--adventure-qty-param="<%= ranged.qty || 1 %>"
+            data-channels--adventure-dice-param="<%= ranged.die %>"
+            data-channels--adventure-bonus-param="<%= bonus_damage_ranged(ranged) %>">
+              <p>
+                <%= ranged.name %>
+              </p>
+              <p>
+                <%= get_attack_ranged(participation, ranged)%>
+              [
+              <%= get_second_attack_ranged(participation, ranged)%>/
+              <%= get_third_attack_ranged(participation, ranged)%> ]
+              </p>
+              <p>
+                <%= ranged.qty %>
+                <%= ranged.die %>
+                <%= bonus_damage_ranged(ranged)  %>
+              </p>
+            </div>
+          <% end %>
+      </div>
+    </div>
+    <!--  -->
+    <hr>
+    <div>
+      <div>
+        <span class="font-bold text-rose-700 dark:text-rose-500">
+          <%= "Notes" unless participation.pathfinder_notes.empty? %>
+        </span>
+        <% participation.pathfinder_notes.each do |note| %>
+        <h1 class="font-bold text-rose-700 dark:text-rose-500 ml-1">
+          <%= note.name %>
+        </h1>
+        <div class="ml-2">
+          <%= note.note %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

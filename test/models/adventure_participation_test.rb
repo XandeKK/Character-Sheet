@@ -3,8 +3,8 @@ require "test_helper"
 class AdventureParticipationTest < ActiveSupport::TestCase
   def setup
     @adventure_participation = AdventureParticipation.new(
-      adventure: adventures(:one),
-      character: characters(:one)
+      character: characters(:one),
+      adventure: adventures(:one)
     )
   end
 
@@ -30,7 +30,7 @@ class AdventureParticipationTest < ActiveSupport::TestCase
 
   test "should destroy" do
     assert_difference("AdventureParticipation.count", -1) do
-      assert adventures(:one).destroy, "Did not destroy adventure participation"
+      assert adventure_participations(:one).destroy, "Did not destroy adventure participation"
     end
   end
 end

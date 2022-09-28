@@ -1,0 +1,58 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  max_hp: 20
+  current_hp: 18
+  ancestry_hp: 4
+  class_hp: 4
+  temp_hp: 0
+  resistances_and_immunities: none
+  conditions: none
+  dying: 0
+  wounded: 0
+  armor_class_item: 0
+  armor_class_proficiency: 4
+  max_dex: 4
+  unarmored_proficiency: 2
+  heavy_proficiency: 2
+  medium_proficiency: 2
+  light_proficiency: 0
+  character: one
+
+two:
+  max_hp: 40
+  current_hp: 40
+  ancestry_hp: 20
+  class_hp: 10
+  temp_hp: 13
+  resistances_and_immunities: none
+  conditions: none
+  dying: 1
+  wounded: 0
+  armor_class_item: 2
+  armor_class_proficiency: 6
+  max_dex: 3
+  unarmored_proficiency: 8
+  heavy_proficiency: 6
+  medium_proficiency: 4
+  light_proficiency: 2
+  character: two
+
+three:
+  max_hp: 40
+  current_hp: 40
+  ancestry_hp: 20
+  class_hp: 10
+  temp_hp: 13
+  resistances_and_immunities: none
+  conditions: none
+  dying: 1
+  wounded: 0
+  armor_class_item: 2
+  armor_class_proficiency: 6
+  max_dex: 3
+  unarmored_proficiency: 8
+  heavy_proficiency: 6
+  medium_proficiency: 4
+  light_proficiency: 2
+  character: three

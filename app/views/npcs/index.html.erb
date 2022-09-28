@@ -1,12 +1,20 @@
-<h1 class="fw-bold text-secondary text-center"><%= t(:npc)%></h1>
-<div class="list-group text-center">
-	<% if @npcs.empty? %>
-		<h3><%= t(:"character.empty") %></h3>
-	<% else %>
-		<% @npcs.each do |npc|  %>
-			<%= link_to npc.name, character_path(npc), class: "list-group-item list-group-item-action", data: {turbo: false} %>
-		<% end %>
-	<% end %>
-</div>
+<div class="md:container px-3 md:px-0 md:mx-auto mt-6 mb-36">
+  <h1 class="font-bold mb-6 text-center text-black dark:text-white text-3xl">Npcs</h1>
 
-<%= button_to t(:new), characters_path(category: "Npc"), class:"btn btn-success position-fixed bottom-0 end-0 m-4", method: :post, data: {turbo: false} %>
+  <% @npcs.each do |npc| %>
+    <div class="mb-6 block w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 relative">
+      <%= link_to npc_path(npc), class: "absolute h-full w-full" do %>
+      <% end %>
+      <div class="p-6 flex justify-between">
+        <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
+          <div>
+            <%= image_tag(npc.character_image, class: "w-20 h-20 rounded-full", alt:"#{npc.name}") if npc.character_image.attached?%>
+          </div>
+          <div id="npc-<%= npc.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= npc.name %></div>
+        </div>
+        <%= render partial: "player/dropdown_character", locals: {id: npc.id, path_edit: edit_npc_path(npc), path_delete: npc_path(npc)} %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "New Npc", new_npc_path, class: "z-20 fixed bottom-3 right-3 md:bottom-8 md:right-8 md:mr-6 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " %>
+</div>

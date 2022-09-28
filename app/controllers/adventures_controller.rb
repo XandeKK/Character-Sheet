@@ -7,7 +7,30 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @characters = Character.where(user: current_user)
+    @adventure_participations = @adventure.adventure_participations
+      .includes(
+        :character_category,
+        :character,
+        :character_image_blob,
+        :pathfinder_basic,
+        :pathfinder_ability,
+        :pathfinder_saving_throw,
+        :pathfinder_defense,
+        :pathfinder_perception,
+        :pathfinder_class_dc,
+        :pathfinder_melees,
+        :pathfinder_languages,
+        :pathfinder_rangeds,
+        :pathfinder_skills,
+        :pathfinder_notes,
+        :dices
+      )
+
+    @npc_and_enemy = current_user.characters
+      .select("characters.id, pathfinder_basics.name, character_category.name as character_category_name")
+      .joins(:character_category, :pathfinder_basic)
+      .where.not("character_category.name": "Player")
+      .includes(character_image_attachment: :blob)
   end
 
   def new
@@ -15,13 +38,12 @@ class AdventuresController < ApplicationController
   end
 
   def create
-    @adventure = Adventure.new(adventure_params)
-
-    @adventure.user = current_user
-    @adventure.create_unique_name
+    @adventure = current_user.adventures.new(adventure_params)
+    
+    @adventure.create_server_name
 
     if @adventure.save
-      redirect_to adventure_path(@adventure), notice: t(:"adventure created")
+      redirect_to adventure_path(@adventure), notice: "Adventure created successfully!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +54,7 @@ class AdventuresController < ApplicationController
 
   def update
     if @adventure.update(adventure_params)
-      redirect_to adventure_path(@adventure), notice: t(:"adventure updated")
+      redirect_to adventure_path(@adventure), notice: "Adventure successfully updated!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,9 +62,9 @@ class AdventuresController < ApplicationController
 
   def destroy
     if @adventure.destroy
-      redirect_to adventures_path, notice: t(:"adventure deleted")
+      redirect_to adventures_path, notice: "Adventure successfully deleted!"
     else
-      redirect_to adventures_path, alert: t(:"error deleted")
+      redirect_to adventures_path, alert: ""
     end
   end
 
@@ -53,14 +75,10 @@ class AdventuresController < ApplicationController
   end
 
   def redirect_if_empty
-    redirect_to adventures_path, alert: t(:"not have permission") if @adventure.nil?
+    redirect_to adventures_path, alert: "You do not have permission." if @adventure.nil?
   end
 
   def set_adventure
-    begin
-      @adventure = current_user.adventures.friendly.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      @adventure = nil
-    end
+    @adventure = current_user.adventures.find_by(id: params[:id])
   end
 end

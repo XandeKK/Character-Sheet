@@ -1,21 +1,17 @@
 class Adventure < ApplicationRecord
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-
   belongs_to :user
   has_many :adventure_participations, dependent: :destroy
 
+  has_secure_password
+
   validates :name, presence: true
-  validates :unique_name, presence: true, uniqueness: true
+  validates :server_name, presence: true, uniqueness: true
+  validates :password, presence: true
 
-  def create_unique_name
+  def create_server_name
     loop do
-      self.unique_name = SecureRandom.hex(4)
-      break unless self.class.exists?(:unique_name => unique_name)
+      self.server_name = SecureRandom.hex(4)
+      break unless self.class.exists?(:server_name => server_name)
     end
-  end
-
-  def should_generate_new_friendly_id?
-    name_changed?
   end
 end

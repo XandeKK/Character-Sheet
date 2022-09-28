@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Mouse
+  quatity: 1
+  volume: 1
+  notes: MyText
+  character: one
+
+two:
+  name: TEclado
+  quatity: 1
+  volume: 1
+  notes: MyText
+  character: two

@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-
 CharacterCategory.create!(name: "Player")
-CharacterCategory.create!(name: "Enemy")
 CharacterCategory.create!(name: "Npc")
+CharacterCategory.create!(name: "Enemy")
+
+CharacterSystem.create!(name: "Pathfinder")

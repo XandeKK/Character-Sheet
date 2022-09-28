@@ -1,15 +1,23 @@
-<% @user.errors.full_messages.each do |message| %>
-  <div class="alert alert-warning" role="alert">
-    <%= message %>
-  </div>
-<% end %>
-
-<div class="mb-3">
-  <%= form.label :email, class: "form-label" %>
-  <%= form.email_field :email, class: "form-control" %>
+<div class="relative z-0 mb-6 w-full group">
+  <%= form.text_field :name, class: form_field(@user, :name) %>
+  <%= form.label :name, class: form_label(@user, :name) %>
+  <% @user.errors.messages[:name].each do |message| %>
+    <p class="mt-2 text-red-600 dark:text-red-500">Name <%= message %></p>
+  <% end %>
+</div>
+  
+<div class="relative z-0 mb-6 w-full group">
+  <%= form.text_field :email, class: form_field(@user, :email) %>
+  <%= form.label :email, class: form_label(@user, :email) %>
+  <% @user.errors.messages[:email].each do |message| %>
+    <p class="mt-2 text-red-600 dark:text-red-500">Email <%= message %></p>
+  <% end %>
 </div>
 
-<div class="mb-3">
-  <%= form.label :password, class: "form-label" %>
-  <%= form.password_field :password, class: "form-control" %>
+<div class="relative z-0 mb-6 w-full group">
+  <%= form.password_field :password, class: form_field(@user, :password) %>
+  <%= form.label :password, class: form_label(@user, :password) %>
+  <% @user.errors.messages[:password].each do |message| %>
+    <p class="mt-2 text-red-600 dark:text-red-500">Password <%= message %></p>
+  <% end %>
 </div>

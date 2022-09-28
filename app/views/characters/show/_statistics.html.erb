@@ -1,0 +1,141 @@
+<div id="statistics" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
+  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
+    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M14 10v4h-4v-4h4zm2 0h5v4h-5v-4zm-2 11h-4v-5h4v5zm2 0v-5h5v4a1 1 0 0 1-1 1h-4zM14 3v5h-4V3h4zm2 0h4a1 1 0 0 1 1 1v4h-5V3zm-8 7v4H3v-4h5zm0 11H4a1 1 0 0 1-1-1v-4h5v5zM8 3v5H3V4a1 1 0 0 1 1-1h4z"/></svg>
+    <h1 class="ml-3 text-lg text-gray-200">
+      Statistics
+    </h1>
+  </div>
+  <!-- Ability -->
+  <div class="p-6 flex flex-wrap gap-6 justify-center">
+    <div class="flex space-x-4">
+      <div class="<%= key_ability?(@character, 'str') %> rounded p-1 ">
+        <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
+          STR <span class="text-2xl"><%= @character.pathfinder_ability.str_total || 0 %></span>
+        </h3>
+        <p class="text-center text-3xl">
+          <%= get_modifier(@character, "str") %>
+        </p>
+      </div>
+      <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex space-x-4">
+      <div class="<%= key_ability?(@character, 'dex') %> rounded p-1 ">
+        <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
+          DEX <span class="text-2xl"><%= @character.pathfinder_ability.dex_total || 0 %></span>
+        </h3>
+        <p class="text-center text-3xl">
+          <%= get_modifier(@character, "dex") %>
+        </p>
+      </div>
+      <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex space-x-4">
+      <div class="<%= key_ability?(@character, 'con') %> rounded p-1 ">
+        <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
+          CON <span class="text-2xl"><%= @character.pathfinder_ability.con_total || 0 %></span>
+        </h3>
+        <p class="text-center text-3xl">
+          <%= get_modifier(@character, "con") %>
+        </p>
+      </div>
+      <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex space-x-4">
+      <div class="<%= key_ability?(@character, 'int') %> rounded p-1 ">
+        <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
+          INT <span class="text-2xl"><%= @character.pathfinder_ability.int_total || 0 %></span>
+        </h3>
+        <p class="text-center text-3xl">
+          <%= get_modifier(@character, "int") %>
+        </p>
+      </div>
+      <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex space-x-4">
+      <div class="<%= key_ability?(@character, 'wis') %> rounded p-1 ">
+        <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
+          WIS <span class="text-2xl"><%= @character.pathfinder_ability.wis_total || 0 %></span>
+        </h3>
+        <p class="text-center text-3xl">
+          <%= get_modifier(@character, "wis") %>
+        </p>
+      </div>
+      <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+    </div>
+    <div class="flex space-x-4">
+      <div class="<%= key_ability?(@character, 'cha') %> rounded p-1 ">
+        <h3 class="font-bold text-xl text-rose-700 dark:text-rose-500">
+          CHA <span class="text-2xl"><%= @character.pathfinder_ability.cha_total || 0 %></span>
+        </h3>
+        <p class="text-center text-3xl">
+          <%= get_modifier(@character, "cha") %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  <% @character.pathfinder_feats.each do |feat| %>
+    <%= turbo_stream.append "feats-#{feat.types.downcase}" do %>
+      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= feat.name %>" data-flowbite-note-param="<%= feat.notes %>">
+        <p>
+          <%= feat.name %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+  <!-- Feats -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats Ancestry
+    </div>
+    <div id="feats-ancestry" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats Class
+    </div>
+    <div id="feats-class" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats Skill
+    </div>
+    <div id="feats-skill" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats General
+    </div>
+    <div id="feats-general" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Feats Bonus
+    </div>
+    <div id="feats-bonus" class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+    <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+      Languages
+    </div>
+    <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+      <% @character.pathfinder_languages.each do |language| %>
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= language.name %>" data-flowbite-note-param="<%= language.notes %>">
+          <p>
+            <%= language.name %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Die Hard
+  types: general
+  notes: Dies on dying 5 (instead of dying 4)
+  character: one
+
+two:
+  name: Incredible Initiative
+  types: general
+  notes: +2 to initiative rolls
+  character: two

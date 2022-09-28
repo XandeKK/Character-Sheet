@@ -3,21 +3,14 @@ require "test_helper"
 class CharacterTest < ActiveSupport::TestCase
   def setup
     @character = Character.new(
-      name: "Feel",
-      statistic: '{}',
       user: users(:one),
-      slug: "feel",
-      character_category: character_categories(:one)
+      character_category: character_categories(:one),
+      character_system: character_systems(:one)
     )
   end
 
   test "should be valid" do
     assert @character.valid?, "Did not validate with character valid"
-  end
-
-  test "should be valid without slug" do
-    @character.slug = nil
-    assert @character.valid?, "Validated the character without slug"
   end
 
   test "should save" do
@@ -32,13 +25,18 @@ class CharacterTest < ActiveSupport::TestCase
     end
   end
 
-  test "should be invalid without name" do
-    @character.name = nil
-    assert @character.invalid?, "Validated the character without name"
-  end
-
   test "should be invalid without user" do
     @character.user = nil
     assert @character.invalid?, "Validated the character without user"
+  end
+
+  test "should be invalid without character category" do
+    @character.character_category = nil
+    assert @character.invalid?, "Validated the character without character category"
+  end
+
+  test "should be invalid without character system" do
+    @character.character_system = nil
+    assert @character.invalid?, "Validated the character without character system"
   end
 end

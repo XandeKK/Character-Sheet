@@ -1,60 +1,15 @@
-import consumer from "channels/consumer"
+// import consumer from "channels/consumer"
 
-class TvChannel {
-  constructor() {
-    this.addEvent();
-  }
+// consumer.subscriptions.create("TvChannel", {
+//   connected() {
+//     // Called when the subscription is ready for use on the server
+//   },
 
-  addEvent() {
-    document.addEventListener("turbo:submit-end", this.start.bind(this));
-  }
+//   disconnected() {
+//     // Called when the subscription has been terminated by the server
+//   },
 
-  start() {
-    this.channel = this.createChannel();
-  }
-
-  createChannel() {
-    const rollDiceClass = this.rollDice;
-    const tvChannel = consumer.subscriptions.create({channel: "TvChannel", unique_name: unique_name.value}, {
-      connected() {
-      },
-
-      disconnected() {
-      },
-
-      received(data) {
-        if (data["act"] == "rollDice"){
-          const rollObjects = rollDiceClass(data);
-          rollDice(rollObjects);
-        }
-      }
-    });
-    return tvChannel;
-  }
-
-  rollDice(data) {
-    let quantity = data["qty"];
-    let dice = data["dice"];
-    let bonus = data["bonus"];
-    let color = data["color"];
-    let theme = data["theme"];
-    let name = data["name"];
-    let image = data["image"];
-
-    return {
-      qty: quantity,
-      dice: dice,
-      bonus: bonus,
-      color: color,
-      theme: theme,
-      name: name,
-      image: image
-    };
-  }
-}
-
-window.addEventListener("turbo:load", function() {
-  if (document.getElementById("form") !== null) {
-    const tvChannel = new TvChannel();
-  }
-})
+//   received(data) {
+//     // Called when there's incoming data on the websocket for this channel
+//   }
+// });

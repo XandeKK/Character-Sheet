@@ -1,5 +1,5 @@
 class CharacterCategory < ApplicationRecord
-	has_many :characters
+  validates :name, presence: true
 
-	validates :name, presence: true
+  has_many :characters, dependent: :destroy
 end

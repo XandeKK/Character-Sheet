@@ -1,48 +1,39 @@
 class AdventureParticipationController < ApplicationController
-  before_action :set_adventure, only: [:create, :destroy]
-  before_action :redirect_if_empty, only: [:create, :destroy]
+  def create
+    @adventure_participation = AdventureParticipation.new(adventure_participation_params)
 
-	def create
-    @adventure_participation = @adventure.adventure_participations.new(adventure_participation_params)
-    @character = @adventure_participation.character
-
-    respond_to do |format|
-      if @adventure_participation.save
-        format.turbo_stream { render "adventure_participation/create", status: :ok }
-      else
-        if @character
-          format.turbo_stream { render "adventure_participation/destroy", status: :unprocessable_entity }
-        else
-          format.turbo_stream { render plain: "", status: :unprocessable_entity }
-        end
+    if @adventure_participation.save
+      respond_to do |format|
+        format.turbo_stream {
+          render "adventure_participation/create",
+            locals: {participation: @adventure_participation},
+            status: :ok
+        }
       end
+    else
+      render json: nil, status: :unprocessable_entity
     end
-	end
-
-	def destroy
-    @adventure_participation = @adventure.adventure_participations.find_by(character_id: params[:character_id])
-    @character = @adventure_participation.character
-
-    respond_to do |format|
-      if @adventure_participation.destroy
-        format.turbo_stream { render "adventure_participation/destroy", status: :ok }
-      else
-        format.turbo_stream { render "adventure_participation/create", status: :unprocessable_entity }
-      end
-    end
-	end
-
-	private
-
-  def adventure_participation_params
-    params.require(:adventure_participation).permit(:character_id)
   end
 
-	def redirect_if_empty
-		redirect_to adventures_path, alert: t(:"not have permission") if @adventure.nil?
-	end
+  def destroy
+    @adventure_participation = AdventureParticipation.find_by(
+      character_id: params[:character_id], adventure_id: params[:adventure_id]
+    )
 
-	def set_adventure
-		@adventure = Adventure.find_by(id: params[:id], user: current_user)
-	end
+    unless @adventure_participation.nil?
+      if @adventure_participation.destroy
+        head :ok
+      else
+        render json: nil, status: :unprocessable_entity
+      end
+    else
+      render json: nil, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def adventure_participation_params
+    params.permit(:character_id, :adventure_id)
+  end
 end
