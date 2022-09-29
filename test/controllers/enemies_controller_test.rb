@@ -71,7 +71,8 @@ class EnemiesControllerTest < ActionDispatch::IntegrationTest
 
     put enemy_path(enemy), params: {
       character: {
-        pathfinder_basic_attributes: {"name": "Tolo"}
+        pathfinder_basic_attributes: {"name": "Tolo"},
+        image: ""
       }
     }
 

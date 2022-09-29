@@ -71,7 +71,8 @@ class NpcsControllerTest < ActionDispatch::IntegrationTest
 
     put npc_path(npc), params: {
       character: {
-        pathfinder_basic_attributes: {"name": "Tolo"}
+        pathfinder_basic_attributes: {"name": "Tolo"},
+        image: ""
       }
     }
 

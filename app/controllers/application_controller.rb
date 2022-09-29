@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_by_character_category character
+    character_category = CharacterCategory.all
     case character.character_category_id
-    when 1
+    when character_category[0].id
       redirect_to character_path(character), notice: "Character successfully updated!"
-    when 2
+    when character_category[1].id
       redirect_to npc_path(character), notice: "Npc successfully updated!"
-    when 3
+    when character_category[2].id
       redirect_to enemy_path(character), notice: "Enemy successfully updated!"
     end
   end
