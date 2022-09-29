@@ -26,6 +26,7 @@ module PathfinderCharacter
 
   def self.character_params params
     params.require(:character).permit(
+      :character_category_id,
       pathfinder_basic_attributes: [
         :id,
         :name,
@@ -120,7 +121,8 @@ module PathfinderCharacter
         :armor_class_proficiency,
         :heavy_proficiency,
         :medium_proficiency,
-        :light_proficiency
+        :light_proficiency,
+        :unarmored_proficiency
       ],
       pathfinder_spell_caster_attributes: [
         :id,

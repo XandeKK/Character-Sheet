@@ -91,6 +91,10 @@
             <%= form_basic.label :description, class: "block mb-2 font-medium dark:text-gray-300" %>
             <%= form_basic.text_area :description, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", rows: 3 %>
           </div>
+          <div class="mm:col-span-2 md:col-span-3">
+            <%= form.label :character_category_id, class: "block mb-2 font-medium dark:text-gray-300" %>
+            <%= form.select :character_category_id, [["Player", 1], ["Npc", 2], ["Enemy", 3]], {}, class: "bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          </div>
         </div>
       </div>
       <!--  -->
