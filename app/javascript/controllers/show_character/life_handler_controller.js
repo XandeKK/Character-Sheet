@@ -29,12 +29,12 @@ export default class extends Controller {
     this.characters[id].current_hp += value;
     this.characters[id].dirty = true;
 
-    this.setCharacterInLocalStorage();
 
     if (this.characters[id].current_hp > this.characters[id].max_hp) {
       this.characters[id].current_hp = this.characters[id].max_hp;
     }
 
+    this.setCharacterInLocalStorage();
     this.sendToLifeSender(id);
 
     current_hp.textContent = this.characters[id].current_hp;
@@ -57,12 +57,12 @@ export default class extends Controller {
     this.characters[id].current_hp -= value;
     this.characters[id].dirty = true;
 
-    this.setCharacterInLocalStorage();
 
     if (this.characters[id].current_hp < 0) {
       this.characters[id].current_hp = 0;
     }
     
+    this.setCharacterInLocalStorage();
     this.sendToLifeSender(id);
 
     current_hp.textContent = this.characters[id].current_hp;
