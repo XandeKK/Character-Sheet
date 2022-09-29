@@ -11,6 +11,7 @@
       <% @character.pathfinder_melees.each do |melee| %>
       <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
       data-action="click->flowbite#toggleDrawerWeapon click->channels--character#setWeapon"
+      data-flowbite-character-id-param="<%= @character.id %>"
       data-flowbite-name-param="<%= melee.name %>"
       data-flowbite-note-param="<%= melee.notes %>"
       data-flowbite-other-param="<%= melee.other %>"
@@ -96,6 +97,7 @@
       <% @character.pathfinder_rangeds.each do |ranged| %>
       <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
       data-action="click->flowbite#toggleDrawerWeapon click->channels--character#setWeapon"
+      data-flowbite-character-id-param="<%= @character.id %>"
       data-flowbite-name-param="<%= ranged.name %>"
       data-flowbite-note-param="<%= ranged.notes %>"
       data-flowbite-other-param="<%= ranged.other %>"

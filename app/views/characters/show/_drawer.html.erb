@@ -1,13 +1,13 @@
 <div id="drawer-character" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white mm:w-80 md:w-96 dark:bg-gray-800 transition-transform right-0 top-0 translate-x-full" tabindex="-1" aria-labelledby="drawer-right-label" aria-hidden="true" data-flowbite-target="drawer_character">
   <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400" data-flowbite-target="drawer_character_title"></h5>
-  <div class="hidden" data-flowbite-target="dice_div">
+  <div class="hidden" data-flowbite-target="dice_div" data-controller="edit-character--theme-dice">
     <div class="mb-3">
       <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Color Dice</label>
-      <input type="color" id="color" class="block w-full bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputColor">
+      <input type="color" id="color" class="block w-full bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputColor" data-flowbite-target="inputColor" data-edit-character--theme-dice-target="inputColor" data-edit-character--theme-dice-character-id-param="" data-action="edit-character--theme-dice#saveThemeLocalStorage">
     </div>
     <div class="mb-3 text-sm text-gray-900 dark:text-gray-400">
       <label for="theme-dice" class="block mb-2 font-medium">Dice theme</label>
-      <select id="theme-dice" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputTheme">
+      <select id="theme-dice" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputTheme" data-flowbite-target="inputTheme" data-edit-character--theme-dice-target="inputTheme" data-action="edit-character--theme-dice#saveThemeLocalStorage">
         <option value="default">default</option>
         <option value="blueGreenMetal">blueGreenMetal</option>
         <option value="diceOfRolling">diceOfRolling</option>

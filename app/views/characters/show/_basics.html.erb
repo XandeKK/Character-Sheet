@@ -184,7 +184,8 @@
               data-action="click->flowbite#toggleDrawerMacro"
               data-flowbite-name-param="<%= dice.name %>"
               data-flowbite-notation-param="<%= format_macro_notation(@character, dice.notation) %>"
-              data-flowbite-note-param="<%= dice.notes %>">
+              data-flowbite-note-param="<%= dice.notes %>"
+              data-flowbite-character-id-param="<%= @character.id %>">
               <p>
                 <%= dice.name %>
               </p>

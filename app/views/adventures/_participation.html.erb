@@ -202,6 +202,7 @@
         <% participation.dices.each do |dice| %>
         <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
             data-action="click->adventure--drawer#toggleDrawerMacro click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-character-id-param="<%= participation.character_id %>"
             data-adventure--drawer-name-param="<%= dice.name %>"
             data-adventure--drawer-notation-param="<%= dice.notation %>"
             data-adventure--drawer-note-param="<%= dice.notes %>"
@@ -226,6 +227,7 @@
           <% participation.pathfinder_melees.each do |melee| %>
             <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
             data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-character-id-param="<%= participation.character_id %>"
             data-adventure--drawer-name-param="<%= melee.name %>"
             data-adventure--drawer-note-param="<%= melee.notes %>"
             data-adventure--drawer-other-param="<%= melee.other %>"
@@ -267,6 +269,7 @@
           <% participation.pathfinder_rangeds.each do |ranged| %>
             <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
             data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
+            data-adventure--drawer-character-id-param="<%= participation.character_id %>"
             data-adventure--drawer-name-param="<%= ranged.name %>"
             data-adventure--drawer-note-param="<%= ranged.notes %>"
             data-adventure--drawer-other-param="<%= ranged.other %>"

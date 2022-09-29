@@ -3,7 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [
     "drawer", "drawer_character_title", "drawer_character_note", "dice_div",
-    "attack", "secondAttack", "thirdAttack", "damage", "weaponDice", "macro"
+    "attack", "secondAttack", "thirdAttack", "damage", "weaponDice", "macro",
+    "inputColor", "inputTheme"
   ]
 
   connect() {
@@ -31,6 +32,7 @@ export default class extends Controller {
     this.macroTarget.classList.add("hidden")
     this.weaponDiceTarget.classList.remove("hidden")
     this.dice_divTarget.classList.remove("hidden")
+    this.setThemeDice(event.params.characterId)
   }
 
   toggleDrawerMacro(event) {
@@ -48,6 +50,16 @@ export default class extends Controller {
     this.macroTarget.classList.remove("hidden")
     this.weaponDiceTarget.classList.add("hidden")
     this.dice_divTarget.classList.remove("hidden")
+    this.setThemeDice(event.params.characterId)
+  }
+
+  setThemeDice(characterId) {
+    this.inputColorTarget.setAttribute("data-edit-character--theme-dice-character-id-param", characterId)
+    if (localStorage[`theme-${characterId}`]) {
+      let json = JSON.parse(localStorage[`theme-${characterId}`])
+      this.inputColorTarget.value = json.color
+      this.inputThemeTarget.value = json.theme
+    }
   }
 }
 
