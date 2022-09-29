@@ -67,7 +67,7 @@ function appendFocusSpellInForm(value) {
       `</div>`,
       `<div class="flex-1">`,
         `<label class="truncate block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="character_pathfinder_focus_spells_attributes_${value}_range">Range</label>`,
-        `<input class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="character[pathfinder_focus_spells_attributes][${value}][range]" id="character_pathfinder_focus_spells_attributes_${value}_range">`,
+        `<input class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="character[pathfinder_focus_spells_attributes][${value}][range]" id="character_pathfinder_focus_spells_attributes_${value}_range" value="0">`,
       `</div>`,
     `</div>`,
     `<div>`,

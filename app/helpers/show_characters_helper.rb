@@ -168,7 +168,7 @@ module ShowCharactersHelper
     item = skill.item || 0
     proficiency = skill.proficiency || 0
     level = get_score_level(character, proficiency)
-    armor = skill.armor || 0
+    armor = skill.armor.abs || 0
 
     ability + item + proficiency - armor + level
   end
