@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["chat"]
 
   connect() {
-    this.characters = {};
     this.charactersEvents = [];
     this.currentIndex = 0;
     this.accumulatorRoll = 0;
@@ -24,40 +23,96 @@ export default class extends Controller {
   }
 
   rollDice(data) {
-    this.characters[data.id] = {
+    data.dice = data.dice.replaceAll(/[a-cf-zA-CF-Z]/gi, "");
+    let dice = this.handlingDice(data.dice);
+
+    this.charactersEvents.push({
       name: data.name,
       image: data.image,
-      color: data.color
-    };
+      color: data.color,
+      dice_normal: data.dice,
+      dice: dice
+    });
 
-    this.charactersEvents.push(data.id);
+    let regex = /\d*d(4|6|8|100|10|12|20)/gi
+    let arr_dice = dice.match(regex)
 
-    this.box.add(data.dice, {
+    this.box.add(arr_dice, {
       themeColor: data.color,
       theme: data.theme,
+      charactersEventsIndex: this.charactersEvents.length
     });
   }
 
-  rollComplete(dieResult) {
-    for(let i = this.currentIndex; i < dieResult.length; i++) {
-      let groupId = dieResult[i].id;
-      let qty = dieResult[i].qty;
-      let item = this.createItemChat(i, dieResult[i]);
-      this.chatTarget.appendChild(item);
+  handlingDice(dice) {
+    let regex = /\d*d(4|6|8|100|10|12|20)/gi
+    let arr_dice = dice.match(regex)
 
-      this.removeDice(groupId, qty);
+    arr_dice.forEach((item)=>{
+      let qty = item.replace(/d(4|6|8|100|10|12|20)/gi, "");
+      qty = parseInt(qty)
+      let sides = item.replace(/\d*d/gi, "");
+      if (qty > 1) {
+        let arr = [];
+        for (let i = 0; i < qty; i++) {
+          arr.push(`1d${sides}`);
+        }
+        arr = arr.join(" + ");
+        arr = `(${arr})`;
 
-      this.chatTarget.scrollBy({
-        top: this.chatTarget.scrollHeight,
-        left: 0,
-        behavior: 'smooth'
-      })
-    }
-    this.currentIndex = dieResult.length;
+        dice = dice.replace(item, arr);
+      }
+    });
+
+    return dice;
   }
 
-  removeDice(groupId, qty) {
-    setTimeout(this.timeoutRemove.bind(this, groupId, qty), 8000); // 8 seconds
+  rollComplete(dieResult) {
+    let previous_player = null;
+    let current_player = previous_player;
+    let dices = [];
+
+    for(let i = this.currentIndex; i < dieResult.length; i++) {
+      current_player = dieResult[i].charactersEventsIndex;
+
+      if (i == this.currentIndex) {
+        previous_player = current_player;
+      }
+
+      if (previous_player == current_player) {
+        dices.push(dieResult[i]);
+      } else {
+        let item = this.createItemChat(dices);
+        this.chatTarget.appendChild(item);
+
+        this.removeDice(dices);
+
+        dices = [dieResult[i]];
+      }
+      previous_player = current_player;
+    }
+
+    if (dices.length != 0) {
+      let item = this.createItemChat(dices);
+      this.chatTarget.appendChild(item);
+      this.removeDice(dices);
+    }
+
+    this.currentIndex = dieResult.length;
+
+    this.chatTarget.scrollBy({
+      top: this.chatTarget.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  removeDice(dices) {
+    for (let i=0; i<dices.length; i++) {
+      let groupId = dices[i].id;
+      let qty = dices[i].qty;
+      setTimeout(this.timeoutRemove.bind(this, groupId, qty), 8000); // 8 seconds
+    }
   }
 
   timeoutRemove(groupId, qty) {
@@ -71,9 +126,10 @@ export default class extends Controller {
     this.rollDice(data)
   }
 
-  createItemChat(index, dieResult) {
-    let id = this.charactersEvents[index];
-    let character = this.characters[id];
+  createItemChat(dices) {
+    let id = dices[0].charactersEventsIndex - 1;
+    let character = this.charactersEvents[id];
+    let dice_str = character.dice;
 
     // Create Element
     let mainDiv = document.createElement("div");
@@ -90,12 +146,12 @@ export default class extends Controller {
     let spanResult = document.createElement("span");
 
     // Set id
-    popoverDiv.id = `popover-${index}`;
+    popoverDiv.id = `popover-${id}`;
 
     // Set ClassName
     mainDiv.className = "w-full h-20 rounded-lg shadow-md p-2 flex space-x-4";
     contentDiv.className = "text-xl";
-    popoverDiv.className = "inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800";
+    popoverDiv.className = "inline-block absolute invisible z-10 w-64 text-md font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800";
     popoverContentDiv.className = "py-2 px-3";
 
     img.className = "rounded-full w-16 h-16";
@@ -117,24 +173,20 @@ export default class extends Controller {
     popoverDiv.setAttribute("role", "tooltip");
     popperArrow.setAttribute("data-popper-arrow", "");
 
+    // Get value rolls
+    let rolls = dice_str;
+    dices.forEach((roll)=> {
+      let str = `${roll.qty}d${roll.sides}`;
+      rolls = rolls.replace(str, roll.value);
+    })
+
     // Set text Content
     spanName.textContent = `${character.name}: `;
-    spanResult.textContent = dieResult.value;
+    spanResult.textContent = eval(rolls);
 
     img.src = character.image;
 
-    let rolls = dieResult.rolls.map(function(roll) {return roll.value});
-    rolls = rolls.join(" + ");
-
-    let popoverText = null;
-
-    if (dieResult.modifier != 0) {
-      popoverText = `dice: ${dieResult.qty}d${dieResult.sides}</br>rolls: ${rolls} | bonus: ${dieResult.modifier}`;
-    } else {
-      popoverText = `dice: ${dieResult.qty}d${dieResult.sides}</br>rolls: ${rolls}`;
-    }
-
-    pPopoverText.innerHTML = popoverText
+    pPopoverText.innerHTML = `dice: ${character.dice_normal}</br>rolls: ${rolls}`;
 
     // Append element
     mainDiv.appendChild(img);
@@ -154,6 +206,13 @@ export default class extends Controller {
     // Add Event
     const popover = new Popover(popoverDiv, spanResult);
 
+    // Clear
+    this.clearCharactersEvents(id)
+
     return mainDiv;
+  }
+
+  clearCharactersEvents(id) {
+    this.charactersEvents[id] = ""
   }
 }
