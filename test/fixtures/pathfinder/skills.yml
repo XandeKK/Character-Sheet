@@ -1,8 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  note: MyText
+  name: acrobatics
+  note: faz mortal
   proficiency: 1
   key_ability: "str"
   item: 1
