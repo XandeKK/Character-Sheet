@@ -27,6 +27,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     get adventure_path(adventure)
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    assert_redirected_to adventures_path
     follow_redirect!
     assert_select "h1", "Adventures"
   end
@@ -68,6 +69,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_response :unprocessable_entity
+    # Add message
   end
 
   test "should get edit" do
@@ -83,6 +85,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     get edit_adventure_path(adventure)
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    assert_redirected_to adventures_path
     follow_redirect!
     assert_select "h1", "Adventures"
   end
@@ -114,6 +117,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_response :unprocessable_entity
+    # Add message
   end
 
   test "should not update adventure which does not belong to the user" do
@@ -128,6 +132,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    assert_redirected_to adventures_path
     follow_redirect!
     assert_select "h1", "Adventures"
   end
@@ -141,6 +146,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "Adventure successfully deleted!", flash[:notice]
+    assert_redirected_to adventures_path
     follow_redirect!
     assert_select "h1", "Adventures"
   end
@@ -154,6 +160,7 @@ class AdventuresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal "You do not have permission.", flash[:alert]
+    assert_redirected_to adventures_path
     follow_redirect!
     assert_select "h1", "Adventures"
   end
