@@ -24,7 +24,7 @@
   <!--  -->
   <div id="defensesTabContent" class="text-sm text-gray-900 dark:text-gray-300">
     <%= form.fields_for :pathfinder_defense do |form_defense| %>
-    <div class="" id="hp" role="tabpanel" aria-labelledby="hp-tab">
+    <div id="hp" role="tabpanel" aria-labelledby="hp-tab">
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           HP
@@ -77,7 +77,7 @@
         </div>
       </div>
     </div>
-    <div class="" id="armor-class" role="tabpanel" aria-labelledby="armor-class-tab">
+    <div class="hidden" id="armor-class" role="tabpanel" aria-labelledby="armor-class-tab">
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Armor class
@@ -121,7 +121,7 @@
       </div>
     </div>
     <% end %>
-    <div class="" id="saving-throw" role="tabpanel" aria-labelledby="saving-throw-tab" data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
+    <div class="hidden" id="saving-throw" role="tabpanel" aria-labelledby="saving-throw-tab" data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
       <%= form.fields_for :pathfinder_saving_throw do |form_saving_throw| %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
