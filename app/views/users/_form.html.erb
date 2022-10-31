@@ -1,23 +1,9 @@
-<div class="relative z-0 mb-6 w-full group">
-  <%= form.text_field :name, class: form_field(@user, :name) %>
-  <%= form.label :name, class: form_label(@user, :name) %>
-  <% @user.errors.messages[:name].each do |message| %>
-    <p class="mt-2 text-red-600 dark:text-red-500">Name <%= message %></p>
-  <% end %>
-</div>
-  
-<div class="relative z-0 mb-6 w-full group">
-  <%= form.text_field :email, class: form_field(@user, :email) %>
-  <%= form.label :email, class: form_label(@user, :email) %>
-  <% @user.errors.messages[:email].each do |message| %>
-    <p class="mt-2 text-red-600 dark:text-red-500">Email <%= message %></p>
-  <% end %>
-</div>
-
-<div class="relative z-0 mb-6 w-full group">
-  <%= form.password_field :password, class: form_field(@user, :password) %>
-  <%= form.label :password, class: form_label(@user, :password) %>
-  <% @user.errors.messages[:password].each do |message| %>
-    <p class="mt-2 text-red-600 dark:text-red-500">Password <%= message %></p>
-  <% end %>
-</div>
+<% [:name, :email, :password].each do |name| %>
+  <div class="relative z-0 mb-6 w-full group">
+    <%= form.text_field :name, class: peer_field(@user, name), placeholder: " " %>
+    <%= form.label name, class: peer_label(@user, name) %>
+    <% @user.errors.messages[name].each do |message| %>
+      <p class="mt-2 text-red-600 dark:text-red-500"><%= "#{name.capitalize} #{message}" %></p>
+    <% end %>
+  </div>
+<% end %>
