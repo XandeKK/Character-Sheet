@@ -1,24 +1,20 @@
-<div id="defense" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
-  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
-    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+<div id="defense" class="<%= box_body %>">
+  <div class="<%= box_header %>">
+    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
       <path fill="none" d="M0 0h24v24H0z" />
       <path d="M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976z" /></svg>
-    <h1 class="ml-3 text-lg text-gray-200">
+    <h1 class="<%= box_header_text %>">
       Defense
     </h1>
   </div>
   <!--  -->
-  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" id="defensesTab" data-tabs-toggle="#defensesTabContent" role="tablist">
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="hp-tab" data-tabs-target="#hp" type="button" role="tab" aria-controls="hp" aria-selected="true">HP</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 dark:border-transparent border-gray-100 dark:border-gray-700" id="armor-class-tab" data-tabs-target="#armor-class" type="button" role="tab" aria-controls="armor-class" aria-selected="false">Armor Class</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:border-gray-300 dark:border-transparent border-gray-100 dark:border-gray-700" id="saving-throw-tab" data-tabs-target="#saving-throw" type="button" role="tab" aria-controls="saving-throw" aria-selected="false">Saving Throw</button>
-      </li>
+  <div class="<%= box_tabs_body %>">
+    <ul class="<%= box_tabs %>" id="defensesTab" data-tabs-toggle="#defensesTabContent" role="tablist">
+      <% ["hp", "armor-class", "saving-throw"].each_with_index do |target, index| %>
+        <li class="mr-2" role="presentation">
+          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
+        </li>
+      <% end %>
     </ul>
   </div>
   <!--  -->

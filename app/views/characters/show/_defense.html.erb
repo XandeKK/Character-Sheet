@@ -1,10 +1,10 @@
-<div id="defense" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800" data-controller="show-character--life-handler show-character--life-sender" data-action="show-character--life-handler:send->show-character--life-sender#setCharacter show-character--life-handler:send->channels--character#updateHp">
+<div id="defense" class="<%= box_body %>" data-controller="show-character--life-handler show-character--life-sender" data-action="show-character--life-handler:send->show-character--life-sender#setCharacter show-character--life-handler:send->channels--character#updateHp">
   <!-- Put send life -->
-  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
-    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <div class="<%= box_header %>">
+    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
       <path fill="none" d="M0 0h24v24H0z" />
       <path d="M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976z" /></svg>
-    <h1 class="ml-3 text-lg text-gray-200">
+    <h1 class="<%= box_header_text %>">
       Defense
     </h1>
   </div>

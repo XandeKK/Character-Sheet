@@ -1,22 +1,18 @@
-<div id="offense" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
-  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
-    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.05 13.406l3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531 3 3zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535L17.457 3z"/></svg>
-    <h1 class="ml-3 text-lg text-gray-200">
+<div id="offense" class="<%= box_body %>">
+  <div class="<%= box_header %>">
+    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.05 13.406l3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531 3 3zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535L17.457 3z"/></svg>
+    <h1 class="<%= box_header_text %>">
       Offense
     </h1>
   </div>
   <!--  -->
-    <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="offensesTab" data-tabs-toggle="#offensesTabContent" role="tablist">
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="weapon-proficiency-tab" data-tabs-target="#weapon-proficiency" type="button" role="tab" aria-controls="weapon-proficiency" aria-selected="true">Weapon Proficiency</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="melee-tab" data-tabs-target="#melee" type="button" role="tab" aria-controls="melee" aria-selected="false">Melee</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="ranged-tab" data-tabs-target="#ranged" type="button" role="tab" aria-controls="ranged" aria-selected="false">Ranged</button>
-      </li>
+    <div class="<%= box_tabs_body %>">
+    <ul class="<%= box_tabs %>" id="offensesTab" data-tabs-toggle="#offensesTabContent" role="tablist">
+      <% ["weapon-proficiency", "melee", "ranged"].each_with_index do |target, index| %>
+        <li class="mr-2" role="presentation">
+          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
+        </li>
+      <% end %>
     </ul>
   </div>
   <!--  -->

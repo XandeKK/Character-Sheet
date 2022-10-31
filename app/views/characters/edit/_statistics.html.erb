@@ -1,27 +1,20 @@
-<div id="statistics" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
-  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
-    <svg class="menu-item w-7 h-7 fill-gray-200" class="menu-item w-7 h-7 hover:fill-rose-300 dark:hover:fill-rose-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+<div id="statistics" class="<%= box_body %>">
+  <div class="<%= box_header %>">
+    <svg class="<%= box_header_svg %>" class="menu-item w-7 h-7 hover:fill-rose-300 dark:hover:fill-rose-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
       <path fill="none" d="M0 0h24v24H0z" />
       <path d="M6.75 2.5A4.25 4.25 0 0 1 11 6.75V11H6.75a4.25 4.25 0 1 1 0-8.5zM9 9V6.75A2.25 2.25 0 1 0 6.75 9H9zm-2.25 4H11v4.25A4.25 4.25 0 1 1 6.75 13zm0 2A2.25 2.25 0 1 0 9 17.25V15H6.75zm10.5-12.5a4.25 4.25 0 1 1 0 8.5H13V6.75a4.25 4.25 0 0 1 4.25-4.25zm0 6.5A2.25 2.25 0 1 0 15 6.75V9h2.25zM13 13h4.25A4.25 4.25 0 1 1 13 17.25V13zm2 2v2.25A2.25 2.25 0 1 0 17.25 15H15z" /></svg>
-    <h1 class="ml-3 text-lg text-gray-200">
+    <h1 class="<%= box_header_text %>">
       Statistics
     </h1>
   </div>
   <!--  -->
-  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="statisticsTab" data-tabs-toggle="#statisticsTabContent" role="tablist">
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="abilities-tab" data-tabs-target="#abilities" type="button" role="tab" aria-controls="abilities" aria-selected="true">Abilities</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="feats-tab" data-tabs-target="#feats" type="button" role="tab" aria-controls="feats" aria-selected="false">Feats</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="languages-tab" data-tabs-target="#languages" type="button" role="tab" aria-controls="languages" aria-selected="false">languages</button>
-      </li>
-      <li class="mr-2" role="presentation">
-        <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="class-dc-tab" data-tabs-target="#class-dc" type="button" role="tab" aria-controls="class-dc" aria-selected="false">Class DC</button>
-      </li>
+  <div class="<%= box_tabs_body %>">
+    <ul class="<%= box_tabs %>" id="statisticsTab" data-tabs-toggle="#statisticsTabContent" role="tablist">
+      <% ["abilities", "feats", "languages", "class-dc"].each_with_index do |target, index| %>
+        <li class="mr-2" role="presentation">
+          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
+        </li>
+      <% end %>
     </ul>
   </div>
   <!--  -->
