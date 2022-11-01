@@ -36,7 +36,7 @@
                 <%= form_notes.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--notes" data-action="click->edit-character--notes#removeNote" data-edit-character--notes-id-param="<%= form_notes.index %>">
                   -
                 </div>

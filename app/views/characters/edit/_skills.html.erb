@@ -38,7 +38,7 @@
                 <%= form_skills.text_field :name, class: "#{normal_field} #{write_only} #{rounded_left}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--skills" data-action="click->edit-character--skills#removeSkill" data-edit-character--skills-id-param="<%= form_skills.index %>">
                   -
                 </div>

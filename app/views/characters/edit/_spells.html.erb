@@ -162,7 +162,7 @@
                 <%= form_spells.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--spells" data-action="click->edit-character--spells#removeSpell" data-edit-character--spells-id-param="<%= form_spells.index %>">
                   -
                 </div>
@@ -225,7 +225,7 @@
                 <%= form_innate_spells.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#removeInnateSpell" data-edit-character--innate-spells-id-param="<%= form_innate_spells.index %>">
                   -
                 </div>
@@ -299,7 +299,7 @@
                 <%= form_focus_spells.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#removeFocusSpell" data-edit-character--focus-spells-id-param="<%= form_focus_spells.index %>">
                   -
                 </div>

@@ -46,7 +46,7 @@
                 <%= form_items.number_field :volume, class: "#{rounded_none} #{normal_field} #{write_only}" %>
               </div>
               <div>
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--items" data-action="click->edit-character--items#removeItem" data-edit-character--items-id-param="<%= form_items.index %>">
                   -
                 </div>

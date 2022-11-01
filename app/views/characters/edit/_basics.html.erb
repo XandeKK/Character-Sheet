@@ -153,7 +153,7 @@
                 <%= form_dices.text_field :name, class: "#{rounded_left} #{write_only} #{normal_field}" %>
               </div>
               <div class="flex-1 text-base">
-                <div class="block mb-1 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--macros" data-action="click->edit-character--macros#removeDice" data-edit-character--macros-id-param="<%= form_dices.index %>">
                   -
                 </div>

@@ -40,7 +40,7 @@
                 <%= form_weapon_proficiencies.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--weapon-proficiencies" data-action="click->edit-character--weapon-proficiencies#removeWeaponProficiency" data-edit-character--weapon-proficiencies-id-param="<%= form_weapon_proficiencies.index %>">
                   -
                 </div>
@@ -75,7 +75,7 @@
                 <%= form_melees.select :types, types_weapon, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--melees" data-action="click->edit-character--melees#removeMelee" data-edit-character--melees-id-param="<%= form_melees.index %>">
                   -
                 </div>
@@ -154,7 +154,7 @@
                 <%= form_rangeds.select :types, types_weapon, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--rangeds" data-action="click->edit-character--rangeds#removeRanged" data-edit-character--rangeds-id-param="<%= form_rangeds.index %>">
                   -
                 </div>

@@ -1,6 +1,6 @@
 module LabelHelper
   def normal_label
-    "block mb-2 font-medium dark:text-gray-300"
+    "block mb-2 font-medium dark:text-gray-300 text-sm"
   end
 
 	def peer_label(model=nil, name=nil)

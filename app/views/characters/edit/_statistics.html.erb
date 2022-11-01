@@ -221,7 +221,7 @@
                 <%= form_feats.select :types, types_feats, {}, class: "#{rounded_none} #{normal_field} #{normal_select}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--feats" data-action="click->edit-character--feats#removeFeat" data-edit-character--feats-id-param="<%= form_feats.index %>">
                   -
                 </div>
@@ -257,7 +257,7 @@
                 <%= form_languages.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div>
-                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--languages" data-action="click->edit-character--languages#removeLanguage" data-edit-character--languages-id-param="<%= form_languages.index %>">
                   -
                 </div>
