@@ -24,7 +24,7 @@
         </div>
         <div id="body-notes" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--notes" data-action="click->edit-character--notes#addNote" data-edit-character--notes-count-param="<%= @character.pathfinder_notes.count %>">
+            <div class="<%= add_item %>" data-controller="edit-character--notes" data-action="click->edit-character--notes#addNote" data-edit-character--notes-count-param="<%= @character.pathfinder_notes.count %>">
               +
             </div>
           </div>

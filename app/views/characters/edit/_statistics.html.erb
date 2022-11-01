@@ -205,7 +205,7 @@
         </div>
         <div id="body-feats" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--feats" data-action="click->edit-character--feats#addFeat" data-edit-character--feats-count-param="<%= @character.pathfinder_feats.count %>">
+            <div class="<%= add_item %>" data-controller="edit-character--feats" data-action="click->edit-character--feats#addFeat" data-edit-character--feats-count-param="<%= @character.pathfinder_feats.count %>">
               +
             </div>
           </div>
@@ -245,7 +245,7 @@
         </div>
         <div id="body-languages" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--languages" data-action="click->edit-character--languages#addLanguage" data-edit-character--languages-count-param="<%= @character.pathfinder_languages.count %>">
+            <div class="<%= add_item %>" data-controller="edit-character--languages" data-action="click->edit-character--languages#addLanguage" data-edit-character--languages-count-param="<%= @character.pathfinder_languages.count %>">
               +
             </div>
           </div>

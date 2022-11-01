@@ -150,7 +150,7 @@
         </div>
         <div id="body-spells" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--spells" data-action="click->edit-character--spells#addSpell" data-edit-character--spells-count-param="<%= @character.pathfinder_spells.count %>">
+            <div class="<%= add_item %>" data-controller="edit-character--spells" data-action="click->edit-character--spells#addSpell" data-edit-character--spells-count-param="<%= @character.pathfinder_spells.count %>">
               +
             </div>
           </div>
@@ -213,7 +213,7 @@
         </div>
         <div id="body-innate-spells" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#addInnateSpell" data-edit-character--innate-spells-count-param="<%= @character.pathfinder_innate_spells.count %>">
+            <div class="<%= add_item %>" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#addInnateSpell" data-edit-character--innate-spells-count-param="<%= @character.pathfinder_innate_spells.count %>">
               +
             </div>
           </div>
@@ -287,7 +287,7 @@
         </div>
         <div id="body-focus-spells" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="text-center font-bold cursor-pointer font-bold rounded bg-sky-500 border text-white hover:bg-blue-700 hover:bg-blue-500 block min-w-0 w-10 text-sm border-sky-300 p-2 dark:bg-sky-500 dark:border-sky-600 dark:text-white dark:hover:bg-sky-700" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#addFocusSpell" data-edit-character--focus-spells-count-param="<%= @character.pathfinder_focus_spells.count %>">
+            <div class="<%= add_item %>" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#addFocusSpell" data-edit-character--focus-spells-count-param="<%= @character.pathfinder_focus_spells.count %>">
               +
             </div>
           </div>
