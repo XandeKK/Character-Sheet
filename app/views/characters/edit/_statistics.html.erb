@@ -26,7 +26,7 @@
           Strength
         </div>
         <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotalStrength">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="str">
             <div class="flex-1">
               <%= form_ability.label :str_total, "Total", class: normal_label %>
               <%= form_ability.number_field :str_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"str_total", placeholder: 10 %>
@@ -55,7 +55,7 @@
           Dexterity
         </div>
         <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotalDexterity change->edit-character--event-trigger#updateReflex">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateReflex" data-edit-character--abilities-ability-param="dex">
             <div class="flex-1">
               <%= form_ability.label :dex_total, "Total", class: normal_label %>
               <%= form_ability.number_field :dex_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"dex_total", placeholder: 10 %>
@@ -84,7 +84,7 @@
           Constitution
         </div>
         <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotalConstitution change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude" data-edit-character--abilities-ability-param="con">
             <div class="flex-1">
               <%= form_ability.label :con_total, "Total", class: normal_label %>
               <%= form_ability.number_field :con_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"con_total", placeholder: 10 %>
@@ -113,7 +113,7 @@
           Intelligence
         </div>
         <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotalIntelligence">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="int">
             <div class="flex-1">
               <%= form_ability.label :int_total, "Total", class: normal_label %>
               <%= form_ability.number_field :int_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"int_total", placeholder: 10 %>
@@ -142,7 +142,7 @@
           Wisdom
         </div>
         <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotalWisdom change->edit-character--event-trigger#updateWill">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateWill" data-edit-character--abilities-ability-param="wis">
             <div class="flex-1">
               <%= form_ability.label :wis_total, "Total", class: normal_label %>
               <%= form_ability.number_field :wis_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"wis_total", placeholder: 10 %>
@@ -171,7 +171,7 @@
           Charisma
         </div>
         <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotalCharisma">
+          <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="cha">
             <div class="flex-1">
               <%= form_ability.label :cha_total, "Total", class: normal_label %>
               <%= form_ability.number_field :cha_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"cha_total", placeholder: 10 %>

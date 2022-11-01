@@ -10,61 +10,12 @@ export default class extends Controller {
     "cha_total", "cha_background", "cha_class", "cha_ascentry", "cha_free",
   ]
 
-  updateTotalStrength() {
+  updateTotal(event) {
     let value = 10;
-    value += parseInt(this.str_backgroundTarget.value) || 0;
-    value += parseInt(this.str_classTarget.value) || 0;
-    value += parseInt(this.str_ascentryTarget.value) || 0;
-    value += parseInt(this.str_freeTarget.value) || 0;
-    this.str_totalTarget.value = value;
+    value += parseInt(this[`${event.params.ability}_backgroundTarget`].value) || 0;
+    value += parseInt(this[`${event.params.ability}_classTarget`].value) || 0;
+    value += parseInt(this[`${event.params.ability}_ascentryTarget`].value) || 0;
+    value += parseInt(this[`${event.params.ability}_freeTarget`].value) || 0;
+    this[`${event.params.ability}_totalTarget`].value = value;
   }
-
-  updateTotalDexterity() {
-    let value = 10;
-    value += parseInt(this.dex_backgroundTarget.value) || 0;
-    value += parseInt(this.dex_classTarget.value) || 0;
-    value += parseInt(this.dex_ascentryTarget.value) || 0;
-    value += parseInt(this.dex_freeTarget.value) || 0;
-    this.dex_totalTarget.value = value;
-  }
-
-  updateTotalConstitution() {
-    let value = 10;
-    value += parseInt(this.con_backgroundTarget.value) || 0;
-    value += parseInt(this.con_classTarget.value) || 0;
-    value += parseInt(this.con_ascentryTarget.value) || 0;
-    value += parseInt(this.con_freeTarget.value) || 0;
-    this.con_totalTarget.value = value;
-  }
-
-  updateTotalIntelligence() {
-    let value = 10;
-    value += parseInt(this.int_backgroundTarget.value) || 0;
-    value += parseInt(this.int_classTarget.value) || 0;
-    value += parseInt(this.int_ascentryTarget.value) || 0;
-    value += parseInt(this.int_freeTarget.value) || 0;
-    this.int_totalTarget.value = value;
-  }
-
-  updateTotalWisdom() {
-    let value = 10;
-    value += parseInt(this.wis_backgroundTarget.value) || 0;
-    value += parseInt(this.wis_classTarget.value) || 0;
-    value += parseInt(this.wis_ascentryTarget.value) || 0;
-    value += parseInt(this.wis_freeTarget.value) || 0;
-    this.wis_totalTarget.value = value;
-  }
-
-  updateTotalCharisma() {
-    let value = 10;
-    value += parseInt(this.cha_backgroundTarget.value) || 0;
-    value += parseInt(this.cha_classTarget.value) || 0;
-    value += parseInt(this.cha_ascentryTarget.value) || 0;
-    value += parseInt(this.cha_freeTarget.value) || 0;
-    this.cha_totalTarget.value = value;
-  }
-}
-
-function getModifier(value) {
-  return Math.floor((value/2) - 5);
 }
