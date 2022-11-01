@@ -13,7 +13,7 @@
     <div class="space-y-3 w-full">
       <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
         <% @character.pathfinder_items.each do |item| %>
-        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= item.name %>" data-flowbite-note-param="<%= item.notes %>" data-flowbite-quatity-param="<%= item.quatity %>" data-flowbite-volume-param="<%= item.volume %>">
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= item.name %>" data-drawer-note-param="<%= item.notes %>" data-drawer-quatity-param="<%= item.quatity %>" data-drawer-volume-param="<%= item.volume %>">
           <p>
             <%= item.name %>
           </p>

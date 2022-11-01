@@ -110,7 +110,7 @@
     </div>
     <% @character.pathfinder_spells.each do |spell| %>
       <%= turbo_stream.append "level_#{spell.level}" do %>
-        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= spell.name %>" data-flowbite-note-param="<%= spell.notes %>">
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= spell.name %>" data-drawer-note-param="<%= spell.notes %>">
           <div>
             <h3 class="italic text-rose-700 dark:text-rose-500">
               Spell
@@ -157,7 +157,7 @@
         <div class="space-y-3 w-full">
           <div class="grid grid-cols-1 gap-4 w-full">
             <% @character.pathfinder_innate_spells.each do |innate_spell| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= innate_spell.name %>" data-flowbite-note-param="<%= innate_spell.notes %>">
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= innate_spell.name %>" data-drawer-note-param="<%= innate_spell.notes %>">
               <div>
                 <h3 class="italic text-rose-700 dark:text-rose-500">
                   Spell
@@ -240,7 +240,7 @@
           </div>
           <div class="grid grid-cols-1 gap-4 w-full">
             <% @character.pathfinder_focus_spells.each do |focus_spell| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= focus_spell.name %>" data-flowbite-note-param="<%= focus_spell.notes %>">
+            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= focus_spell.name %>" data-drawer-note-param="<%= focus_spell.notes %>">
               <div>
                 <h3 class="italic text-rose-700 dark:text-rose-500">
                   Spell

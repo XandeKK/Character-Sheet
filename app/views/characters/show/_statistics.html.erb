@@ -76,7 +76,7 @@
   <!--  -->
   <% @character.pathfinder_feats.each do |feat| %>
     <%= turbo_stream.append "feats-#{feat.types.downcase}" do %>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= feat.name %>" data-flowbite-note-param="<%= feat.notes %>">
+      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= feat.name %>" data-drawer-note-param="<%= feat.notes %>">
         <p>
           <%= feat.name %>
         </p>
@@ -130,7 +130,7 @@
     </div>
     <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
       <% @character.pathfinder_languages.each do |language| %>
-        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->flowbite#toggleDrawerRight" data-flowbite-name-param="<%= language.name %>" data-flowbite-note-param="<%= language.notes %>">
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= language.name %>" data-drawer-note-param="<%= language.notes %>">
           <p>
             <%= language.name %>
           </p>

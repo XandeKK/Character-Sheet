@@ -22,12 +22,11 @@ export default class extends Controller {
   }
 
   toggleDrawerRight(event) {
-    let name = event.params.name
-    let note = event.params.note
+    let note = ""
 
     if (event.params.volume) {
       let body = `Volume: ${event.params.volume} Quatity: ${event.params.quatity}\n\n`
-      note = body + note
+      note = body + event.params.note
     }
 
     this.dice_divTarget.classList.add("hidden")
@@ -37,19 +36,11 @@ export default class extends Controller {
   }
 
   toggleDrawerWeapon(event) {
-    let name = event.params.name;
-    let note = event.params.note;
-    let other = event.params.other;
-    let traits = event.params.traits;
-    let attack = event.params.attack;
-    let secondAttack = event.params.secondAttack;
-    let thirdAttack = event.params.thirdAttack;
-
-    this.drawer_character_titleTarget.textContent = name
-    this.drawer_character_noteTarget.textContent = `Other: ${other}\n\nTraits: ${traits}\n\nNote: \n${note}`
-    this.attackTarget.textContent = attack;
-    this.secondAttackTarget.textContent = secondAttack;
-    this.thirdAttackTarget.textContent = thirdAttack;
+    this.drawer_character_titleTarget.textContent = event.params.name
+    this.drawer_character_noteTarget.textContent = `Other: ${event.params.other}\n\nTraits: ${event.params.traits}\n\nNote: \n${event.params.note}`
+    this.attackTarget.textContent = event.params.attack;
+    this.secondAttackTarget.textContent = event.params.secondAttack;
+    this.thirdAttackTarget.textContent = event.params.thirdAttack;
 
     this.drawerRight.toggle();
     this.macroTarget.classList.add("hidden")
@@ -59,16 +50,12 @@ export default class extends Controller {
   }
 
   toggleDrawerMacro(event) {
-    let name = event.params.name;
-    let notation = event.params.notation;
-    let note = event.params.note;
+    this.drawer_character_titleTarget.textContent = event.params.name
+    this.drawer_character_noteTarget.textContent = `Note: \n${event.params.note}`
 
-    this.drawer_character_titleTarget.textContent = name
-    this.drawer_character_noteTarget.textContent = `Note: \n${note}`
-
-    this.macroTarget.textContent = notation;
-    this.macroTarget.textContent = notation;
-    this.macroTarget.setAttribute("data-channels--character-dice-param", notation);
+    this.macroTarget.textContent = event.params.notation;
+    this.macroTarget.textContent = event.params.notation;
+    this.macroTarget.setAttribute("data-channels--character-dice-param", event.params.notation);
 
     this.drawerRight.toggle();
     this.macroTarget.classList.remove("hidden")

@@ -1,13 +1,13 @@
-<div id="drawer-character" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white mm:w-80 md:w-96 dark:bg-gray-800 transition-transform right-0 top-0 translate-x-full" tabindex="-1" aria-labelledby="drawer-right-label" aria-hidden="true" data-flowbite-target="drawer_character">
-  <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400" data-flowbite-target="drawer_character_title"></h5>
-  <div class="hidden" data-flowbite-target="dice_div" data-controller="edit-character--theme-dice">
+<div id="drawer-character" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white mm:w-80 md:w-96 dark:bg-gray-800 transition-transform right-0 top-0 translate-x-full" tabindex="-1" aria-labelledby="drawer-right-label" aria-hidden="true" data-drawer-target="drawer_character">
+  <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400" data-drawer-target="drawer_character_title"></h5>
+  <div class="hidden" data-drawer-target="dice_div" data-controller="edit-character--theme-dice">
     <div class="mb-3">
       <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Color Dice</label>
-      <input type="color" id="color" class="block w-full bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputColor" data-flowbite-target="inputColor" data-edit-character--theme-dice-target="inputColor" data-edit-character--theme-dice-character-id-param="" data-action="edit-character--theme-dice#saveThemeLocalStorage">
+      <input type="color" id="color" class="block w-full bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputColor" data-drawer-target="inputColor" data-edit-character--theme-dice-target="inputColor" data-edit-character--theme-dice-character-id-param="" data-action="edit-character--theme-dice#saveThemeLocalStorage">
     </div>
     <div class="mb-3 text-sm text-gray-900 dark:text-gray-400">
       <label for="theme-dice" class="block mb-2 font-medium">Dice theme</label>
-      <select id="theme-dice" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputTheme" data-flowbite-target="inputTheme" data-edit-character--theme-dice-target="inputTheme" data-action="edit-character--theme-dice#saveThemeLocalStorage">
+      <select id="theme-dice" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-channels--character-target="inputTheme" data-drawer-target="inputTheme" data-edit-character--theme-dice-target="inputTheme" data-action="edit-character--theme-dice#saveThemeLocalStorage">
         <option value="default">default</option>
         <option value="blueGreenMetal">blueGreenMetal</option>
         <option value="diceOfRolling">diceOfRolling</option>
@@ -24,11 +24,11 @@
         data-action="channels--character#diceNormal">1d<%= dice %></button>
       <% end %>
     </div>
-    <div data-flowbite-target="weaponDice" class="hidden">
+    <div data-drawer-target="weaponDice" class="hidden">
       <div class="flex flex-wrap items-center">
         <% ["attack", "secondAttack", "thirdAttack"].each do |attack| %>
         <button type="button" class="flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
-        data-flowbite-target="<%= attack %>" 
+        data-drawer-target="<%= attack %>" 
         data-action="channels--character#diceAttack"
         data-channels--character-attack-param="<%= attack %>"
         >0</button>
@@ -41,9 +41,9 @@
       </div>
     </div>
     <button type="button" class="hidden w-full flex-1 py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" 
-      data-flowbite-target="macro"
+      data-drawer-target="macro"
       data-channels--character-dice-param="" 
       data-action="channels--character#diceNormal"></button>
   </div>
-  <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 whitespace-pre-line" data-flowbite-target="drawer_character_note"></p>
+  <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 whitespace-pre-line" data-drawer-target="drawer_character_note"></p>
 </div>
