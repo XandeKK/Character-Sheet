@@ -4,7 +4,7 @@ import consumer from "../../channels/consumer"
 export default class extends Controller {
   static targets = [
     "serverName", "password", "formServer", "terminateButton",
-    "inputColor", "inputTheme"
+    "inputColor", "inputTheme", "warning"
   ]
 
   connect() {
@@ -47,11 +47,8 @@ export default class extends Controller {
   }
 
   terminateServer() {
-    this.sendCharacterExit();
     this.channel.unsubscribe();
     this.channel = null;
-    this.terminateButtonTarget.classList.add("hidden");
-    this.formServerTarget.classList.remove("hidden");
   }
 
   _cableConnected() {
@@ -68,12 +65,14 @@ export default class extends Controller {
 
   _cableReceived(data) {
     if (data["act"] == "wantPlayers") {
-      this.sendPlayerToAdventure(); 
+      this.sendPlayerToAdventure();
+    } else if (data["act"] == "characterExit" && data["id"] == this.character.id){
+      this.terminateServer();
     }
   }
 
-  _cableRejected() {
-    console.log("rejected")
+  _cableRejected() {;
+    this.warningTarget.innerHTML = '<div class="text-red-500 dark:text-red-400 font-bold">Bad server name or password</div>';
   }
 
   sendPlayerToAdventure() {
@@ -84,6 +83,12 @@ export default class extends Controller {
   }
 
   sendCharacterExit() {
+    this.terminateButtonTarget.classList.add("hidden");
+    this.formServerTarget.classList.remove("hidden");
+    this.warningTarget.innerHTML = "";
+
+    if (this.channel == null) return;
+
     let id = this.character.id;
     let dataToSend = {act: "characterExit", id: id};
 
