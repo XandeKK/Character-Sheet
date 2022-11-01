@@ -32,19 +32,19 @@
           <div id="notes-<%= form_notes.index %>">
             <div class="flex">
               <div class="flex-1">
-                <%= form_notes.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_notes.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_notes.label :name, class: normal_label %>
+                <%= form_notes.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
-                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--notes" data-action="click->edit-character--notes#removeNote" data-edit-character--notes-id-param="<%= form_notes.index %>">
+                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--notes" data-action="click->edit-character--notes#removeNote" data-edit-character--notes-id-param="<%= form_notes.index %>">
                   -
                 </div>
               </div>
             </div>
             <div>
-              <%= form_notes.label :note, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_notes.text_area :note, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_notes.label :note, class: normal_label %>
+              <%= form_notes.text_area :note, class: "#{normal_field} #{write_only}" %>
             </div>
             <%= form_notes.check_box :_destroy, class: "hidden" %>
           </div>

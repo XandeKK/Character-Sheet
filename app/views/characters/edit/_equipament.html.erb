@@ -12,7 +12,7 @@
     <ul class="<%= box_tabs %>" id="equipamentsTab" data-tabs-toggle="#equipamentsTabContent" role="tablist">
       <% ["items", "money"].each_with_index do |target, index| %>
         <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="items-tab" data-tabs-target="#items" type="button" role="tab" aria-controls="items" aria-selected="true">Items</button>
+          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false'%>"><%= target.capitalize %></button>
         </li>
       <% end %>
     </ul>
@@ -34,27 +34,27 @@
           <div id="items-<%= form_items.index %>">
             <div class="flex">
               <div>
-                <%= form_items.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_items.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_items.label :name, class: normal_label %>
+                <%= form_items.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div>
-                <%= form_items.label :quatity, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_items.number_field :quatity, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_items.label :quatity, class: normal_label %>
+                <%= form_items.number_field :quatity, class: "#{rounded_none} #{normal_field} #{write_only}" %>
               </div>
               <div>
-                <%= form_items.label :volume, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_items.number_field :volume, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_items.label :volume, class: normal_label %>
+                <%= form_items.number_field :volume, class: "#{rounded_none} #{normal_field} #{write_only}" %>
               </div>
               <div>
-                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
-                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--items" data-action="click->edit-character--items#removeItem" data-edit-character--items-id-param="<%= form_items.index %>">
+                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--items" data-action="click->edit-character--items#removeItem" data-edit-character--items-id-param="<%= form_items.index %>">
                   -
                 </div>
               </div>
             </div>
             <div>
-              <%= form_items.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_items.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_items.label :notes, class: normal_label %>
+              <%= form_items.text_area :notes, class: "#{normal_field} #{write_only}" %>
             </div>
             <%= form_items.check_box :_destroy, class: "hidden" %>
           </div>
@@ -71,24 +71,24 @@
         <div class="w-full">
           <div class="flex" data-controller="edit-character--money" data-action="change->edit-character--money#updateMoney">
             <div class="flex-1">
-              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Total</label>
-              <input id="money-total" type="text" name="total" class="rounded-none rounded-l-lg bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly value="0" >
+              <label class="<%= normal_label %>">Total</label>
+              <input id="money-total" type="text" name="total" class="<%= rounded_left %> <%= normal_field %> <%= read_only %>" readonly value="0" >
             </div>
             <div class="flex-1">
-              <%= form_money.label :copper, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_money.number_field :copper, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+              <%= form_money.label :copper, class: normal_label %>
+              <%= form_money.number_field :copper, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
             </div>
             <div class="flex-1">
-              <%= form_money.label :silver, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_money.number_field :silver, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+              <%= form_money.label :silver, class: normal_label %>
+              <%= form_money.number_field :silver, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
             </div>
             <div class="flex-1">
-              <%= form_money.label :gold, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_money.number_field :gold, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+              <%= form_money.label :gold, class: normal_label %>
+              <%= form_money.number_field :gold, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
             </div>
             <div class="flex-1">
-              <%= form_money.label :platinum, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_money.number_field :platinum, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+              <%= form_money.label :platinum, class: normal_label %>
+              <%= form_money.number_field :platinum, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
             </div>
           </div>
         </div>

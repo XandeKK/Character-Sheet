@@ -32,16 +32,16 @@
           <div id="weapon-proficiencies-<%= form_weapon_proficiencies.index %>">
             <div class="flex">
               <div class="flex-1">
-                <%= form_weapon_proficiencies.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_weapon_proficiencies.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_weapon_proficiencies.label :name, class: normal_label %>
+                <%= form_weapon_proficiencies.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <%= form_weapon_proficiencies.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_weapon_proficiencies.select :proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_weapon_proficiencies.label :proficiency, class: normal_label %>
+                <%= form_weapon_proficiencies.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
-                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--weapon-proficiencies" data-action="click->edit-character--weapon-proficiencies#removeWeaponProficiency" data-edit-character--weapon-proficiencies-id-param="<%= form_weapon_proficiencies.index %>">
+                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--weapon-proficiencies" data-action="click->edit-character--weapon-proficiencies#removeWeaponProficiency" data-edit-character--weapon-proficiencies-id-param="<%= form_weapon_proficiencies.index %>">
                   -
                 </div>
               </div>
@@ -67,63 +67,63 @@
           <div id="melees-<%= form_melees.index %>" class="space-y-3">
             <div class="flex">
               <div class="flex-1">
-                <%= form_melees.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_melees.label :name, class: normal_label %>
+                <%= form_melees.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <%= form_melees.label :types, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.select :types, types_weapon, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_melees.label :types, class: normal_label %>
+                <%= form_melees.select :types, types_weapon, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
-                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--melees" data-action="click->edit-character--melees#removeMelee" data-edit-character--melees-id-param="<%= form_melees.index %>">
+                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--melees" data-action="click->edit-character--melees#removeMelee" data-edit-character--melees-id-param="<%= form_melees.index %>">
                   -
                 </div>
               </div>
             </div>
             <div class="flex">
               <div class="flex-1">
-                <%= form_melees.label :qty, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.number_field :qty, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_melees.label :qty, class: normal_label %>
+                <%= form_melees.number_field :qty, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_melees.label :die, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.select :die, dice, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_melees.label :die, class: normal_label %>
+                <%= form_melees.select :die, dice, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <%= form_melees.label :weapon_specialization, "w. spec.", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.number_field :weapon_specialization, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_melees.label :weapon_specialization, "w. spec.", class: normal_label %>
+                <%= form_melees.number_field :weapon_specialization, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_melees.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.select :proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_melees.label :proficiency, class: normal_label %>
+                <%= form_melees.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <%= form_melees.label :item, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.number_field :item, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_melees.label :item, class: normal_label %>
+                <%= form_melees.number_field :item, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
               </div>
             </div>
             <div class="flex">
               <div class="flex-1">
-                <%= form_melees.label :multiple_attack_penalty_2, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.number_field :multiple_attack_penalty_2, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_melees.label :multiple_attack_penalty_2, class: normal_label %>
+                <%= form_melees.number_field :multiple_attack_penalty_2, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_melees.label :multiple_attack_penalty_3, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_melees.number_field :multiple_attack_penalty_3, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_melees.label :multiple_attack_penalty_3, class: normal_label %>
+                <%= form_melees.number_field :multiple_attack_penalty_3, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
               </div>
             </div>
             <div>
-              <%= form_melees.label :other, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_melees.text_field :other, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_melees.label :other, class: normal_label %>
+              <%= form_melees.text_field :other, class: "#{normal_field} #{write_only}" %>
             </div>
             <div>
-              <%= form_melees.label :traits, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_melees.text_field :traits, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_melees.label :traits, class: normal_label %>
+              <%= form_melees.text_field :traits, class: "#{normal_field} #{write_only}" %>
             </div>
             <div>
-              <%= form_melees.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_melees.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_melees.label :notes, class: normal_label %>
+              <%= form_melees.text_area :notes, class: "#{normal_field} #{write_only}" %>
             </div>
             <%= form_melees.check_box :_destroy, class: "hidden" %>
           </div>
@@ -146,67 +146,67 @@
           <div id="rangeds-<%= form_rangeds.index %>" class="space-y-3">
             <div class="flex">
               <div class="flex-1">
-                <%= form_rangeds.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_rangeds.label :name, class: normal_label %>
+                <%= form_rangeds.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
               </div>
               <div class="flex-1">
-                <%= form_rangeds.label :types, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.select :types, types_weapon, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_rangeds.label :types, class: normal_label %>
+                <%= form_rangeds.select :types, types_weapon, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
-                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--rangeds" data-action="click->edit-character--rangeds#removeRanged" data-edit-character--rangeds-id-param="<%= form_rangeds.index %>">
+                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--rangeds" data-action="click->edit-character--rangeds#removeRanged" data-edit-character--rangeds-id-param="<%= form_rangeds.index %>">
                   -
                 </div>
               </div>
             </div>
             <div class="flex">
               <div class="flex-1">
-                <%= form_rangeds.label :qty, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.number_field :qty, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_rangeds.label :qty, class: normal_label %>
+                <%= form_rangeds.number_field :qty, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_rangeds.label :die, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.select :die, dice, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_rangeds.label :die, class: normal_label %>
+                <%= form_rangeds.select :die, dice, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <%= form_rangeds.label :weapon_specialization, "w. spec.", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.number_field :weapon_specialization, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_rangeds.label :weapon_specialization, "w. spec.", class: normal_label %>
+                <%= form_rangeds.number_field :weapon_specialization, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_rangeds.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.select :proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_rangeds.label :proficiency, class: normal_label %>
+                <%= form_rangeds.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
               </div>
               <div class="flex-1">
-                <%= form_rangeds.label :item, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.text_field :item, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_rangeds.label :item, class: normal_label %>
+                <%= form_rangeds.text_field :item, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
               </div>
             </div>
             <div class="flex">
               <div class="flex-1">
-                <%= form_rangeds.label :multiple_attack_penalty_2, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.text_field :multiple_attack_penalty_2, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_rangeds.label :multiple_attack_penalty_2, class: normal_label %>
+                <%= form_rangeds.text_field :multiple_attack_penalty_2, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_rangeds.label :multiple_attack_penalty_3, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_rangeds.text_field :multiple_attack_penalty_3, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_rangeds.label :multiple_attack_penalty_3, class: normal_label %>
+                <%= form_rangeds.text_field :multiple_attack_penalty_3, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
               </div>
             </div>
             <div class="w-32">
-              <%= form_rangeds.label :special, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_rangeds.number_field :special, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+              <%= form_rangeds.label :special, class: normal_label %>
+              <%= form_rangeds.number_field :special, class: "#{normal_field} #{write_only}", value: 0 %>
             </div>
             <div>
-              <%= form_rangeds.label :other, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_rangeds.text_field :other, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_rangeds.label :other, class: normal_label %>
+              <%= form_rangeds.text_field :other, class: "#{normal_field} #{write_only}" %>
             </div>
             <div>
-              <%= form_rangeds.label :traits, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_rangeds.text_field :traits, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_rangeds.label :traits, class: normal_label %>
+              <%= form_rangeds.text_field :traits, class: "#{normal_field} #{write_only}" %>
             </div>
             <div>
-              <%= form_rangeds.label :notes, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_rangeds.text_area :notes, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_rangeds.label :notes, class: normal_label %>
+              <%= form_rangeds.text_area :notes, class: "#{normal_field} #{write_only}" %>
             </div>
             <%= form_rangeds.check_box :_destroy, class: "hidden" %>
           </div>

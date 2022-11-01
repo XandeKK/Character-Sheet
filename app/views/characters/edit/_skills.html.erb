@@ -34,37 +34,37 @@
           <div id="skills-<%= form_skills.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
             <div class="flex">
               <div class="flex-1">
-                <%= form_skills.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_skills.text_field :name, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_skills.label :name, class: normal_label %>
+                <%= form_skills.text_field :name, class: "#{normal_field} #{write_only} #{rounded_left}" %>
               </div>
               <div class="flex-1">
-                <div class="block mb-2 text-sm font-medium opacity-0">0</div>
-                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 text-sm border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--skills" data-action="click->edit-character--skills#removeSkill" data-edit-character--skills-id-param="<%= form_skills.index %>">
+                <div class="block mb-2 font-medium opacity-0">0</div>
+                <div class="rounded-none rounded-r-lg block flex-1 p-2.5 text-center font-bold cursor-pointer font-bold rounded bg-rose-500 border text-white hover:bg-red-700 hover:bg-red-500 block min-w-0 w-10 border-rose-300 dark:bg-rose-500 dark:border-rose-600 dark:text-white dark:hover:bg-rose-700" data-controller="edit-character--skills" data-action="click->edit-character--skills#removeSkill" data-edit-character--skills-id-param="<%= form_skills.index %>">
                   -
                 </div>
               </div>
             </div>
             <div class="flex">
               <div class="flex-1">
-                <%= form_skills.label :key_ability, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_skills.select :key_ability, abilities, {}, class: "rounded-none rounded-l-lg  bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_skills.label :key_ability, class: normal_label %>
+                <%= form_skills.select :key_ability, abilities, {}, class: "#{rounded_left} #{normal_field} #{normal_select}" %>
               </div>
               <div class="flex-1">
-                <%= form_skills.label :proficiency, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_skills.select :proficiency, proficiencies, {}, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= form_skills.label :proficiency, class: normal_label %>
+                <%= form_skills.select :proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_field} #{normal_select}" %>
               </div>
               <div class="flex-1">
-                <%= form_skills.label :item, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_skills.number_field :item, class: "rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_skills.label :item, class: normal_label %>
+                <%= form_skills.number_field :item, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_skills.label :armor, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form_skills.number_field :armor, class: "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 0 %>
+                <%= form_skills.label :armor, class: normal_label %>
+                <%= form_skills.number_field :armor, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
               </div>
             </div>
             <div>
-              <%= form_skills.label :note, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-              <%= form_skills.text_area :note, class: "rounded bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+              <%= form_skills.label :note, class: normal_label %>
+              <%= form_skills.text_area :note, class: "#{normal_field} #{write_only}" %>
             </div>
             <%= form_skills.check_box :_destroy, class: "hidden" %>
           </div>
