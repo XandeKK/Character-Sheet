@@ -1,5 +1,5 @@
 <%= render partial: "characters/side_bar"%>
-<div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="edit-character--event-trigger">
+<div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="edit-character--event-trigger edit-character--item">
   <%= form_with model: @character, url: character_path, method: :put, html: {"autocomplete":"off"}, data: {turbo:false} do |form| %>
     <%= render partial: "characters/edit/basics", locals: { form: form } %>
     

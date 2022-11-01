@@ -17,23 +17,24 @@ export default class extends Controller {
     let gold = parseInt(this.gold.value) || 0;
     let platinum = parseInt(this.platinum.value) || 0;
 
-    money += copperToGold(copper);
-    money += silverToGold(silver);
+    money += this.copperToGold(copper);
+    money += this.silverToGold(silver);
     money += gold;
-    money += platinumToGold(platinum);
+    money += this.platinumToGold(platinum);
 
     this.money_total.value = `${money}gp`;
   }
+
+  copperToGold(value) {
+    return value/100;
+  }
+  
+  silverToGold(value) {
+    return value/10;
+  }
+
+  platinumToGold(value) {
+    return value*10;
+  }
 }
 
-function copperToGold(value) {
-  return value/100;
-}
-
-function silverToGold(value) {
-  return value/10;
-}
-
-function platinumToGold(value) {
-  return value*10;
-}

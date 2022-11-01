@@ -26,7 +26,8 @@
         </div>
         <div id="body-skills" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--skills" data-action="click->edit-character--skills#addSkill" data-edit-character--skills-count-param="<%= @character.pathfinder_skills.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_skills.count %>"
+            data-edit-character--item-name-param="skills">
               +
             </div>
           </div>
@@ -39,7 +40,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--skills" data-action="click->edit-character--skills#removeSkill" data-edit-character--skills-id-param="<%= form_skills.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_skills.index %>"
+                data-edit-character--item-name-param="skills">
                   -
                 </div>
               </div>

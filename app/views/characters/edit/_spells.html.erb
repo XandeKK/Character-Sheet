@@ -150,7 +150,8 @@
         </div>
         <div id="body-spells" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--spells" data-action="click->edit-character--spells#addSpell" data-edit-character--spells-count-param="<%= @character.pathfinder_spells.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_spells.count %>"
+            data-edit-character--item-name-param="spells">
               +
             </div>
           </div>
@@ -163,7 +164,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--spells" data-action="click->edit-character--spells#removeSpell" data-edit-character--spells-id-param="<%= form_spells.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_spells.index %>"
+                data-edit-character--item-name-param="spells">
                   -
                 </div>
               </div>
@@ -211,14 +213,15 @@
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Innate Spells
         </div>
-        <div id="body-innate-spells" class="w-full space-y-6">
+        <div id="body-innate_spells" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#addInnateSpell" data-edit-character--innate-spells-count-param="<%= @character.pathfinder_innate_spells.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_innate_spells.count %>"
+            data-edit-character--item-name-param="innate_spells">
               +
             </div>
           </div>
           <%= form.fields_for :pathfinder_innate_spells do |form_innate_spells| %>
-          <div id="innate-spells-<%= form_innate_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
+          <div id="innate_spells-<%= form_innate_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
             <div class="flex">
               <div class="flex-1">
                 <%= form_innate_spells.label :name, class: normal_label %>
@@ -226,7 +229,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--innate-spells" data-action="click->edit-character--innate-spells#removeInnateSpell" data-edit-character--innate-spells-id-param="<%= form_innate_spells.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_innate_spells.index %>"
+                data-edit-character--item-name-param="innate_spells">
                   -
                 </div>
               </div>
@@ -285,14 +289,14 @@
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Spells
         </div>
-        <div id="body-focus-spells" class="w-full space-y-6">
+        <div id="body-focus_spells" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#addFocusSpell" data-edit-character--focus-spells-count-param="<%= @character.pathfinder_focus_spells.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_focus_spells.count %>" data-edit-character--item-name-param="focus_spells">
               +
             </div>
           </div>
           <%= form.fields_for :pathfinder_focus_spells do |form_focus_spells| %>
-          <div id="focus-spells-<%= form_focus_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
+          <div id="focus_spells-<%= form_focus_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
             <div class="flex">
               <div class="flex-1">
                 <%= form_focus_spells.label :name, class: normal_label %>
@@ -300,7 +304,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--focus-spells" data-action="click->edit-character--focus-spells#removeFocusSpell" data-edit-character--focus-spells-id-param="<%= form_focus_spells.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_focus_spells.index %>"
+                  data-edit-character--item-name-param="focus_spells">
                   -
                 </div>
               </div>

@@ -15,7 +15,7 @@ export default class extends Controller {
 
   updateFortitude() {
     let con_total = parseInt(this.con_total.value) || 0;
-    let modifier = getModifier(con_total);
+    let modifier = this.getModifier(con_total);
 
     let proficiency = parseInt(this.fortitude_proficiencyTarget.value) || 0;
     let item = parseInt(this.fortitude_itemTarget.value) || 0;
@@ -29,7 +29,7 @@ export default class extends Controller {
 
   updateReflex() {
     let dex_total = parseInt(this.dex_total.value) || 0;
-    let modifier = getModifier(dex_total);
+    let modifier = this.getModifier(dex_total);
 
     let proficiency = parseInt(this.reflex_proficiencyTarget.value) || 0;
     let item = parseInt(this.reflex_itemTarget.value) || 0;
@@ -43,7 +43,7 @@ export default class extends Controller {
 
   updateWill() {
     let wis_total = parseInt(this.wis_total.value) || 0;
-    let modifier = getModifier(wis_total);
+    let modifier = this.getModifier(wis_total);
 
     let proficiency = parseInt(this.will_proficiencyTarget.value) || 0;
     let item = parseInt(this.will_itemTarget.value) || 0;
@@ -54,8 +54,8 @@ export default class extends Controller {
 
     this.will_totalTarget.value = value;
   }
-}
-
-function getModifier(value) {
-  return Math.floor((value/2) - 5);
+  
+  getModifier(value) {
+    return Math.floor((value/2) - 5);
+  }
 }

@@ -205,7 +205,7 @@
         </div>
         <div id="body-feats" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--feats" data-action="click->edit-character--feats#addFeat" data-edit-character--feats-count-param="<%= @character.pathfinder_feats.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_feats.count %>" data-edit-character--item-name-param="feats">
               +
             </div>
           </div>
@@ -222,7 +222,7 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--feats" data-action="click->edit-character--feats#removeFeat" data-edit-character--feats-id-param="<%= form_feats.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_feats.index %>" data-edit-character--item-name-param="feats">
                   -
                 </div>
               </div>
@@ -245,7 +245,8 @@
         </div>
         <div id="body-languages" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--languages" data-action="click->edit-character--languages#addLanguage" data-edit-character--languages-count-param="<%= @character.pathfinder_languages.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_languages.count %>"
+            data-edit-character--item-name-param="languages">
               +
             </div>
           </div>
@@ -258,7 +259,8 @@
               </div>
               <div>
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--languages" data-action="click->edit-character--languages#removeLanguage" data-edit-character--languages-id-param="<%= form_languages.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_languages.index %>"
+                data-edit-character--item-name-param="languages">
                   -
                 </div>
               </div>

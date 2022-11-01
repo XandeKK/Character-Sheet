@@ -22,14 +22,15 @@
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Weapon Proficiency
         </div>
-        <div id="body-weapon-proficiencies" class="w-full space-y-6">
+        <div id="body-weapon_proficiencies" class="w-full space-y-6">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--weapon-proficiencies" data-action="click->edit-character--weapon-proficiencies#addWeaponProficiency" data-edit-character--weapon-proficiencies-count-param="<%= @character.pathfinder_weapon_proficiencies.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_weapon_proficiencies.count %>"
+            data-edit-character--item-name-param="weapon_proficiencies">
               +
             </div>
           </div>
           <%= form.fields_for :pathfinder_weapon_proficiencies do |form_weapon_proficiencies| %>
-          <div id="weapon-proficiencies-<%= form_weapon_proficiencies.index %>">
+          <div id="weapon_proficiencies-<%= form_weapon_proficiencies.index %>">
             <div class="flex">
               <div class="flex-1">
                 <%= form_weapon_proficiencies.label :name, class: normal_label %>
@@ -41,7 +42,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--weapon-proficiencies" data-action="click->edit-character--weapon-proficiencies#removeWeaponProficiency" data-edit-character--weapon-proficiencies-id-param="<%= form_weapon_proficiencies.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_weapon_proficiencies.index %>"
+                data-edit-character--item-name-param="weapon_proficiencies">
                   -
                 </div>
               </div>
@@ -59,7 +61,8 @@
         </div>
         <div id="body-melees" class="w-full space-y-10">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--melees" data-action="click->edit-character--melees#addMelee" data-edit-character--melees-count-param="<%= @character.pathfinder_melees.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_melees.count %>"
+            data-edit-character--item-name-param="melees">
               +
             </div>
           </div>
@@ -76,7 +79,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--melees" data-action="click->edit-character--melees#removeMelee" data-edit-character--melees-id-param="<%= form_melees.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_melees.index %>"
+                data-edit-character--item-name-param="melees">
                   -
                 </div>
               </div>
@@ -138,7 +142,8 @@
         </div>
         <div id="body-rangeds" class="w-full space-y-10">
           <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--rangeds" data-action="click->edit-character--rangeds#addRanged" data-edit-character--rangeds-count-param="<%= @character.pathfinder_rangeds.count %>">
+            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_rangeds.count %>"
+            data-edit-character--item-name-param="rangeds">
               +
             </div>
           </div>
@@ -155,7 +160,8 @@
               </div>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--rangeds" data-action="click->edit-character--rangeds#removeRanged" data-edit-character--rangeds-id-param="<%= form_rangeds.index %>">
+                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_rangeds.index %>"
+                data-edit-character--item-name-param="rangeds">
                   -
                 </div>
               </div>
