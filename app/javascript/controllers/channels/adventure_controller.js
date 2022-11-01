@@ -30,6 +30,9 @@ export default class extends Controller {
     this.startButtonTarget.classList.add("hidden");
     this.terminateButtonTarget.classList.remove("hidden");
     this.channel.send({ act: "wantPlayers" });
+
+    document.addEventListener("turbo:load", this.terminateServer.bind(this));
+    window.addEventListener("beforeunload", this.terminateServer.bind(this));
   }
 
   _cableReceived(data) {
