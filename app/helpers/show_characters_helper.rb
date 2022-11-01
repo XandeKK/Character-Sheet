@@ -42,7 +42,8 @@ module ShowCharactersHelper
   end
 
   def get_volume(character)
-    character.pathfinder_items.map(&:volume).inject(0, :+)
+    volume = character.pathfinder_items.map(&:volume).inject {|sum, n| sum + n}
+    0 if volume.nil?
   end
 
   def get_total_gold character
