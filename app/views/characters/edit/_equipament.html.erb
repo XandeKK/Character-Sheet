@@ -1,25 +1,10 @@
-<div id="equipament" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Equipament
-    </h1>
-  </div>
-  <!--  -->
-  <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="equipamentsTab" data-tabs-toggle="#equipamentsTabContent" role="tablist">
-      <% ["items", "money"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false'%>"><%= target.capitalize %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--  -->
+<%= render(CardComponent.new(
+  title: "equipament",
+  svg: "M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3z",
+  tabs: ["items", "money"]
+)) do %>
   <div id="equipamentsTabContent">
-    <div id="items" role="tabpanel" aria-labelledby="items-tab">
+    <%= render(CardTabComponent.new(tab: "items", hidden: false)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Items
@@ -63,39 +48,41 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="hidden" id="money" role="tabpanel" aria-labelledby="money-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "money", hidden: true)) do %>
       <%= form.fields_for :pathfinder_money do |form_money| %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Money
-        </div>
-        <div class="w-full">
-          <div class="flex" data-controller="edit-character--money" data-action="change->edit-character--money#updateMoney">
-            <div class="flex-1">
-              <label class="<%= normal_label %>">Total</label>
-              <input id="money-total" type="text" name="total" class="<%= rounded_left %> <%= normal_field %> <%= read_only %>" readonly value="0" >
-            </div>
-            <div class="flex-1">
-              <%= form_money.label :copper, class: normal_label %>
-              <%= form_money.number_field :copper, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_money.label :silver, class: normal_label %>
-              <%= form_money.number_field :silver, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_money.label :gold, class: normal_label %>
-              <%= form_money.number_field :gold, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_money.label :platinum, class: normal_label %>
-              <%= form_money.number_field :platinum, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Money
+          </div>
+          <div class="w-full">
+            <div class="flex" data-controller="edit-character--money" data-action="change->edit-character--money#updateMoney">
+              <div class="flex-1">
+                <label class="<%= normal_label %>">Total</label>
+                <input id="money-total" type="text" name="total" class="<%= rounded_left %> <%= normal_field %> <%= read_only %>" readonly value="0" >
+              </div>
+              <div class="flex-1">
+                <%= form_money.label :copper, class: normal_label %>
+                <%= form_money.number_field :copper, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_money.label :silver, class: normal_label %>
+                <%= form_money.number_field :silver, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_money.label :gold, class: normal_label %>
+                <%= form_money.number_field :gold, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_money.label :platinum, class: normal_label %>
+                <%= form_money.number_field :platinum, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
-</div>
+<% end %>
+

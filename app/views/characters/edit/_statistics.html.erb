@@ -1,204 +1,191 @@
-<div id="statistics" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" class="menu-item w-7 h-7 hover:fill-rose-300 dark:hover:fill-rose-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M6.75 2.5A4.25 4.25 0 0 1 11 6.75V11H6.75a4.25 4.25 0 1 1 0-8.5zM9 9V6.75A2.25 2.25 0 1 0 6.75 9H9zm-2.25 4H11v4.25A4.25 4.25 0 1 1 6.75 13zm0 2A2.25 2.25 0 1 0 9 17.25V15H6.75zm10.5-12.5a4.25 4.25 0 1 1 0 8.5H13V6.75a4.25 4.25 0 0 1 4.25-4.25zm0 6.5A2.25 2.25 0 1 0 15 6.75V9h2.25zM13 13h4.25A4.25 4.25 0 1 1 13 17.25V13zm2 2v2.25A2.25 2.25 0 1 0 17.25 15H15z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Statistics
-    </h1>
-  </div>
-  <!--  -->
-  <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="statisticsTab" data-tabs-toggle="#statisticsTabContent" role="tablist">
-      <% ["abilities", "feats", "languages", "class-dc"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--  -->
+<%= render(CardComponent.new(
+  title: "statistics",
+  svg: "M6.75 2.5A4.25 4.25 0 0 1 11 6.75V11H6.75a4.25 4.25 0 1 1 0-8.5zM9 9V6.75A2.25 2.25 0 1 0 6.75 9H9zm-2.25 4H11v4.25A4.25 4.25 0 1 1 6.75 13zm0 2A2.25 2.25 0 1 0 9 17.25V15H6.75zm10.5-12.5a4.25 4.25 0 1 1 0 8.5H13V6.75a4.25 4.25 0 0 1 4.25-4.25zm0 6.5A2.25 2.25 0 1 0 15 6.75V9h2.25zM13 13h4.25A4.25 4.25 0 1 1 13 17.25V13zm2 2v2.25A2.25 2.25 0 1 0 17.25 15H15z",
+  tabs: ["abilities", "feats", "languages", "class-dc"]
+)) do %>
   <div id="statisticsTabContent">
-    <div id="abilities" role="tabpanel" aria-labelledby="abilities-tab" data-controller="edit-character--abilities">
-      <%= form.fields_for :pathfinder_ability do |form_ability| %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Strength
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="str">
-            <div class="flex-1">
-              <%= form_ability.label :str_total, "Total", class: normal_label %>
-              <%= form_ability.number_field :str_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"str_total", placeholder: 10 %>
+    <div data-controller="edit-character--abilities">
+      <%= render(CardTabComponent.new(tab: "abilities", hidden: false)) do %>
+        <%= form.fields_for :pathfinder_ability do |form_ability| %>
+          <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+            <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+              Strength
             </div>
-            <div class="flex-1">
-              <%= form_ability.label :str_background, "Background", class: normal_label %>
-              <%= form_ability.number_field :str_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_background", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :str_class, "Class", class: normal_label %>
-              <%= form_ability.number_field :str_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_class", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :str_ascentry, "Ancestry", class: normal_label %>
-              <%= form_ability.number_field :str_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_ascentry", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :str_free, "Free", class: normal_label %>
-              <%= form_ability.number_field :str_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_free", value: 0 %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Dexterity
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateReflex" data-edit-character--abilities-ability-param="dex">
-            <div class="flex-1">
-              <%= form_ability.label :dex_total, "Total", class: normal_label %>
-              <%= form_ability.number_field :dex_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"dex_total", placeholder: 10 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :dex_background, "Background", class: normal_label %>
-              <%= form_ability.number_field :dex_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_background", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :dex_class, "Class", class: normal_label %>
-              <%= form_ability.number_field :dex_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_class", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :dex_ascentry, "Ancestry", class: normal_label %>
-              <%= form_ability.number_field :dex_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_ascentry", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :dex_free, "Free", class: normal_label %>
-              <%= form_ability.number_field :dex_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_free", value: 0 %>
+            <div class="w-full">
+              <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="str">
+                <div class="flex-1">
+                  <%= form_ability.label :str_total, "Total", class: normal_label %>
+                  <%= form_ability.number_field :str_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"str_total", placeholder: 10 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :str_background, "Background", class: normal_label %>
+                  <%= form_ability.number_field :str_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_background", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :str_class, "Class", class: normal_label %>
+                  <%= form_ability.number_field :str_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_class", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :str_ascentry, "Ancestry", class: normal_label %>
+                  <%= form_ability.number_field :str_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_ascentry", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :str_free, "Free", class: normal_label %>
+                  <%= form_ability.number_field :str_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"str_free", value: 0 %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Constitution
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude" data-edit-character--abilities-ability-param="con">
-            <div class="flex-1">
-              <%= form_ability.label :con_total, "Total", class: normal_label %>
-              <%= form_ability.number_field :con_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"con_total", placeholder: 10 %>
+          <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+            <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+              Dexterity
             </div>
-            <div class="flex-1">
-              <%= form_ability.label :con_background, "Background", class: normal_label %>
-              <%= form_ability.number_field :con_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_background", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :con_class, "Class", class: normal_label %>
-              <%= form_ability.number_field :con_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_class", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :con_ascentry, "Ancestry", class: normal_label %>
-              <%= form_ability.number_field :con_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_ascentry", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :con_free, "Free", class: normal_label %>
-              <%= form_ability.number_field :con_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_free", value: 0 %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Intelligence
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="int">
-            <div class="flex-1">
-              <%= form_ability.label :int_total, "Total", class: normal_label %>
-              <%= form_ability.number_field :int_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"int_total", placeholder: 10 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :int_background, "Background", class: normal_label %>
-              <%= form_ability.number_field :int_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_background", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :int_class, "Class", class: normal_label %>
-              <%= form_ability.number_field :int_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_class", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :int_ascentry, "Ancestry", class: normal_label %>
-              <%= form_ability.number_field :int_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_ascentry", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :int_free, "Free", class: normal_label %>
-              <%= form_ability.number_field :int_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_free", value: 0 %>
+            <div class="w-full">
+              <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateReflex" data-edit-character--abilities-ability-param="dex">
+                <div class="flex-1">
+                  <%= form_ability.label :dex_total, "Total", class: normal_label %>
+                  <%= form_ability.number_field :dex_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"dex_total", placeholder: 10 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :dex_background, "Background", class: normal_label %>
+                  <%= form_ability.number_field :dex_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_background", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :dex_class, "Class", class: normal_label %>
+                  <%= form_ability.number_field :dex_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_class", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :dex_ascentry, "Ancestry", class: normal_label %>
+                  <%= form_ability.number_field :dex_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_ascentry", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :dex_free, "Free", class: normal_label %>
+                  <%= form_ability.number_field :dex_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"dex_free", value: 0 %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Wisdom
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateWill" data-edit-character--abilities-ability-param="wis">
-            <div class="flex-1">
-              <%= form_ability.label :wis_total, "Total", class: normal_label %>
-              <%= form_ability.number_field :wis_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"wis_total", placeholder: 10 %>
+          <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+            <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+              Constitution
             </div>
-            <div class="flex-1">
-              <%= form_ability.label :wis_background, "Background", class: normal_label %>
-              <%= form_ability.number_field :wis_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_background", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :wis_class, "Class", class: normal_label %>
-              <%= form_ability.number_field :wis_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_class", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :wis_ascentry, "Ancestry", class: normal_label %>
-              <%= form_ability.number_field :wis_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_ascentry", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :wis_free, "Free", class: normal_label %>
-              <%= form_ability.number_field :wis_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_free", value: 0 %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Charisma
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="cha">
-            <div class="flex-1">
-              <%= form_ability.label :cha_total, "Total", class: normal_label %>
-              <%= form_ability.number_field :cha_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"cha_total", placeholder: 10 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :cha_background, "Background", class: normal_label %>
-              <%= form_ability.number_field :cha_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_background", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :cha_class, "Class", class: normal_label %>
-              <%= form_ability.number_field :cha_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_class", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :cha_ascentry, "Ancestry", class: normal_label %>
-              <%= form_ability.number_field :cha_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_ascentry", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_ability.label :cha_free, "Free", class: normal_label %>
-              <%= form_ability.number_field :cha_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_free", value: 0 %>
+            <div class="w-full">
+              <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude" data-edit-character--abilities-ability-param="con">
+                <div class="flex-1">
+                  <%= form_ability.label :con_total, "Total", class: normal_label %>
+                  <%= form_ability.number_field :con_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"con_total", placeholder: 10 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :con_background, "Background", class: normal_label %>
+                  <%= form_ability.number_field :con_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_background", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :con_class, "Class", class: normal_label %>
+                  <%= form_ability.number_field :con_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_class", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :con_ascentry, "Ancestry", class: normal_label %>
+                  <%= form_ability.number_field :con_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_ascentry", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :con_free, "Free", class: normal_label %>
+                  <%= form_ability.number_field :con_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"con_free", value: 0 %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+            <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+              Intelligence
+            </div>
+            <div class="w-full">
+              <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="int">
+                <div class="flex-1">
+                  <%= form_ability.label :int_total, "Total", class: normal_label %>
+                  <%= form_ability.number_field :int_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"int_total", placeholder: 10 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :int_background, "Background", class: normal_label %>
+                  <%= form_ability.number_field :int_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_background", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :int_class, "Class", class: normal_label %>
+                  <%= form_ability.number_field :int_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_class", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :int_ascentry, "Ancestry", class: normal_label %>
+                  <%= form_ability.number_field :int_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_ascentry", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :int_free, "Free", class: normal_label %>
+                  <%= form_ability.number_field :int_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"int_free", value: 0 %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+            <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+              Wisdom
+            </div>
+            <div class="w-full">
+              <div class="flex" data-action="change->edit-character--abilities#updateTotal change->edit-character--event-trigger#updateWill" data-edit-character--abilities-ability-param="wis">
+                <div class="flex-1">
+                  <%= form_ability.label :wis_total, "Total", class: normal_label %>
+                  <%= form_ability.number_field :wis_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"wis_total", placeholder: 10 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :wis_background, "Background", class: normal_label %>
+                  <%= form_ability.number_field :wis_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_background", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :wis_class, "Class", class: normal_label %>
+                  <%= form_ability.number_field :wis_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_class", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :wis_ascentry, "Ancestry", class: normal_label %>
+                  <%= form_ability.number_field :wis_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_ascentry", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :wis_free, "Free", class: normal_label %>
+                  <%= form_ability.number_field :wis_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"wis_free", value: 0 %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+            <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+              Charisma
+            </div>
+            <div class="w-full">
+              <div class="flex" data-action="change->edit-character--abilities#updateTotal" data-edit-character--abilities-ability-param="cha">
+                <div class="flex-1">
+                  <%= form_ability.label :cha_total, "Total", class: normal_label %>
+                  <%= form_ability.number_field :cha_total, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"cha_total", placeholder: 10 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :cha_background, "Background", class: normal_label %>
+                  <%= form_ability.number_field :cha_background, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_background", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :cha_class, "Class", class: normal_label %>
+                  <%= form_ability.number_field :cha_class, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_class", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :cha_ascentry, "Ancestry", class: normal_label %>
+                  <%= form_ability.number_field :cha_ascentry, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_ascentry", value: 0 %>
+                </div>
+                <div class="flex-1">
+                  <%= form_ability.label :cha_free, "Free", class: normal_label %>
+                  <%= form_ability.number_field :cha_free, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"cha_free", value: 0 %>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </div>
+      <% end %>
     </div>
-    <!--  -->
-    <div class="hidden" id="feats" role="tabpanel" aria-labelledby="feats-tab">
+    
+    <%= render(CardTabComponent.new(tab: "feats", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Feats
@@ -236,9 +223,9 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <!--  -->
-    <div class="hidden" id="languages" role="tabpanel" aria-labelledby="languages-tab">
+    <% end %>
+    
+    <%= render(CardTabComponent.new(tab: "languages", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Languages
@@ -274,9 +261,9 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <!--  -->
-    <div class="hidden" id="class-dc" role="tabpanel" aria-labelledby="class-dc-tab">
+    <% end %>
+    
+    <%= render(CardTabComponent.new(tab: "class-dc", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Class DC
@@ -294,7 +281,6 @@
           <% end %>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
-</div>
-
+<% end %>

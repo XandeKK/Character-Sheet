@@ -1,117 +1,105 @@
-<div id="basics" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M4 22a8 8 0 1 1 16 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Basics
-    </h1>
-  </div>
-  <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="basicsTab" data-tabs-toggle="#basicsTabContent" role="tablist">
-      <% ["character", "ancestry", "senses", "dices", "image"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<%= render(CardComponent.new(
+  title: "basics",
+  svg: "M4 22a8 8 0 1 1 16 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z",
+  tabs: ["character", "ancestry", "senses", "dices", "image"]
+)) do %>
   <div id="basicsTabContent">
     <%= form.fields_for :pathfinder_basic do |form_basic| %>
-    <div id="character" role="tabpanel" aria-labelledby="character-tab">
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          <%= form_basic.label :name %>
-        </div>
-        <div class="w-full">
-          <%= form_basic.text_field :name, class: "#{normal_field} #{write_only}" %>
-        </div>
-      </div>
-      <!--  -->
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Details
-        </div>
-        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-          <div>
-            <%= form_basic.label :class_name, class: normal_label %>
-            <%= form_basic.text_field :class_name, class: "#{normal_field} #{write_only}" %>
+      <%= render(CardTabComponent.new(tab: "character", hidden: false)) do %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            <%= form_basic.label :name %>
           </div>
-          <div>
-            <%= form_basic.label :key_ability, class: normal_label %>
-            <%= form_basic.select :key_ability, abilities, {}, class: "#{normal_field} #{normal_select}" %>
-          </div>
-          <div>
-            <%= form_basic.label :background, class: normal_label %>
-            <%= form_basic.text_field :background, class: "#{normal_field} #{write_only}" %>
-          </div>
-          <div>
-            <%= form_basic.label :alignment, class: normal_label %>
-            <%= form_basic.select :alignment, alignment, {}, class: "#{normal_field} #{normal_select}" %>
-          </div>
-          <div>
-            <%= form_basic.label :deity, class: normal_label %>
-            <%= form_basic.text_field :deity, class: "#{normal_field} #{write_only}" %>
-          </div>
-          <div>
-            <%= form_basic.label :age, class: normal_label %>
-            <%= form_basic.number_field :age, class: "#{normal_field} #{write_only}", value: 0 %>
-          </div>
-          <div>
-            <%= form_basic.label :level, class: normal_label %>
-            <%= form_basic.number_field :level, class: "#{normal_field} #{write_only}", "data-action":"change->edit-character--event-trigger#updateMaxHp", value: 0%>
-          </div>
-          <div>
-            <%= form_basic.label :hero_points, class: normal_label %>
-            <%= form_basic.number_field :hero_points, class: "#{normal_field} #{write_only}", value: 0 %>
-          </div>
-          <div>
-            <%= form_basic.label :size, class: normal_label %>
-            <%= form_basic.text_field :size, class: "#{normal_field} #{write_only}" %>
-          </div>
-          <div>
-            <%= form_basic.label :speed, class: normal_label %>
-            <%= form_basic.text_field :speed, class: "#{normal_field} #{write_only}" %>
-          </div>
-          <div class="mm:col-span-2 md:col-span-2">
-            <%= form_basic.label :speed_note, class: normal_label %>
-            <%= form_basic.text_area :speed_note, class: "#{normal_field} #{write_only}", rows: 3 %>
-          </div>
-          <div class="mm:col-span-2 md:col-span-3">
-            <%= form_basic.label :description, class: normal_label %>
-            <%= form_basic.text_area :description, class: "#{normal_field} #{write_only}", rows: 3 %>
-          </div>
-          <div class="mm:col-span-2 md:col-span-3">
-            <%= form.label :character_category_id, class: normal_label %>
-            <%= form.select :character_category_id, [["Player", 1], ["Npc", 2], ["Enemy", 3]], {}, class: "#{normal_field} #{normal_select}" %>
+          <div class="w-full">
+            <%= form_basic.text_field :name, class: "#{normal_field} #{write_only}" %>
           </div>
         </div>
-      </div>
-      <!--  -->
-    </div>
-    <div class="hidden" id="ancestry" role="tabpanel" aria-labelledby="ancestry-tab">
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Ancestry
+        <!--  -->
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Details
+          </div>
+          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
+            <div>
+              <%= form_basic.label :class_name, class: normal_label %>
+              <%= form_basic.text_field :class_name, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div>
+              <%= form_basic.label :key_ability, class: normal_label %>
+              <%= form_basic.select :key_ability, abilities, {}, class: "#{normal_field} #{normal_select}" %>
+            </div>
+            <div>
+              <%= form_basic.label :background, class: normal_label %>
+              <%= form_basic.text_field :background, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div>
+              <%= form_basic.label :alignment, class: normal_label %>
+              <%= form_basic.select :alignment, alignment, {}, class: "#{normal_field} #{normal_select}" %>
+            </div>
+            <div>
+              <%= form_basic.label :deity, class: normal_label %>
+              <%= form_basic.text_field :deity, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div>
+              <%= form_basic.label :age, class: normal_label %>
+              <%= form_basic.number_field :age, class: "#{normal_field} #{write_only}", value: 0 %>
+            </div>
+            <div>
+              <%= form_basic.label :level, class: normal_label %>
+              <%= form_basic.number_field :level, class: "#{normal_field} #{write_only}", "data-action":"change->edit-character--event-trigger#updateMaxHp", value: 0%>
+            </div>
+            <div>
+              <%= form_basic.label :hero_points, class: normal_label %>
+              <%= form_basic.number_field :hero_points, class: "#{normal_field} #{write_only}", value: 0 %>
+            </div>
+            <div>
+              <%= form_basic.label :size, class: normal_label %>
+              <%= form_basic.text_field :size, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div>
+              <%= form_basic.label :speed, class: normal_label %>
+              <%= form_basic.text_field :speed, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div class="mm:col-span-2 md:col-span-2">
+              <%= form_basic.label :speed_note, class: normal_label %>
+              <%= form_basic.text_area :speed_note, class: "#{normal_field} #{write_only}", rows: 3 %>
+            </div>
+            <div class="mm:col-span-2 md:col-span-3">
+              <%= form_basic.label :description, class: normal_label %>
+              <%= form_basic.text_area :description, class: "#{normal_field} #{write_only}", rows: 3 %>
+            </div>
+            <div class="mm:col-span-2 md:col-span-3">
+              <%= form.label :character_category_id, class: normal_label %>
+              <%= form.select :character_category_id, [["Player", 1], ["Npc", 2], ["Enemy", 3]], {}, class: "#{normal_field} #{normal_select}" %>
+            </div>
+          </div>
         </div>
-        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-          <div>
-            <%= form_basic.label :ancestry, class: normal_label %>
-            <%= form_basic.text_field :ancestry, class: "#{normal_field} #{write_only}" %>
+      <% end %>
+
+      <%= render(CardTabComponent.new(tab: "ancestry", hidden: true)) do %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Ancestry
           </div>
-          <div>
-            <%= form_basic.label :heritage, class: normal_label %>
-            <%= form_basic.text_field :heritage, class: "#{normal_field} #{write_only}" %>
-          </div>
-          <div class="mm:col-span-2 md:col-span-3">
-            <%= form_basic.label :heritage_note, class: normal_label %>
-            <%= form_basic.text_area :heritage_note, class: "#{normal_field} #{write_only}", rows: 3 %>
+          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
+            <div>
+              <%= form_basic.label :ancestry, class: normal_label %>
+              <%= form_basic.text_field :ancestry, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div>
+              <%= form_basic.label :heritage, class: normal_label %>
+              <%= form_basic.text_field :heritage, class: "#{normal_field} #{write_only}" %>
+            </div>
+            <div class="mm:col-span-2 md:col-span-3">
+              <%= form_basic.label :heritage_note, class: normal_label %>
+              <%= form_basic.text_area :heritage_note, class: "#{normal_field} #{write_only}", rows: 3 %>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      <% end %>
     <% end %>
-    <div class="hidden" id="senses" role="tabpanel" aria-labelledby="senses-tab">
+
+    <%= render(CardTabComponent.new(tab: "senses", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Senses
@@ -133,8 +121,9 @@
           </div>
         <% end %>
       </div>
-    </div>
-    <div class="hidden" id="dices" role="tabpanel" aria-labelledby="dices-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "dices", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Macro
@@ -176,37 +165,40 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="hidden" id="image" role="tabpanel" aria-labelledby="image-tab" data-controller="edit-character--cropper">
-      <% content_for :head do %>
-        <%= javascript_import_module_tag "cropperjs" %>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style type="text/css">
-            .cropper-view-box,
-            .cropper-face {
-              border-radius: 50%;
-            }
+    <% end %>
 
-            /* The css styles for `outline` do not follow `border-radius` on iOS/Safari (#979). */
-            .cropper-view-box {
-                outline: 0;
-                box-shadow: 0 0 0 1px #39f;
-            }
-        </style>
-      <% end %>
+    <div data-controller="edit-character--cropper">
+      <%= render(CardTabComponent.new(tab: "image", hidden: true)) do %>
+        <% content_for :head do %>
+          <%= javascript_import_module_tag "cropperjs" %>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <style type="text/css">
+              .cropper-view-box,
+              .cropper-face {
+                border-radius: 50%;
+              }
 
-      <%= form.text_field :image, class: "hidden", "data-edit-character--cropper-target":"image_base64_input" %>
+              /* The css styles for `outline` do not follow `border-radius` on iOS/Safari (#979). */
+              .cropper-view-box {
+                  outline: 0;
+                  box-shadow: 0 0 0 1px #39f;
+              }
+          </style>
+        <% end %>
 
-      <div class="p-6 text-sm text-gray-900 dark:text-gray-300">
-        <label class="block mb-2 font-medium" for="file_input">Upload image</label>
-        <input class="block w-full bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept="image/*" data-action="change->edit-character--cropper#changeImage" data-edit-character--cropper-target="image_input">
-      </div>
+        <%= form.text_field :image, class: "hidden", "data-edit-character--cropper-target":"image_base64_input" %>
 
-      <div class="p-6">
-        <div class="mx-auto w-96 h-96">
-          <img class="min-w-full rounded-full" src="<%= url_for(@character.character_image) if @character.character_image.attached? %>" data-edit-character--cropper-target="character_image" data-action="ready->edit-character--cropper#setBase64 cropend->edit-character--cropper#setBase64 zoom->edit-character--cropper#setBase64">
+        <div class="p-6 text-sm text-gray-900 dark:text-gray-300">
+          <label class="block mb-2 font-medium" for="file_input">Upload image</label>
+          <input class="block w-full bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept="image/*" data-action="change->edit-character--cropper#changeImage" data-edit-character--cropper-target="image_input">
         </div>
-      </div>
+
+        <div class="p-6">
+          <div class="mx-auto w-96 h-96">
+            <img class="min-w-full rounded-full" src="<%= url_for(@character.character_image) if @character.character_image.attached? %>" data-edit-character--cropper-target="character_image" data-action="ready->edit-character--cropper#setBase64 cropend->edit-character--cropper#setBase64 zoom->edit-character--cropper#setBase64">
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-</div>
+<% end %>

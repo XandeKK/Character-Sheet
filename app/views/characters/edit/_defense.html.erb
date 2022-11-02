@@ -1,221 +1,210 @@
-<div id="defense" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Defense
-    </h1>
-  </div>
-  <!--  -->
-  <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="defensesTab" data-tabs-toggle="#defensesTabContent" role="tablist">
-      <% ["hp", "armor-class", "saving-throw"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--  -->
+<%= render(CardComponent.new(
+  title: "defense",
+  svg: "M3.783 2.826L12 1l8.217 1.826a1 1 0 0 1 .783.976v9.987a6 6 0 0 1-2.672 4.992L12 23l-6.328-4.219A6 6 0 0 1 3 13.79V3.802a1 1 0 0 1 .783-.976z",
+  tabs: ["hp", "armor-class", "saving-throw"]
+)) do %>
   <div id="defensesTabContent" class="text-sm text-gray-900 dark:text-gray-300">
     <%= form.fields_for :pathfinder_defense do |form_defense| %>
-    <div id="hp" role="tabpanel" aria-labelledby="hp-tab">
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          HP
-        </div>
-        <div class="w-full space-y-6">
-          <div class="flex" data-controller="edit-character--hp" data-action="change->edit-character--hp#updateMaxHp" data-edit-character--event-trigger-target="hp">
-            <div>
-              <%= form_defense.label :max_hp, "Max", class: normal_label %>
-              <%= form_defense.number_field :max_hp, class: "#{read_only} #{normal_field} #{rounded_left}", readonly: "", "data-edit-character--hp-target":"max_hp", value: 0 %>
-            </div>
-            <div>
-              <%= form_defense.label :current_hp, "Current", class: normal_label %>
-              <%= form_defense.number_field :current_hp, class: "#{read_only} #{normal_field} #{rounded_none}", readonly: "", "data-edit-character--hp-target":"current_hp", value: 0  %>
-            </div>
-            <div>
-              <%= form_defense.label :ancestry_hp, "Ancestry", class: normal_label %>
-              <%= form_defense.number_field :ancestry_hp, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--hp-target":"ancestry_hp", value: 0 %>
-            </div>
-            <div>
-              <%= form_defense.label :class_hp, "Class", class: normal_label %>
-              <%= form_defense.number_field :class_hp, class: "#{write_only} #{normal_field} #{rounded_none}", "data-tooltip-target":"tooltip-animation", "data-edit-character--hp-target":"class_hp", value: 0 %>
-              <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                Only base health is needed, rest will be calculated according to your level and constitution.
-                <div class="tooltip-arrow" data-popper-arrow></div>
+      <%= render(CardTabComponent.new(tab: "hp", hidden: false)) do %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            HP
+          </div>
+          <div class="w-full space-y-6">
+            <div class="flex" data-controller="edit-character--hp" data-action="change->edit-character--hp#updateMaxHp" data-edit-character--event-trigger-target="hp">
+              <div>
+                <%= form_defense.label :max_hp, "Max", class: normal_label %>
+                <%= form_defense.number_field :max_hp, class: "#{read_only} #{normal_field} #{rounded_left}", readonly: "", "data-edit-character--hp-target":"max_hp", value: 0 %>
+              </div>
+              <div>
+                <%= form_defense.label :current_hp, "Current", class: normal_label %>
+                <%= form_defense.number_field :current_hp, class: "#{read_only} #{normal_field} #{rounded_none}", readonly: "", "data-edit-character--hp-target":"current_hp", value: 0  %>
+              </div>
+              <div>
+                <%= form_defense.label :ancestry_hp, "Ancestry", class: normal_label %>
+                <%= form_defense.number_field :ancestry_hp, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--hp-target":"ancestry_hp", value: 0 %>
+              </div>
+              <div>
+                <%= form_defense.label :class_hp, "Class", class: normal_label %>
+                <%= form_defense.number_field :class_hp, class: "#{write_only} #{normal_field} #{rounded_none}", "data-tooltip-target":"tooltip-animation", "data-edit-character--hp-target":"class_hp", value: 0 %>
+                <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                  Only base health is needed, rest will be calculated according to your level and constitution.
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+              </div>
+              <div>
+                <%= form_defense.label :temp_hp, "Temp", class: normal_label %>
+                <%= form_defense.number_field :temp_hp, class: "#{write_only} #{rounded_right} #{normal_field}", value: 0 %>
               </div>
             </div>
-            <div>
-              <%= form_defense.label :temp_hp, "Temp", class: normal_label %>
-              <%= form_defense.number_field :temp_hp, class: "#{write_only} #{rounded_right} #{normal_field}", value: 0 %>
-            </div>
-          </div>
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-            <div>
-              <%= form_defense.label :dying, class: normal_label %>
-              <%= form_defense.number_field :dying, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div>
-              <%= form_defense.label :wounded, class: normal_label %>
-              <%= form_defense.number_field :wounded, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div class="mm:col-span-2 md:col-span-3">
-              <%= form_defense.label :resistances_and_immunities, class: normal_label %>
-              <%= form_defense.text_field :resistances_and_immunities, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div class="mm:col-span-2 md:col-span-3">
-              <%= form_defense.label :conditions, class: normal_label %>
-              <%= form_defense.text_field :conditions, class: "#{normal_field} #{write_only}" %>
+            <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+              <div>
+                <%= form_defense.label :dying, class: normal_label %>
+                <%= form_defense.number_field :dying, class: "#{normal_field} #{write_only}", value: 0 %>
+              </div>
+              <div>
+                <%= form_defense.label :wounded, class: normal_label %>
+                <%= form_defense.number_field :wounded, class: "#{normal_field} #{write_only}", value: 0 %>
+              </div>
+              <div class="mm:col-span-2 md:col-span-3">
+                <%= form_defense.label :resistances_and_immunities, class: normal_label %>
+                <%= form_defense.text_field :resistances_and_immunities, class: "#{normal_field} #{write_only}" %>
+              </div>
+              <div class="mm:col-span-2 md:col-span-3">
+                <%= form_defense.label :conditions, class: normal_label %>
+                <%= form_defense.text_field :conditions, class: "#{normal_field} #{write_only}" %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="hidden" id="armor-class" role="tabpanel" aria-labelledby="armor-class-tab">
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Armor class
+      <% end %>
+
+      <%= render(CardTabComponent.new(tab: "armor-class", hidden: true)) do %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Armor class
+          </div>
+          <div class="space-y-6">
+            <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+              <div>
+                <%= form_defense.label :armor_class_item, "Item", class: normal_label %>
+                <%= form_defense.text_field :armor_class_item, class: "#{normal_field} #{write_only}", value: 0 %>
+              </div>
+              <div>
+                <%= form_defense.label :armor_class_proficiency, "Proficiency", class: normal_label %>
+                <%= form_defense.select :armor_class_proficiency, proficiencies, {}, class: "#{normal_select} #{normal_field}" %>
+              </div>
+              <div>
+                <%= form_defense.label :max_dex, "Cap", class: normal_label %>
+                <%= form_defense.text_field :max_dex, class: "#{normal_field} #{write_only}", value: 0 %>
+              </div>
+            </div>
+            <div class="w-full">
+              <div class="flex">
+                <div class="flex-1">
+                  <%= form_defense.label :unarmored_proficiency, class: normal_label %>
+                  <%= form_defense.select :unarmored_proficiency, proficiencies, {}, class: "#{rounded_left} #{normal_select} #{normal_field}" %>
+                </div>
+                <div class="flex-1">
+                  <%= form_defense.label :light_proficiency, class: normal_label %>
+                  <%= form_defense.select :light_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}" %>
+                </div>
+                <div class="flex-1">
+                  <%= form_defense.label :medium_proficiency, class: normal_label %>
+                  <%= form_defense.select :medium_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}" %>
+                </div>
+                <div class="flex-1">
+                  <%= form_defense.label :heavy_proficiency, class: normal_label %>
+                  <%= form_defense.select :heavy_proficiency, proficiencies, {}, class: "#{rounded_right} #{normal_select} #{normal_field}" %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="space-y-6">
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-            <div>
-              <%= form_defense.label :armor_class_item, "Item", class: normal_label %>
-              <%= form_defense.text_field :armor_class_item, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div>
-              <%= form_defense.label :armor_class_proficiency, "Proficiency", class: normal_label %>
-              <%= form_defense.select :armor_class_proficiency, proficiencies, {}, class: "#{normal_select} #{normal_field}" %>
-            </div>
-            <div>
-              <%= form_defense.label :max_dex, "Cap", class: normal_label %>
-              <%= form_defense.text_field :max_dex, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
+      <% end %>
+    <% end %>
+
+    <div data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
+      <%= render(CardTabComponent.new(tab: "saving-throw", hidden: true)) do %>
+        <%= form.fields_for :pathfinder_saving_throw do |form_saving_throw| %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Fortitude
           </div>
           <div class="w-full">
-            <div class="flex">
+            <div class="flex" data-action="change->edit-character--saving-throw#updateFortitude">
               <div class="flex-1">
-                <%= form_defense.label :unarmored_proficiency, class: normal_label %>
-                <%= form_defense.select :unarmored_proficiency, proficiencies, {}, class: "#{rounded_left} #{normal_select} #{normal_field}" %>
+                <%= form_saving_throw.label :fortitude_total, "Total", class: normal_label %>
+                <%= form_saving_throw.number_field :fortitude_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"fortitude_total", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_defense.label :light_proficiency, class: normal_label %>
-                <%= form_defense.select :light_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}" %>
+                <%= form_saving_throw.label :fortitude_proficiency, "Proficiency", class: normal_label %>
+                <%= form_saving_throw.select :fortitude_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"fortitude_proficiency" %>
               </div>
               <div class="flex-1">
-                <%= form_defense.label :medium_proficiency, class: normal_label %>
-                <%= form_defense.select :medium_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}" %>
+                <%= form_saving_throw.label :fortitude_item, "Item", class: normal_label %>
+                <%= form_saving_throw.number_field :fortitude_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"fortitude_item", value: 0 %>
               </div>
               <div class="flex-1">
-                <%= form_defense.label :heavy_proficiency, class: normal_label %>
-                <%= form_defense.select :heavy_proficiency, proficiencies, {}, class: "#{rounded_right} #{normal_select} #{normal_field}" %>
+                <%= form_saving_throw.label :fortitude_misc, "Misc", class: normal_label %>
+                <%= form_saving_throw.number_field :fortitude_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"fortitude_misc", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :fortitude_penalty, "Penalty", class: normal_label %>
+                <%= form_saving_throw.number_field :fortitude_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"fortitude_penalty", value: 0 %>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <% end %>
-    <div class="hidden" id="saving-throw" role="tabpanel" aria-labelledby="saving-throw-tab" data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
-      <%= form.fields_for :pathfinder_saving_throw do |form_saving_throw| %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Fortitude
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--saving-throw#updateFortitude">
-            <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_total, "Total", class: normal_label %>
-              <%= form_saving_throw.number_field :fortitude_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"fortitude_total", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_proficiency, "Proficiency", class: normal_label %>
-              <%= form_saving_throw.select :fortitude_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"fortitude_proficiency" %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_item, "Item", class: normal_label %>
-              <%= form_saving_throw.number_field :fortitude_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"fortitude_item", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_misc, "Misc", class: normal_label %>
-              <%= form_saving_throw.number_field :fortitude_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"fortitude_misc", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :fortitude_penalty, "Penalty", class: normal_label %>
-              <%= form_saving_throw.number_field :fortitude_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"fortitude_penalty", value: 0 %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Reflex
+          </div>
+          <div class="w-full">
+            <div class="flex" data-action="change->edit-character--saving-throw#updateReflex">
+              <div class="flex-1">
+                <%= form_saving_throw.label :reflex_total, "Total", class: normal_label %>
+                <%= form_saving_throw.number_field :reflex_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"reflex_total", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :reflex_proficiency, "Proficiency", class: normal_label %>
+                <%= form_saving_throw.select :reflex_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"reflex_proficiency" %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :reflex_item, "Item", class: normal_label %>
+                <%= form_saving_throw.number_field :reflex_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"reflex_item", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :reflex_misc, "Misc", class: normal_label %>
+                <%= form_saving_throw.number_field :reflex_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"reflex_misc", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :reflex_penalty, "Penalty", class: normal_label %>
+                <%= form_saving_throw.number_field :reflex_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"reflex_penalty", value: 0 %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Reflex
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--saving-throw#updateReflex">
-            <div class="flex-1">
-              <%= form_saving_throw.label :reflex_total, "Total", class: normal_label %>
-              <%= form_saving_throw.number_field :reflex_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"reflex_total", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :reflex_proficiency, "Proficiency", class: normal_label %>
-              <%= form_saving_throw.select :reflex_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"reflex_proficiency" %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :reflex_item, "Item", class: normal_label %>
-              <%= form_saving_throw.number_field :reflex_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"reflex_item", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :reflex_misc, "Misc", class: normal_label %>
-              <%= form_saving_throw.number_field :reflex_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"reflex_misc", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :reflex_penalty, "Penalty", class: normal_label %>
-              <%= form_saving_throw.number_field :reflex_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"reflex_penalty", value: 0 %>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Will
+          </div>
+          <div class="w-full">
+            <div class="flex" data-action="change->edit-character--saving-throw#updateWill">
+              <div class="flex-1">
+                <%= form_saving_throw.label :will_total, "Total", class: normal_label %>
+                <%= form_saving_throw.number_field :will_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"will_total", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :will_proficiency, "Proficiency", class: normal_label %>
+                <%= form_saving_throw.select :will_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"will_proficiency" %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :will_item, "Item", class: normal_label %>
+                <%= form_saving_throw.number_field :will_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"will_item", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :will_misc, "Misc", class: normal_label %>
+                <%= form_saving_throw.number_field :will_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"will_misc", value: 0 %>
+              </div>
+              <div class="flex-1">
+                <%= form_saving_throw.label :will_penalty, "Penalty", class: normal_label %>
+                <%= form_saving_throw.number_field :will_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"will_penalty", value: 0 %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Will
-        </div>
-        <div class="w-full">
-          <div class="flex" data-action="change->edit-character--saving-throw#updateWill">
-            <div class="flex-1">
-              <%= form_saving_throw.label :will_total, "Total", class: normal_label %>
-              <%= form_saving_throw.number_field :will_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"will_total", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :will_proficiency, "Proficiency", class: normal_label %>
-              <%= form_saving_throw.select :will_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"will_proficiency" %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :will_item, "Item", class: normal_label %>
-              <%= form_saving_throw.number_field :will_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"will_item", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :will_misc, "Misc", class: normal_label %>
-              <%= form_saving_throw.number_field :will_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"will_misc", value: 0 %>
-            </div>
-            <div class="flex-1">
-              <%= form_saving_throw.label :will_penalty, "Penalty", class: normal_label %>
-              <%= form_saving_throw.number_field :will_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"will_penalty", value: 0 %>
-            </div>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+            Notes
+          </div>
+          <div class="w-full">
+            <%= form_saving_throw.label :saving_throw_notes, class: normal_label %>
+            <%= form_saving_throw.text_area :saving_throw_notes, class: "#{normal_field} #{write_only}", rows: 3 %>
           </div>
         </div>
-      </div>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Notes
-        </div>
-        <div class="w-full">
-          <%= form_saving_throw.label :saving_throw_notes, class: normal_label %>
-          <%= form_saving_throw.text_area :saving_throw_notes, class: "#{normal_field} #{write_only}", rows: 3 %>
-        </div>
-      </div>
+        <% end %>
       <% end %>
     </div>
   </div>
-</div>
+<% end %>

@@ -39,6 +39,9 @@ gem "clearance"
 # Base64 support for ActiveStorage
 gem 'active_storage_base64'
 
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
+gem "view_component"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 

@@ -1,23 +1,10 @@
-<div id="basics" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M4 22a8 8 0 1 1 16 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Basics
-    </h1>
-  </div>
-  <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="basicsTab" data-tabs-toggle="#basicsTabContent" role="tablist">
-      <% ["character", "dices", "server"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<%= render(CardComponent.new(
+  title: "basics",
+  svg: "M4 22a8 8 0 1 1 16 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z",
+  tabs: ["character", "dices", "server"]
+)) do %>
   <div id="basicsTabContent">
-    <div id="character" role="tabpanel" aria-labelledby="character-tab">
+    <%= render(CardTabComponent.new(tab: "character", hidden: false)) do %>
       <div class="md:py-3">
         <div class="flex flex-col md:flex-row">
           <div class="flex justify-center md:basis-64 relative w-full h-64">
@@ -167,8 +154,9 @@
           <%= @character.pathfinder_basic.description %>
         </p>
       </div>
-    </div>
-    <div id="dices" class="hidden" role="tabpanel" aria-labelledby="dices-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "dices", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
           Macros
@@ -193,8 +181,9 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="py-6 hidden" id="server" role="tabpanel" aria-labelledby="server-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "server", hidden: true)) do %>
       <div class="mx-auto p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-transparent dark:border-gray-700" data-turbo-track="reload">
         <div class="space-y-6 text-sm text-gray-900" data-channels--character-target="formServer">
           <div data-channels--character-target="warning">
@@ -214,6 +203,6 @@
           Stop Server
         </button>
       </div>
-    </div>
+    <% end %>
   </div>
-</div>
+<% end %>

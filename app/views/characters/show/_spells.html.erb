@@ -1,25 +1,10 @@
-<div id="spells" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14 1 0 2.5 0 5-2.47.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Spells
-    </h1>
-  </div>
-  <!--  -->
-  <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="spellsTab" data-tabs-toggle="#spellsTabContent" role="tablist">
-      <% ["spell-caster", "spell", "innate-spells", "focus-spells"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--  -->
+<%= render(CardComponent.new(
+  title: "spells",
+  svg: "M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14 1 0 2.5 0 5-2.47.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z",
+  tabs: ["spell-caster", "spell", "innate-spells", "focus-spells"]
+)) do %>
   <div id="spellsTabContent">
-    <div id="spell-caster" role="tabpanel" aria-labelledby="spell-caster-tab">
+    <%= render(CardTabComponent.new(tab: "spell-caster", hidden: false)) do %>
       <div class="px-6 pt-3 flex flex-wrap gap-6">
         <div class="flex mb-3 gap-6">
           <div>
@@ -85,9 +70,9 @@
           <%= @character.pathfinder_spell_caster.notes %>
         </p>
       </div>
-    </div>
-    <!--  -->
-    <div class="hidden" id="spell" role="tabpanel" aria-labelledby="spell-caster-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "spell", hidden: true)) do %>
       <% 11.times do |n| %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
@@ -107,7 +92,8 @@
         </div>
       </div>
       <% end %>
-    </div>
+    <% end %>
+
     <% @character.pathfinder_spells.each do |spell| %>
       <%= turbo_stream.append "level_#{spell.level}" do %>
         <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= spell.name %>" data-drawer-note-param="<%= spell.notes %>">
@@ -149,7 +135,8 @@
         </div>
       <% end %>
     <% end %>
-    <div class="hidden" id="innate-spells" role="tabpanel" aria-labelledby="spell-caster-tab">
+
+    <%= render(CardTabComponent.new(tab: "innate-spells", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
           Innate Spells
@@ -208,8 +195,9 @@
           </div>  
         </div>
       </div>
-    </div>
-    <div class="hidden" id="focus-spells" role="tabpanel" aria-labelledby="spell-caster-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "focus-spells", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
           Focus Spells
@@ -280,6 +268,6 @@
           </div>  
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
-</div>
+<% end %>

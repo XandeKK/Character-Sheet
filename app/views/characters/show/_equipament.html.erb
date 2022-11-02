@@ -1,11 +1,7 @@
-<div id="equipament" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3z"/></svg>
-    <h1 class="<%= box_header_text %>">
-      Equipament
-    </h1>
-  </div>
-  <!-- Equipament -->
+<%= render(CardComponent.new(
+  title: "equipament",
+  svg: "M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3z"
+)) do %>
   <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
     <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
       Items
@@ -78,6 +74,5 @@
         </span>
       </div>
     </div>
-    
   </div>
-</div>
+<% end %>

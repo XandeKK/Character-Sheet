@@ -1,23 +1,10 @@
-<div id="offense" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.05 13.406l3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531 3 3zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535L17.457 3z"/></svg>
-    <h1 class="<%= box_header_text %>">
-      Offense
-    </h1>
-  </div>
-  <!--  -->
-    <div class="<%= box_tabs_body %>">
-    <ul class="<%= box_tabs %>" id="offensesTab" data-tabs-toggle="#offensesTabContent" role="tablist">
-      <% ["weapon-proficiency", "melee", "ranged"].each_with_index do |target, index| %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= box_tab_button %>" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= target.capitalize.sub("-", " ") %></button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--  -->
+<%= render(CardComponent.new(
+  title: "offense",
+  svg: "M7.05 13.406l3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531 3 3zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535L17.457 3z",
+  tabs: ["weapon-proficiency", "melee", "ranged"]
+)) do %>
   <div id="offensesTabContent">
-    <div id="weapon-proficiency" role="tabpanel" aria-labelledby="weapon-proficiency-tab">
+    <%= render(CardTabComponent.new(tab: "weapon-proficiency", hidden: false)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Weapon Proficiency
@@ -53,8 +40,9 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="hidden" id="melee" role="tabpanel" aria-labelledby="melee-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "melee", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Melees
@@ -134,8 +122,9 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="hidden" id="ranged" role="tabpanel" aria-labelledby="ranged-tab">
+    <% end %>
+
+    <%= render(CardTabComponent.new(tab: "ranged", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Ranged
@@ -219,6 +208,6 @@
           <% end %>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
-</div>
+<% end %>

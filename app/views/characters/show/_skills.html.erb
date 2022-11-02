@@ -1,13 +1,7 @@
-<div id="skills" class="<%= box_body %>">
-  <div class="<%= box_header %>">
-    <svg class="<%= box_header_svg %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M13 10v4h6v-4h-6zm-2 0H5v4h6v-4zm2 9h6v-3h-6v3zm-2 0v-3H5v3h6zm2-14v3h6V5h-6zm-2 0H5v3h6V5zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" /></svg>
-    <h1 class="<%= box_header_text %>">
-      Skills
-    </h1>
-  </div>
-  <!--  -->
+<%= render(CardComponent.new(
+  title: "skills",
+  svg: "M13 10v4h6v-4h-6zm-2 0H5v4h6v-4zm2 9h6v-3h-6v3zm-2 0v-3H5v3h6zm2-14v3h6V5h-6zm-2 0H5v3h6V5zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"
+)) do %>
   <div class="p-6 w-full">
     <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
       <% @character.pathfinder_skills.each do |skill| %>
@@ -32,4 +26,4 @@
       <% end %>
     </div>
   </div>
-</div>
+<% end %>
