@@ -22,6 +22,7 @@ export default class extends Controller {
   }
 
   toggleDrawerRight(event) {
+    console.log("FOPDA", event)
     let note = ""
 
     if (event.params.volume) {
@@ -30,7 +31,7 @@ export default class extends Controller {
     }
 
     this.dice_divTarget.classList.add("hidden")
-    this.drawer_character_titleTarget.textContent = name
+    this.drawer_character_titleTarget.textContent = event.params.name
     this.drawer_character_noteTarget.textContent = note
     this.drawerRight.toggle();
   }
