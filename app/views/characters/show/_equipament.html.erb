@@ -66,12 +66,11 @@
       </div>
 
       <div class="pt-3">
-        <h3 class="italic text-rose-700 dark:text-rose-500">
-          Total
-        </h3>
-        <span class="text-xl pl-3">
-          <%= get_total_gold @character %> <span class="text-gray-600 dark:text-gray-500">GP</span>
-        </span>
+        <%= render(TitleWithContentComponent.new(title: "Total", _class:"italic")) do%>
+          <span class="text-xl">
+            <%= get_total_gold @character %> <span class="text-gray-600 dark:text-gray-500">GP</span>
+          </span>
+        <% end %>
       </div>
     </div>
   </div>

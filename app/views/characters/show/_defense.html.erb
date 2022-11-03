@@ -5,12 +5,8 @@
   <div data-controller="show-character--life-handler show-character--life-sender" data-action="show-character--life-handler:send->show-character--life-sender#setCharacter show-character--life-handler:send->channels--character#updateHp">
     <!--  -->
     <div class="px-6 py-3 flex flex-wrap gap-6">
-      <div class="flex mb-6 gap-6">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            HP
-          </h3>
-          <span class="text-2xl pl-3">
+      <%= render(TitleWithContentComponent.new(title: "HP", _class: "italic", bar: true)) do%>
+          <span class="text-2xl">
             <span id="<%= dom_id(@character, :current_hp) %>">
               <%= @character.pathfinder_defense.current_hp || 0 %>
             </span>
@@ -19,30 +15,19 @@
               <%= @character.pathfinder_defense.max_hp || 0 %>
             </span>
           </span>
-        </div>
-        <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-      </div>
-      <div class="flex mb-6 gap-6">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            Temp HP
-          </h3>
-          <span id="<%= dom_id(@character, :temp_hp)%>" class="text-2xl pl-3">
-            <%= @character.pathfinder_defense.temp_hp || 0 %>
-          </span>
-        </div>
-        <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-      </div>
-      <div class="flex mb-6 gap-6">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            AC
-          </h3>
-          <span class="text-2xl pl-3">
-            <%= get_armor_class @character %>
-          </span>
-        </div>
-      </div>
+      <% end %>
+
+      <%= render(TitleWithContentComponent.new(title: "Temp HP", _class: "italic", bar: true)) do%>
+        <span id="<%= dom_id(@character, :temp_hp)%>" class="text-2xl pl-3">
+          <%= @character.pathfinder_defense.temp_hp || 0 %>
+        </span>
+      <% end %>
+
+      <%= render(TitleWithContentComponent.new(title: "AC", _class: "italic")) do%>
+        <span class="text-2xl">
+          <%= get_armor_class @character %>
+        </span>
+      <% end %>
     </div>
     <!--  -->
     <div class="px-6 py-3 space-y-3 flex flex-col w-96 text-gray-900 text-sm dark:text-white">
@@ -73,64 +58,44 @@
     </div>
     <!--  -->
     <div class="px-6 pb-6">
-      <h3 class="italic text-rose-700 dark:text-rose-500">
-        Resistances and immunities
-      </h3>
-      <p class="pl-3">
+      <%= render(TitleWithContentComponent.new(title: "Resistances and immunities", _class: "italic")) do%>
         <%= @character.pathfinder_defense.resistances_and_immunities %>
-      </p>
+      <% end %>
     </div>
     <div class="px-6 pb-6">
-      <h3 class="italic text-rose-700 dark:text-rose-500">
-        Conditions
-      </h3>
-      <p class="pl-3">
+      <%= render(TitleWithContentComponent.new(title: "Conditions", _class: "italic")) do%>
         <%= @character.pathfinder_defense.conditions %>
-      </p>
+      <% end %>
     </div>
     <!--  -->
     <div class="px-6 py-3 flex flex-wrap gap-6">
-      <div class="flex mb-6 gap-6">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            Fortitude
-          </h3>
-          <span class="text-2xl pl-3">
+      <div class="mb-6 gap-6">
+        <%= render(TitleWithContentComponent.new(title: "Fortitude", _class: "italic", bar: true)) do%>
+          <span class="text-2xl">
             <%= @character.pathfinder_saving_throw.fortitude_total || 0 %>
           </span>
-        </div>
-        <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        <% end %>
       </div>
       <div class="flex mb-6 gap-6">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            Reflex
-          </h3>
-          <span class="text-2xl pl-3">
-            <%= @character.pathfinder_saving_throw.reflex_total || 0%>
+        <%= render(TitleWithContentComponent.new(title: "Reflex", _class: "italic", bar: true)) do%>
+          <span class="text-2xl">
+            <%= @character.pathfinder_saving_throw.reflex_total || 0 %>
           </span>
-        </div>
-        <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+        <% end %>
       </div>
       <div class="flex mb-6 gap-6">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            Will
-          </h3>
-          <span class="text-2xl pl-3">
+        <%= render(TitleWithContentComponent.new(title: "Will", _class: "italic")) do%>
+          <span class="text-2xl">
             <%= @character.pathfinder_saving_throw.will_total || 0 %>
           </span>
-        </div>
+        <% end %>
       </div>
     </div>
     <!--  -->
     <div class="px-6 pb-6">
-      <h3 class="italic text-rose-700 dark:text-rose-500">
-        Saving throw Notes
-      </h3>
-      <p class="pl-3">
+      <%= render(TitleWithContentComponent.new(title: "Saving throw Notes", _class: "italic")) do%>
         <%= @character.pathfinder_saving_throw.saving_throw_notes %>
-      </p>
+      <% end %>
     </div>
   </div>
 <% end %>

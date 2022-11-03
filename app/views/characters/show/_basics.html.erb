@@ -14,25 +14,19 @@
             <h1 id="character-name" class="md:mt-6 text-3xl" data-id="<%= @character.id %>">
               <%= @character.pathfinder_basic.name %>
             </h1>
+            
             <h2 class="text-2xl">
               <%= @character.pathfinder_basic.class_name %>
               <%= @character.pathfinder_basic.level %>
             </h2>
+
             <div class="flex space-x-4">
-              <div>
-                <h3 class="italic text-rose-700 dark:text-rose-500">
-                  Perception
-                </h3>
-                <span class="pl-3">
-                  <%= get_perception @character %>
-                </span>
-              </div>
-              <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-              <div>
-                <h3 class="italic text-rose-700 dark:text-rose-500">
-                  Land Speed
-                </h3>
-                <span class="pl-2" data-popover-target="popover-speed">
+              <%= render(TitleWithContentComponent.new(title: "Perception", _class: "italic", bar: true)) do%>
+                <%= get_perception @character %>
+              <% end %>
+
+              <%= render(TitleWithContentComponent.new(title: "Land Speed", _class: "italic")) do%>
+                <span data-popover-target="popover-speed">
                   <%= @character.pathfinder_basic.speed %>
                 </span>
                 <div data-popover id="popover-speed" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
@@ -43,54 +37,29 @@
                   </div>
                   <div data-popper-arrow></div>
                 </div>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
       <div class="p-6 flex flex-wrap gap-3">
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Aligment
-            </h3>
-            <span class="pl-3">
-              <%= @character.pathfinder_basic.alignment %>
-            </span>
-          </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Size
-            </h3>
-            <span class="pl-3">
-              <%= @character.pathfinder_basic.size %>
-            </span>
-          </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Ancestry
-            </h3>
-            <span class="pl-2">
-              <%= @character.pathfinder_basic.ancestry %>
-            </span>
-          </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Heritage
-            </h3>
-            <span class="pl-2" data-popover-target="popover-heritage">
-              <%= @character.pathfinder_basic.heritage %>
-            </span>
-          </div>
+        <%= render(TitleWithContentComponent.new(title: "Aligment", _class: "italic", bar: true)) do%>
+          <%= @character.pathfinder_basic.alignment %>
+        <% end %>
+    
+        <%= render(TitleWithContentComponent.new(title: "Size", _class: "italic", bar: true)) do%>
+          <%= @character.pathfinder_basic.size %>
+        <% end %>
+        
+        <%= render(TitleWithContentComponent.new(title: "Ancestry", _class: "italic", bar: true)) do%>
+          <%= @character.pathfinder_basic.ancestry %>
+        <% end %>
+        
+        
+        <%= render(TitleWithContentComponent.new(title: "Heritage", _class: "italic", bar: true)) do%>
+          <span data-popover-target="popover-heritage">
+            <%= @character.pathfinder_basic.heritage %>
+          </span>
           <div data-popover id="popover-heritage" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
             <div class="py-2 px-3">
               <p>
@@ -99,60 +68,30 @@
             </div>
             <div data-popper-arrow></div>
           </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Background
-            </h3>
-            <span class="pl-2">
-              <%= @character.pathfinder_basic.background %>
-            </span>
-          </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Deity
-            </h3>
-            <span class="pl-2">
-              <%= @character.pathfinder_basic.deity %>
-            </span>
-          </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Age
-            </h3>
-            <span class="pl-2">
-              <%= @character.pathfinder_basic.age %>
-            </span>
-          </div>
-          <p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-        </div>
-        <div class="flex mb-6 gap-3">
-          <div>
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Hero Points
-            </h3>
-            <span class="pl-2">
-              <%= @character.pathfinder_basic.hero_points %>
-            </span>
-          </div>
-        </div>
+        <% end %>
+        
+        <%= render(TitleWithContentComponent.new(title: "Background", _class: "italic", bar: true)) do%>
+          <%= @character.pathfinder_basic.background %>
+        <% end %>
+        
+        <%= render(TitleWithContentComponent.new(title: "Deity", _class: "italic", bar: true)) do%>
+          <%= @character.pathfinder_basic.deity %>
+        <% end %>
+    
+        <%= render(TitleWithContentComponent.new(title: "Age", _class: "italic", bar: true)) do%>
+          <%= @character.pathfinder_basic.age %>
+        <% end %>
+    
+        <%= render(TitleWithContentComponent.new(title: "Hero Points", _class: "italic")) do%>
+          <%= @character.pathfinder_basic.hero_points %>
+        <% end %>
+
       </div>
       <!--  -->
       <div class="px-6 pb-6">
-        <h3 class="italic text-rose-700 dark:text-rose-500">
-          Description
-        </h3>
-        <p class="pl-3">
+        <%= render(TitleWithContentComponent.new(title: "Description", _class: "italic")) do%>
           <%= @character.pathfinder_basic.description %>
-        </p>
+        <% end %>
       </div>
     <% end %>
 
@@ -184,18 +123,18 @@
     <% end %>
 
     <%= render(CardTabComponent.new(tab: "server", hidden: true)) do %>
-      <div class="mx-auto p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-transparent dark:border-gray-700" data-turbo-track="reload">
-        <div class="space-y-6 text-sm text-gray-900" data-channels--character-target="formServer">
+      <div class="mx-auto w-full max-w-sm bg-transparent rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:border-gray-700">
+        <div class="space-y-6 text-sm text-gray-900 dark:text-gray-300" data-channels--character-target="formServer">
           <div data-channels--character-target="warning">
             
           </div>
           <div>
-            <label for="server-name" class="block mb-2 font-medium dark:text-gray-300">Server name</label>
+            <label for="server-name" class="block mb-2 font-medium">Server name</label>
             <input type="text" name="server-name" id="server-name" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="serverName">
           </div>
           <div>
-            <label for="password" class="block mb-2 font-medium dark:text-gray-300">Password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="password">
+            <label for="password" class="block mb-2 font-medium">Password</label>
+            <input type="password" name="password" id="password" placeholder="" class="bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" data-channels--character-target="password">
           </div>
           <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-action="channels--character#startServer">Connect</button>
         </div>

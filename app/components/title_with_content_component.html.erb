@@ -1,0 +1,14 @@
+<div class="flex gap-3">
+	<div>
+	  <h3 class="<%= @class %> text-rose-700 dark:text-rose-500">
+	    <%= @title %>
+	  </h3>
+	  <span class="pl-3">
+	    <%= content %>
+	  </span>
+	</div>
+
+	<% if have_bar? %>
+		<p class="-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+	<% end %>
+</div>
