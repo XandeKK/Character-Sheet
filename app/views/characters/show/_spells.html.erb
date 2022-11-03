@@ -18,47 +18,25 @@
           <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
         <div class="flex mb-3 gap-6">
-          <div data-popover-target="popover-attack-spell-caster">
+        <%= render(PopoverComponent.new(name: "attack-spell-caster", content_popover: "#{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)} | Proficiency: #{@character.pathfinder_spell_caster.attack_proficiency || 0} | Bonus: #{@character.pathfinder_spell_caster.attack_bonus || 0} | Penalty: #{@character.pathfinder_spell_caster.attack_penalty || 0}")) do%>
             <h3 class="italic text-rose-700 dark:text-rose-500">
               Attack
             </h3>
             <span class="pl-3">
               <%= get_attack_spell @character %>
             </span>
-          </div>
-          <div data-popover id="popover-attack-spell-caster" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-            <div class="py-2 px-3">
-              <p>
-                <%= @character.pathfinder_basic.key_ability %>: <%= get_modifier(@character, @character.pathfinder_basic.key_ability) %><br>
-                proficiency: <%= @character.pathfinder_spell_caster.attack_proficiency || 0 %><br>
-                bonus = <%= @character.pathfinder_spell_caster.attack_bonus || 0 %><br>
-                penalty = <%= @character.pathfinder_spell_caster.attack_penalty || 0 %>
-              </p>
-            </div>
-            <div data-popper-arrow></div>
-          </div>
+        <% end %>
           <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
         <div class="flex mb-3 gap-6">
-          <div data-popover-target="popover-cd-spell-caster">
+          <%= render(PopoverComponent.new(name: "cd-spell-caster", content_popover: "Base: 10 | #{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)} | Proficiency: #{@character.pathfinder_spell_caster.cd_proficiency || 0} | Bonus: #{@character.pathfinder_spell_caster.cd_bonus || 0} | Penalty: #{@character.pathfinder_spell_caster.cd_penalty || 0}")) do%>
             <h3 class="italic text-rose-700 dark:text-rose-500">
               DC
             </h3>
             <span class="pl-3">
               <%= get_cd_spell @character %>
             </span>
-          </div>
-          <div data-popover id="popover-cd-spell-caster" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-            <div class="py-2 px-3">
-              <p>
-                base: 10 <br>
-                <%= @character.pathfinder_basic.key_ability %>: <%= get_modifier(@character, @character.pathfinder_basic.key_ability) %><br>
-                proficiency: <%= @character.pathfinder_spell_caster.cd_proficiency || 0 %><br>
-                bonus = <%= @character.pathfinder_spell_caster.cd_bonus || 0 %><br>
-                penalty = <%= @character.pathfinder_spell_caster.cd_penalty || 0 %>
-              </p>
-            </div>
-            <div data-popper-arrow></div>
+          <% end %>
           </div>
         </div>
       </div>

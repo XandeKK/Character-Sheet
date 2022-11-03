@@ -9,19 +9,9 @@
         <p>
           <%= skill.name %>
         </p>
-        <p data-popover-target="popover-skill-<%= skill.id %>">
+        <%= render(PopoverComponent.new(name: "skill-#{skill.id}", content_popover: "#{skill.key_ability}: #{get_modifier(@character, skill.key_ability)} | Item: #{skill.item || 0} | Proficiency: #{skill.proficiency || 0}")) do%>
           <%= score_skill(@character, skill) %>
-        </p>
-      </div>
-      <div data-popover id="popover-skill-<%= skill.id %>" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-        <div class="py-2 px-3">
-            <p>
-              <%= "#{skill.key_ability}: #{get_modifier(@character, skill.key_ability)}" %><br>
-              item: <%= skill.item || 0%><br>
-              proficiency: <%= skill.proficiency || 0%><br>
-            </p>
-        </div>
-        <div data-popper-arrow></div>
+        <% end %>
       </div>
       <% end %>
     </div>
