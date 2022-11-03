@@ -1,22 +1,38 @@
-<div id="<%= @title %>" class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800">
-  <div class="p-2 flex bg-rose-800 md:rounded-t-lg">
-    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="<%= @svg %>" /></svg>
-    <h1 class="ml-3 text-lg text-gray-200">
-      <%= change_title %>
-    </h1>
+<div id="<%= @title %>" 
+	class="scrollspy md:mb-10 md:rounded-lg drop-shadow-lg bg-gray-100 dark:bg-zinc-800"
+	data-accordion="collapse" 
+	data-active-classes="bg-rose-800 text-white"
+	data-inactive-classes="bg-rose-800 text-white">
+
+  <div class="flex bg-rose-800 md:rounded-t-lg flex justify-between">
+  	<div class="flex p-2">
+	    <svg class="menu-item w-7 h-7 fill-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+	      <path fill="none" d="M0 0h24v24H0z" />
+	      <path d="<%= @svg %>" /></svg>
+	    <h1 class="ml-3 text-lg text-gray-200">
+	      <%= change_title %>
+	    </h1>
+  	</div>
+  	<h2 id="accordion-<%= @title %>" class="grow">
+	    <button type="button" class="flex flex-row-reverse px-2 w-full h-full items-center font-medium text-left rounded-tr-lg hover:bg-rose-700 dark:hover:bg-rose-700 bg-transparent text-white" data-accordion-target="#accordion-<%= @title %>-body" aria-expanded="true" aria-controls="accordion-<%= @title %>-body">
+	      <svg data-accordion-icon="" class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+	    </button>
+	  </h2>
   </div>
-  <% if render_tabs? %>
-	  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
-	    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="<%= @title %>Tab" data-tabs-toggle="#<%= @title %>TabContent" role="tablist">
-	      <% @tabs.each_with_index do |target, index| %>
-	        <li class="mr-2" role="presentation">
-	          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= change_name(target) %></button>
-	        </li>
-	      <% end %>
-	    </ul>
-	  </div>
-	 <% end %>
-	 <%= content %>
+  <div id="accordion-<%= @title %>-body" class="" aria-labelledby="accordion-<%= @title %>">
+	  <% if render_tabs? %>
+		  <div class="px-3 mb-4 border-b border-gray-200 dark:border-gray-700">
+		    <ul class="flex overflow-auto -mb-px text-sm font-medium text-center" id="<%= @title %>Tab" data-tabs-toggle="#<%= @title %>TabContent" role="tablist">
+		      <% @tabs.each_with_index do |target, index| %>
+		        <li class="mr-2" role="presentation">
+		          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="<%= target %>-tab" data-tabs-target="#<%= target %>" type="button" role="tab" aria-controls="<%= target %>" aria-selected="<%= index == '0' ? 'true' : 'false' %>"><%= change_name(target) %></button>
+		        </li>
+		      <% end %>
+		    </ul>
+		  </div>
+		 <% end %>
+	 
+	 	<%= content %>
+	 </div>
 </div>
+
