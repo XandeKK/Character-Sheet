@@ -25,20 +25,12 @@ input::-webkit-inner-spin-button {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #88888888; 
-  border-right: 1px white solid;
-  background-clip: padding-box;
-  border-radius: 10px;
 }
 
 /* Handle on hover */
