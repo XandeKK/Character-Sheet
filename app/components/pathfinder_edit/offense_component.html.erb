@@ -16,7 +16,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :pathfinder_weapon_proficiencies do |form_weapon_proficiencies| %>
+          <%= @form.fields_for :pathfinder_weapon_proficiencies do |form_weapon_proficiencies| %>
           <div id="weapon_proficiencies-<%= form_weapon_proficiencies.index %>">
             <div class="flex">
               <div class="flex-1">
@@ -54,7 +54,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :pathfinder_melees do |form_melees| %>
+          <%= @form.fields_for :pathfinder_melees do |form_melees| %>
           <div id="melees-<%= form_melees.index %>" class="space-y-3">
             <div class="flex">
               <div class="flex-1">
@@ -136,7 +136,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :pathfinder_rangeds do |form_rangeds| %>
+          <%= @form.fields_for :pathfinder_rangeds do |form_rangeds| %>
           <div id="rangeds-<%= form_rangeds.index %>" class="space-y-3">
             <div class="flex">
               <div class="flex-1">

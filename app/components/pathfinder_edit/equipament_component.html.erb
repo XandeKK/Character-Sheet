@@ -16,7 +16,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :pathfinder_items do |form_items| %>
+          <%= @form.fields_for :pathfinder_items do |form_items| %>
           <div id="items-<%= form_items.index %>">
             <div class="flex">
               <div>
@@ -51,7 +51,7 @@
     <% end %>
 
     <%= render(CardTabComponent.new(tab: "money", hidden: true)) do %>
-      <%= form.fields_for :pathfinder_money do |form_money| %>
+      <%= @form.fields_for :pathfinder_money do |form_money| %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
             Money

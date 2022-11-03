@@ -4,7 +4,7 @@
   tabs: ["character", "ancestry", "senses", "dices", "image"]
 )) do %>
   <div id="basicsTabContent">
-    <%= form.fields_for :pathfinder_basic do |form_basic| %>
+    <%= @form.fields_for :pathfinder_basic do |form_basic| %>
       <%= render(CardTabComponent.new(tab: "character", hidden: false)) do %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
@@ -69,8 +69,8 @@
               <%= form_basic.text_area :description, class: "#{normal_field} #{write_only}", rows: 3 %>
             </div>
             <div class="mm:col-span-2 md:col-span-3">
-              <%= form.label :character_category_id, class: normal_label %>
-              <%= form.select :character_category_id, [["Player", 1], ["Npc", 2], ["Enemy", 3]], {}, class: "#{normal_field} #{normal_select}" %>
+              <%= @form.label :character_category_id, class: normal_label %>
+              <%= @form.select :character_category_id, [["Player", 1], ["Npc", 2], ["Enemy", 3]], {}, class: "#{normal_field} #{normal_select}" %>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
           Senses
         </div>
-        <%= form.fields_for :pathfinder_perception do |form_perception| %>
+        <%= @form.fields_for :pathfinder_perception do |form_perception| %>
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
             <div>
               <%= form_perception.label :senses, class: normal_label %>
@@ -134,7 +134,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :dices do |form_dices| %>
+          <%= @form.fields_for :dices do |form_dices| %>
           <div id="dices-<%= form_dices.index %>" class="text-sm text-gray-900">
             <div class="flex">
               <div class="flex-1">
@@ -169,24 +169,8 @@
 
     <div data-controller="edit-character--cropper">
       <%= render(CardTabComponent.new(tab: "image", hidden: true)) do %>
-        <% content_for :head do %>
-          <%= javascript_import_module_tag "cropperjs" %>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-          <style type="text/css">
-              .cropper-view-box,
-              .cropper-face {
-                border-radius: 50%;
-              }
 
-              /* The css styles for `outline` do not follow `border-radius` on iOS/Safari (#979). */
-              .cropper-view-box {
-                  outline: 0;
-                  box-shadow: 0 0 0 1px #39f;
-              }
-          </style>
-        <% end %>
-
-        <%= form.text_field :image, class: "hidden", "data-edit-character--cropper-target":"image_base64_input" %>
+        <%= @form.text_field :image, class: "hidden", "data-edit-character--cropper-target":"image_base64_input" %>
 
         <div class="p-6 text-sm text-gray-900 dark:text-gray-300">
           <label class="block mb-2 font-medium" for="file_input">Upload image</label>

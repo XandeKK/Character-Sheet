@@ -6,7 +6,7 @@
   <div id="statisticsTabContent">
     <div data-controller="edit-character--abilities">
       <%= render(CardTabComponent.new(tab: "abilities", hidden: false)) do %>
-        <%= form.fields_for :pathfinder_ability do |form_ability| %>
+        <%= @form.fields_for :pathfinder_ability do |form_ability| %>
           <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
             <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
               Strength
@@ -196,7 +196,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :pathfinder_feats do |form_feats| %>
+          <%= @form.fields_for :pathfinder_feats do |form_feats| %>
           <div id="feats-<%= form_feats.index %>">
             <div class="flex">
               <div class="flex-1">
@@ -237,7 +237,7 @@
               +
             </div>
           </div>
-          <%= form.fields_for :pathfinder_languages do |form_languages| %>
+          <%= @form.fields_for :pathfinder_languages do |form_languages| %>
           <div id="languages-<%= form_languages.index %>">
             <div class="flex">
               <div>
@@ -269,7 +269,7 @@
           Class DC
         </div>
         <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-          <%= form.fields_for :pathfinder_class_dc do |form_class_dc| %>
+          <%= @form.fields_for :pathfinder_class_dc do |form_class_dc| %>
           <div>
             <%= form_class_dc.label :item, class: normal_label %>
             <%= form_class_dc.number_field :item, class: "#{normal_field} #{write_only}", value: 0 %>

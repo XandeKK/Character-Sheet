@@ -4,7 +4,7 @@
   tabs: ["hp", "armor-class", "saving-throw"]
 )) do %>
   <div id="defensesTabContent" class="text-sm text-gray-900 dark:text-gray-300">
-    <%= form.fields_for :pathfinder_defense do |form_defense| %>
+    <%= @form.fields_for :pathfinder_defense do |form_defense| %>
       <%= render(CardTabComponent.new(tab: "hp", hidden: false)) do %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
@@ -106,7 +106,7 @@
 
     <div data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
       <%= render(CardTabComponent.new(tab: "saving-throw", hidden: true)) do %>
-        <%= form.fields_for :pathfinder_saving_throw do |form_saving_throw| %>
+        <%= @form.fields_for :pathfinder_saving_throw do |form_saving_throw| %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
             Fortitude

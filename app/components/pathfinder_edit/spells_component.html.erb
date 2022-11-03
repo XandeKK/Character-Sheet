@@ -4,7 +4,7 @@
   tabs: ["spell-caster", "spell", "innate-spells", "focus-spells"]
 )) do %>
   <div id="spellsTabContent">
-    <%= form.fields_for :pathfinder_spell_caster do |form_spell_caster| %>
+    <%= @form.fields_for :pathfinder_spell_caster do |form_spell_caster| %>
       <%= render(CardTabComponent.new(tab: "spell-caster", hidden: false)) do %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
@@ -141,7 +141,7 @@
                 +
               </div>
             </div>
-            <%= form.fields_for :pathfinder_spells do |form_spells| %>
+            <%= @form.fields_for :pathfinder_spells do |form_spells| %>
             <div id="spells-<%= form_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
               <div class="flex">
                 <div class="flex-1">
@@ -207,7 +207,7 @@
                 +
               </div>
             </div>
-            <%= form.fields_for :pathfinder_innate_spells do |form_innate_spells| %>
+            <%= @form.fields_for :pathfinder_innate_spells do |form_innate_spells| %>
             <div id="innate_spells-<%= form_innate_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
               <div class="flex">
                 <div class="flex-1">
@@ -283,7 +283,7 @@
                 +
               </div>
             </div>
-            <%= form.fields_for :pathfinder_focus_spells do |form_focus_spells| %>
+            <%= @form.fields_for :pathfinder_focus_spells do |form_focus_spells| %>
             <div id="focus_spells-<%= form_focus_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
               <div class="flex">
                 <div class="flex-1">
