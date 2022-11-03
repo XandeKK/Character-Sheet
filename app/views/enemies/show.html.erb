@@ -1,23 +1,23 @@
 <div data-controller="channels--character">
-  <%= render partial: "characters/show/drawer"%>
-  <%= render partial: "characters/side_bar"%>
+  <%= render(PathfinderShow::DrawerComponent.new) %>
+  <%= render(SideBarComponent.new) %>
 
   <div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200">
     
-    <%= render partial: "characters/show/basics" %>
+    <%= render(PathfinderShow::BasicsComponent.new(character: @character)) %>
 
-    <%= render partial: "characters/show/statistics" %>
+    <%= render(PathfinderShow::StatisticsComponent.new(character: @character)) %>
 
-    <%= render partial: "characters/show/equipament" %>
+    <%= render(PathfinderShow::EquipamentComponent.new(character: @character)) %>
 
-    <%= render partial: "characters/show/defense" %>
+    <%= render(PathfinderShow::DefenseComponent.new(character: @character)) %>
 
-    <%= render partial: "characters/show/offense" %>
+    <%= render(PathfinderShow::OffenseComponent.new(character: @character)) %>
     
-    <%= render partial: "characters/show/skills" %>
+    <%= render(PathfinderShow::SkillsComponent.new(character: @character)) %>
 
-    <%= render partial: "characters/show/spells" %>
+    <%= render(PathfinderShow::SpellsComponent.new(character: @character)) %>
 
-    <%= render partial: "characters/show/notes" %>
+    <%= render(PathfinderShow::NotesComponent.new(character: @character)) %>
   </div>
 </div>
