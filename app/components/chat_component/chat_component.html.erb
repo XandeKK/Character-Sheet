@@ -1,0 +1,51 @@
+<div data-controller="channels--chat" data-channels--chat-player-param="<%= @player %>">
+  <div class="p-6 mb-4 border-b-4 border-gray-200 dark:border-gray-700 flex justify-between flex-col md:flex-row gap-3">
+    <div>
+      <label for="toggle" class="inline-flex relative items-center mr-5 cursor-pointer">
+        <input type="checkbox" value="" id="toggle" class="sr-only peer" checked 
+        data-channels--chat-target="toggleTv"
+        data-action="channels--chat#inputToggleTv">
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"></div>
+        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">I want to receive message from tv.</span>
+      </label>
+    </div>
+    <div>
+      <button id="dropdownCharactersButton" data-dropdown-toggle="dropdownCharacters" data-dropdown-placement="bottom" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Players<svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg></button>
+      <!-- Dropdown menu -->
+      <div id="dropdownCharacters" class="hidden z-10 w-60 bg-white rounded shadow dark:bg-gray-700" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 140px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
+        <ul class="overflow-y-auto py-1 h-48 text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCharactersButton">
+          <li>
+            <p class="flex items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
+              <img class="mr-2 w-6 h-6 rounded-full" src="">
+              Jese Leos
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex h-[30rem] antialiased text-gray-800">
+    <div class="flex flex-col h-full w-full overflow-x-hidden bg-transparent">
+      <!-- flex-auto -->
+      <div class="flex flex-col h-full overflow-x-auto mb-4">
+        <div class="flex flex-col h-full">
+          <div class="grid grid-cols-12 gap-y-2" data-channels--chat-target="chatBody">
+          </div>
+        </div>
+      </div>
+      <div class="w-full flex items-center py-2 px-1 bg-transparent rounded-lg">
+        <textarea rows="1" class="block mx-2 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none overflow-hidden" placeholder="Your message..." data-channels--chat-target="messageBody"
+        data-action="channels--chat#expandArea"></textarea>
+        <button class="inline-flex justify-center p-2.5 text-rose-600 rounded-full cursor-pointer hover:bg-rose-100 dark:text-rose-500 dark:hover:bg-gray-600"
+        data-action="channels--chat#sendMessage">
+          <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+          </svg>
+          <span class="sr-only">Send message</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
