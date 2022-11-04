@@ -56,6 +56,8 @@ export default class extends Controller {
   _cableReceived(data) {
     if(data.act == "message") {
       this.addMessage(data);
+    }  else if (data.act == "privateMessage") {
+      this.addPrivateMessage(data);
     } else if(data.act == "putMeOnChat") {
       this.putCharacterOnChat(data);
     } else if(data.act == "characterExit") {
@@ -91,13 +93,31 @@ export default class extends Controller {
     let message = this.messageBodyTarget.value;
 
     let dataToSend = Object.assign({}, this.character);
-    dataToSend.act = "message";
     dataToSend.message = message;
 
-    this.channel.send(dataToSend);
+    let player = message.match(/^@[0-9a-zA-Z_\ \-]*:/g);
+
+    if (player) {
+      player = player[0].replace(/@/, "");
+      dataToSend.to = player.replace(/:/, "");
+      this.sendPrivateMessage(dataToSend);
+    } else {
+      this.sendMessageToAll(dataToSend);
+    }
 
     this.messageBodyTarget.value = "";
     this.messageBodyTarget.rows = 1;
+  }
+
+  sendMessageToAll(dataToSend) {
+    dataToSend.act = "message";
+    this.channel.send(dataToSend);
+  }
+
+  sendPrivateMessage(dataToSend) {
+    dataToSend.message = dataToSend.message.replace(/^@[0-9a-zA-Z_\ \-]*: ?/g, "");
+    dataToSend.act = "privateMessage";
+    this.channel.send(dataToSend);
   }
 
   addMessageTv(data) {
@@ -127,7 +147,7 @@ export default class extends Controller {
     })
   }
 
-  addMessage(data) {
+  addMessage(data, isPrivate=false) {
     let isPlayer = this.isPlayer(data.id);
     let body = `<div class="flex items-center ${ isPlayer ? "justify-start flex-row-reverse": "flex-row" }">
         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-600 flex-shrink-0">
@@ -135,7 +155,7 @@ export default class extends Controller {
         </div>
         <div class="relative ${ isPlayer ? "mr-3" : "ml-3" } text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
           <div>
-            <span class="font-bold">${data.name} say:</span>
+            <span class="font-bold">${data.name} ${isPrivate ? "say private" : "say for all"}:</span>
             <p class="ml-2 whitespace-pre-line">${data.message}</p>
           </div>
         </div>
@@ -153,6 +173,20 @@ export default class extends Controller {
     })
   }
 
+  addPrivateMessage(data) {
+    if (data.to == this.name || data.id == this.id) {
+      this.addMessage(data, true);
+    }
+  }
+
+  addPlayerInBodyMessage(event) {
+    let name = event.target.dataset["channels-ChatNameParam"];
+    if (name == undefined) return;
+    
+    this.messageBodyTarget.value = `@${name}: `;
+    this.messageBodyTarget.focus()
+  }
+
   expandArea(event) {
     let count = (event.target.value.match(/\n/g) || []).length;
     count = count == 0 ? 1 : count + 1;
@@ -168,7 +202,7 @@ export default class extends Controller {
     if (this.characters[data.id] || data.id == this.id) return;
     this.characters[data.id] = data;
 
-    let body = `<p class="flex items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
+    let body = `<p class="flex items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer" data-channels--chat-name-param="${data.name}">
         <img class="mr-2 w-6 h-6 rounded-full" src="${data.image}">
         ${data.name}
       </p>`;
