@@ -182,7 +182,6 @@ export default class extends Controller {
   addPlayerInBodyMessage(event) {
     let name = event.target.dataset["channels-ChatNameParam"];
     if (name == undefined) return;
-    
     this.messageBodyTarget.value = `@${name}: `;
     this.messageBodyTarget.focus()
   }
