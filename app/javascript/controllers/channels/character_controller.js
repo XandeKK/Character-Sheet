@@ -47,11 +47,13 @@ export default class extends Controller {
   }
 
   terminateServer() {
+    this.dispatch("terminate");
     this.channel.unsubscribe();
     this.channel = null;
   }
 
   _cableConnected() {
+    this.dispatch("start")
     this.formServerTarget.classList.add("hidden");
     this.terminateButtonTarget.classList.remove("hidden");
 
