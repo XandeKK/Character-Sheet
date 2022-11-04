@@ -50,5 +50,9 @@ export default class extends Controller {
   sendDice(data) {
     this.dispatch("sendDice", { detail: { data: data } })
   }
+
+  sendToCharacters({ detail: { data }}) {
+    this.channel.send(data)
+  }
 }
 

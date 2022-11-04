@@ -207,12 +207,19 @@ export default class extends Controller {
     const popover = new Popover(popoverDiv, spanResult);
 
     // Clear
-    this.clearCharactersEvents(id)
+    this.clearCharactersEvents(id);
+
+    this.sendToCharacters({name: character.name, rolls: eval(rolls), image: character.image});
 
     return mainDiv;
   }
 
   clearCharactersEvents(id) {
     this.charactersEvents[id] = ""
+  }
+
+  sendToCharacters(data) {
+    data.act = "messageTv";
+    this.dispatch("sendToCharacters", { detail: { data: data } });
   }
 }
