@@ -183,7 +183,8 @@ export default class extends Controller {
     let name = event.target.dataset["channels-ChatNameParam"];
     if (name == undefined) return;
     this.messageBodyTarget.value = `@${name}: `;
-    this.messageBodyTarget.focus()
+    this.messageBodyTarget.click();
+    this.messageBodyTarget.focus();
   }
 
   expandArea(event) {

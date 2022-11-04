@@ -9,16 +9,6 @@
         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">I want to receive message from tv.</span>
       </label>
     </div>
-    <div>
-      <button id="dropdownCharactersButton" data-dropdown-toggle="dropdownCharacters" data-dropdown-placement="bottom" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Players<svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg></button>
-      <!-- Dropdown menu -->
-      <div id="dropdownCharacters" class="hidden z-10 w-60 bg-white rounded shadow dark:bg-gray-700" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 140px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
-        <ul class="overflow-y-auto py-1 h-48 text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCharactersButton" data-channels--chat-target="boxCharacters" data-action="click->channels--chat#addPlayerInBodyMessage">
-        </ul>
-      </div>
-    </div>
   </div>
   <div class="flex h-[30rem] antialiased text-gray-800">
     <div class="flex flex-col h-full w-full overflow-x-hidden bg-transparent">
@@ -30,6 +20,14 @@
         </div>
       </div>
       <div class="w-full flex items-center py-2 px-1 bg-transparent rounded-lg">
+        <div>
+          <button id="dropdownCharactersButton" data-dropdown-toggle="dropdownCharacters" data-dropdown-placement="bottom" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">@</button>
+          <!-- Dropdown menu -->
+          <div id="dropdownCharacters" class="hidden z-10 w-60 bg-white rounded shadow dark:bg-gray-700" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 140px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
+            <ul class="overflow-y-auto py-1 h-48 text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCharactersButton" data-channels--chat-target="boxCharacters" data-action="click->channels--chat#addPlayerInBodyMessage">
+            </ul>
+          </div>
+        </div>
         <textarea rows="1" class="block mx-2 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none overflow-hidden max-h-36" placeholder="Your message..." data-channels--chat-target="messageBody"
         data-action="channels--chat#expandArea"></textarea>
         <button type="button" class="inline-flex justify-center p-2.5 text-rose-600 rounded-full cursor-pointer hover:bg-rose-100 dark:text-rose-500 dark:hover:bg-gray-600"
