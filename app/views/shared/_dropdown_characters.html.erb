@@ -10,8 +10,8 @@
     <% @characters_dropdown.each do |character| %>
     <li class="relative hover:bg-gray-100 dark:hover:bg-gray-600 p-2">
       <%= link_to "", character_path(character), class: "flex items-center p-2 rounded absolute h-full w-full", data: {turbo: false}%>
-        <input <%= "checked" if character == @character %> id="radio-<%= character.id %>" type="radio" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-        <label for="radio-<%= character.id %>" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><%= character.pathfinder_basic.name %></label>
+      <input <%= "checked" if character == @character %> id="radio-<%= character.id %>" type="radio" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+      <label for="radio-<%= character.id %>" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300"><%= character.pathfinder_basic.name %></label>
     </li>
     <% end %>
   </ul>
