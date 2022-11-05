@@ -9,7 +9,11 @@
         <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
           <div class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= adventure.name %></div>
         </div>
-        <%= render partial: "adventures/dropdown_adventure", locals: {id: adventure.id} %>
+        <%= render(Dropdown::MenuComponent.new(
+          id: adventure.id,
+          edit_path: method(:edit_adventure_path),
+          delete_path: method(:adventure_path)  
+        ))%>
       </div>
     </div>
   <% end %>

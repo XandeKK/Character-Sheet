@@ -5,14 +5,18 @@
     <div class="mb-6 block w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 relative">
       <%= link_to character_path(character), class: "absolute h-full w-full", data: {turbo: false} do %>
       <% end %>
-      <div class="p-6 flex justify-between">
+      <div class="p-6 flex justify-between items-center">
         <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
           <div>
             <%= image_tag(character.character_image, class: "w-20 h-20 rounded-full", alt:"#{character.name}") if character.character_image.attached?%>
           </div>
           <div id="character-<%= character.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.name %></div>
         </div>
-        <%= render partial: "player/dropdown_character", locals: {id: character.id, path_edit: edit_character_path(character), path_delete: character_path(character)} %>
+        <%= render(Dropdown::MenuComponent.new(
+          id: character.id,
+          edit_path: method(:edit_character_path),
+          delete_path: method(:character_path)  
+        ))%>
       </div>
     </div>
   <% end %>

@@ -12,7 +12,11 @@
           </div>
           <div id="enemy-<%= enemy.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= enemy.name %></div>
         </div>
-        <%= render partial: "player/dropdown_character", locals: {id: enemy.id, path_edit: edit_enemy_path(enemy), path_delete: enemy_path(enemy)} %>
+        <%= render(Dropdown::MenuComponent.new(
+          id: enemy.id,
+          edit_path: method(:edit_enemy_path),
+          delete_path: method(:enemy_path)  
+        ))%>
       </div>
     </div>
   <% end %>
