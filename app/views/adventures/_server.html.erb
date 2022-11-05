@@ -1,20 +1,28 @@
 <%= render(CardComponent.new(
-  title: "server",
-  svg: "M4 3h16a1 1 0 0 1 1 1v7H3V4a1 1 0 0 1 1-1zM3 13h18v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7zm4 3v2h3v-2H7zM7 6v2h3V6H7z"
+  title: "server-",
+  svg: "M4 3h16a1 1 0 0 1 1 1v7H3V4a1 1 0 0 1 1-1zM3 13h18v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7zm4 3v2h3v-2H7zM7 6v2h3V6H7z",
+  tabs: ["server", "chat"]
 )) do %>
-  <div class="md:py-3">
-    <h1 class="p-3 text-center text-3xl"><%= @adventure.name %></h1>
-    <h2 class="p-6 text-xl">Server name: 
-      <span data-channels--adventure-target="serverName"><%= @adventure.server_name %></span>
-    </h2>
-  </div>
-  <div class="flex flex-row-reverse p-6">
+  <div id="server-TabContent">
+    <%= render(CardTabComponent.new(tab: "server", hidden: false)) do %>
+      <div class="md:py-3">
+        <h1 class="p-3 text-center text-3xl"><%= @adventure.name %></h1>
+        <h2 class="p-6 text-xl">Server name: 
+          <span data-channels--adventure-target="serverName" data-channels--chat-target="serverName"><%= @adventure.server_name %></span>
+        </h2>
+      </div>
+      <div class="flex flex-row-reverse p-6">
 
-    <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-channels--adventure-target="startButton" data-action="channels--adventure#startServer">
-      Start Server
-    </button>
-    <button class= "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hidden" data-channels--adventure-target="terminateButton" data-action="channels--adventure#terminateServer">
-      Stop Server
-    </button>
+        <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-channels--adventure-target="startButton" data-action="channels--adventure#startServer">
+          Start Server
+        </button>
+        <button class= "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 hidden" data-channels--adventure-target="terminateButton" data-action="channels--adventure#terminateServer">
+          Stop Server
+        </button>
+      </div>
+    <% end %>
+    <%= render(CardTabComponent.new(tab: "chat", hidden: true)) do %>
+      <%= render ChatComponent.new %>
+    <% end %>
   </div>
 <% end %>

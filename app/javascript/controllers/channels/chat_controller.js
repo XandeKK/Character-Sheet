@@ -32,6 +32,17 @@ export default class extends Controller {
     })
   }
 
+  startServerAdventure() {
+    this.channel = consumer.subscriptions.create(
+      {channel: "ChatChannel", server_name: this.serverNameTarget.textContent},
+      {
+        connected: this._cableConnected.bind(this),
+        disconnected: this._cableDisconnected.bind(this),
+        received: this._cableReceived.bind(this),
+        rejected: this._cableRejected.bind(this),
+    })
+  }
+
   terminateServer() {
     this.chatBodyTarget.innerHTML = "";
     this.boxCharactersTarget.innerHTML = "";

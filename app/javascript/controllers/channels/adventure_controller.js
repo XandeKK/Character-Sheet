@@ -27,6 +27,7 @@ export default class extends Controller {
   }
 
   _cableConnected() {
+    this.dispatch("start")
     this.startButtonTarget.classList.add("hidden");
     this.terminateButtonTarget.classList.remove("hidden");
     this.channel.send({ act: "wantPlayers" });
@@ -40,6 +41,7 @@ export default class extends Controller {
   }
 
   terminateServer() {
+    this.dispatch("terminate");
     this.channel.unsubscribe();
     this.channel = null;
     this.terminateButtonTarget.classList.add("hidden");
