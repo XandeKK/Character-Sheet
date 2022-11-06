@@ -3,20 +3,16 @@
     <%= form.email_field :email, class: peer_field, placeholder:" ", required:"" %>
     <%= form.label :email, class: peer_label %>
   </div>
-
   <div class="relative z-0 mb-6 w-full group">
     <%= form.password_field :password, class: peer_field, placeholder:" ", required:"" %>
     <%= form.label :password, class: peer_label %>
   </div>
-
   <div class="flex items-start">
     <div class="flex items-start">
     </div>
     <%= link_to t(".forgot_password"), new_password_path, class: "ml-auto text-blue-700 hover:underline dark:text-blue-500" %>
   </div>
-    
   <%= form.submit class: button_submit %>
-
   <div class="font-medium text-gray-500 dark:text-gray-300">
     <% if Clearance.configuration.allow_sign_up? %>
       <%= link_to t(".sign_up"), sign_up_path, class: "text-blue-700 hover:underline dark:text-blue-500" %>

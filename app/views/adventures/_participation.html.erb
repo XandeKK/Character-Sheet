@@ -24,7 +24,6 @@
           </span>
         </span>
       <% end %>
-
       <%= render(TitleWithContentComponent.new(title: "Temp HP", _class: "italic", bar: true)) do%>
         <span id="<%= dom_id(participation, :temp_hp)%>" class="text-2xl pl-3">
           <%= participation.pathfinder_defense.temp_hp || 0 %>
@@ -38,7 +37,6 @@
       </h3>
       <div class="inline-flex rounded-md shadow-sm" role="group">
         <input id="<%= dom_id(participation.character, :hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-zinc-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="HP" tabindex="-1">
-
         <button type="button" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#damageHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
           Damage
         </button>
@@ -52,7 +50,6 @@
       </h3>
       <div class="inline-flex rounded-md shadow-sm" role="group">
         <input id="<%= dom_id(participation.character, :temp_hp_input)%>" type="number" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-32 text-sm border-gray-300 p-2.5  dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Temp HP" tabindex="-1">
-        
         <button type="button" class="rounded-r-md py-2 px-4 text-sm font-medium text-gray-900 bg-white border-b border-t border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-blue-500 dark:focus:text-white" data-action="show-character--life-handler#addTempHp" data-show-character--life-handler-id-param="<%= participation.character.id %>">
           Add
         </button>
@@ -74,7 +71,7 @@
           Languages
         </span>
         <% participation.pathfinder_languages.each do |language| %>
-        <%= language.name %>,
+          <%= language.name %>,
         <% end %>
       </div>
     </div>
@@ -85,7 +82,7 @@
           Skills
         </span>
         <% participation.pathfinder_skills.each do |skill| %>
-        <%= "#{skill.name.titleize} #{score_skill(participation, skill)}" %>,
+          <%= "#{skill.name.titleize} #{score_skill(participation, skill)}" %>,
         <% end %>
       </div>
     </div>
@@ -93,11 +90,11 @@
     <div>
       <div>
         <% ["str","dex","con","int","wis","cha"].each do |ability| %>
-        <span class="font-bold text-rose-700 dark:text-rose-500">
-          <%= ability.titleize %>
-        </span>
-        <%= get_modifier(participation, ability) %>
-        &nbsp;&nbsp;
+          <span class="font-bold text-rose-700 dark:text-rose-500">
+            <%= ability.titleize %>
+          </span>
+          <%= get_modifier(participation, ability) %>
+          &nbsp;&nbsp;
         <% end %>
       </div>
     </div>
@@ -179,7 +176,7 @@
       <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Macros" unless participation.dices.empty? %></h1>
       <div class="px-3 grid grid-cols-1 gap-4 w-full">
         <% participation.dices.each do |dice| %>
-        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+          <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
             data-action="click->adventure--drawer#toggleDrawerMacro click->channels--adventure#setWeaponAndCharacter"
             data-adventure--drawer-character-id-param="<%= participation.character_id %>"
             data-adventure--drawer-name-param="<%= dice.name %>"
@@ -189,22 +186,22 @@
             data-channels--adventure-name-param="<%= participation.pathfinder_basic.name %>"
             data-channels--adventure-image-param="<%= url_for(participation.character.character_image) if participation.character.character_image.attached? %>"
             >
-          <p>
-            <%= dice.name %>
-          </p>
-          <p>
-            <%= format_macro_notation(participation, dice.notation) %>
-          </p>
-        </div>
+            <p>
+              <%= dice.name %>
+            </p>
+            <p>
+              <%= format_macro_notation(participation, dice.notation) %>
+            </p>
+          </div>
         <% end %>
       </div>
     </div>
     <!--  -->
     <div>
       <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Melees" unless participation.pathfinder_melees.empty? %></h1>
-        <div class="px-3 grid grid-cols-1 gap-4 w-full">
-          <% participation.pathfinder_melees.each do |melee| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+      <div class="px-3 grid grid-cols-1 gap-4 w-full">
+        <% participation.pathfinder_melees.each do |melee| %>
+          <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
             data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
             data-adventure--drawer-character-id-param="<%= participation.character_id %>"
             data-adventure--drawer-name-param="<%= melee.name %>"
@@ -223,30 +220,30 @@
             data-channels--adventure-qty-param="<%= melee.qty || 1 %>"
             data-channels--adventure-dice-param="<%= melee.die %>"
             data-channels--adventure-bonus-param="<%= bonus_damage_melee(participation, melee)  %>">
-              <p>
-                <%= melee.name %>
-              </p>
-              <p>
-                <%= get_attack_melee(participation, melee)%>
+            <p>
+              <%= melee.name %>
+            </p>
+            <p>
+              <%= get_attack_melee(participation, melee)%>
               [
               <%= get_second_attack_melee(participation, melee)%>/
               <%= get_third_attack_melee(participation, melee)%> ]
-              </p>
-              <p>
-                <%= melee.qty %>
-                <%= melee.die %>
-                <%= bonus_damage_melee(participation, melee)  %>
-              </p>
-            </div>
-          <% end %>
+            </p>
+            <p>
+              <%= melee.qty %>
+              <%= melee.die %>
+              <%= bonus_damage_melee(participation, melee)  %>
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
     <!--  -->
     <div>
       <h1 class="font-bold text-rose-700 dark:text-rose-500"><%= "Rangeds" unless participation.pathfinder_rangeds.empty? %></h1>
-        <div class="px-3 grid grid-cols-1 gap-4 w-full">
-          <% participation.pathfinder_rangeds.each do |ranged| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+      <div class="px-3 grid grid-cols-1 gap-4 w-full">
+        <% participation.pathfinder_rangeds.each do |ranged| %>
+          <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
             data-action="click->adventure--drawer#toggleDrawerWeapon click->channels--adventure#setWeaponAndCharacter"
             data-adventure--drawer-character-id-param="<%= participation.character_id %>"
             data-adventure--drawer-name-param="<%= ranged.name %>"
@@ -265,22 +262,22 @@
             data-channels--adventure-qty-param="<%= ranged.qty || 1 %>"
             data-channels--adventure-dice-param="<%= ranged.die %>"
             data-channels--adventure-bonus-param="<%= bonus_damage_ranged(ranged) %>">
-              <p>
-                <%= ranged.name %>
-              </p>
-              <p>
-                <%= get_attack_ranged(participation, ranged)%>
+            <p>
+              <%= ranged.name %>
+            </p>
+            <p>
+              <%= get_attack_ranged(participation, ranged)%>
               [
               <%= get_second_attack_ranged(participation, ranged)%>/
               <%= get_third_attack_ranged(participation, ranged)%> ]
-              </p>
-              <p>
-                <%= ranged.qty %>
-                <%= ranged.die %>
-                <%= bonus_damage_ranged(ranged)  %>
-              </p>
-            </div>
-          <% end %>
+            </p>
+            <p>
+              <%= ranged.qty %>
+              <%= ranged.die %>
+              <%= bonus_damage_ranged(ranged)  %>
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
     <!--  -->
@@ -291,12 +288,12 @@
           <%= "Notes" unless participation.pathfinder_notes.empty? %>
         </span>
         <% participation.pathfinder_notes.each do |note| %>
-        <h1 class="font-bold text-rose-700 dark:text-rose-500 ml-1">
-          <%= note.name %>
-        </h1>
-        <div class="ml-2">
-          <%= note.note %>
-        </div>
+          <h1 class="font-bold text-rose-700 dark:text-rose-500 ml-1">
+            <%= note.name %>
+          </h1>
+          <div class="ml-2">
+            <%= note.note %>
+          </div>
         <% end %>
       </div>
     </div>

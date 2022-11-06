@@ -27,14 +27,12 @@
     </div>
   </div>
 <% end %>
-
 <!-- Turbo stream -->
 <% @adventure_participations.each do |participation| %>
   <%= turbo_stream.append participation.character_category.name.downcase do %>
     <%= render partial: "adventures/participation", locals: {participation: participation} %>
   <% end %>
 <% end %>
-
 <% @npc_and_enemy.each do |character| %>
   <%= turbo_stream.append "#{character.character_category_name.downcase}-modal" do %>
     <% any = @adventure_participations.any? { |participation| participation.character == character } %>
@@ -42,18 +40,15 @@
       <div class="w-20 h-20">
         <%= image_tag character.character_image, class: "rounded-full w-20 h-20" if character.character_image.attached? %>
       </div>
-
       <div>
         <h2 class="font-bold text-lg">
           <%= character.name %>
         </h2>
-        
         <%= button_to adventure_participation_path, method: :delete, params: {character_id: character, adventure_id: @adventure}, data: {action: "remove", character: character.id, category: character.character_category_name.downcase }, form: {id: "form-remove-#{character.id}", class: "#{"hidden" unless any}" } do %>
           <div class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2cursor-pointer">
             Remove
           </div>
         <% end %>
-
         <%= button_to adventure_participation_path, params: {character_id: character, adventure_id: @adventure}, data: {action: "add", character: character.id, category: character.character_category_name.downcase }, form: {id: "form-add-#{character.id}", class: "#{"hidden" if any}" } do %>
           <div class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 cursor-pointer">
             Add
@@ -63,7 +58,6 @@
     </div>
   <% end %>
 <% end %>
-
 <!-- Main modal -->
 <div id="enemyModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
   <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
