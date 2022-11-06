@@ -37,13 +37,11 @@ class NpcsController < ApplicationController
   end
 
   def update
-    if @character.character_system.name == "Pathfinder"
-      if @character.update(PathfinderCharacter::character_params(params))
-        save_image
-        redirect_by_character_category(@character)
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @character.update(PathfinderCharacter::character_params(params))
+      save_image
+      redirect_by_character_category(@character)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

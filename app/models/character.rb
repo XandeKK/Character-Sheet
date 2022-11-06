@@ -3,7 +3,7 @@ class Character < ApplicationRecord
   belongs_to :user
   belongs_to :character_category
   belongs_to :character_system
-  
+
   has_many :adventure_participations, dependent: :destroy
 
   has_one :pathfinder_basic, class_name: "Pathfinder::Basic", dependent: :destroy

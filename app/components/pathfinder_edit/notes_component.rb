@@ -5,7 +5,7 @@ class PathfinderEdit::NotesComponent < ViewComponent::Base
   include LabelHelper
   include EditCharactersHelper
   include ButtonHelper
-  
+
   def initialize(character:, form:)
     @character = character
     @form = form

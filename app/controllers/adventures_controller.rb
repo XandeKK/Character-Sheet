@@ -39,7 +39,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = current_user.adventures.new(adventure_params)
-    
+
     @adventure.create_server_name
 
     if @adventure.save

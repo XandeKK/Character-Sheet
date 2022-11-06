@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "/sign_up" => "users#new", as: "sign_up"
 
   get 'player', to: 'player#index'
-  
+
   resources :characters, path: '/player/characters', except: :index
   put "/hit_point", to: "characters#update_hp"
 

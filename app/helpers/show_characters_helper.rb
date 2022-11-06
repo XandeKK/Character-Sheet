@@ -69,7 +69,7 @@ module ShowCharactersHelper
     attack = str + item + proficiency + level
 
     if attack > 0
-      return "+#{attack}" 
+      return "+#{attack}"
     elsif attack < 0
       return "-#{attack.abs}"
     end
