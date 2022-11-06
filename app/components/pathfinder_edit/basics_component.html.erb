@@ -20,58 +20,83 @@
             Details
           </div>
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-            <div>
-              <%= form_basic.label :class_name, class: normal_label %>
-              <%= form_basic.text_field :class_name, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_basic.label :key_ability, class: normal_label %>
-              <%= form_basic.select :key_ability, abilities, {}, class: "#{normal_field} #{normal_select}" %>
-            </div>
-            <div>
-              <%= form_basic.label :background, class: normal_label %>
-              <%= form_basic.text_field :background, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_basic.label :alignment, class: normal_label %>
-              <%= form_basic.select :alignment, alignment, {}, class: "#{normal_field} #{normal_select}" %>
-            </div>
-            <div>
-              <%= form_basic.label :deity, class: normal_label %>
-              <%= form_basic.text_field :deity, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_basic.label :age, class: normal_label %>
-              <%= form_basic.number_field :age, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :class_name
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :key_ability,
+              form_type: "select",
+              array_select: abilities
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :background
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :alignment,
+              form_type: "select",
+              array_select: alignment
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :deity
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :age,
+              form_type: "number"
+            ))%>
+            
             <div>
               <%= form_basic.label :level, class: normal_label %>
               <%= form_basic.number_field :level, class: "#{normal_field} #{write_only}", "data-action":"change->edit-character--event-trigger#updateMaxHp", value: 0%>
             </div>
-            <div>
-              <%= form_basic.label :hero_points, class: normal_label %>
-              <%= form_basic.number_field :hero_points, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div>
-              <%= form_basic.label :size, class: normal_label %>
-              <%= form_basic.text_field :size, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_basic.label :speed, class: normal_label %>
-              <%= form_basic.text_field :speed, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div class="mm:col-span-2 md:col-span-2">
-              <%= form_basic.label :speed_note, class: normal_label %>
-              <%= form_basic.text_area :speed_note, class: "#{normal_field} #{write_only}", rows: 3 %>
-            </div>
-            <div class="mm:col-span-2 md:col-span-3">
-              <%= form_basic.label :description, class: normal_label %>
-              <%= form_basic.text_area :description, class: "#{normal_field} #{write_only}", rows: 3 %>
-            </div>
-            <div class="mm:col-span-2 md:col-span-3">
-              <%= @form.label :character_category_id, class: normal_label %>
-              <%= @form.select :character_category_id, [["Player", 1], ["Npc", 2], ["Enemy", 3]], {}, class: "#{normal_field} #{normal_select}" %>
-            </div>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :hero_points,
+              form_type: "number"
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :size
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :speed
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :speed_note,
+              class_div: "mm:col-span-2 md:col-span-2",
+              form_type: "area"
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :description,
+              class_div: "mm:col-span-2 md:col-span-3",
+              form_type: "area"
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: @form,
+              name: :character_category_id,
+              class_div: "mm:col-span-2 md:col-span-3",
+              form_type: "select",
+              array_select: [["Player", 1], ["Npc", 2], ["Enemy", 3]]
+            ))%>
           </div>
         </div>
       <% end %>
@@ -82,18 +107,22 @@
             Ancestry
           </div>
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-            <div>
-              <%= form_basic.label :ancestry, class: normal_label %>
-              <%= form_basic.text_field :ancestry, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_basic.label :heritage, class: normal_label %>
-              <%= form_basic.text_field :heritage, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div class="mm:col-span-2 md:col-span-3">
-              <%= form_basic.label :heritage_note, class: normal_label %>
-              <%= form_basic.text_area :heritage_note, class: "#{normal_field} #{write_only}", rows: 3 %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :ancestry
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :heritage
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :heritage_note,
+              form_type: "area",
+              class_div: "mm:col-span-2 md:col-span-3"
+            ))%>
           </div>
         </div>
       <% end %>
@@ -106,18 +135,23 @@
         </div>
         <%= @form.fields_for :pathfinder_perception do |form_perception| %>
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-            <div>
-              <%= form_perception.label :senses, class: normal_label %>
-              <%= form_perception.text_field :senses, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_perception.label :proficiency, class: normal_label %>
-              <%= form_perception.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select}" %>
-            </div>
-            <div>
-              <%= form_perception.label :item, class: normal_label %>
-              <%= form_perception.number_field :item, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_perception,
+              name: :senses
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_perception,
+              name: :proficiency,
+              form_type: "select",
+              array_select: proficiencies
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_perception,
+              name: :item,
+              form_type: "number"
+            ))%>
           </div>
         <% end %>
       </div>
@@ -137,10 +171,13 @@
           <%= @form.fields_for :dices do |form_dices| %>
           <div id="dices-<%= form_dices.index %>" class="text-sm text-gray-900">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_dices.label :name, class: normal_label %>
-                <%= form_dices.text_field :name, class: "#{rounded_left} #{write_only} #{normal_field}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_dices,
+                name: :name,
+                rounded: "left",
+                class_div: "flex-1"
+              ))%>
+
               <div class="flex-1 text-base">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-controller="edit-character--macros" data-action="click->edit-character--macros#removeDice" data-edit-character--macros-id-param="<%= form_dices.index %>">
@@ -148,18 +185,21 @@
                 </div>
               </div>
             </div>
-            <div>
-              <%= form_dices.label :notation, class: normal_label %>
-              <%= form_dices.text_field :notation, class: "#{write_only} #{normal_field}" %>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_dices,
+              name: :notation
+            )) do %>
               <div class="mt-2 mb-3 text-gray-500 dark:text-gray-400">
                 You can put str, dex, con, int, wis, cha, level.
                 <p>Example: 2d8 + str + 2</p>
               </div>
-            </div>
-            <div class="w-full">
-              <%= form_dices.label :notes, class: normal_label %>
-              <%= form_dices.text_area :notes, class: "#{write_only} #{normal_field}" %>
-            </div>
+            <% end %>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_dices,
+              name: :notes,
+              form_type: "area",
+              class_div: "w-full"
+            )) %>
             <%= form_dices.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>

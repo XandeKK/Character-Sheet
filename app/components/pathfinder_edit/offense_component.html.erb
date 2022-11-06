@@ -19,14 +19,21 @@
           <%= @form.fields_for :pathfinder_weapon_proficiencies do |form_weapon_proficiencies| %>
           <div id="weapon_proficiencies-<%= form_weapon_proficiencies.index %>">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_weapon_proficiencies.label :name, class: normal_label %>
-                <%= form_weapon_proficiencies.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_weapon_proficiencies.label :proficiency, class: normal_label %>
-                <%= form_weapon_proficiencies.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_weapon_proficiencies,
+                name: :name,
+                class_div: "flex-1",
+                rounded: "left"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_weapon_proficiencies,
+                name: :proficiency,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: proficiencies
+              ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_weapon_proficiencies.index %>"
@@ -57,14 +64,21 @@
           <%= @form.fields_for :pathfinder_melees do |form_melees| %>
           <div id="melees-<%= form_melees.index %>" class="space-y-3">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_melees.label :name, class: normal_label %>
-                <%= form_melees.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_melees.label :types, class: normal_label %>
-                <%= form_melees.select :types, types_weapon, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :name,
+                class_div: "flex-1",
+                rounded: "left"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :types,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: types_weapon
+              ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_melees.index %>"
@@ -74,49 +88,81 @@
               </div>
             </div>
             <div class="flex">
-              <div class="flex-1">
-                <%= form_melees.label :qty, class: normal_label %>
-                <%= form_melees.number_field :qty, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_melees.label :die, class: normal_label %>
-                <%= form_melees.select :die, dice, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_melees.label :weapon_specialization, "w. spec.", class: normal_label %>
-                <%= form_melees.number_field :weapon_specialization, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_melees.label :proficiency, class: normal_label %>
-                <%= form_melees.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_melees.label :item, class: normal_label %>
-                <%= form_melees.number_field :item, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :qty,
+                class_div: "flex-1",
+                rounded: "left",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :die,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: dice
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :weapon_specialization,
+                surname: "w. spec.",
+                class_div: "flex-1",
+                rounded: "none",
+                form_type: "number"
+              ))%>
+              
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :proficiency,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: proficiencies
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :item,
+                class_div: "flex-1",
+                rounded: "right",
+                form_type: "number"
+              ))%>
             </div>
             <div class="flex">
-              <div class="flex-1">
-                <%= form_melees.label :multiple_attack_penalty_2, class: normal_label %>
-                <%= form_melees.number_field :multiple_attack_penalty_2, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_melees.label :multiple_attack_penalty_3, class: normal_label %>
-                <%= form_melees.number_field :multiple_attack_penalty_3, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :multiple_attack_penalty_2,
+                class_div: "flex-1",
+                rounded: "left",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_melees,
+                name: :multiple_attack_penalty_3,
+                class_div: "flex-1",
+                rounded: "right",
+                form_type: "number"
+              ))%>
             </div>
-            <div>
-              <%= form_melees.label :other, class: normal_label %>
-              <%= form_melees.text_field :other, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_melees.label :traits, class: normal_label %>
-              <%= form_melees.text_field :traits, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_melees.label :notes, class: normal_label %>
-              <%= form_melees.text_area :notes, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_melees,
+              name: :other
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_melees,
+              name: :traits
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_melees,
+              name: :notes,
+              form_type: "area"
+            ))%>
             <%= form_melees.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>
@@ -139,14 +185,21 @@
           <%= @form.fields_for :pathfinder_rangeds do |form_rangeds| %>
           <div id="rangeds-<%= form_rangeds.index %>" class="space-y-3">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_rangeds.label :name, class: normal_label %>
-                <%= form_rangeds.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_rangeds.label :types, class: normal_label %>
-                <%= form_rangeds.select :types, types_weapon, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :name,
+                class_div: "flex-1",
+                rounded: "left"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :types,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: types_weapon
+              ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_rangeds.index %>"
@@ -156,53 +209,87 @@
               </div>
             </div>
             <div class="flex">
-              <div class="flex-1">
-                <%= form_rangeds.label :qty, class: normal_label %>
-                <%= form_rangeds.number_field :qty, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_rangeds.label :die, class: normal_label %>
-                <%= form_rangeds.select :die, dice, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_rangeds.label :weapon_specialization, "w. spec.", class: normal_label %>
-                <%= form_rangeds.number_field :weapon_specialization, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_rangeds.label :proficiency, class: normal_label %>
-                <%= form_rangeds.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select} #{rounded_none}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_rangeds.label :item, class: normal_label %>
-                <%= form_rangeds.text_field :item, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :qty,
+                class_div: "flex-1",
+                rounded: "left",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :die,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: dice
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :weapon_specialization,
+                surname: "w. spec.",
+                class_div: "flex-1",
+                rounded: "none",
+                form_type: "number"
+              ))%>
+              
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :proficiency,
+                form_type: "select",
+                class_div: "flex-1",
+                rounded: "none",
+                array_select: proficiencies
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :item,
+                class_div: "flex-1",
+                rounded: "right",
+                form_type: "number"
+              ))%>
             </div>
             <div class="flex">
-              <div class="flex-1">
-                <%= form_rangeds.label :multiple_attack_penalty_2, class: normal_label %>
-                <%= form_rangeds.text_field :multiple_attack_penalty_2, class: "#{rounded_left} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_rangeds.label :multiple_attack_penalty_3, class: normal_label %>
-                <%= form_rangeds.text_field :multiple_attack_penalty_3, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :multiple_attack_penalty_2,
+                class_div: "flex-1",
+                rounded: "left",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_rangeds,
+                name: :multiple_attack_penalty_3,
+                class_div: "flex-1",
+                rounded: "right",
+                form_type: "number"
+              ))%>
             </div>
-            <div class="w-32">
-              <%= form_rangeds.label :special, class: normal_label %>
-              <%= form_rangeds.number_field :special, class: "#{normal_field} #{write_only}", value: 0 %>
-            </div>
-            <div>
-              <%= form_rangeds.label :other, class: normal_label %>
-              <%= form_rangeds.text_field :other, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_rangeds.label :traits, class: normal_label %>
-              <%= form_rangeds.text_field :traits, class: "#{normal_field} #{write_only}" %>
-            </div>
-            <div>
-              <%= form_rangeds.label :notes, class: normal_label %>
-              <%= form_rangeds.text_area :notes, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_rangeds,
+              name: :special,
+              class_div: "w-32"
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_rangeds,
+              name: :other
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_rangeds,
+              name: :traits
+            ))%>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_rangeds,
+              name: :notes,
+              form_type: "area"
+            ))%>
             <%= form_rangeds.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>

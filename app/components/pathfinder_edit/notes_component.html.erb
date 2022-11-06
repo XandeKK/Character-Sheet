@@ -19,10 +19,12 @@
           <%= @form.fields_for :pathfinder_notes do |form_notes| %>
           <div id="notes-<%= form_notes.index %>">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_notes.label :name, class: normal_label %>
-                <%= form_notes.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_notes,
+                name: :name,
+                rounded: "left",
+                class_div: "flex-1"
+              ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_notes.index %>"
@@ -31,10 +33,12 @@
                 </div>
               </div>
             </div>
-            <div>
-              <%= form_notes.label :note, class: normal_label %>
-              <%= form_notes.text_area :note, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_notes,
+              name: :note,
+              form_type: "area",
+              rounded: "left"
+            ))%>
             <%= form_notes.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>

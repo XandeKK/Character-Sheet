@@ -32,28 +32,39 @@
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
-              <div>
-                <%= form_defense.label :temp_hp, "Temp", class: normal_label %>
-                <%= form_defense.number_field :temp_hp, class: "#{write_only} #{rounded_right} #{normal_field}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :temp_hp,
+                surname: "Temp",
+                rounded: "right",
+                form_type: "number"
+              ))%>
             </div>
             <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-              <div>
-                <%= form_defense.label :dying, class: normal_label %>
-                <%= form_defense.number_field :dying, class: "#{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div>
-                <%= form_defense.label :wounded, class: normal_label %>
-                <%= form_defense.number_field :wounded, class: "#{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="mm:col-span-2 md:col-span-3">
-                <%= form_defense.label :resistances_and_immunities, class: normal_label %>
-                <%= form_defense.text_field :resistances_and_immunities, class: "#{normal_field} #{write_only}" %>
-              </div>
-              <div class="mm:col-span-2 md:col-span-3">
-                <%= form_defense.label :conditions, class: normal_label %>
-                <%= form_defense.text_field :conditions, class: "#{normal_field} #{write_only}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :dying,
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :wounded,
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :resistances_and_immunities,
+                class_div: "mm:col-span-2 md:col-span-3"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :conditions,
+                class_div: "mm:col-span-2 md:col-span-3"
+              ))%>
+
             </div>
           </div>
         </div>
@@ -66,37 +77,54 @@
           </div>
           <div class="space-y-6">
             <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-              <div>
-                <%= form_defense.label :armor_class_item, "Item", class: normal_label %>
-                <%= form_defense.text_field :armor_class_item, class: "#{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div>
-                <%= form_defense.label :armor_class_proficiency, "Proficiency", class: normal_label %>
-                <%= form_defense.select :armor_class_proficiency, proficiencies, {}, class: "#{normal_select} #{normal_field}" %>
-              </div>
-              <div>
-                <%= form_defense.label :max_dex, "Cap", class: normal_label %>
-                <%= form_defense.text_field :max_dex, class: "#{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :armor_class_item,
+                surname: "Item",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :max_dex,
+                surname: "Cap",
+                form_type: "number"
+              ))%>
             </div>
             <div class="w-full">
               <div class="flex">
-                <div class="flex-1">
-                  <%= form_defense.label :unarmored_proficiency, class: normal_label %>
-                  <%= form_defense.select :unarmored_proficiency, proficiencies, {}, class: "#{rounded_left} #{normal_select} #{normal_field}" %>
-                </div>
-                <div class="flex-1">
-                  <%= form_defense.label :light_proficiency, class: normal_label %>
-                  <%= form_defense.select :light_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}" %>
-                </div>
-                <div class="flex-1">
-                  <%= form_defense.label :medium_proficiency, class: normal_label %>
-                  <%= form_defense.select :medium_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}" %>
-                </div>
-                <div class="flex-1">
-                  <%= form_defense.label :heavy_proficiency, class: normal_label %>
-                  <%= form_defense.select :heavy_proficiency, proficiencies, {}, class: "#{rounded_right} #{normal_select} #{normal_field}" %>
-                </div>
+                <%= render(Form::FieldWithLabelComponent.new(
+                  form: form_defense,
+                  name: :unarmored_proficiency,
+                  form_type: "select",
+                  class_div: "flex-1",
+                  array_select: proficiencies,
+                  rounded: "left"
+                ))%>
+                <%= render(Form::FieldWithLabelComponent.new(
+                  form: form_defense,
+                  name: :light_proficiency,
+                  form_type: "select",
+                  class_div: "flex-1",
+                  array_select: proficiencies,
+                  rounded: "none"
+                ))%>
+                <%= render(Form::FieldWithLabelComponent.new(
+                  form: form_defense,
+                  name: :medium_proficiency,
+                  form_type: "select",
+                  class_div: "flex-1",
+                  array_select: proficiencies,
+                  rounded: "none"
+                ))%>
+                <%= render(Form::FieldWithLabelComponent.new(
+                  form: form_defense,
+                  name: :heavy_proficiency,
+                  form_type: "select",
+                  class_div: "flex-1",
+                  array_select: proficiencies,
+                  rounded: "right"
+                ))%>
               </div>
             </div>
           </div>
@@ -198,10 +226,12 @@
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
             Notes
           </div>
-          <div class="w-full">
-            <%= form_saving_throw.label :saving_throw_notes, class: normal_label %>
-            <%= form_saving_throw.text_area :saving_throw_notes, class: "#{normal_field} #{write_only}", rows: 3 %>
-          </div>
+          <%= render(Form::FieldWithLabelComponent.new(
+            form: form_saving_throw,
+            name: :saving_throw_notes,
+            form_type: "area",
+            class_div: "w-full"
+          ))%>
         </div>
         <% end %>
       <% end %>

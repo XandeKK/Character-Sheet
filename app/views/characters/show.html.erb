@@ -1,5 +1,5 @@
 <div data-controller="channels--character channels--chat" data-channels--chat-name-param="<%= @character.pathfinder_basic.name %>"
-  data-channels--chat-image-param="<%= url_for(@character.character_image) %>"
+  data-channels--chat-image-param="<%= url_for(@character.character_image) if @character.character_image.attached? %>"
   data-channels--chat-id-param="<%= @character.id %>"
   data-action="channels--character:start->channels--chat#startServer 
   channels--character:terminate->channels--chat#terminateServer"

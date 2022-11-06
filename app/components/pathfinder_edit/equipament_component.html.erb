@@ -19,18 +19,25 @@
           <%= @form.fields_for :pathfinder_items do |form_items| %>
           <div id="items-<%= form_items.index %>">
             <div class="flex">
-              <div>
-                <%= form_items.label :name, class: normal_label %>
-                <%= form_items.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
-              <div>
-                <%= form_items.label :quatity, class: normal_label %>
-                <%= form_items.number_field :quatity, class: "#{rounded_none} #{normal_field} #{write_only}" %>
-              </div>
-              <div>
-                <%= form_items.label :volume, class: normal_label %>
-                <%= form_items.number_field :volume, class: "#{rounded_none} #{normal_field} #{write_only}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_items,
+                name: :name,
+                rounded: "left"
+              ))%>
+              
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_items,
+                name: :quatity,
+                rounded: "none",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_items,
+                name: :volume,
+                rounded: "none",
+                form_type: "number"
+              ))%>
               <div>
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_items.index %>"
@@ -39,10 +46,11 @@
                 </div>
               </div>
             </div>
-            <div>
-              <%= form_items.label :notes, class: normal_label %>
-              <%= form_items.text_area :notes, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_items,
+              name: :notes,
+              form_type: "area"
+            ))%>
             <%= form_items.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>
@@ -62,22 +70,34 @@
                 <label class="<%= normal_label %>">Total</label>
                 <input id="money-total" type="text" name="total" class="<%= rounded_left %> <%= normal_field %> <%= read_only %>" readonly value="0" >
               </div>
-              <div class="flex-1">
-                <%= form_money.label :copper, class: normal_label %>
-                <%= form_money.number_field :copper, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_money.label :silver, class: normal_label %>
-                <%= form_money.number_field :silver, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_money.label :gold, class: normal_label %>
-                <%= form_money.number_field :gold, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_money.label :platinum, class: normal_label %>
-                <%= form_money.number_field :platinum, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_money,
+                name: :copper,
+                form_type: "number",
+                rounded: "none",
+                class_div: "flex-1"
+              ))%>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_money,
+                name: :silver,
+                form_type: "number",
+                rounded: "none",
+                class_div: "flex-1"
+              ))%>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_money,
+                name: :gold,
+                form_type: "number",
+                rounded: "none",
+                class_div: "flex-1"
+              ))%>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_money,
+                name: :platinum,
+                form_type: "number",
+                rounded: "right",
+                class_div: "flex-1"
+              ))%>
             </div>
           </div>
         </div>
