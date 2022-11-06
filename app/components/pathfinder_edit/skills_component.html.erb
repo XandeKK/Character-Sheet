@@ -19,10 +19,12 @@
           <%= @form.fields_for :pathfinder_skills do |form_skills| %>
           <div id="skills-<%= form_skills.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_skills.label :name, class: normal_label %>
-                <%= form_skills.text_field :name, class: "#{normal_field} #{write_only} #{rounded_left}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_skills,
+                name: :name,
+                class_div: "flex-1",
+                rounded: "left"
+              ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_skills.index %>"
@@ -32,27 +34,45 @@
               </div>
             </div>
             <div class="flex">
-              <div class="flex-1">
-                <%= form_skills.label :key_ability, class: normal_label %>
-                <%= form_skills.select :key_ability, abilities, {}, class: "#{rounded_left} #{normal_field} #{normal_select}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_skills.label :proficiency, class: normal_label %>
-                <%= form_skills.select :proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_field} #{normal_select}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_skills.label :item, class: normal_label %>
-                <%= form_skills.number_field :item, class: "#{rounded_none} #{normal_field} #{write_only}", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_skills.label :armor, class: normal_label %>
-                <%= form_skills.number_field :armor, class: "#{rounded_right} #{normal_field} #{write_only}", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_skills,
+                name: :key_ability,
+                class_div: "flex-1",
+                rounded: "left",
+                form_type: "select",
+                array_select: abilities
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_skills,
+                name: :proficiency,
+                class_div: "flex-1",
+                rounded: "none",
+                form_type: "select",
+                array_select: proficiencies
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_skills,
+                name: :item,
+                class_div: "flex-1",
+                rounded: "none",
+                form_type: "number"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_skills,
+                name: :armor,
+                class_div: "flex-1",
+                rounded: "right",
+                form_type: "number"
+              ))%>
             </div>
-            <div>
-              <%= form_skills.label :note, class: normal_label %>
-              <%= form_skills.text_area :note, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_skills,
+              name: :note,
+              form_type: "area"
+            ))%>
             <%= form_skills.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>
