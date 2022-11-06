@@ -4,8 +4,8 @@
   tabs: ["hp", "armor-class", "saving-throw"]
 )) do %>
   <div id="defensesTabContent" class="text-sm text-gray-900 dark:text-gray-300">
-    <%= @form.fields_for :pathfinder_defense do |form_defense| %>
-      <%= render(CardTabComponent.new(tab: "hp", hidden: false)) do %>
+    <%= render(CardTabComponent.new(tab: "hp", hidden: false)) do %>
+      <%= @form.fields_for :pathfinder_defense do |form_defense| %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
             HP
@@ -69,8 +69,10 @@
           </div>
         </div>
       <% end %>
+    <% end %>
 
-      <%= render(CardTabComponent.new(tab: "armor-class", hidden: true)) do %>
+    <%= render(CardTabComponent.new(tab: "armor-class", hidden: true)) do %>
+      <%= @form.fields_for :pathfinder_defense do |form_defense| %>
         <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
           <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
             Armor class
