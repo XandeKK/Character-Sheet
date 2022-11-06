@@ -23,7 +23,7 @@
                 form: form_skills,
                 name: :name,
                 class_div: "flex-1",
-                rounded: "left"
+                rounded: :left
               ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
@@ -38,8 +38,8 @@
                 form: form_skills,
                 name: :key_ability,
                 class_div: "flex-1",
-                rounded: "left",
-                form_type: "select",
+                rounded: :left,
+                form_type: :select,
                 array_select: abilities
               ))%>
 
@@ -47,8 +47,8 @@
                 form: form_skills,
                 name: :proficiency,
                 class_div: "flex-1",
-                rounded: "none",
-                form_type: "select",
+                rounded: :none,
+                form_type: :select,
                 array_select: proficiencies
               ))%>
 
@@ -56,22 +56,22 @@
                 form: form_skills,
                 name: :item,
                 class_div: "flex-1",
-                rounded: "none",
-                form_type: "number"
+                rounded: :none,
+                form_type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_skills,
                 name: :armor,
                 class_div: "flex-1",
-                rounded: "right",
-                form_type: "number"
+                rounded: :right,
+                form_type: :number
               ))%>
             </div>
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_skills,
               name: :note,
-              form_type: "area"
+              form_type: :area
             ))%>
             <%= form_skills.check_box :_destroy, class: "hidden" %>
           </div>

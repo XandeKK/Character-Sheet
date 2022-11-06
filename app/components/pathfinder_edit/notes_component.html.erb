@@ -22,7 +22,7 @@
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_notes,
                 name: :name,
-                rounded: "left",
+                rounded: :left,
                 class_div: "flex-1"
               ))%>
               <div class="flex-1">
@@ -36,8 +36,8 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_notes,
               name: :note,
-              form_type: "area",
-              rounded: "left"
+              form_type: :area,
+              rounded: :left
             ))%>
             <%= form_notes.check_box :_destroy, class: "hidden" %>
           </div>

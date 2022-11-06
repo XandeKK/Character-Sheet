@@ -3,7 +3,7 @@
 class Form::FieldWithLabelComponent < ViewComponent::Base
   include InputHelper
   def initialize(form:, name:, surname:nil, read_only:nil, rounded:nil,
-    class_div:nil, form_type:"text", array_select:[])
+    class_div:nil, form_type: :text, array_select:[])
     @form = form
     @name = name
     @surname = surname
@@ -24,24 +24,24 @@ class Form::FieldWithLabelComponent < ViewComponent::Base
     return "" unless @rounded
 
     case @rounded
-     when "left"
+     when :left
       "rounded-none rounded-l-lg"
-     when "right"
+     when :right
       "rounded-none rounded-r-lg"
-     when "none"
+     when :none
        "rounded-none"
      end
   end
 
   def make_form
     case @form_type
-    when "number"
+    when :number
       make_form_number
-    when "area"
+    when :area
       make_form_area
-    when "select"
+    when :select
       make_form_select
-    when "text"
+    when :text
       make_form_text
     end
   end
