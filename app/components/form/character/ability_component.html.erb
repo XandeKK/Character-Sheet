@@ -1,0 +1,29 @@
+<div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+  <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
+    <%= @full_name %>
+  </div>
+  <div class="w-full">
+    <div class="flex" data-action="change->edit-character--abilities#updateTotal <%= @action %>" data-edit-character--abilities-ability-param="<%= @name %>">
+      <div class="flex-1">
+        <%= @form.label "#{@name}_total".to_sym, "Total", class: normal_label %>
+        <%= @form.number_field "#{@name}_total".to_sym, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"#{@name}_total", placeholder: 10 %>
+      </div>
+      <div class="flex-1">
+        <%= @form.label "#{@name}_background".to_sym, "Background", class: normal_label %>
+        <%= @form.number_field "#{@name}_background".to_sym, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_background", value: 0 %>
+      </div>
+      <div class="flex-1">
+        <%= @form.label "#{@name}_class".to_sym, "Class", class: normal_label %>
+        <%= @form.number_field "#{@name}_class".to_sym, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_class", value: 0 %>
+      </div>
+      <div class="flex-1">
+        <%= @form.label "#{@name}_ascentry".to_sym, "Ancestry", class: normal_label %>
+        <%= @form.number_field "#{@name}_ascentry".to_sym, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_ascentry", value: 0 %>
+      </div>
+      <div class="flex-1">
+        <%= @form.label "#{@name}_free".to_sym, "Free", class: normal_label %>
+        <%= @form.number_field "#{@name}_free".to_sym, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_free", value: 0 %>
+      </div>
+    </div>
+  </div>
+</div>
