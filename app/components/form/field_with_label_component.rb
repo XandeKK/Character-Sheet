@@ -3,7 +3,7 @@
 class Form::FieldWithLabelComponent < ViewComponent::Base
   include InputHelper
   def initialize(form:, name:, surname:nil, read_only:nil, rounded:nil,
-    class_div:nil, type: :text, array:[], action:nil)
+    class_div:nil, type: :text, array:[], data:{})
     @form = form
     @name = name
     @surname = surname
@@ -12,7 +12,7 @@ class Form::FieldWithLabelComponent < ViewComponent::Base
     @class_div = class_div
     @type = type
     @array = array
-    @action = action
+    @data = data
   end
 
   private
@@ -49,33 +49,74 @@ class Form::FieldWithLabelComponent < ViewComponent::Base
 
   def make_form_text
     if read_only?
-      @form.text_field(@name, class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700", readonly: "", "data-action": @action)
+      @form.text_field(
+        @name,
+        class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700",
+        readonly: "",
+        data: @data
+      )
     else
-      @form.text_field(@name, class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-transparent", "data-action": @action)
+      @form.text_field(@name,
+        class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-transparent",
+        data: @data
+      )
     end
   end
 
   def make_form_area
     if read_only?
-      @form.text_area(@name, class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700", readonly: "", rows: 3, "data-action": @action)
+      @form.text_area(
+        @name,
+        class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700",
+        readonly: "",
+        rows: 3,
+        data: @data
+      )
     else
-      @form.text_area(@name, class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-transparent", rows: 3, "data-action": @action)
+      @form.text_area(
+        @name,
+        class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-transparent",
+        rows: 3,
+        data: @data
+      )
     end
   end
 
   def make_form_number
     if read_only?
-      @form.number_field(@name, class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700", readonly: "", "data-action": @action)
+      @form.number_field(
+        @name,
+        class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700",
+        readonly: "",
+        data: @data
+      )
     else
-      @form.number_field(@name, class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-transparent", "data-action": @action)
+      @form.number_field(
+        @name,
+        class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-transparent",
+        data: @data
+      )
     end
   end
 
   def make_form_select
     if read_only?
-      @form.select(@name, @array, {}, class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700", readonly: "", "data-action": @action)
+      @form.select(
+        @name,
+        @array,
+        {},
+        class: "#{rounded?} #{normal_field} bg-gray-300 dark:bg-gray-700",
+        readonly: "",
+        data: @data
+    )
     else
-      @form.select(@name, @array, {}, class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-zinc-800", "data-action": @action)
+      @form.select(
+        @name,
+        @array,
+        {},
+        class: "#{rounded?} #{normal_field} bg-gray-50 dark:bg-zinc-800",
+        data: @data
+    )
     end
   end
 end

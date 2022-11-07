@@ -31,14 +31,22 @@
           <%= @form.fields_for :pathfinder_feats do |form_feats| %>
           <div id="feats-<%= form_feats.index %>">
             <div class="flex">
-              <div class="flex-1">
-                <%= form_feats.label :name, class: normal_label %>
-                <%= form_feats.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
-              <div class="flex-1">
-                <%= form_feats.label :types, class: normal_label %>
-                <%= form_feats.select :types, types_feats, {}, class: "#{rounded_none} #{normal_field} #{normal_select}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_feats,
+                name: :name,
+                rounded: :left,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_feats,
+                name: :types,
+                rounded: :none,
+                class_div: "flex-1",
+                type: :select,
+                array: types_feats
+              ))%>
+
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_feats.index %>" data-edit-character--item-name-param="feats">
@@ -46,10 +54,11 @@
                 </div>
               </div>
             </div>
-            <div>
-              <%= form_feats.label :notes, class: normal_label %>
-              <%= form_feats.text_area :notes, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_feats,
+              name: :notes,
+              type: :area
+            ))%>
             <%= form_feats.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>
@@ -72,10 +81,12 @@
           <%= @form.fields_for :pathfinder_languages do |form_languages| %>
           <div id="languages-<%= form_languages.index %>">
             <div class="flex">
-              <div>
-                <%= form_languages.label :name, class: normal_label %>
-                <%= form_languages.text_field :name, class: "#{rounded_left} #{normal_field} #{write_only}" %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_languages,
+                name: :name,
+                rounded: :left
+              ))%>
+
               <div>
                 <div class="<%= normal_label %> opacity-0">0</div>
                 <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_languages.index %>"
@@ -84,10 +95,11 @@
                 </div>
               </div>
             </div>
-            <div>
-              <%= form_languages.label :notes, class: normal_label %>
-              <%= form_languages.text_area :notes, class: "#{normal_field} #{write_only}" %>
-            </div>
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_languages,
+              name: :notes,
+              type: :area
+            ))%>
             <%= form_languages.check_box :_destroy, class: "hidden" %>
           </div>
           <% end %>
@@ -102,14 +114,18 @@
         </div>
         <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
           <%= @form.fields_for :pathfinder_class_dc do |form_class_dc| %>
-          <div>
-            <%= form_class_dc.label :item, class: normal_label %>
-            <%= form_class_dc.number_field :item, class: "#{normal_field} #{write_only}", value: 0 %>
-          </div>
-          <div>
-            <%= form_class_dc.label :proficiency, class: normal_label %>
-            <%= form_class_dc.select :proficiency, proficiencies, {}, class: "#{normal_field} #{normal_select}" %>
-          </div>
+          <%= render(Form::FieldWithLabelComponent.new(
+            form: form_class_dc,
+            name: :item,
+            type: :number
+          ))%>
+
+          <%= render(Form::FieldWithLabelComponent.new(
+            form: form_class_dc,
+            name: :proficiency,
+            type: :select,
+            array: proficiencies
+          ))%>
           <% end %>
         </div>
       </div>

@@ -59,7 +59,7 @@
               form: form_basic,
               name: :level,
               type: :number,
-              action: "change->edit-character--event-trigger#updateMaxHp"
+              data: {"action":"change->edit-character--event-trigger#updateMaxHp"}
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(

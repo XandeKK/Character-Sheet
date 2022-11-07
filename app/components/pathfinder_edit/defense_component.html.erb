@@ -12,26 +12,50 @@
           </div>
           <div class="w-full space-y-6">
             <div class="flex" data-controller="edit-character--hp" data-action="change->edit-character--hp#updateMaxHp" data-edit-character--event-trigger-target="hp">
-              <div>
-                <%= form_defense.label :max_hp, "Max", class: normal_label %>
-                <%= form_defense.number_field :max_hp, class: "#{read_only} #{normal_field} #{rounded_left}", readonly: "", "data-edit-character--hp-target":"max_hp", value: 0 %>
-              </div>
-              <div>
-                <%= form_defense.label :current_hp, "Current", class: normal_label %>
-                <%= form_defense.number_field :current_hp, class: "#{read_only} #{normal_field} #{rounded_none}", readonly: "", "data-edit-character--hp-target":"current_hp", value: 0  %>
-              </div>
-              <div>
-                <%= form_defense.label :ancestry_hp, "Ancestry", class: normal_label %>
-                <%= form_defense.number_field :ancestry_hp, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--hp-target":"ancestry_hp", value: 0 %>
-              </div>
-              <div>
-                <%= form_defense.label :class_hp, "Class", class: normal_label %>
-                <%= form_defense.number_field :class_hp, class: "#{write_only} #{normal_field} #{rounded_none}", "data-tooltip-target":"tooltip-animation", "data-edit-character--hp-target":"class_hp", value: 0 %>
-                <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :max_hp,
+                surname: "Max",
+                type: :number,
+                data: {"edit-character--hp-target":"max_hp"},
+                rounded: :left,
+                read_only: true
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :current_hp,
+                surname: "Current",
+                type: :number,
+                data: {"edit-character--hp-target":"current_hp"},
+                rounded: :none,
+                read_only: true
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :ancestry_hp,
+                surname: "Ancestry",
+                type: :number,
+                data: {"edit-character--hp-target":"ancestry_hp"},
+                rounded: :none
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_defense,
+                name: :class_hp,
+                surname: "Class",
+                type: :number,
+                data: {"edit-character--hp-target":"class_hp",
+                  "tooltip-target":"tooltip-animation"},
+                rounded: :none
+              ))%>
+
+              <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                   Only base health is needed, rest will be calculated according to your level and constitution.
-                  <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
+                <div class="tooltip-arrow" data-popper-arrow></div>
               </div>
+
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_defense,
                 name: :temp_hp,
@@ -142,26 +166,57 @@
           </div>
           <div class="w-full">
             <div class="flex" data-action="change->edit-character--saving-throw#updateFortitude">
-              <div class="flex-1">
-                <%= form_saving_throw.label :fortitude_total, "Total", class: normal_label %>
-                <%= form_saving_throw.number_field :fortitude_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"fortitude_total", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :fortitude_proficiency, "Proficiency", class: normal_label %>
-                <%= form_saving_throw.select :fortitude_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"fortitude_proficiency" %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :fortitude_item, "Item", class: normal_label %>
-                <%= form_saving_throw.number_field :fortitude_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"fortitude_item", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :fortitude_misc, "Misc", class: normal_label %>
-                <%= form_saving_throw.number_field :fortitude_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"fortitude_misc", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :fortitude_penalty, "Penalty", class: normal_label %>
-                <%= form_saving_throw.number_field :fortitude_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"fortitude_penalty", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :fortitude_total,
+                surname: "Total",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"fortitude_total"},
+                rounded: :left,
+                read_only: true,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :fortitude_proficiency,
+                surname: "Proficiency",
+                type: :select,
+                data: {"edit-character--saving-throw-target":"fortitude_proficiency"},
+                rounded: :none,
+                class_div: "flex-1",
+                array: proficiencies
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :fortitude_item,
+                surname: "Item",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"fortitude_item"},
+                rounded: :none,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :fortitude_misc,
+                surname: "Misc",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"fortitude_misc"},
+                rounded: :none,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :fortitude_penalty,
+                surname: "Penalty",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"fortitude_penalty"},
+                rounded: :right,
+                class_div: "flex-1"
+              ))%>
             </div>
           </div>
         </div>
@@ -171,26 +226,57 @@
           </div>
           <div class="w-full">
             <div class="flex" data-action="change->edit-character--saving-throw#updateReflex">
-              <div class="flex-1">
-                <%= form_saving_throw.label :reflex_total, "Total", class: normal_label %>
-                <%= form_saving_throw.number_field :reflex_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"reflex_total", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :reflex_proficiency, "Proficiency", class: normal_label %>
-                <%= form_saving_throw.select :reflex_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"reflex_proficiency" %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :reflex_item, "Item", class: normal_label %>
-                <%= form_saving_throw.number_field :reflex_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"reflex_item", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :reflex_misc, "Misc", class: normal_label %>
-                <%= form_saving_throw.number_field :reflex_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"reflex_misc", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :reflex_penalty, "Penalty", class: normal_label %>
-                <%= form_saving_throw.number_field :reflex_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"reflex_penalty", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :reflex_total,
+                surname: "Total",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"reflex_total"},
+                rounded: :left,
+                read_only: true,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :reflex_proficiency,
+                surname: "Proficiency",
+                type: :select,
+                data: {"edit-character--saving-throw-target":"reflex_proficiency"},
+                rounded: :none,
+                class_div: "flex-1",
+                array: proficiencies
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :reflex_item,
+                surname: "Item",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"reflex_item"},
+                rounded: :none,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :reflex_misc,
+                surname: "Misc",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"reflex_misc"},
+                rounded: :none,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :reflex_penalty,
+                surname: "Penalty",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"reflex_penalty"},
+                rounded: :right,
+                class_div: "flex-1"
+              ))%>
             </div>
           </div>
         </div>
@@ -200,26 +286,57 @@
           </div>
           <div class="w-full">
             <div class="flex" data-action="change->edit-character--saving-throw#updateWill">
-              <div class="flex-1">
-                <%= form_saving_throw.label :will_total, "Total", class: normal_label %>
-                <%= form_saving_throw.number_field :will_total, class: "#{rounded_left} #{read_only} #{normal_field}", readonly: "", "data-edit-character--saving-throw-target":"will_total", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :will_proficiency, "Proficiency", class: normal_label %>
-                <%= form_saving_throw.select :will_proficiency, proficiencies, {}, class: "#{rounded_none} #{normal_select} #{normal_field}", "data-edit-character--saving-throw-target":"will_proficiency" %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :will_item, "Item", class: normal_label %>
-                <%= form_saving_throw.number_field :will_item, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"will_item", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :will_misc, "Misc", class: normal_label %>
-                <%= form_saving_throw.number_field :will_misc, class: "#{write_only} #{normal_field} #{rounded_none}", "data-edit-character--saving-throw-target":"will_misc", value: 0 %>
-              </div>
-              <div class="flex-1">
-                <%= form_saving_throw.label :will_penalty, "Penalty", class: normal_label %>
-                <%= form_saving_throw.number_field :will_penalty, class: "#{write_only} #{rounded_right} #{normal_field}", "data-edit-character--saving-throw-target":"will_penalty", value: 0 %>
-              </div>
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :will_total,
+                surname: "Total",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"will_total"},
+                rounded: :left,
+                read_only: true,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :will_proficiency,
+                surname: "Proficiency",
+                type: :select,
+                data: {"edit-character--saving-throw-target":"will_proficiency"},
+                rounded: :none,
+                class_div: "flex-1",
+                array: proficiencies
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :will_item,
+                surname: "Item",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"will_item"},
+                rounded: :none,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :will_misc,
+                surname: "Misc",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"will_misc"},
+                rounded: :none,
+                class_div: "flex-1"
+              ))%>
+
+              <%= render(Form::FieldWithLabelComponent.new(
+                form: form_saving_throw,
+                name: :will_penalty,
+                surname: "Penalty",
+                type: :number,
+                data: {"edit-character--saving-throw-target":"will_penalty"},
+                rounded: :right,
+                class_div: "flex-1"
+              ))%>
             </div>
           </div>
         </div>

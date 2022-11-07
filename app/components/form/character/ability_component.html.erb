@@ -4,26 +4,65 @@
   </div>
   <div class="w-full">
     <div class="flex" data-action="change->edit-character--abilities#updateTotal <%= @action %>" data-edit-character--abilities-ability-param="<%= @name %>">
-      <div class="flex-1">
-        <%= @form.label "#{@name}_total".to_sym, "Total", class: normal_label %>
-        <%= @form.number_field "#{@name}_total".to_sym, class: "#{rounded_left} #{normal_field} #{read_only}", readonly: "", "data-edit-character--abilities-target":"#{@name}_total", placeholder: 10 %>
-      </div>
-      <div class="flex-1">
-        <%= @form.label "#{@name}_background".to_sym, "Background", class: normal_label %>
-        <%= @form.number_field "#{@name}_background".to_sym, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_background", value: 0 %>
-      </div>
-      <div class="flex-1">
-        <%= @form.label "#{@name}_class".to_sym, "Class", class: normal_label %>
-        <%= @form.number_field "#{@name}_class".to_sym, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_class", value: 0 %>
-      </div>
-      <div class="flex-1">
-        <%= @form.label "#{@name}_ascentry".to_sym, "Ancestry", class: normal_label %>
-        <%= @form.number_field "#{@name}_ascentry".to_sym, class: "#{rounded_none} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_ascentry", value: 0 %>
-      </div>
-      <div class="flex-1">
-        <%= @form.label "#{@name}_free".to_sym, "Free", class: normal_label %>
-        <%= @form.number_field "#{@name}_free".to_sym, class: "#{rounded_right} #{normal_field} #{write_only}", "data-edit-character--abilities-target":"#{@name}_free", value: 0 %>
-      </div>
+      <%= render(Form::FieldWithLabelComponent.new(
+        form: @form,
+        name: "#{@name}_total".to_sym,
+        surname: "Total",
+        class_div: "flex-1",
+        type: :number,
+        rounded: :left,
+        data: {
+          "edit-character--abilities-target":"#{@name}_total"
+        }
+      ))%>
+
+      <%= render(Form::FieldWithLabelComponent.new(
+        form: @form,
+        name: "#{@name}_background".to_sym,
+        surname: "Background",
+        class_div: "flex-1",
+        type: :number,
+        rounded: :none,
+        data: {
+          "edit-character--abilities-target":"#{@name}_background"
+        }
+      ))%>
+
+      <%= render(Form::FieldWithLabelComponent.new(
+        form: @form,
+        name: "#{@name}_class".to_sym,
+        surname: "Class",
+        class_div: "flex-1",
+        type: :number,
+        rounded: :none,
+        data: {
+          "edit-character--abilities-target":"#{@name}_class"
+        }
+      ))%>
+
+      <%= render(Form::FieldWithLabelComponent.new(
+        form: @form,
+        name: "#{@name}_ascentry".to_sym,
+        surname: "Ancestry",
+        class_div: "flex-1",
+        type: :number,
+        rounded: :none,
+        data: {
+          "edit-character--abilities-target":"#{@name}_ascentry"
+        }
+      ))%>
+
+      <%= render(Form::FieldWithLabelComponent.new(
+        form: @form,
+        name: "#{@name}_free".to_sym,
+        surname: "Class",
+        class_div: "flex-1",
+        type: :number,
+        rounded: :right,
+        data: {
+          "edit-character--abilities-target":"#{@name}_free"
+        }
+      ))%>
     </div>
   </div>
 </div>
