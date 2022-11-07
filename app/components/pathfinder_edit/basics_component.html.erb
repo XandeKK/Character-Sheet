@@ -28,8 +28,8 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_basic,
               name: :key_ability,
-              form_type: :select,
-              array_select: abilities
+              type: :select,
+              array: abilities
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
@@ -40,8 +40,8 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_basic,
               name: :alignment,
-              form_type: :select,
-              array_select: alignment
+              type: :select,
+              array: alignment
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
@@ -52,18 +52,20 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_basic,
               name: :age,
-              form_type: :number
+              type: :number
             ))%>
-            
-            <div>
-              <%= form_basic.label :level, class: normal_label %>
-              <%= form_basic.number_field :level, class: "#{normal_field} #{write_only}", "data-action":"change->edit-character--event-trigger#updateMaxHp", value: 0%>
-            </div>
+
+            <%= render(Form::FieldWithLabelComponent.new(
+              form: form_basic,
+              name: :level,
+              type: :number,
+              action: "change->edit-character--event-trigger#updateMaxHp"
+            ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_basic,
               name: :hero_points,
-              form_type: :number
+              type: :number
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
@@ -80,22 +82,22 @@
               form: form_basic,
               name: :speed_note,
               class_div: "mm:col-span-2 md:col-span-2",
-              form_type: :area
+              type: :area
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_basic,
               name: :description,
               class_div: "mm:col-span-2 md:col-span-3",
-              form_type: :area
+              type: :area
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
               form: @form,
               name: :character_category_id,
               class_div: "mm:col-span-2 md:col-span-3",
-              form_type: :select,
-              array_select: [["Player", 1], ["Npc", 2], ["Enemy", 3]]
+              type: :select,
+              array: [["Player", 1], ["Npc", 2], ["Enemy", 3]]
             ))%>
           </div>
         </div>
@@ -120,7 +122,7 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_basic,
               name: :heritage_note,
-              form_type: :area,
+              type: :area,
               class_div: "mm:col-span-2 md:col-span-3"
             ))%>
           </div>
@@ -143,14 +145,14 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_perception,
               name: :proficiency,
-              form_type: :select,
-              array_select: proficiencies
+              type: :select,
+              array: proficiencies
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_perception,
               name: :item,
-              form_type: :number
+              type: :number
             ))%>
           </div>
         <% end %>
@@ -197,7 +199,7 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_dices,
               name: :notes,
-              form_type: :area,
+              type: :area,
               class_div: "w-full"
             )) %>
             <%= form_dices.check_box :_destroy, class: "hidden" %>

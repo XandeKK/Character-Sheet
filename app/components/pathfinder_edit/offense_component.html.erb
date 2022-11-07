@@ -29,10 +29,10 @@
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_weapon_proficiencies,
                 name: :proficiency,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: proficiencies
+                array: proficiencies
               ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
@@ -74,10 +74,10 @@
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_melees,
                 name: :types,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: types_weapon
+                array: types_weapon
               ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
@@ -93,16 +93,16 @@
                 name: :qty,
                 class_div: "flex-1",
                 rounded: :left,
-                form_type: :number
+                type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_melees,
                 name: :die,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: dice
+                array: dice
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -111,16 +111,16 @@
                 surname: "w. spec.",
                 class_div: "flex-1",
                 rounded: :none,
-                form_type: :number
+                type: :number
               ))%>
               
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_melees,
                 name: :proficiency,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: proficiencies
+                array: proficiencies
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -128,7 +128,7 @@
                 name: :item,
                 class_div: "flex-1",
                 rounded: :right,
-                form_type: :number
+                type: :number
               ))%>
             </div>
             <div class="flex">
@@ -137,7 +137,7 @@
                 name: :multiple_attack_penalty_2,
                 class_div: "flex-1",
                 rounded: :left,
-                form_type: :number
+                type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -145,7 +145,7 @@
                 name: :multiple_attack_penalty_3,
                 class_div: "flex-1",
                 rounded: :right,
-                form_type: :number
+                type: :number
               ))%>
             </div>
             <%= render(Form::FieldWithLabelComponent.new(
@@ -161,7 +161,7 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_melees,
               name: :notes,
-              form_type: :area
+              type: :area
             ))%>
             <%= form_melees.check_box :_destroy, class: "hidden" %>
           </div>
@@ -195,10 +195,10 @@
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_rangeds,
                 name: :types,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: types_weapon
+                array: types_weapon
               ))%>
               <div class="flex-1">
                 <div class="<%= normal_label %> opacity-0">0</div>
@@ -214,16 +214,16 @@
                 name: :qty,
                 class_div: "flex-1",
                 rounded: :left,
-                form_type: :number
+                type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_rangeds,
                 name: :die,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: dice
+                array: dice
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -232,16 +232,16 @@
                 surname: "w. spec.",
                 class_div: "flex-1",
                 rounded: :none,
-                form_type: :number
+                type: :number
               ))%>
               
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_rangeds,
                 name: :proficiency,
-                form_type: :select,
+                type: :select,
                 class_div: "flex-1",
                 rounded: :none,
-                array_select: proficiencies
+                array: proficiencies
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -249,7 +249,7 @@
                 name: :item,
                 class_div: "flex-1",
                 rounded: :right,
-                form_type: :number
+                type: :number
               ))%>
             </div>
             <div class="flex">
@@ -258,7 +258,7 @@
                 name: :multiple_attack_penalty_2,
                 class_div: "flex-1",
                 rounded: :left,
-                form_type: :number
+                type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -266,7 +266,7 @@
                 name: :multiple_attack_penalty_3,
                 class_div: "flex-1",
                 rounded: :right,
-                form_type: :number
+                type: :number
               ))%>
             </div>
             <%= render(Form::FieldWithLabelComponent.new(
@@ -288,7 +288,7 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_rangeds,
               name: :notes,
-              form_type: :area
+              type: :area
             ))%>
             <%= form_rangeds.check_box :_destroy, class: "hidden" %>
           </div>

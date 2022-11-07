@@ -14,15 +14,15 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_spell_caster,
               name: :magic_tradition,
-              form_type: :select,
-              array_select: magic_tradition
+              type: :select,
+              array: magic_tradition
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_spell_caster,
               name: :spellcasting_type,
-              form_type: :select,
-              array_select: spellcasting_type
+              type: :select,
+              array: spellcasting_type
             ))%>
           </div>
         </div>
@@ -39,8 +39,8 @@
                 surname: "Proficiency",
                 class_div: "flex-1",
                 rounded: :left,
-                form_type: :select,
-                array_select: proficiencies
+                type: :select,
+                array: proficiencies
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -49,7 +49,7 @@
                 surname: "Bonus",
                 class_div: "flex-1",
                 rounded: :none,
-                form_type: :number
+                type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -58,7 +58,7 @@
                 surname: "Penalty",
                 class_div: "flex-1",
                 rounded: :right,
-                form_type: :number
+                type: :number
               ))%>
             </div>
           </div>
@@ -76,8 +76,8 @@
                 surname: "Proficiency",
                 class_div: "flex-1",
                 rounded: :left,
-                form_type: :select,
-                array_select: proficiencies
+                type: :select,
+                array: proficiencies
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -86,7 +86,7 @@
                 surname: "Bonus",
                 class_div: "flex-1",
                 rounded: :none,
-                form_type: :number
+                type: :number
               ))%>
 
               <%= render(Form::FieldWithLabelComponent.new(
@@ -95,7 +95,7 @@
                 surname: "Penalty",
                 class_div: "flex-1",
                 rounded: :right,
-                form_type: :number
+                type: :number
               ))%>
             </div>
           </div>
@@ -110,7 +110,7 @@
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_spell_caster,
                 name: "level_#{n}".to_sym,
-                form_type: :number
+                type: :number
               ))%>
             <% end %>
           </div>
@@ -123,7 +123,7 @@
           <%= render(Form::FieldWithLabelComponent.new(
             form: form_spell_caster,
             name: :notes,
-            form_type: :area,
+            type: :area,
             class_div: "w-full"
           ))%>
         </div>
@@ -164,7 +164,7 @@
                   name: :level,
                   class_div: "flex-1",
                   rounded: :left,
-                  form_type: :number
+                  type: :number
                 ))%>
 
                 <%= render(Form::FieldWithLabelComponent.new(
@@ -172,7 +172,7 @@
                   name: :prepared,
                   class_div: "flex-1",
                   rounded: :none,
-                  form_type: :number
+                  type: :number
                 ))%>
 
                 <div class="flex-1">
@@ -185,8 +185,8 @@
                   name: :spell_component,
                   class_div: "flex-1",
                   rounded: :right,
-                  form_type: :select,
-                  array_select: spell_component
+                  type: :select,
+                  array: spell_component
                 ))%>
               </div>
               <div class="flex">
@@ -202,13 +202,13 @@
                   name: :range,
                   class_div: "flex-1",
                   rounded: :right,
-                  form_type: :number 
+                  type: :number 
                 ))%>
               </div>
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_spells,
                 name: :notes,
-                form_type: :area
+                type: :area
               ))%>
               <%= form_spells.check_box :_destroy, class: "hidden" %>
             </div>
@@ -250,7 +250,7 @@
                   form: form_innate_spells,
                   name: :frequency,
                   rounded: :left,
-                  form_type: :number,
+                  type: :number,
                   class_div: "flex-1"
                 ))%>
                 
@@ -263,9 +263,9 @@
                   form: form_innate_spells,
                   name: :spell_component,
                   rounded: :right,
-                  form_type: :select,
+                  type: :select,
                   class_div: "flex-1",
-                  array_select: spell_component
+                  array: spell_component
                 ))%>
               </div>
               <div class="flex">
@@ -281,13 +281,13 @@
                   name: :range,
                   rounded: :right,
                   class_div: "flex-1",
-                  form_type: :number
+                  type: :number
                 ))%>
               </div>
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_innate_spells,
                 name: :notes,
-                form_type: :area
+                type: :area
               ))%>
               <%= form_innate_spells.check_box :_destroy, class: "hidden" %>
             </div>
@@ -305,14 +305,14 @@
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_spell_caster,
               name: :max_focus_points,
-              form_type: :number,
+              type: :number,
               class_div: "flex-1"
             ))%>
 
             <%= render(Form::FieldWithLabelComponent.new(
               form: form_spell_caster,
               name: :current_focus_points,
-              form_type: :number,
+              type: :number,
               class_div: "flex-1"
             ))%>
           </div>
@@ -356,8 +356,8 @@
                   name: :spell_component,
                   rounded: :right,
                   class_div: "flex-1",
-                  form_type: :select,
-                  array_select: spell_component
+                  type: :select,
+                  array: spell_component
                 ))%>
 
               </div>
@@ -374,13 +374,13 @@
                   name: :range,
                   rounded: :right,
                   class_div: "flex-1",
-                  form_type: :number
+                  type: :number
                 ))%>
               </div>
               <%= render(Form::FieldWithLabelComponent.new(
                 form: form_focus_spells,
                 name: :notes,
-                form_type: :area
+                type: :area
               ))%>
               <%= form_focus_spells.check_box :_destroy, class: "hidden" %>
             </div>
