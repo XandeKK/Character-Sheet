@@ -5,14 +5,14 @@
   <div class="p-6 w-full">
     <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
       <% @character.pathfinder_skills.each do |skill| %>
-      <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= skill.name %>" data-drawer-note-param="<%= skill.note %>">
-        <p>
-          <%= skill.name %>
-        </p>
-        <%= render(PopoverComponent.new(name: "skill-#{skill.id}", content_popover: "#{skill.key_ability}: #{get_modifier(@character, skill.key_ability)} | Item: #{skill.item || 0} | Proficiency: #{skill.proficiency || 0}")) do%>
-          <%= score_skill(@character, skill) %>
-        <% end %>
-      </div>
+        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= skill.name %>" data-drawer-note-param="<%= skill.note %>">
+          <p>
+            <%= skill.name %>
+          </p>
+          <%= render(PopoverComponent.new(name: "skill-#{skill.id}", content_popover: "#{skill.key_ability}: #{get_modifier(@character, skill.key_ability)} | Item: #{skill.item || 0} | Proficiency: #{skill.proficiency || 0}")) do%>
+            <%= score_skill(@character, skill) %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

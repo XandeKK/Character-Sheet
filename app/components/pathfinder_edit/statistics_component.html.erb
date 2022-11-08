@@ -80,7 +80,6 @@
         <% end %>
       <% end %>
     </div>
-    
     <%= render(CardTabComponent.new(tab: "feats", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Feats",
         main_id: "body-feats",
@@ -129,7 +128,6 @@
         ]
       ))%>
     <% end %>
-    
     <%= render(CardTabComponent.new(tab: "languages", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Languages",
         main_id: "body-languages",
@@ -170,7 +168,6 @@
         ]
       ))%>
     <% end %>
-    
     <%= render(CardTabComponent.new(tab: "class-dc", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Class DC",
         form: @form,

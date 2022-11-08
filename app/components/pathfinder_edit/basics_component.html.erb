@@ -71,7 +71,6 @@
         ]
       ))%>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "ancestry", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Ancestry",
         form: @form,
@@ -95,7 +94,6 @@
         ]
       ))%>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "senses", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Senses",
         form: @form,
@@ -119,7 +117,6 @@
         ]
       ))%>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "dices", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Macro",
         main_id: "body-dices",
@@ -166,17 +163,13 @@
         ]
       ))%>
     <% end %>
-
     <div data-controller="edit-character--cropper">
       <%= render(CardTabComponent.new(tab: "image", hidden: true)) do %>
-
         <%= @form.text_field :image, class: "hidden", "data-edit-character--cropper-target":"image_base64_input" %>
-
         <div class="p-6 text-sm text-gray-900 dark:text-gray-300">
           <label class="block mb-2 font-medium" for="file_input">Upload image</label>
           <input class="block w-full bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept="image/*" data-action="change->edit-character--cropper#changeImage" data-edit-character--cropper-target="image_input">
         </div>
-
         <div class="p-6">
           <div class="mx-auto w-96 h-96">
             <img class="min-w-full rounded-full" src="<%= url_for(@character.character_image) if @character.character_image.attached? %>" data-edit-character--cropper-target="character_image" data-action="ready->edit-character--cropper#setBase64 cropend->edit-character--cropper#setBase64 zoom->edit-character--cropper#setBase64">

@@ -9,17 +9,16 @@
     <div class="space-y-3 w-full">
       <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
         <% @character.pathfinder_items.each do |item| %>
-        <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= item.name %>" data-drawer-note-param="<%= item.notes %>" data-drawer-quatity-param="<%= item.quatity %>" data-drawer-volume-param="<%= item.volume %>">
-          <p>
-            <%= item.name %>
-          </p>
-          <p>
-            <%= item.quatity %>
-          </p>
-        </div>
+          <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= item.name %>" data-drawer-note-param="<%= item.notes %>" data-drawer-quatity-param="<%= item.quatity %>" data-drawer-volume-param="<%= item.volume %>">
+            <p>
+              <%= item.name %>
+            </p>
+            <p>
+              <%= item.quatity %>
+            </p>
+          </div>
         <% end %>
       </div>
-
       <div class="pt-3">
         <h3 class="italic text-rose-700 dark:text-rose-500">
           Volume
@@ -30,7 +29,6 @@
       </div>
     </div>
   </div>
-
   <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
     <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
       Money
@@ -43,28 +41,24 @@
           </p>
           <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
-
         <div class="flex flex-wrap gap-3">
           <p>
             <%= @character.pathfinder_money.gold || 0 %> <span class="text-gray-600 dark:text-gray-500">GP</span>
           </p>
           <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
-
         <div class="flex flex-wrap gap-3">
           <p>
             <%= @character.pathfinder_money.silver || 0 %> <span class="text-gray-600 dark:text-gray-500">SP</span>
           </p>
           <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
-
         <div class="flex flex-wrap gap-3">
           <p>
             <%= @character.pathfinder_money.copper || 0 %> <span class="text-gray-600 dark:text-gray-500">CP</span>
           </p>
         </div>
       </div>
-
       <div class="pt-3">
         <%= render(TitleWithContentComponent.new(title: "Total", _class:"italic")) do%>
           <span class="text-xl">

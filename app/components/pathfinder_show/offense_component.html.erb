@@ -5,66 +5,66 @@
   <div class="p-6">
     <ul class="flex flex-col space-y-4">
       <% @character.pathfinder_melees.each do |melee| %>
-      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
+        <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
       data-action="click->drawer#toggleDrawerWeapon click->channels--character#setWeapon"
-      data-drawer-character-id-param="<%= @character.id %>"
-      data-drawer-name-param="<%= melee.name %>"
-      data-drawer-note-param="<%= melee.notes %>"
-      data-drawer-other-param="<%= melee.other %>"
-      data-drawer-traits-param="<%= melee.traits %>"
-      data-drawer-attack-param="<%= get_attack_melee(@character, melee) || 0 %>"
-      data-drawer-second-attack-param="<%= get_second_attack_melee(@character, melee) || 0 %>"
-      data-drawer-third-attack-param="<%= get_third_attack_melee(@character, melee) || 0  %>"
-      data-channels--character-attack-param="<%= get_attack_melee(@character, melee) %>"
-      data-channels--character-second-attack-param="<%= get_second_attack_melee(@character, melee) %>"
-      data-channels--character-third-attack-param="<%= get_third_attack_melee(@character, melee) %>"
-      data-channels--character-qty-param="<%= melee.qty || 1 %>"
-      data-channels--character-dice-param="<%= melee.die %>"
-      data-channels--character-bonus-param="<%= bonus_damage_melee(@character, melee)  %>">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            Weapon
-          </h3>
-          <span class="pl-3">
-            <%= melee.name %>
-          </span>
-        </div>
-        <div class="flex flex-wrap gap-6">
-          <div class="flex space-x-4">
-            <%= render(PopoverComponent.new(name: "attack-melee-#{melee.id}", content_popover: "Str: #{get_modifier(@character, "str")} | Item: #{melee.item || 0} | Proficiency: #{melee.proficiency || 0}")) do%>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Attack
-              </h3>
-              <p class="text-center">
-                <%= get_attack_melee(@character, melee) %>
-              </p>
-            <% end %>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          data-drawer-character-id-param="<%= @character.id %>"
+          data-drawer-name-param="<%= melee.name %>"
+          data-drawer-note-param="<%= melee.notes %>"
+          data-drawer-other-param="<%= melee.other %>"
+          data-drawer-traits-param="<%= melee.traits %>"
+          data-drawer-attack-param="<%= get_attack_melee(@character, melee) || 0 %>"
+          data-drawer-second-attack-param="<%= get_second_attack_melee(@character, melee) || 0 %>"
+          data-drawer-third-attack-param="<%= get_third_attack_melee(@character, melee) || 0  %>"
+          data-channels--character-attack-param="<%= get_attack_melee(@character, melee) %>"
+          data-channels--character-second-attack-param="<%= get_second_attack_melee(@character, melee) %>"
+          data-channels--character-third-attack-param="<%= get_third_attack_melee(@character, melee) %>"
+          data-channels--character-qty-param="<%= melee.qty || 1 %>"
+          data-channels--character-dice-param="<%= melee.die %>"
+          data-channels--character-bonus-param="<%= bonus_damage_melee(@character, melee)  %>">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Weapon
+            </h3>
+            <span class="pl-3">
+              <%= melee.name %>
+            </span>
           </div>
-          <div class="flex space-x-4">
-            <%= render(PopoverComponent.new(name: "attack-damage-melee-#{melee.id}", content_popover: "Str: #{get_modifier(@character, "str")} | Weapon specialization: #{melee.weapon_specialization || 0} ")) do%>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Damage
-              </h3>
-              <p class="text-center">
-                <%= melee.qty %><%= melee.die %> 
-                <%= bonus_damage_melee(@character, melee)  %>
-              </p>
-            <% end %>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-          </div>
-          <div class="flex space-x-4">
-            <div>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Type
-              </h3>
-              <p class="text-center">
-                <%= melee.types %>
-              </p>
+          <div class="flex flex-wrap gap-6">
+            <div class="flex space-x-4">
+              <%= render(PopoverComponent.new(name: "attack-melee-#{melee.id}", content_popover: "Str: #{get_modifier(@character, "str")} | Item: #{melee.item || 0} | Proficiency: #{melee.proficiency || 0}")) do%>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Attack
+                </h3>
+                <p class="text-center">
+                  <%= get_attack_melee(@character, melee) %>
+                </p>
+              <% end %>
+              <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+            </div>
+            <div class="flex space-x-4">
+              <%= render(PopoverComponent.new(name: "attack-damage-melee-#{melee.id}", content_popover: "Str: #{get_modifier(@character, "str")} | Weapon specialization: #{melee.weapon_specialization || 0} ")) do%>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Damage
+                </h3>
+                <p class="text-center">
+                  <%= melee.qty %><%= melee.die %>
+                  <%= bonus_damage_melee(@character, melee)  %>
+                </p>
+              <% end %>
+              <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+            </div>
+            <div class="flex space-x-4">
+              <div>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Type
+                </h3>
+                <p class="text-center">
+                  <%= melee.types %>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
       <% end %>
     </ul>
   </div>
@@ -72,77 +72,77 @@
   <div class="p-6">
     <ul class="flex flex-col space-y-4">
       <% @character.pathfinder_rangeds.each do |ranged| %>
-      <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
+        <li class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 px-3 pb-2 flex gap-8 justify-between border-b-2 border-gray-300 dark:border-gray-700"
       data-action="click->drawer#toggleDrawerWeapon click->channels--character#setWeapon"
-      data-drawer-character-id-param="<%= @character.id %>"
-      data-drawer-name-param="<%= ranged.name %>"
-      data-drawer-note-param="<%= ranged.notes %>"
-      data-drawer-other-param="<%= ranged.other %>"
-      data-drawer-traits-param="<%= ranged.traits %>"
-      data-drawer-attack-param="<%= get_attack_ranged(@character, ranged) || 0 %>"
-      data-drawer-second-attack-param="<%= get_second_attack_ranged(@character, ranged) || 0 %>"
-      data-drawer-third-attack-param="<%= get_third_attack_ranged(@character, ranged) || 0 %>"
-      data-channels--character-attack-param="<%= get_attack_ranged(@character, ranged) %>"
-      data-channels--character-second-attack-param="<%= get_second_attack_ranged(@character, ranged) %>"
-      data-channels--character-third-attack-param="<%= get_third_attack_ranged(@character, ranged) %>"
-      data-channels--character-qty-param="<%= ranged.qty || 1 %>"
-      data-channels--character-dice-param="<%= ranged.die %>"
-      data-channels--character-bonus-param="<%= bonus_damage_ranged(ranged)  %>">
-        <div>
-          <h3 class="italic text-rose-700 dark:text-rose-500">
-            Weapon
-          </h3>
-          <span class="pl-3">
-            <%= ranged.name %>
-          </span>
-        </div>
-        <div class="flex flex-wrap gap-6">
-          <div class="flex space-x-4">
-            <%= render(PopoverComponent.new(name: "attack-ranged-#{ranged.id}", content_popover: "Dex: #{get_modifier(@character, "str")} | Item: #{ranged.item || 0} | Proficiency: #{ranged.proficiency || 0}")) do%>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Attack
-              </h3>
-              <p class="text-center">
-                <%= get_attack_ranged(@character, ranged) %>
-              </p>
-            <% end %>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+          data-drawer-character-id-param="<%= @character.id %>"
+          data-drawer-name-param="<%= ranged.name %>"
+          data-drawer-note-param="<%= ranged.notes %>"
+          data-drawer-other-param="<%= ranged.other %>"
+          data-drawer-traits-param="<%= ranged.traits %>"
+          data-drawer-attack-param="<%= get_attack_ranged(@character, ranged) || 0 %>"
+          data-drawer-second-attack-param="<%= get_second_attack_ranged(@character, ranged) || 0 %>"
+          data-drawer-third-attack-param="<%= get_third_attack_ranged(@character, ranged) || 0 %>"
+          data-channels--character-attack-param="<%= get_attack_ranged(@character, ranged) %>"
+          data-channels--character-second-attack-param="<%= get_second_attack_ranged(@character, ranged) %>"
+          data-channels--character-third-attack-param="<%= get_third_attack_ranged(@character, ranged) %>"
+          data-channels--character-qty-param="<%= ranged.qty || 1 %>"
+          data-channels--character-dice-param="<%= ranged.die %>"
+          data-channels--character-bonus-param="<%= bonus_damage_ranged(ranged)  %>">
+          <div>
+            <h3 class="italic text-rose-700 dark:text-rose-500">
+              Weapon
+            </h3>
+            <span class="pl-3">
+              <%= ranged.name %>
+            </span>
           </div>
-          <div class="flex space-x-4">
-            <%= render(PopoverComponent.new(name: "attack-damage-ranged-#{ranged.id}", content_popover: "Special: #{ranged.special || 0} | Weapon specialization: #{ranged.weapon_specialization || 0} ")) do%>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Damage
-              </h3>
-              <p class="text-center">
-                <%= ranged.qty %><%= ranged.die %> 
-                <%= bonus_damage_ranged ranged  %>
-              </p>
-            <% end %>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-          </div>
-          <div class="flex space-x-4">
-            <div>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Type
-              </h3>
-              <p class="text-center">
-                <%= ranged.types %>
-              </p>
+          <div class="flex flex-wrap gap-6">
+            <div class="flex space-x-4">
+              <%= render(PopoverComponent.new(name: "attack-ranged-#{ranged.id}", content_popover: "Dex: #{get_modifier(@character, "str")} | Item: #{ranged.item || 0} | Proficiency: #{ranged.proficiency || 0}")) do%>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Attack
+                </h3>
+                <p class="text-center">
+                  <%= get_attack_ranged(@character, ranged) %>
+                </p>
+              <% end %>
+              <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
             </div>
-            <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-          </div>
-          <div class="flex space-x-4">
-            <div>
-              <h3 class="italic text-rose-700 dark:text-rose-500">
-                Range
-              </h3>
-              <p class="text-center">
-                <%= ranged.range %>
-              </p>
+            <div class="flex space-x-4">
+              <%= render(PopoverComponent.new(name: "attack-damage-ranged-#{ranged.id}", content_popover: "Special: #{ranged.special || 0} | Weapon specialization: #{ranged.weapon_specialization || 0} ")) do%>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Damage
+                </h3>
+                <p class="text-center">
+                  <%= ranged.qty %><%= ranged.die %>
+                  <%= bonus_damage_ranged ranged  %>
+                </p>
+              <% end %>
+              <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+            </div>
+            <div class="flex space-x-4">
+              <div>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Type
+                </h3>
+                <p class="text-center">
+                  <%= ranged.types %>
+                </p>
+              </div>
+              <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+            </div>
+            <div class="flex space-x-4">
+              <div>
+                <h3 class="italic text-rose-700 dark:text-rose-500">
+                  Range
+                </h3>
+                <p class="text-center">
+                  <%= ranged.range %>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
       <% end %>
     </ul>
   </div>

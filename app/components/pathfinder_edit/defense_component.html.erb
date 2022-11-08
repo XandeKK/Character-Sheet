@@ -81,11 +81,10 @@
       ))%>
       <!-- Ancestry -->
       <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-          Only base health is needed, rest will be calculated according to your level and constitution.
+        Only base health is needed, rest will be calculated according to your level and constitution.
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "armor-class", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Armor class",
         data: {
@@ -132,7 +131,6 @@
         ]
       ))%>
     <% end %>
-
     <div data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
       <%= render(CardTabComponent.new(tab: "saving-throw", hidden: true)) do %>
         <% ["Fortitude", "Reflex", "Will"].each do |name| %>
@@ -182,8 +180,6 @@
             ]
           ))%>
         <% end %>
-
-
         <%= render(Form::BoxComponent.new(title: "Notes",
           form: @form,
           fields_for: :pathfinder_saving_throw,

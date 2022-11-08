@@ -18,14 +18,14 @@
           <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
         <div class="flex mb-3 gap-6">
-        <%= render(PopoverComponent.new(name: "attack-spell-caster", content_popover: "#{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)} | Proficiency: #{@character.pathfinder_spell_caster.attack_proficiency || 0} | Bonus: #{@character.pathfinder_spell_caster.attack_bonus || 0} | Penalty: #{@character.pathfinder_spell_caster.attack_penalty || 0}")) do%>
+          <%= render(PopoverComponent.new(name: "attack-spell-caster", content_popover: "#{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)} | Proficiency: #{@character.pathfinder_spell_caster.attack_proficiency || 0} | Bonus: #{@character.pathfinder_spell_caster.attack_bonus || 0} | Penalty: #{@character.pathfinder_spell_caster.attack_penalty || 0}")) do%>
             <h3 class="italic text-rose-700 dark:text-rose-500">
               Attack
             </h3>
             <span class="pl-3">
               <%= get_attack_spell @character %>
             </span>
-        <% end %>
+          <% end %>
           <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
         <div class="flex mb-3 gap-6">
@@ -48,29 +48,27 @@
         </p>
       </div>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "spell", hidden: true)) do %>
       <% 11.times do |n| %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
-          Level <%= n %>
-        </div>
-        <div class="space-y-3 w-full">
-          <div class="pt-3">
-            <h3 class="italic text-rose-700 dark:text-rose-500">
-              Per day
-            </h3>
-            <span class="pl-3">
-              <%= @character.pathfinder_spell_caster["level_#{n}"] || 0%>
-            </span>
+        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
+          <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
+            Level <%= n %>
           </div>
-          <div id="level_<%= n %>" class="grid grid-cols-1 gap-4 w-full">
-          </div>  
+          <div class="space-y-3 w-full">
+            <div class="pt-3">
+              <h3 class="italic text-rose-700 dark:text-rose-500">
+                Per day
+              </h3>
+              <span class="pl-3">
+                <%= @character.pathfinder_spell_caster["level_#{n}"] || 0%>
+              </span>
+            </div>
+            <div id="level_<%= n %>" class="grid grid-cols-1 gap-4 w-full">
+            </div>
+          </div>
         </div>
-      </div>
       <% end %>
     <% end %>
-
     <% @character.pathfinder_spells.each do |spell| %>
       <%= turbo_stream.append "level_#{spell.level}" do %>
         <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= spell.name %>" data-drawer-note-param="<%= spell.notes %>">
@@ -84,7 +82,6 @@
           </div>
           <p class="font-pathfinder text-3xl">
             <%= spell.action %>
-            
           </p>
           <div class="pr-3 flex flex-wrap gap-6">
             <div class="flex gap-6">
@@ -112,7 +109,6 @@
         </div>
       <% end %>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "innate-spells", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
@@ -121,59 +117,58 @@
         <div class="space-y-3 w-full">
           <div class="grid grid-cols-1 gap-4 w-full">
             <% @character.pathfinder_innate_spells.each do |innate_spell| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= innate_spell.name %>" data-drawer-note-param="<%= innate_spell.notes %>">
-              <div>
-                <h3 class="italic text-rose-700 dark:text-rose-500">
-                  Spell
-                </h3>
-                <span class="pl-3">
-                  <%= innate_spell.name %>
-                </span>
+              <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= innate_spell.name %>" data-drawer-note-param="<%= innate_spell.notes %>">
+                <div>
+                  <h3 class="italic text-rose-700 dark:text-rose-500">
+                    Spell
+                  </h3>
+                  <span class="pl-3">
+                    <%= innate_spell.name %>
+                  </span>
+                </div>
+                <p class="font-pathfinder text-3xl">
+                  <%= innate_spell.action %>
+                </p>
+                <div class="pr-3 flex flex-wrap gap-6">
+                  <div class="flex gap-6">
+                    <div>
+                      <h3 class="italic text-rose-700 dark:text-rose-500">
+                        Frequency
+                      </h3>
+                      <span class="pl-3">
+                        <%= innate_spell.frequency %>
+                      </span>
+                    </div>
+                    <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+                  </div>
+                  <div class="flex gap-6">
+                    <div>
+                      <h3 class="italic text-rose-700 dark:text-rose-500">
+                        Duration
+                      </h3>
+                      <span class="pl-3">
+                        <%= innate_spell.duration %>
+                      </span>
+                    </div>
+                    <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+                  </div>
+                  <div class="flex gap-6">
+                    <div>
+                      <h3 class="italic text-rose-700 dark:text-rose-500">
+                        Range
+                      </h3>
+                      <span class="pl-3">
+                        <%= innate_spell.range %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p class="font-pathfinder text-3xl">
-                <%= innate_spell.action %>
-              </p>
-              <div class="pr-3 flex flex-wrap gap-6">
-                <div class="flex gap-6">
-                  <div>
-                    <h3 class="italic text-rose-700 dark:text-rose-500">
-                      Frequency
-                    </h3>
-                    <span class="pl-3">
-                      <%= innate_spell.frequency %>
-                    </span>
-                  </div>
-                  <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-                </div>
-                <div class="flex gap-6">
-                  <div>
-                    <h3 class="italic text-rose-700 dark:text-rose-500">
-                      Duration
-                    </h3>
-                    <span class="pl-3">
-                      <%= innate_spell.duration %>
-                    </span>
-                  </div>
-                  <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
-                </div>
-                <div class="flex gap-6">
-                  <div>
-                    <h3 class="italic text-rose-700 dark:text-rose-500">
-                      Range
-                    </h3>
-                    <span class="pl-3">
-                      <%= innate_spell.range %>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
             <% end %>
-          </div>  
+          </div>
         </div>
       </div>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "focus-spells", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
@@ -205,44 +200,44 @@
           </div>
           <div class="grid grid-cols-1 gap-4 w-full">
             <% @character.pathfinder_focus_spells.each do |focus_spell| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= focus_spell.name %>" data-drawer-note-param="<%= focus_spell.notes %>">
-              <div>
-                <h3 class="italic text-rose-700 dark:text-rose-500">
-                  Spell
-                </h3>
-                <span class="pl-3">
-                  <%= focus_spell.name %>
-                </span>
-              </div>
-              <p class="font-pathfinder text-3xl">
-                <%= focus_spell.action %>
-              </p>
-              <div class="pr-3 flex flex-wrap gap-6">
-                <div class="flex gap-6">
-                  <div>
-                    <h3 class="italic text-rose-700 dark:text-rose-500">
-                      Duration
-                    </h3>
-                    <span class="pl-3">
-                      <%= focus_spell.duration %>
-                    </span>
-                  </div>
-                  <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+              <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex flex-wrap justify-around pb-3 border-b-2 border-gray-300 dark:border-gray-500" data-action="click->drawer#toggleDrawerRight" data-drawer-name-param="<%= focus_spell.name %>" data-drawer-note-param="<%= focus_spell.notes %>">
+                <div>
+                  <h3 class="italic text-rose-700 dark:text-rose-500">
+                    Spell
+                  </h3>
+                  <span class="pl-3">
+                    <%= focus_spell.name %>
+                  </span>
                 </div>
-                <div class="flex gap-6">
-                  <div>
-                    <h3 class="italic text-rose-700 dark:text-rose-500">
-                      Range
-                    </h3>
-                    <span class="pl-3">
-                      <%= focus_spell.range %> ft
-                    </span>
+                <p class="font-pathfinder text-3xl">
+                  <%= focus_spell.action %>
+                </p>
+                <div class="pr-3 flex flex-wrap gap-6">
+                  <div class="flex gap-6">
+                    <div>
+                      <h3 class="italic text-rose-700 dark:text-rose-500">
+                        Duration
+                      </h3>
+                      <span class="pl-3">
+                        <%= focus_spell.duration %>
+                      </span>
+                    </div>
+                    <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
+                  </div>
+                  <div class="flex gap-6">
+                    <div>
+                      <h3 class="italic text-rose-700 dark:text-rose-500">
+                        Range
+                      </h3>
+                      <span class="pl-3">
+                        <%= focus_spell.range %> ft
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             <% end %>
-          </div>  
+          </div>
         </div>
       </div>
     <% end %>

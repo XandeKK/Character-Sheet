@@ -14,17 +14,14 @@
             <h1 id="character-name" class="md:mt-6 text-3xl" data-id="<%= @character.id %>">
               <%= @character.pathfinder_basic.name %>
             </h1>
-            
             <h2 class="text-2xl">
               <%= @character.pathfinder_basic.class_name %>
               <%= @character.pathfinder_basic.level %>
             </h2>
-
             <div class="flex space-x-4">
               <%= render(TitleWithContentComponent.new(title: "Perception", _class: "italic", bar: true)) do%>
                 <%= get_perception @character %>
               <% end %>
-
               <%= render(TitleWithContentComponent.new(title: "Land Speed", _class: "italic")) do%>
                 <%= render(PopoverComponent.new(name: "speed", content_popover: @character.pathfinder_basic.speed_note)) do%>
                   <%= @character.pathfinder_basic.speed %>
@@ -34,42 +31,33 @@
           </div>
         </div>
       </div>
-
       <div class="p-6 flex flex-wrap gap-3">
         <%= render(TitleWithContentComponent.new(title: "Aligment", _class: "italic", bar: true)) do%>
           <%= @character.pathfinder_basic.alignment %>
         <% end %>
-    
         <%= render(TitleWithContentComponent.new(title: "Size", _class: "italic", bar: true)) do%>
           <%= @character.pathfinder_basic.size %>
         <% end %>
-        
         <%= render(TitleWithContentComponent.new(title: "Ancestry", _class: "italic", bar: true)) do%>
           <%= @character.pathfinder_basic.ancestry %>
         <% end %>
-        
         <%= render(TitleWithContentComponent.new(title: "Heritage", _class: "italic", bar: true)) do%>
           <%= render(PopoverComponent.new(name: "heritage", content_popover: @character.pathfinder_basic.heritage_note )) do%>
             <%= @character.pathfinder_basic.heritage %>
           <% end %>
         <% end %>
-        
         <%= render(TitleWithContentComponent.new(title: "Background", _class: "italic", bar: true)) do%>
           <%= @character.pathfinder_basic.background %>
         <% end %>
-        
         <%= render(TitleWithContentComponent.new(title: "Deity", _class: "italic", bar: true)) do%>
           <%= @character.pathfinder_basic.deity %>
         <% end %>
-    
         <%= render(TitleWithContentComponent.new(title: "Age", _class: "italic", bar: true)) do%>
           <%= @character.pathfinder_basic.age %>
         <% end %>
-    
         <%= render(TitleWithContentComponent.new(title: "Hero Points", _class: "italic")) do%>
           <%= @character.pathfinder_basic.hero_points %>
         <% end %>
-
       </div>
       <!--  -->
       <div class="px-6 pb-6">
@@ -78,12 +66,10 @@
         <% end %>
       </div>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "server", hidden: true)) do %>
       <div class="mx-auto w-full max-w-sm bg-transparent rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:border-gray-700">
         <div class="space-y-6 text-sm text-gray-900 dark:text-gray-300" data-channels--character-target="formServer">
           <div data-channels--character-target="warning">
-            
           </div>
           <div>
             <label for="server-name" class="block mb-2 font-medium">Server name</label>
@@ -100,7 +86,6 @@
         </button>
       </div>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "dices", hidden: true)) do %>
       <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
         <div class="flex-none font-bold text-lg text-rose-700 w-40 dark:text-rose-500">
@@ -109,25 +94,24 @@
         <div class="space-y-3 w-full">
           <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
             <% @character.dices.each do |dice| %>
-            <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
+              <div class="cursor-pointer hover:bg-rose-300/50 hover:dark:bg-rose-700/30 flex justify-between border-b-2 border-gray-300 dark:border-gray-500"
               data-action="click->drawer#toggleDrawerMacro"
-              data-drawer-name-param="<%= dice.name %>"
-              data-drawer-notation-param="<%= format_macro_notation(@character, dice.notation) %>"
-              data-drawer-note-param="<%= dice.notes %>"
-              data-drawer-character-id-param="<%= @character.id %>">
-              <p>
-                <%= dice.name %>
-              </p>
-              <p>
-                <%= format_macro_notation(@character, dice.notation) %>
-              </p>
-            </div>
+                data-drawer-name-param="<%= dice.name %>"
+                data-drawer-notation-param="<%= format_macro_notation(@character, dice.notation) %>"
+                data-drawer-note-param="<%= dice.notes %>"
+                data-drawer-character-id-param="<%= @character.id %>">
+                <p>
+                  <%= dice.name %>
+                </p>
+                <p>
+                  <%= format_macro_notation(@character, dice.notation) %>
+                </p>
+              </div>
             <% end %>
           </div>
         </div>
       </div>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "chat", hidden: true)) do %>
       <%= render ChatComponent.new %>
     <% end %>

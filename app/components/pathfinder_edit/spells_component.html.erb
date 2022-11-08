@@ -23,7 +23,6 @@
           ]
         ]
       ))%>
-
       <%= render(Form::BoxComponent.new(title: "Attack",
         form: @form,
         fields_for: :pathfinder_spell_caster,
@@ -48,7 +47,6 @@
           ]
         ]
       ))%>
-
       <%= render(Form::BoxComponent.new(title: "CD",
         form: @form,
         fields_for: :pathfinder_spell_caster,
@@ -73,7 +71,6 @@
           ]
         ]
       ))%>
-
       <%= render(Form::BoxComponent.new(title: "Level",
         form: @form,
         fields_for: :pathfinder_spell_caster,
@@ -87,7 +84,6 @@
             end
         ]
       ))%>
-
       <%= render(Form::BoxComponent.new(title: "Notes",
         form: @form,
         fields_for: :pathfinder_spell_caster,
@@ -102,7 +98,6 @@
         ]
       ))%>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "spell", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Spells",
         main_id: "body-spells",
@@ -173,7 +168,6 @@
         ]
       ))%>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "innate-spells", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Innate Spells",
         main_id: "body-innate_spells",
@@ -240,7 +234,6 @@
         ]
       ))%>
     <% end %>
-
     <%= render(CardTabComponent.new(tab: "focus-spells", hidden: true)) do %>
       <%= render(Form::BoxComponent.new(title: "Focus Spell",
         form: @form,
@@ -258,7 +251,6 @@
           ]
         ]
       ))%>
-
       <%= render(Form::BoxComponent.new(title: "Spells",
         main_id: "body-focus_spells",
         item_id: "focus_spells-",

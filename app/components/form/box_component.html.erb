@@ -2,21 +2,19 @@
   <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
     <%= @title %>
   </div>
-
   <%= content_tag(:div, id: @main_id, class: "w-full space-y-6", data: @data) do %>
     <% if @add %>
       <div class="w-full flex flex-row-reverse">
         <%= content_tag(:div, "+", class: @add[:class_div], data: @add[:data]) %>
       </div>
     <% end %>
-
     <%= @form.fields_for @fields_for do |f| %>
       <div id="<%= "#{@item_id}#{f.index}" %>">
         <% @forms.each do |form| %>
           <% form.keys.each do |key| %>
             <% if key == :grid %>
               <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900" >
-                <% form[:grid].each do |item| %> 
+                <% form[:grid].each do |item| %>
                   <%= render(Form::FieldWithLabelComponent.new(
                     form: f,
                     name: item[:name],
@@ -29,7 +27,7 @@
                   ))%>
                 <% end %>
               </div>
-            <% else # Flex %> 
+            <% else # Flex %>
               <div class="flex">
                 <% form[:flex].each_with_index do |item, index| %>
                   <% if item[:removable] %>
