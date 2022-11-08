@@ -1,3 +1,21 @@
+<% content_for :dropdown_navbar do %>
+  <%= render(Dropdown::NavbarComponent.new(
+    name: @adventure.name,
+    paths: current_user.adventures.map do |a|
+      {
+        id: a.id,
+        name: a.name,
+        current: @adventure == a,
+        show_path: adventure_path(a)
+
+      }
+    end,
+    new_path: new_adventure_path,
+    edit_path: edit_adventure_path(@adventure),
+    delete_path: adventure_path(@adventure)
+  )) %>
+<% end %>
+
 <div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="channels--adventure adventure--drawer channels--chat"
   data-channels--chat-name-param="gm"
   data-channels--chat-image-param="https://pbs.twimg.com/profile_images/1601760471/AA_400x400.JPG"

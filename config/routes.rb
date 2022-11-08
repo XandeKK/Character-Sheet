@@ -13,19 +13,13 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
 
-  get 'player', to: 'player#index'
-
-  resources :characters, path: '/player/characters', except: :index
+  resources :characters, path: '/characters/:category'
+  get "characters", to: "characters#group", as: "characters_group"
   put "/hit_point", to: "characters#update_hp"
 
-  get 'gm', to: 'gm#index'
-  scope '/gm' do
-    resources :npcs
-    resources :enemies
-    resources :adventures
-    post :adventure_participation, to: "adventure_participation#create"
-    delete :adventure_participation, to: "adventure_participation#destroy"
-  end
-
+  resources :adventures
+  post :adventure_participation, to: "adventure_participation#create"
+  delete :adventure_participation, to: "adventure_participation#destroy"
+    
   get 'tv', to: "tv#index"
 end

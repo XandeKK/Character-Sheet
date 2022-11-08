@@ -3,6 +3,17 @@ class CharactersController < ApplicationController
   before_action :redirect_if_empty, only: [:show, :edit, :update, :destroy]
   before_action :get_characters, only: [:show, :edit]
 
+  def group
+  end
+
+  def index
+    @characters = current_user.characters
+      .select("characters.id, pathfinder_basics.name")
+      .joins(:character_category, :pathfinder_basic)
+      .where("character_category.name": params[:category].capitalize)
+      .includes(character_image_attachment: :blob)
+  end
+
   def show
   end
 
@@ -13,15 +24,16 @@ class CharactersController < ApplicationController
   def create
     @character = PathfinderCharacter::create_character(
       current_user,
-      CharacterCategory.first,
+      CharacterCategory.find_by(name: params[:category].capitalize),
       params[:system]
     )
 
     if @character
-      redirect_to character_path(@character), notice: "Character created successfully!"
+      redirect_to character_path(category: params[:category], id: @character),
+        notice: "#{params[:category].capitalize} created successfully!"
     else
       @character_systems = CharacterSystem.all
-      render :new, alert: "Character not created successfully."
+      render :new, alert: "#{params[:category].capitalize} not created successfully."
     end
   end
 
@@ -31,7 +43,8 @@ class CharactersController < ApplicationController
   def update
     if @character.update(PathfinderCharacter::character_params(params))
       save_image
-      redirect_by_character_category(@character)
+      redirect_to character_path(category: params[:category], id: @character),
+        notice: "#{params[:category].capitalize} successfully updated!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,9 +52,10 @@ class CharactersController < ApplicationController
 
   def destroy
     if @character.destroy
-      redirect_to player_path, notice: "Character successfully deleted!"
+      redirect_to characters_path(category: params[:category]),
+        notice: "#{params[:category].capitalize} successfully deleted!"
     else
-      redirect_to player_path
+      redirect_to characters_path(category: params[:category])
     end
   end
 
@@ -69,6 +83,19 @@ class CharactersController < ApplicationController
   end
 
   def redirect_if_empty
-    redirect_to player_path, alert: "You do not have permission." if @character.nil?
+    redirect_to characters_path(category: params[:category]),
+      alert: "You do not have permission." if @character.nil?
+  end
+
+  def get_characters
+    @characters_dropdown = Character
+      .where(character_category: @character.character_category, user: current_user)
+      .includes(:pathfinder_basic)
+  end
+
+  def save_image
+    unless params[:character][:image].empty?
+      @character.character_image.attach(data: params[:character][:image])
+    end
   end
 end

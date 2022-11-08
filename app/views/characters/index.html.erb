@@ -1,0 +1,32 @@
+<div class="md:container px-3 md:px-0 md:mx-auto mt-6 mb-36">
+  <h1 class="font-bold mb-6 text-center text-black dark:text-white text-3xl"><%= params[:category].capitalize.pluralize %></h1>
+  <% @characters.each do |character| %>
+    <div class="mb-6 block w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 relative">
+      <%= link_to character_path(category: params[:category], id: character), class: "absolute h-full w-full", data: {turbo: false} do %>
+      <% end %>
+      <div class="p-6 flex justify-between items-center">
+        <div class="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
+          <div>
+            <%= image_tag(character.character_image, class: "w-20 h-20 rounded-full", alt:"#{character.name}") if character.character_image.attached?%>
+          </div>
+          <div id="character-<%= character.name %>" class="ml-6 md:flex md:flex-col justify-center text-black dark:text-white text-xl md:text-2xl"><%= character.name %></div>
+        </div>
+        <button id="dropdownMenu-<%= character.id %>" data-dropdown-toggle="dropdown-<%= character.id %>" class="inline-flex items-center justify-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-full hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800 dark:focus:ring-gray-600 z-10 w-12 h-12" type="button">
+          <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div id="dropdown-<%= character.id %>" class="hidden z-20 w-44 bg-white rounded divide-y divide-gray-100 dark:bg-gray-700 dark:divide-gray-600 border border-gray-200 dark:border-gray-900">
+          <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenu-<%= character.id %>">
+            <li>
+              <%= link_to "Edit", edit_character_path(category: params[:category], id: character), data: {turbo: false}, class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+            </li>
+            <li>
+              <%= button_to "delete", character_path(category: params[:category], id: character), method: :delete, data: {turbo: false}, class: "w-full text-start block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "New Character", new_character_path(category: params[:category]), class: "z-20 fixed bottom-3 right-3 md:bottom-8 md:right-8 md:mr-6 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " %>
+</div>

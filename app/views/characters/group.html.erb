@@ -1,0 +1,15 @@
+<div class="md:container md:mx-auto mt-6 mb-10">
+  <h1 class="font-bold mb-2 text-center text-4xl">Characters</h1>
+  <div class="grid md:grid-cols-1 md:grid-cols-2 gap-4 h-max text-white font-bold md:text-3xl md:text-4xl">
+    <%= link_to characters_path(category: "Npc"), class: "bg-gradient-to-r from-red-500 to-pink-500 hover:bg-gradient-to-t hover:from-slate-900 hover:to-rose-900 rounded h-44 md:h-64 flex justify-center relative" do %>
+      <div id="gm" class="md:h-64 z-0 bg-origin-content w-full h-44 bg-contain bg-no-repeat bg-center bg-[url('')] hover:bg-[url('')]"></div>
+      <div class="absolute bottom-1">Npcs</div>
+    <% end %>
+    <%= link_to characters_path(category: "Enemy"), class: "bg-gradient-to-r from-lime-500 to-green-400 hover:bg-gradient-to-t hover:from-slate-500 hover:to-teal-500 rounded h-44 md:h-64 flex justify-center relative" do %>
+      <div class="absolute bottom-1">Enemies</div>
+    <% end %>
+    <%= link_to characters_path(category: "Player"), class: "bg-gradient-to-r from-sky-500 to-indigo-500 hover:bg-gradient-to-t hover:from-slate-600 hover:to-teal-500 rounded h-44 md:h-64 flex justify-center relative md:col-span-2" do %>
+      <div class="absolute bottom-1">Players</div>
+    <% end %>
+  </div>
+</div>

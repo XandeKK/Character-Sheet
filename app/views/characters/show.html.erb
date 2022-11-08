@@ -1,3 +1,20 @@
+<% content_for :dropdown_navbar do %>
+  <%= render(Dropdown::NavbarComponent.new(
+    name: @character.pathfinder_basic.name,
+    paths: @characters_dropdown.map do |c| 
+      {
+        id: c.id,
+        name: c.pathfinder_basic.name,
+        current: @character == c,
+        show_path: character_path(category: params[:category], id: c)
+      }
+    end,
+    delete_path: character_path(category: params[:category], id: @character),
+    edit_path: edit_character_path(category: params[:category], id: @character),
+    new_path: new_character_path(category: params[:category])
+  )) %>
+<% end %>
+
 <div data-controller="channels--character channels--chat" data-channels--chat-name-param="<%= @character.pathfinder_basic.name %>"
   data-channels--chat-image-param="<%= url_for(@character.character_image) if @character.character_image.attached? %>"
   data-channels--chat-id-param="<%= @character.id %>"

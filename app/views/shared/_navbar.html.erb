@@ -8,42 +8,7 @@
       </div>
     </button>
     <!-- Button Navbar -->
-    <%= render(Dropdown::NavbarComponent.new(
-      name: "character",
-      model: @character,
-      collection: @characters_dropdown,
-      show_path: method(:character_path),
-      new_path: method(:new_character_path),
-      edit_path: method(:edit_character_path),
-      delete_path: method(:character_path)
-    )) if ["show", "edit"].include?(action_name) && controller_name == "characters" %>
-    <%= render(Dropdown::NavbarComponent.new(
-      name: "character",
-      model: @character,
-      collection: @characters_dropdown,
-      show_path: method(:npc_path),
-      new_path: method(:new_npc_path),
-      edit_path: method(:edit_npc_path),
-      delete_path: method(:npc_path)
-    )) if ["show", "edit"].include?(action_name) && controller_name == "npcs" %>
-    <%= render(Dropdown::NavbarComponent.new(
-      name: "character",
-      model: @character,
-      collection: @characters_dropdown,
-      show_path: method(:enemy_path),
-      new_path: method(:new_enemy_path),
-      edit_path: method(:edit_enemy_path),
-      delete_path: method(:enemy_path)
-    )) if ["show", "edit"].include?(action_name) && controller_name == "enemies" %>
-    <%= render(Dropdown::NavbarComponent.new(
-      name: "adventure",
-      model: @adventure,
-      collection: current_user.adventures,
-      show_path: method(:adventure_path),
-      new_path: method(:new_adventure_path),
-      edit_path: method(:edit_adventure_path),
-      delete_path: method(:adventure_path)
-    )) if ["show", "edit"].include?(action_name) && controller_name == "adventures" %>
+    <%= yield(:dropdown_navbar) %>
     <div class="flex md:order-2">
     </div>
   </div>
