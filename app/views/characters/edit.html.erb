@@ -1,7 +1,7 @@
 <% content_for :dropdown_navbar do %>
   <%= render(Dropdown::NavbarComponent.new(
     name: @character.pathfinder_basic.name,
-    paths: @characters_dropdown.map do |c| 
+    paths: @characters_dropdown.map do |c|
       {
         id: c.pathfinder_basic.name,
         name: c.pathfinder_basic.name,
@@ -14,7 +14,6 @@
     new_path: new_character_path(category: params[:category])
   )) %>
 <% end %>
-
 <%= render(SideBarComponent.new) %>
 <div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="edit-character--event-trigger edit-character--item">
   <%= form_with model: @character, url: character_path, method: :put, html: {"autocomplete":"off"}, data: {turbo:false} do |form| %>

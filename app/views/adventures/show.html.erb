@@ -15,16 +15,19 @@
     delete_path: adventure_path(@adventure)
   )) %>
 <% end %>
-
 <div class="z-0 pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200" data-controller="channels--adventure adventure--drawer channels--chat"
   data-channels--chat-name-param="gm"
   data-channels--chat-image-param="https://pbs.twimg.com/profile_images/1601760471/AA_400x400.JPG"
   data-channels--chat-id-param="<%= SecureRandom.hex(4) %>"
-  data-action="channels--adventure:start->channels--chat#startServerAdventure 
+  data-action="channels--adventure:start->channels--chat#startServerAdventure
   channels--adventure:terminate->channels--chat#terminateServer"
   >
   <%= render partial: "adventures/drawer"%>
-  <%= render partial: "adventures/server" %>
-  <%= render partial: "adventures/npc_enemy" %>
+  <%= render partial: "adventures/server", locals: {adventure: @adventure} %>
+  <%= render partial: "adventures/npc_enemy", locals: {
+    adventure: @adventure,
+    adventure_participations: @adventure_participations,
+    npc_and_enemy: @npc_and_enemy
+  } %>
   <%= render partial: "adventures/player" %>
 </div>

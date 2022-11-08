@@ -1,8 +1,8 @@
 <% [:name, :email, :password].each do |name| %>
   <div class="relative z-0 mb-6 w-full group">
-    <%= form.text_field name, class: peer_field(@user, name), placeholder: " " %>
-    <%= form.label name, class: peer_label(@user, name) %>
-    <% @user.errors.messages[name].each do |message| %>
+    <%= form.text_field name, class: peer_field(user, name), placeholder: " " %>
+    <%= form.label name, class: peer_label(user, name) %>
+    <% user.errors.messages[name].each do |message| %>
       <p class="mt-2 text-red-600 dark:text-red-500"><%= "#{name.capitalize} #{message}" %></p>
     <% end %>
   </div>

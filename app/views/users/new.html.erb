@@ -2,7 +2,7 @@
   <div class="p-4 w-full max-w-sm bg-white border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 rounded-lg md:p-8 dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
     <h2 class="mb-6 text-xl font-medium"><%= t(".title") %></h2>
     <%= form_for @user, class: "space-y-6 text-sm" do |form| %>
-      <%= render partial: '/users/form', object: form %>
+      <%= render partial: '/users/form', object: form, locals: {user: @user} %>
       <%= form.submit class: button_submit %>
       <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
         <%= link_to t(".sign_in"), sign_in_path, class: "text-blue-700 hover:underline dark:text-blue-500" %>

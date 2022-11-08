@@ -75,7 +75,7 @@
         form: @form,
         fields_for: :pathfinder_spell_caster,
         forms: [
-          grid: 
+          grid:
             (0..10).map do |n|
               {
                 name: "level_#{n}".to_sym,

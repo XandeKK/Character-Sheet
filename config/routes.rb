@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   resources :adventures
   post :adventure_participation, to: "adventure_participation#create"
   delete :adventure_participation, to: "adventure_participation#destroy"
-    
+
   get 'tv', to: "tv#index"
 end

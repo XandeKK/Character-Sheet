@@ -6,9 +6,9 @@
   <div id="server-TabContent">
     <%= render(CardTabComponent.new(tab: "server", hidden: false)) do %>
       <div class="md:py-3">
-        <h1 class="p-3 text-center text-3xl"><%= @adventure.name %></h1>
-        <h2 class="p-6 text-xl">Server name: 
-          <span data-channels--adventure-target="serverName" data-channels--chat-target="serverName"><%= @adventure.server_name %></span>
+        <h1 class="p-3 text-center text-3xl"><%= adventure.name %></h1>
+        <h2 class="p-6 text-xl">Server name:
+          <span data-channels--adventure-target="serverName" data-channels--chat-target="serverName"><%= adventure.server_name %></span>
         </h2>
       </div>
       <div class="flex flex-row-reverse p-6">

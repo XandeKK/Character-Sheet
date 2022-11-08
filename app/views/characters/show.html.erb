@@ -1,7 +1,7 @@
 <% content_for :dropdown_navbar do %>
   <%= render(Dropdown::NavbarComponent.new(
     name: @character.pathfinder_basic.name,
-    paths: @characters_dropdown.map do |c| 
+    paths: @characters_dropdown.map do |c|
       {
         id: c.id,
         name: c.pathfinder_basic.name,
@@ -14,13 +14,11 @@
     new_path: new_character_path(category: params[:category])
   )) %>
 <% end %>
-
 <div data-controller="channels--character channels--chat" data-channels--chat-name-param="<%= @character.pathfinder_basic.name %>"
   data-channels--chat-image-param="<%= url_for(@character.character_image) if @character.character_image.attached? %>"
   data-channels--chat-id-param="<%= @character.id %>"
-  data-action="channels--character:start->channels--chat#startServer 
-  channels--character:terminate->channels--chat#terminateServer"
-  >
+  data-action="channels--character:start->channels--chat#startServer
+  channels--character:terminate->channels--chat#terminateServer">
   <%= render(PathfinderShow::DrawerComponent.new) %>
   <%= render(SideBarComponent.new) %>
   <div class=" pt-8 pb-96 md:pt-0 md:w-10/12 md:mx-auto text-black dark:text-gray-200">
