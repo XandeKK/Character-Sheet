@@ -1,7 +1,6 @@
 <% content_for :dropdown_navbar do %>
   <%= render(Dropdown::NavbarComponent.new(
     name: @character.pathfinder_basic.name,
-    id: @character.id,
     paths: @characters_dropdown.map do |c| 
       {
         id: c.pathfinder_basic.name,
