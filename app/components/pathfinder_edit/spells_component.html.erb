@@ -108,7 +108,7 @@
           class_div: add_item,
           data: {
             "action":"click->edit-character--item#add",
-            "edit-character--macros-count-param": @character.pathfinder_spells.count,
+            "edit-character--item-count-param": @character.pathfinder_spells.count,
             "edit-character--item-name-param":"spells"
           }
         },
@@ -162,7 +162,8 @@
           {grid: [
             {
               name: :notes,
-              type: :area
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
             }
           ]}
         ]
@@ -178,7 +179,7 @@
           class_div: add_item,
           data: {
             "action":"click->edit-character--item#add",
-            "edit-character--macros-count-param": @character.pathfinder_innate_spells.count,
+            "edit-character--item-count-param": @character.pathfinder_innate_spells.count,
             "edit-character--item-name-param":"innate_spells"
           }
         },
@@ -228,7 +229,8 @@
           {grid: [
             {
               name: :notes,
-              type: :area
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
             }
           ]}
         ]
@@ -260,7 +262,7 @@
           class_div: add_item,
           data: {
             "action":"click->edit-character--item#add",
-            "edit-character--macros-count-param": @character.pathfinder_focus_spells.count,
+            "edit-character--item-count-param": @character.pathfinder_focus_spells.count,
             "edit-character--item-name-param":"focus_spells"
           }
         },
@@ -306,7 +308,8 @@
           {grid: [
             {
               name: :notes,
-              type: :area
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
             }
           ]}
         ]
