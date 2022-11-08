@@ -5,103 +5,83 @@
 )) do %>
   <div id="equipamentsTabContent">
     <%= render(CardTabComponent.new(tab: "items", hidden: false)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Items
-        </div>
-        <div id="body-items" class="w-full space-y-6">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_items.count %>"
-            data-edit-character--item-name-param="items">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_items do |form_items| %>
-          <div id="items-<%= form_items.index %>">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_items,
-                name: :name,
-                rounded: :left
-              ))%>
-              
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_items,
-                name: :quatity,
-                rounded: :none,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_items,
-                name: :volume,
-                rounded: :none,
-                type: :number
-              ))%>
-              <div>
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_items.index %>"
-                data-edit-character--item-name-param="items">
-                  -
-                </div>
-              </div>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_items,
+      <%= render(Form::BoxComponent.new(title: "Items",
+        main_id: "body-items",
+        item_id: "items-",
+        form: @form,
+        fields_for: :pathfinder_items,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--item-count-param": @character.pathfinder_items.count,
+            "edit-character--item-name-param":"items"
+          }
+        },
+        forms: [
+          flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              name: :quatity,
+              type: :number
+            },
+            {
+              name: :volume,
+              type: :number
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"items"
+              },
+              class_div: delete_item,
+            }
+          ],
+          grid: [
+            {
               name: :notes,
-              type: :area
-            ))%>
-            <%= form_items.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]
+        ]
+      ))%>
     <% end %>
 
     <%= render(CardTabComponent.new(tab: "money", hidden: true)) do %>
-      <%= @form.fields_for :pathfinder_money do |form_money| %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Money
-          </div>
-          <div class="w-full">
-            <div class="flex" data-controller="edit-character--money" data-action="change->edit-character--money#updateMoney">
-              <div class="flex-1">
-                <label class="<%= normal_label %>">Total</label>
-                <input id="money-total" type="text" name="total" class="<%= rounded_left %> <%= normal_field %> <%= read_only %>" readonly value="0" >
-              </div>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_money,
-                name: :copper,
-                type: :number,
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_money,
-                name: :silver,
-                type: :number,
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_money,
-                name: :gold,
-                type: :number,
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_money,
-                name: :platinum,
-                type: :number,
-                rounded: :right,
-                class_div: "flex-1"
-              ))%>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <%= render(Form::BoxComponent.new(title: "Money",
+        data: {
+          "controller": "edit-character--money",
+          action: "change->edit-character--money#updateMoney"
+        },
+        form: @form,
+        fields_for: :pathfinder_money,
+        forms: [
+          flex: [
+            {
+              name: :copper,
+              type: :number
+            },
+            {
+              name: :silver,
+              type: :number
+            },
+            {
+              name: :gold,
+              type: :number
+            },
+            {
+              name: :platinum,
+              type: :number
+            }
+          ]
+        ]
+      ))%>
     <% end %>
   </div>
 <% end %>

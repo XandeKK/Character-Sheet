@@ -5,296 +5,142 @@
 )) do %>
   <div id="offensesTabContent">
     <%= render(CardTabComponent.new(tab: "weapon-proficiency", hidden: false)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Weapon Proficiency
-        </div>
-        <div id="body-weapon_proficiencies" class="w-full space-y-6">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_weapon_proficiencies.count %>"
-            data-edit-character--item-name-param="weapon_proficiencies">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_weapon_proficiencies do |form_weapon_proficiencies| %>
-          <div id="weapon_proficiencies-<%= form_weapon_proficiencies.index %>">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_weapon_proficiencies,
-                name: :name,
-                class_div: "flex-1",
-                rounded: :left
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_weapon_proficiencies,
-                name: :proficiency,
-                type: :select,
-                class_div: "flex-1",
-                rounded: :none,
-                array: proficiencies
-              ))%>
-              <div class="flex-1">
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_weapon_proficiencies.index %>"
-                data-edit-character--item-name-param="weapon_proficiencies">
-                  -
-                </div>
-              </div>
-            </div>
-            <%= form_weapon_proficiencies.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+      <%= render(Form::BoxComponent.new(title: "Weapon Proficiency",
+        main_id: "body-weapon_proficiencies",
+        item_id: "weapon_proficiencies-",
+        form: @form,
+        fields_for: :pathfinder_weapon_proficiencies,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--item-count-param": @character.pathfinder_weapon_proficiencies.count,
+            "edit-character--item-name-param":"weapon_proficiencies"
+          }
+        },
+        forms: [
+          flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              name: :proficiency,
+              type: :select,
+              array: proficiencies
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"weapon_proficiencies"
+              },
+              class_div: delete_item,
+            }
+          ]
+        ]
+      ))%>
     <% end %>
 
-    <%= render(CardTabComponent.new(tab: "melee", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Melees
-        </div>
-        <div id="body-melees" class="w-full space-y-10">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_melees.count %>"
-            data-edit-character--item-name-param="melees">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_melees do |form_melees| %>
-          <div id="melees-<%= form_melees.index %>" class="space-y-3">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+    <% ["melee", "ranged"].each_with_index do |name, i| %>
+      <% grid = [
+        {
+          name: :other,
+          type: :text,
+          class_div: "mm:col-span-2 md:col-span-3"
+        },
+        {
+          name: :traits,
+          type: :text,
+          class_div: "mm:col-span-2 md:col-span-3"
+        },
+        {
+          name: :notes,
+          type: :area,
+          class_div: "mm:col-span-2 md:col-span-3"
+        }
+      ]
+      %>
+      <% grid.unshift({name: :special, type: :number}) if i == 1 %>
+      <% name_pluralize = name.pluralize%>
+      <%= render(CardTabComponent.new(tab: name, hidden: true)) do %>
+        <%= render(Form::BoxComponent.new(title: name_pluralize.capitalize,
+          main_id: "body-#{name_pluralize}",
+          item_id: "#{name_pluralize}-",
+          form: @form,
+          fields_for: "pathfinder_#{name_pluralize}".to_sym,
+          add: {
+            class_div: add_item,
+            data: {
+              "action":"click->edit-character--item#add",
+              "edit-character--item-count-param": i == 0 ? @character.pathfinder_melees.count : @character.pathfinder_rangeds.count,
+              "edit-character--item-name-param": name_pluralize
+            }
+          },
+          forms: [
+            {flex: [
+              {
                 name: :name,
-                class_div: "flex-1",
-                rounded: :left
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+                type: :text
+              },
+              {
                 name: :types,
                 type: :select,
-                class_div: "flex-1",
-                rounded: :none,
                 array: types_weapon
-              ))%>
-              <div class="flex-1">
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_melees.index %>"
-                data-edit-character--item-name-param="melees">
-                  -
-                </div>
-              </div>
-            </div>
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+              },
+              {
+                removable: true,
+                data: {
+                  "action":"click->edit-character--item#remove",
+                  "edit-character--item-id-param": true,
+                  "edit-character--item-name-param": name_pluralize
+                },
+                class_div: delete_item,
+              }
+            ]},
+            {flex: [
+              {
                 name: :qty,
-                class_div: "flex-1",
-                rounded: :left,
                 type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+              },
+              {
                 name: :die,
                 type: :select,
-                class_div: "flex-1",
-                rounded: :none,
                 array: dice
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+              },
+              {
                 name: :weapon_specialization,
                 surname: "w. spec.",
-                class_div: "flex-1",
-                rounded: :none,
                 type: :number
-              ))%>
-              
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+              },
+              {
                 name: :proficiency,
                 type: :select,
-                class_div: "flex-1",
-                rounded: :none,
                 array: proficiencies
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
+              },
+              {
                 name: :item,
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
-                name: :multiple_attack_penalty_2,
-                class_div: "flex-1",
-                rounded: :left,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_melees,
-                name: :multiple_attack_penalty_3,
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_melees,
-              name: :other
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_melees,
-              name: :traits
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_melees,
-              name: :notes,
-              type: :area
-            ))%>
-            <%= form_melees.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-
-    <%= render(CardTabComponent.new(tab: "ranged", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Ranged
-        </div>
-        <div id="body-rangeds" class="w-full space-y-10">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_rangeds.count %>"
-            data-edit-character--item-name-param="rangeds">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_rangeds do |form_rangeds| %>
-          <div id="rangeds-<%= form_rangeds.index %>" class="space-y-3">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :name,
-                class_div: "flex-1",
-                rounded: :left
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :types,
-                type: :select,
-                class_div: "flex-1",
-                rounded: :none,
-                array: types_weapon
-              ))%>
-              <div class="flex-1">
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_rangeds.index %>"
-                data-edit-character--item-name-param="rangeds">
-                  -
-                </div>
-              </div>
-            </div>
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :qty,
-                class_div: "flex-1",
-                rounded: :left,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :die,
-                type: :select,
-                class_div: "flex-1",
-                rounded: :none,
-                array: dice
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :weapon_specialization,
-                surname: "w. spec.",
-                class_div: "flex-1",
-                rounded: :none,
-                type: :number
-              ))%>
-              
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :proficiency,
-                type: :select,
-                class_div: "flex-1",
-                rounded: :none,
+                type: :number,
                 array: proficiencies
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
-                name: :item,
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
+              },
+            ]},
+            {flex: [
+              {
                 name: :multiple_attack_penalty_2,
-                class_div: "flex-1",
-                rounded: :left,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_rangeds,
+                type: :number,
+                array: proficiencies
+              },
+              {
                 name: :multiple_attack_penalty_3,
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_rangeds,
-              name: :special,
-              class_div: "w-32"
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_rangeds,
-              name: :other
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_rangeds,
-              name: :traits
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_rangeds,
-              name: :notes,
-              type: :area
-            ))%>
-            <%= form_rangeds.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+                type: :number,
+                array: proficiencies
+              },
+            ]},
+            {grid: grid}
+          ]
+        ))%>
+      <% end %>
     <% end %>
   </div>
 <% end %>

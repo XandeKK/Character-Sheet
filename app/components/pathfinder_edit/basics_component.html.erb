@@ -4,209 +4,167 @@
   tabs: ["character", "ancestry", "senses", "dices", "image"]
 )) do %>
   <div id="basicsTabContent">
-    <%= @form.fields_for :pathfinder_basic do |form_basic| %>
-      <%= render(CardTabComponent.new(tab: "character", hidden: false)) do %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            <%= form_basic.label :name %>
-          </div>
-          <div class="w-full">
-            <%= form_basic.text_field :name, class: "#{normal_field} #{write_only}" %>
-          </div>
-        </div>
-        <!--  -->
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Details
-          </div>
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :class_name
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+    <%= render(CardTabComponent.new(tab: "character", hidden: false)) do %>
+      <%= render(Form::BoxComponent.new(title: "Details",
+        form: @form,
+        fields_for: :pathfinder_basic,
+        forms: [
+          grid: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              name: :class_name,
+              type: :text
+            },
+            {
               name: :key_ability,
               type: :select,
               array: abilities
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :background
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+            },
+            {
+              name: :background,
+              type: :text
+            },
+            {
               name: :alignment,
               type: :select,
               array: alignment
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :deity
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+            },
+            {
+              name: :deity,
+              type: :text
+            },
+            {
               name: :age,
               type: :number
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+            },
+            {
               name: :level,
               type: :number,
               data: {"action":"change->edit-character--event-trigger#updateMaxHp"}
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+            },
+            {
               name: :hero_points,
               type: :number
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :size
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :speed
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+            },
+            {
+              name: :size,
+              type: :text
+            },
+            {
+              name: :speed,
+              type: :text
+            },
+            {
               name: :speed_note,
-              class_div: "mm:col-span-2 md:col-span-2",
-              type: :area
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            },
+            {
               name: :description,
-              class_div: "mm:col-span-2 md:col-span-3",
-              type: :area
-            ))%>
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]
+        ]
+      ))%>
+    <% end %>
 
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: @form,
-              name: :character_category_id,
-              class_div: "mm:col-span-2 md:col-span-3",
-              type: :select,
-              array: [["Player", 1], ["Npc", 2], ["Enemy", 3]]
-            ))%>
-          </div>
-        </div>
-      <% end %>
-
-      <%= render(CardTabComponent.new(tab: "ancestry", hidden: true)) do %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Ancestry
-          </div>
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :ancestry
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
-              name: :heritage
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_basic,
+    <%= render(CardTabComponent.new(tab: "ancestry", hidden: true)) do %>
+      <%= render(Form::BoxComponent.new(title: "Ancestry",
+        form: @form,
+        fields_for: :pathfinder_basic,
+        forms: [
+          grid: [
+            {
+              name: :ancestry,
+              type: :text
+            },
+            {
+              name: :heritage,
+              type: :text
+            },
+            {
               name: :heritage_note,
               type: :area,
               class_div: "mm:col-span-2 md:col-span-3"
-            ))%>
-          </div>
-        </div>
-      <% end %>
+            },
+          ]
+        ]
+      ))%>
     <% end %>
 
     <%= render(CardTabComponent.new(tab: "senses", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Senses
-        </div>
-        <%= @form.fields_for :pathfinder_perception do |form_perception| %>
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_perception,
-              name: :senses
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_perception,
+      <%= render(Form::BoxComponent.new(title: "Senses",
+        form: @form,
+        fields_for: :pathfinder_perception,
+        forms: [
+          grid: [
+            {
+              name: :senses,
+              type: :text
+            },
+            {
               name: :proficiency,
               type: :select,
               array: proficiencies
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_perception,
+            },
+            {
               name: :item,
               type: :number
-            ))%>
-          </div>
-        <% end %>
-      </div>
+            },
+          ]
+        ]
+      ))%>
     <% end %>
 
     <%= render(CardTabComponent.new(tab: "dices", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Macro
-        </div>
-        <div id="body-dices" class="w-full space-y-6">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-controller="edit-character--macros" data-action="click->edit-character--macros#addDice" data-edit-character--macros-count-param="<%= @character.dices.count %>">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :dices do |form_dices| %>
-          <div id="dices-<%= form_dices.index %>" class="text-sm text-gray-900">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_dices,
-                name: :name,
-                rounded: :left,
-                class_div: "flex-1"
-              ))%>
-
-              <div class="flex-1 text-base">
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-controller="edit-character--macros" data-action="click->edit-character--macros#removeDice" data-edit-character--macros-id-param="<%= form_dices.index %>">
-                  -
-                </div>
-              </div>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_dices,
-              name: :notation
-            )) do %>
-              <div class="mt-2 mb-3 text-gray-500 dark:text-gray-400">
-                You can put str, dex, con, int, wis, cha, level.
-                <p>Example: 2d8 + str + 2</p>
-              </div>
-            <% end %>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_dices,
+      <%= render(Form::BoxComponent.new(title: "Macro",
+        main_id: "body-dices",
+        item_id: "dices-",
+        data: {
+          "controller": "edit-character--macros",
+        },
+        form: @form,
+        fields_for: :dices,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--macros#addDice",
+            "edit-character--macros-count-param": @character.dices.count
+          }
+        },
+        forms: [
+          flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--macros#removeDice",
+                "edit-character--macros-id-param": true,
+              },
+              class_div: delete_item,
+            }
+          ],
+          grid: [
+            {
+              name: :notation,
+              type: :text,
+              class_div: "mm:col-span-2 md:col-span-3"
+            },
+            {
               name: :notes,
               type: :area,
-              class_div: "w-full"
-            )) %>
-            <%= form_dices.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]
+        ]
+      ))%>
     <% end %>
 
     <div data-controller="edit-character--cropper">

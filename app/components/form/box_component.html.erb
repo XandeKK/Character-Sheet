@@ -3,23 +3,64 @@
     <%= @title %>
   </div>
 
-  <% @forms.each do |form| %>
-    <% if form.keys[0] == :grid %>
-      <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900">
-        <% form[:grid].each do |item| %> 
-          <%= render(Form::FieldWithLabelComponent.new(
-            form: item[:form],
-            name: item[:name],
-            surname: item[:surname], 
-            read_only: item[:read_only],
-            class_div: item[:class_div],
-            type: item[:type],
-            array: item[:array]
-          ))%>
+  <%= content_tag(:div, id: @main_id, class: "w-full space-y-6", data: @data) do %>
+    <% if @add %>
+      <div class="w-full flex flex-row-reverse">
+        <%= content_tag(:div, "+", class: @add[:class_div], data: @add[:data]) %>
+      </div>
+    <% end %>
+
+    <%= @form.fields_for @fields_for do |f| %>
+      <div id="<%= "#{@item_id}#{f.index}" %>">
+        <% @forms.each do |form| %>
+          <% form.keys.each do |key| %>
+            <% if key == :grid %>
+              <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full text-sm text-gray-900" >
+                <% form[:grid].each do |item| %> 
+                  <%= render(Form::FieldWithLabelComponent.new(
+                    form: f,
+                    name: item[:name],
+                    surname: item[:surname], 
+                    read_only: item[:read_only],
+                    class_div: item[:class_div],
+                    type: item[:type],
+                    array: item[:array],
+                    data: item[:data]
+                  ))%>
+                <% end %>
+              </div>
+            <% else # Flex %> 
+              <div class="flex">
+                <% form[:flex].each_with_index do |item, index| %>
+                  <% if item[:removable] %>
+                    <% modify_id_param(item, f.index)%>
+                    <div class="flex-1 text-base">
+                      <div class="block mb-2 font-medium dark:text-gray-300 text-sm opacity-0">0</div>
+                      <%= content_tag(:div, "-",
+                        class: item[:class_div],
+                        data: item[:data]
+                      ) %>
+                    </div>
+                    <%= f.check_box :_destroy, class: "hidden" %>
+                  <% else %>
+                    <%= render(Form::FieldWithLabelComponent.new(
+                      form: f,
+                      name: item[:name],
+                      surname: item[:surname], 
+                      read_only: item[:read_only],
+                      class_div: "flex-1 " << (item[:class_div] || ""),
+                      type: item[:type],
+                      array: item[:array],
+                      rounded: format_field(index, form[:flex].length - 1),
+                      data: item[:data]
+                    ))%>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end%>
+          <% end %>
         <% end %>
       </div>
-    <% else # Flex %> 
-    
-    <% end%>
+    <% end %>
   <% end %>
 </div>

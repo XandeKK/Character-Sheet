@@ -5,353 +5,198 @@
 )) do %>
   <div id="defensesTabContent" class="text-sm text-gray-900 dark:text-gray-300">
     <%= render(CardTabComponent.new(tab: "hp", hidden: false)) do %>
-      <%= @form.fields_for :pathfinder_defense do |form_defense| %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            HP
-          </div>
-          <div class="w-full space-y-6">
-            <div class="flex" data-controller="edit-character--hp" data-action="change->edit-character--hp#updateMaxHp" data-edit-character--event-trigger-target="hp">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :max_hp,
-                surname: "Max",
-                type: :number,
-                data: {"edit-character--hp-target":"max_hp"},
-                rounded: :left,
-                read_only: true
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :current_hp,
-                surname: "Current",
-                type: :number,
-                data: {"edit-character--hp-target":"current_hp"},
-                rounded: :none,
-                read_only: true
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :ancestry_hp,
-                surname: "Ancestry",
-                type: :number,
-                data: {"edit-character--hp-target":"ancestry_hp"},
-                rounded: :none
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :class_hp,
-                surname: "Class",
-                type: :number,
-                data: {"edit-character--hp-target":"class_hp",
-                  "tooltip-target":"tooltip-animation"},
-                rounded: :none
-              ))%>
-
-              <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                  Only base health is needed, rest will be calculated according to your level and constitution.
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :temp_hp,
-                surname: "Temp",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-            <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :dying,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :wounded,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :resistances_and_immunities,
-                class_div: "mm:col-span-2 md:col-span-3"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :conditions,
-                class_div: "mm:col-span-2 md:col-span-3"
-              ))%>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <%= render(Form::BoxComponent.new(title: "HP",
+        data: {
+          "controller":"edit-character--hp",
+          "edit-character--event-trigger-target":"hp"
+        },
+        form: @form,
+        fields_for: :pathfinder_defense,
+        forms: [
+          flex: [
+            {
+              name: :max_hp,
+              type: :number,
+              surname: "Max",
+              read_only: true,
+              data: {
+                "edit-character--hp-target":"max_hp"
+              },
+            },
+            {
+              name: :current_hp,
+              type: :number,
+              surname: "Current",
+              read_only: true,
+              data: {
+                "edit-character--hp-target":"current_hp"
+              }
+            },
+            {
+              name: :ancestry_hp,
+              type: :number,
+              surname: "Ancestry",
+              data: {
+                "edit-character--hp-target":"ancestry_hp",
+                "action":"change->edit-character--hp#updateMaxHp",
+                "tooltip-target":"tooltip-animation"
+              }
+            },
+            {
+              name: :class_hp,
+              type: :number,
+              surname: "Class",
+              data: {
+                "edit-character--hp-target":"class_hp",
+                "action":"change->edit-character--hp#updateMaxHp"
+              }
+            },
+            {
+              name: :temp_hp,
+              type: :number,
+              surname: "Temp"
+            }
+          ],
+          grid: [
+            {
+              name: :dying,
+              type: :number
+            },
+            {
+              name: :wounded,
+              type: :number
+            },
+            {
+              name: :resistances_and_immunities,
+              type: :text,
+              class_div: "mm:col-span-2 md:col-span-3"
+            },
+            {
+              name: :conditions,
+              type: :text,
+              class_div: "mm:col-span-2 md:col-span-3"
+            },
+          ]
+        ]
+      ))%>
+      <!-- Ancestry -->
+      <div id="tooltip-animation" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+          Only base health is needed, rest will be calculated according to your level and constitution.
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
     <% end %>
 
     <%= render(CardTabComponent.new(tab: "armor-class", hidden: true)) do %>
-      <%= @form.fields_for :pathfinder_defense do |form_defense| %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Armor class
-          </div>
-          <div class="space-y-6">
-            <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :armor_class_item,
-                surname: "Item",
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_defense,
-                name: :max_dex,
-                surname: "Cap",
-                type: :number
-              ))%>
-            </div>
-            <div class="w-full">
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_defense,
-                  name: :unarmored_proficiency,
-                  type: :select,
-                  class_div: "flex-1",
-                  array: proficiencies,
-                  rounded: :left
-                ))%>
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_defense,
-                  name: :light_proficiency,
-                  type: :select,
-                  class_div: "flex-1",
-                  array: proficiencies,
-                  rounded: :none
-                ))%>
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_defense,
-                  name: :medium_proficiency,
-                  type: :select,
-                  class_div: "flex-1",
-                  array: proficiencies,
-                  rounded: :none
-                ))%>
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_defense,
-                  name: :heavy_proficiency,
-                  type: :select,
-                  class_div: "flex-1",
-                  array: proficiencies,
-                  rounded: :right
-                ))%>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <%= render(Form::BoxComponent.new(title: "Armor class",
+        data: {
+          "controller":"edit-character--hp",
+          "edit-character--event-trigger-target":"hp"
+        },
+        form: @form,
+        fields_for: :pathfinder_defense,
+        forms: [
+          grid: [
+            {
+              name: :armor_class_item,
+              type: :number,
+              surname: "Item"
+            },
+            {
+              name: :max_dex,
+              type: :number,
+              surname: "Cap"
+            },
+          ],
+          flex: [
+            {
+              name: :unarmored_proficiency,
+              type: :select,
+              array: proficiencies
+            },
+            {
+              name: :light_proficiency,
+              type: :select,
+              array: proficiencies
+            },
+            {
+              name: :medium_proficiency,
+              type: :select,
+              array: proficiencies
+            },
+            {
+              name: :heavy_proficiency,
+              type: :select,
+              array: proficiencies
+            },
+          ]
+        ]
+      ))%>
     <% end %>
 
     <div data-controller="edit-character--saving-throw" data-edit-character--event-trigger-target="saving_throw">
       <%= render(CardTabComponent.new(tab: "saving-throw", hidden: true)) do %>
-        <%= @form.fields_for :pathfinder_saving_throw do |form_saving_throw| %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Fortitude
-          </div>
-          <div class="w-full">
-            <div class="flex" data-action="change->edit-character--saving-throw#updateFortitude">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :fortitude_total,
-                surname: "Total",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"fortitude_total"},
-                rounded: :left,
-                read_only: true,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :fortitude_proficiency,
-                surname: "Proficiency",
-                type: :select,
-                data: {"edit-character--saving-throw-target":"fortitude_proficiency"},
-                rounded: :none,
-                class_div: "flex-1",
-                array: proficiencies
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :fortitude_item,
-                surname: "Item",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"fortitude_item"},
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :fortitude_misc,
-                surname: "Misc",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"fortitude_misc"},
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :fortitude_penalty,
-                surname: "Penalty",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"fortitude_penalty"},
-                rounded: :right,
-                class_div: "flex-1"
-              ))%>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Reflex
-          </div>
-          <div class="w-full">
-            <div class="flex" data-action="change->edit-character--saving-throw#updateReflex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :reflex_total,
-                surname: "Total",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"reflex_total"},
-                rounded: :left,
-                read_only: true,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :reflex_proficiency,
-                surname: "Proficiency",
-                type: :select,
-                data: {"edit-character--saving-throw-target":"reflex_proficiency"},
-                rounded: :none,
-                class_div: "flex-1",
-                array: proficiencies
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :reflex_item,
-                surname: "Item",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"reflex_item"},
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :reflex_misc,
-                surname: "Misc",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"reflex_misc"},
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :reflex_penalty,
-                surname: "Penalty",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"reflex_penalty"},
-                rounded: :right,
-                class_div: "flex-1"
-              ))%>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Will
-          </div>
-          <div class="w-full">
-            <div class="flex" data-action="change->edit-character--saving-throw#updateWill">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :will_total,
-                surname: "Total",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"will_total"},
-                rounded: :left,
-                read_only: true,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :will_proficiency,
-                surname: "Proficiency",
-                type: :select,
-                data: {"edit-character--saving-throw-target":"will_proficiency"},
-                rounded: :none,
-                class_div: "flex-1",
-                array: proficiencies
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :will_item,
-                surname: "Item",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"will_item"},
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :will_misc,
-                surname: "Misc",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"will_misc"},
-                rounded: :none,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_saving_throw,
-                name: :will_penalty,
-                surname: "Penalty",
-                type: :number,
-                data: {"edit-character--saving-throw-target":"will_penalty"},
-                rounded: :right,
-                class_div: "flex-1"
-              ))%>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Notes
-          </div>
-          <%= render(Form::FieldWithLabelComponent.new(
-            form: form_saving_throw,
-            name: :saving_throw_notes,
-            type: :area,
-            class_div: "w-full"
+        <% ["Fortitude", "Reflex", "Will"].each do |name| %>
+          <% name_downcase = name.downcase %>
+          <%= render(Form::BoxComponent.new(title: name,
+            data: {
+              "action":"change->edit-character--saving-throw#update#{name}"
+            },
+            form: @form,
+            fields_for: :pathfinder_saving_throw,
+            forms: [
+              flex: [
+                {
+                  name: "#{name_downcase}_total".to_sym,
+                  type: :number,
+                  surname: "Total",
+                  read_only: true,
+                  data: {"edit-character--saving-throw-target":"#{name_downcase}_total"},
+                },
+                {
+                  name: "#{name_downcase}_proficiency".to_sym,
+                  type: :select,
+                  surname: "Proficiency",
+                  data: {"edit-character--saving-throw-target":"#{name_downcase}_proficiency"},
+                  array: proficiencies
+                },
+                {
+                  name: "#{name_downcase}_item".to_sym,
+                  type: :number,
+                  surname: "Item",
+                  data: {"edit-character--saving-throw-target":"#{name_downcase}_item"}
+                },
+                {
+                  name: "#{name_downcase}_misc".to_sym,
+                  type: :number,
+                  surname: "Misc",
+                  data: {"edit-character--saving-throw-target":"#{name_downcase}_misc"}
+                },
+                {
+                  name: "#{name_downcase}_penalty".to_sym,
+                  type: :number,
+                  surname: "Penalty",
+                  data: {"edit-character--saving-throw-target":"#{name_downcase}_penalty"}
+                },
+                
+              ]
+            ]
           ))%>
-        </div>
         <% end %>
+
+
+        <%= render(Form::BoxComponent.new(title: "Notes",
+          form: @form,
+          fields_for: :pathfinder_saving_throw,
+          forms: [
+            grid: [
+              {
+                name: :saving_throw_notes,
+                type: :area,
+                class_div: "mm:col-span-2 md:col-span-3"
+              },                
+            ]
+          ]
+        ))%>
       <% end %>
     </div>
   </div>
