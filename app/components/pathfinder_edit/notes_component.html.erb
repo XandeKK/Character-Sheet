@@ -8,9 +8,6 @@
       <%= render(Form::BoxComponent.new(title: "Notes",
         main_id: "body-notes",
         item_id: "notes-",
-        data: {
-          "controller": "edit-character--macros",
-        },
         form: @form,
         fields_for: :pathfinder_notes,
         add: {

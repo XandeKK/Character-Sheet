@@ -6,129 +6,189 @@
   <div id="statisticsTabContent">
     <div data-controller="edit-character--abilities">
       <%= render(CardTabComponent.new(tab: "abilities", hidden: false)) do %>
-        <%= @form.fields_for :pathfinder_ability do |form_ability| %>
-          <%= render(Form::Character::AbilityComponent.new(form: form_ability, name: "str", full_name: "Strength")) %>
-          <%= render(Form::Character::AbilityComponent.new(form: form_ability, name: "dex", full_name: "Dexterity", action: "change->edit-character--event-trigger#updateReflex")) %>
-          <%= render(Form::Character::AbilityComponent.new(form: form_ability, name: "con", full_name: "Constitution", action: "change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude")) %>
-          <%= render(Form::Character::AbilityComponent.new(form: form_ability, name: "int", full_name: "Intelligence")) %>
-          <%= render(Form::Character::AbilityComponent.new(form: form_ability, name: "wis", full_name: "Wisdom", action: "change->edit-character--event-trigger#updateWill")) %>
-          <%= render(Form::Character::AbilityComponent.new(form: form_ability, name: "cha", full_name: "Charisma")) %>        
+        <% [
+          {name: "strength"},
+          {
+            name: "dexterity",
+            action: "change->edit-character--event-trigger#updateReflex"
+          },
+          {
+            name: "constitution",
+            action: "change->edit-character--event-trigger#updateMaxHp change->edit-character--event-trigger#updateFortitude"
+          },
+          {name: "intelligence"},
+          {
+            name: "wisdom",
+            action: "change->edit-character--event-trigger#updateWill"
+          },
+          {name: "charisma"},
+        ].each do |ability| %>
+          <% shortened_name = ability[:name][0..2] %>
+          <%= render(Form::BoxComponent.new(title: ability[:name].capitalize,
+            form: @form,
+            fields_for: :pathfinder_ability,
+            data: {
+              action: "change->edit-character--abilities#updateTotal #{ability[:action] || ""}",
+              "edit-character--abilities-ability-param": shortened_name
+            },
+            forms: [
+              flex: [
+                {
+                  name: "#{shortened_name}_total".to_sym,
+                  surname: "Total",
+                  type: :number,
+                  read_only: true,
+                  data: {
+                    "edit-character--abilities-target":"#{shortened_name}_total"
+                  }
+                },
+                {
+                  name: "#{shortened_name}_background".to_sym,
+                  surname: "Background",
+                  type: :number,
+                  data: {
+                    "edit-character--abilities-target":"#{shortened_name}_background"
+                  }
+                },
+                {
+                  name: "#{shortened_name}_class".to_sym,
+                  surname: "Class",
+                  type: :number,
+                  data: {
+                    "edit-character--abilities-target":"#{shortened_name}_class"
+                  }
+                },
+                {
+                  name: "#{shortened_name}_ascentry".to_sym,
+                  surname: "Ancestry",
+                  type: :number,
+                  data: {
+                    "edit-character--abilities-target":"#{shortened_name}_ascentry"
+                  }
+                },
+                {
+                  name: "#{shortened_name}_free".to_sym,
+                  surname: "Class",
+                  type: :number,
+                  data: {
+                    "edit-character--abilities-target":"#{shortened_name}_free"
+                  }
+                },
+              ]
+            ]
+          ))%>
         <% end %>
       <% end %>
     </div>
     
     <%= render(CardTabComponent.new(tab: "feats", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Feats
-        </div>
-        <div id="body-feats" class="w-full space-y-6">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_feats.count %>" data-edit-character--item-name-param="feats">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_feats do |form_feats| %>
-          <div id="feats-<%= form_feats.index %>">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_feats,
-                name: :name,
-                rounded: :left,
-                class_div: "flex-1"
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_feats,
-                name: :types,
-                rounded: :none,
-                class_div: "flex-1",
-                type: :select,
-                array: types_feats
-              ))%>
-
-              <div class="flex-1">
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_feats.index %>" data-edit-character--item-name-param="feats">
-                  -
-                </div>
-              </div>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_feats,
+      <%= render(Form::BoxComponent.new(title: "Feats",
+        main_id: "body-feats",
+        item_id: "feats-",
+        data: {
+          "controller": "edit-character--macros",
+        },
+        form: @form,
+        fields_for: :pathfinder_feats,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--macros-count-param": @character.pathfinder_feats.count,
+            "edit-character--item-name-param":"feats"
+          }
+        },
+        forms: [
+          {flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              name: :types,
+              type: :select,
+              array: types_feats
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"feats"
+              },
+              class_div: delete_item,
+            }
+          ]},
+          {grid: [
+            {
               name: :notes,
-              type: :area
-            ))%>
-            <%= form_feats.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]}
+        ]
+      ))%>
     <% end %>
     
     <%= render(CardTabComponent.new(tab: "languages", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Languages
-        </div>
-        <div id="body-languages" class="w-full space-y-6">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_languages.count %>"
-            data-edit-character--item-name-param="languages">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_languages do |form_languages| %>
-          <div id="languages-<%= form_languages.index %>">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_languages,
-                name: :name,
-                rounded: :left
-              ))%>
-
-              <div>
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_languages.index %>"
-                data-edit-character--item-name-param="languages">
-                  -
-                </div>
-              </div>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_languages,
+      <%= render(Form::BoxComponent.new(title: "Languages",
+        main_id: "body-languages",
+        item_id: "languages-",
+        form: @form,
+        fields_for: :pathfinder_languages,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--macros-count-param": @character.pathfinder_languages.count,
+            "edit-character--item-name-param":"languages"
+          }
+        },
+        forms: [
+          {flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"languages"
+              },
+              class_div: delete_item,
+            }
+          ]},
+          {grid: [
+            {
               name: :notes,
-              type: :area
-            ))%>
-            <%= form_languages.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]}
+        ]
+      ))%>
     <% end %>
     
     <%= render(CardTabComponent.new(tab: "class-dc", hidden: true)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Class DC
-        </div>
-        <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-          <%= @form.fields_for :pathfinder_class_dc do |form_class_dc| %>
-          <%= render(Form::FieldWithLabelComponent.new(
-            form: form_class_dc,
-            name: :item,
-            type: :number
-          ))%>
-
-          <%= render(Form::FieldWithLabelComponent.new(
-            form: form_class_dc,
-            name: :proficiency,
-            type: :select,
-            array: proficiencies
-          ))%>
-          <% end %>
-        </div>
-      </div>
+      <%= render(Form::BoxComponent.new(title: "Class DC",
+        form: @form,
+        fields_for: :pathfinder_class_dc,
+        forms: [
+          grid: [
+            {
+              name: :item,
+              type: :number
+            },
+            {
+              name: :proficiency,
+              type: :select,
+              array: proficiencies
+            }
+          ]
+        ]
+      ))%>
     <% end %>
   </div>
 <% end %>

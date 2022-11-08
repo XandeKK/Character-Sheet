@@ -5,79 +5,64 @@
 )) do %>
   <div id="skillsTabContent">
     <%= render(CardTabComponent.new(tab: "skills", hidden: false)) do %>
-      <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-        <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-          Skills
-        </div>
-        <div id="body-skills" class="w-full space-y-6">
-          <div class="w-full flex flex-row-reverse">
-            <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_skills.count %>"
-            data-edit-character--item-name-param="skills">
-              +
-            </div>
-          </div>
-          <%= @form.fields_for :pathfinder_skills do |form_skills| %>
-          <div id="skills-<%= form_skills.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_skills,
-                name: :name,
-                class_div: "flex-1",
-                rounded: :left
-              ))%>
-              <div class="flex-1">
-                <div class="<%= normal_label %> opacity-0">0</div>
-                <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_skills.index %>"
-                data-edit-character--item-name-param="skills">
-                  -
-                </div>
-              </div>
-            </div>
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_skills,
-                name: :key_ability,
-                class_div: "flex-1",
-                rounded: :left,
-                type: :select,
-                array: abilities
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_skills,
-                name: :proficiency,
-                class_div: "flex-1",
-                rounded: :none,
-                type: :select,
-                array: proficiencies
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_skills,
-                name: :item,
-                class_div: "flex-1",
-                rounded: :none,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_skills,
-                name: :armor,
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_skills,
+      <%= render(Form::BoxComponent.new(title: "Skills",
+        main_id: "body-skills",
+        item_id: "skills-",
+        form: @form,
+        fields_for: :pathfinder_skills,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--macros-count-param": @character.pathfinder_skills.count,
+            "edit-character--item-name-param":"skills"
+          }
+        },
+        forms: [
+          {flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"skills"
+              },
+              class_div: delete_item,
+            }
+          ]},
+          {flex: [
+            {
+              name: :key_ability,
+              type: :select,
+              array: abilities
+            },
+            {
+              name: :proficiency,
+              type: :select,
+              array: proficiencies
+            },
+            {
+              name: :item,
+              type: :number
+            },
+            {
+              name: :armor,
+              type: :number
+            }
+          ]},
+          {grid: [
+            {
               name: :note,
-              type: :area
-            ))%>
-            <%= form_skills.check_box :_destroy, class: "hidden" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]}
+        ]
+      ))%>
     <% end %>
   </div>
 <% end %>

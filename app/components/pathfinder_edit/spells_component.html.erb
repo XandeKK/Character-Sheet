@@ -4,390 +4,321 @@
   tabs: ["spell-caster", "spell", "innate-spells", "focus-spells"]
 )) do %>
   <div id="spellsTabContent">
-    <%= @form.fields_for :pathfinder_spell_caster do |form_spell_caster| %>
-      <%= render(CardTabComponent.new(tab: "spell-caster", hidden: false)) do %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Spell Caster
-          </div>
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_spell_caster,
+    <%= render(CardTabComponent.new(tab: "spell-caster", hidden: false)) do %>
+      <%= render(Form::BoxComponent.new(title: "Spell Caster",
+        form: @form,
+        fields_for: :pathfinder_spell_caster,
+        forms: [
+          grid: [
+            {
               name: :magic_tradition,
               type: :select,
               array: magic_tradition
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_spell_caster,
+            },
+            {
               name: :spellcasting_type,
               type: :select,
               array: spellcasting_type
-            ))%>
-          </div>
-        </div>
-        <!--  -->
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Attack
-          </div>
-          <div class="w-full">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
-                name: :attack_proficiency,
-                surname: "Proficiency",
-                class_div: "flex-1",
-                rounded: :left,
-                type: :select,
-                array: proficiencies
-              ))%>
+            },
+          ]
+        ]
+      ))%>
 
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
-                name: :attack_bonus,
-                surname: "Bonus",
-                class_div: "flex-1",
-                rounded: :none,
-                type: :number
-              ))%>
+      <%= render(Form::BoxComponent.new(title: "Attack",
+        form: @form,
+        fields_for: :pathfinder_spell_caster,
+        forms: [
+          flex: [
+            {
+              name: :attack_proficiency,
+              surname: "Proficiency",
+              type: :select,
+              array: proficiencies
+            },
+            {
+              name: :attack_bonus,
+              surname: "Bonus",
+              type: :number
+            },
+            {
+              name: :attack_penalty,
+              surname: "Penalty",
+              type: :number
+            },
+          ]
+        ]
+      ))%>
 
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
-                name: :attack_penalty,
-                surname: "Penalty",
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-          </div>
-        </div>
-        <!--  -->
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            CD
-          </div>
-          <div class="w-full">
-            <div class="flex">
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
-                name: :cd_proficiency,
-                surname: "Proficiency",
-                class_div: "flex-1",
-                rounded: :left,
-                type: :select,
-                array: proficiencies
-              ))%>
+      <%= render(Form::BoxComponent.new(title: "CD",
+        form: @form,
+        fields_for: :pathfinder_spell_caster,
+        forms: [
+          flex: [
+            {
+              name: :cd_proficiency,
+              surname: "Proficiency",
+              type: :select,
+              array: proficiencies
+            },
+            {
+              name: :cd_bonus,
+              surname: "Bonus",
+              type: :number
+            },
+            {
+              name: :cd_penalty,
+              surname: "Penalty",
+              type: :number
+            },
+          ]
+        ]
+      ))%>
 
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
-                name: :cd_bonus,
-                surname: "Bonus",
-                class_div: "flex-1",
-                rounded: :none,
-                type: :number
-              ))%>
-
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
-                name: :cd_penalty,
-                surname: "Penalty",
-                class_div: "flex-1",
-                rounded: :right,
-                type: :number
-              ))%>
-            </div>
-          </div>
-        </div>
-        <!--  -->
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Level
-          </div>
-          <div class="grid mm:grid-cols-3 md:grid-cols-5 gap-4 w-full">
-            <% 11.times do |n| %>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spell_caster,
+      <%= render(Form::BoxComponent.new(title: "Level",
+        form: @form,
+        fields_for: :pathfinder_spell_caster,
+        forms: [
+          grid: 
+            (0..10).map do |n|
+              {
                 name: "level_#{n}".to_sym,
                 type: :number
-              ))%>
-            <% end %>
-          </div>
-        </div>
-        <!--  -->
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Notes
-          </div>
-          <%= render(Form::FieldWithLabelComponent.new(
-            form: form_spell_caster,
-            name: :notes,
-            type: :area,
-            class_div: "w-full"
-          ))%>
-        </div>
-      <% end %>
+              }
+            end
+        ]
+      ))%>
 
-      <%= render(CardTabComponent.new(tab: "spell", hidden: true)) do %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Spells
-          </div>
-          <div id="body-spells" class="w-full space-y-6">
-            <div class="w-full flex flex-row-reverse">
-              <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_spells.count %>"
-              data-edit-character--item-name-param="spells">
-                +
-              </div>
-            </div>
-            <%= @form.fields_for :pathfinder_spells do |form_spells| %>
-            <div id="spells-<%= form_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_spells,
-                  name: :name,
-                  class_div: "flex-1",
-                  rounded: :left
-                ))%>
-                <div class="flex-1">
-                  <div class="<%= normal_label %> opacity-0">0</div>
-                  <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_spells.index %>"
-                  data-edit-character--item-name-param="spells">
-                    -
-                  </div>
-                </div>
-              </div>
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_spells,
-                  name: :level,
-                  class_div: "flex-1",
-                  rounded: :left,
-                  type: :number
-                ))%>
+      <%= render(Form::BoxComponent.new(title: "Notes",
+        form: @form,
+        fields_for: :pathfinder_spell_caster,
+        forms: [
+          grid: [
+            {
+              name: :notes,
+              type: :area,
+              class_div: "mm:col-span-2 md:col-span-3"
+            }
+          ]
+        ]
+      ))%>
+    <% end %>
 
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_spells,
-                  name: :prepared,
-                  class_div: "flex-1",
-                  rounded: :none,
-                  type: :number
-                ))%>
+    <%= render(CardTabComponent.new(tab: "spell", hidden: true)) do %>
+      <%= render(Form::BoxComponent.new(title: "Spells",
+        main_id: "body-spells",
+        item_id: "spells-",
+        form: @form,
+        fields_for: :pathfinder_spells,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--macros-count-param": @character.pathfinder_spells.count,
+            "edit-character--item-name-param":"spells"
+          }
+        },
+        forms: [
+          {flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"spells"
+              },
+              class_div: delete_item,
+            }
+          ]},
+          {flex: [
+            {
+              name: :level,
+              type: :number
+            },
+            {
+              name: :prepared,
+              type: :number
+            },
+            {
+              name: :action,
+              type: :select,
+              array: actions,
+              class_div: "font-pathfinder"
+            },
+            {
+              name: :spell_component,
+              type: :select,
+              array: spell_component
+            }
+          ]},
+          {flex: [
+            {
+              name: :duration,
+              type: :text
+            },
+            {
+              name: :range,
+              type: :number
+            },
+          ]},
+          {grid: [
+            {
+              name: :notes,
+              type: :area
+            }
+          ]}
+        ]
+      ))%>
+    <% end %>
 
-                <div class="flex-1">
-                  <%= form_spells.label :action, class: normal_label %>
-                  <%= form_spells.select :action, actions, {}, class: "font-pathfinder #{rounded_none} #{normal_field} #{normal_select}" %>
-                </div>
+    <%= render(CardTabComponent.new(tab: "innate-spells", hidden: true)) do %>
+      <%= render(Form::BoxComponent.new(title: "Innate Spells",
+        main_id: "body-innate_spells",
+        item_id: "innate_spells-",
+        form: @form,
+        fields_for: :pathfinder_innate_spells,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--macros-count-param": @character.pathfinder_innate_spells.count,
+            "edit-character--item-name-param":"innate_spells"
+          }
+        },
+        forms: [
+          {flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"innate_spells"
+              },
+              class_div: delete_item,
+            }
+          ]},
+          {flex: [
+            {
+              name: :frequency,
+              type: :number
+            },
+            {
+              name: :action,
+              type: :select,
+              array: actions,
+              class_div: "font-pathfinder"
+            },
+            {
+              name: :spell_component,
+              type: :select,
+              array: spell_component
+            }
+          ]},
+          {flex: [
+            {
+              name: :duration,
+              type: :text
+            },
+            {
+              name: :range,
+              type: :number
+            },
+          ]},
+          {grid: [
+            {
+              name: :notes,
+              type: :area
+            }
+          ]}
+        ]
+      ))%>
+    <% end %>
 
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_spells,
-                  name: :spell_component,
-                  class_div: "flex-1",
-                  rounded: :right,
-                  type: :select,
-                  array: spell_component
-                ))%>
-              </div>
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_spells,
-                  name: :duration,
-                  class_div: "flex-1",
-                  rounded: :left
-                ))%>
-
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_spells,
-                  name: :range,
-                  class_div: "flex-1",
-                  rounded: :right,
-                  type: :number 
-                ))%>
-              </div>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_spells,
-                name: :notes,
-                type: :area
-              ))%>
-              <%= form_spells.check_box :_destroy, class: "hidden" %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-
-      <%= render(CardTabComponent.new(tab: "innate-spells", hidden: true)) do %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Innate Spells
-          </div>
-          <div id="body-innate_spells" class="w-full space-y-6">
-            <div class="w-full flex flex-row-reverse">
-              <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_innate_spells.count %>"
-              data-edit-character--item-name-param="innate_spells">
-                +
-              </div>
-            </div>
-            <%= @form.fields_for :pathfinder_innate_spells do |form_innate_spells| %>
-            <div id="innate_spells-<%= form_innate_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_innate_spells,
-                  name: :name,
-                  rounded: :left
-                ))%>
-                <div class="flex-1">
-                  <div class="<%= normal_label %> opacity-0">0</div>
-                  <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_innate_spells.index %>"
-                  data-edit-character--item-name-param="innate_spells">
-                    -
-                  </div>
-                </div>
-              </div>
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_innate_spells,
-                  name: :frequency,
-                  rounded: :left,
-                  type: :number,
-                  class_div: "flex-1"
-                ))%>
-                
-                <div class="flex-1">
-                  <%= form_innate_spells.label :action, class: normal_label %>
-                  <%= form_innate_spells.select :action, actions, {}, class: "font-pathfinder #{rounded_none} #{normal_field} #{normal_select}" %>
-                </div>
-
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_innate_spells,
-                  name: :spell_component,
-                  rounded: :right,
-                  type: :select,
-                  class_div: "flex-1",
-                  array: spell_component
-                ))%>
-              </div>
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_innate_spells,
-                  name: :duration,
-                  rounded: :left,
-                  class_div: "flex-1"
-                ))%>
-
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_innate_spells,
-                  name: :range,
-                  rounded: :right,
-                  class_div: "flex-1",
-                  type: :number
-                ))%>
-              </div>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_innate_spells,
-                name: :notes,
-                type: :area
-              ))%>
-              <%= form_innate_spells.check_box :_destroy, class: "hidden" %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-
-      <%= render(CardTabComponent.new(tab: "focus-spells", hidden: true)) do %>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Focus Spell
-          </div>
-          <div class="grid mm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_spell_caster,
+    <%= render(CardTabComponent.new(tab: "focus-spells", hidden: true)) do %>
+      <%= render(Form::BoxComponent.new(title: "Focus Spell",
+        form: @form,
+        fields_for: :pathfinder_spell_caster,
+        forms: [
+          grid: [
+            {
               name: :max_focus_points,
-              type: :number,
-              class_div: "flex-1"
-            ))%>
-
-            <%= render(Form::FieldWithLabelComponent.new(
-              form: form_spell_caster,
+              type: :number
+            },
+            {
               name: :current_focus_points,
-              type: :number,
-              class_div: "flex-1"
-            ))%>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row mm:p-6 mm:space-x-3">
-          <div class="flex-none font-bold text-lg text-black w-40 dark:text-white">
-            Spells
-          </div>
-          <div id="body-focus_spells" class="w-full space-y-6">
-            <div class="w-full flex flex-row-reverse">
-              <div class="<%= add_item %>" data-action="click->edit-character--item#add" data-edit-character--item-count-param="<%= @character.pathfinder_focus_spells.count %>" data-edit-character--item-name-param="focus_spells">
-                +
-              </div>
-            </div>
-            <%= @form.fields_for :pathfinder_focus_spells do |form_focus_spells| %>
-            <div id="focus_spells-<%= form_focus_spells.index %>" class="space-y-3 pb-3 border-b border-gray-300 dark:border-gray-500">
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_focus_spells,
-                  name: :name,
-                  rounded: :left,
-                  class_div: "flex-1"
-                ))%>
+              type: :number
+            },
+          ]
+        ]
+      ))%>
 
-                <div class="flex-1">
-                  <div class="<%= normal_label %> opacity-0">0</div>
-                  <div class="<%= delete_item %>" data-action="click->edit-character--item#remove" data-edit-character--item-id-param="<%= form_focus_spells.index %>"
-                    data-edit-character--item-name-param="focus_spells">
-                    -
-                  </div>
-                </div>
-              </div>
-              <div class="flex">
-                <div class="flex-1">
-                  <%= form_focus_spells.label :action, class: normal_label %>
-                  <%= form_focus_spells.select :action, actions, {}, class: "font-pathfinder #{rounded_left} #{normal_field} #{normal_select}" %>
-                </div>
-
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_focus_spells,
-                  name: :spell_component,
-                  rounded: :right,
-                  class_div: "flex-1",
-                  type: :select,
-                  array: spell_component
-                ))%>
-
-              </div>
-              <div class="flex">
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_focus_spells,
-                  name: :duration,
-                  rounded: :left,
-                  class_div: "flex-1"
-                ))%>
-
-                <%= render(Form::FieldWithLabelComponent.new(
-                  form: form_focus_spells,
-                  name: :range,
-                  rounded: :right,
-                  class_div: "flex-1",
-                  type: :number
-                ))%>
-              </div>
-              <%= render(Form::FieldWithLabelComponent.new(
-                form: form_focus_spells,
-                name: :notes,
-                type: :area
-              ))%>
-              <%= form_focus_spells.check_box :_destroy, class: "hidden" %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <%= render(Form::BoxComponent.new(title: "Spells",
+        main_id: "body-focus_spells",
+        item_id: "focus_spells-",
+        form: @form,
+        fields_for: :pathfinder_focus_spells,
+        add: {
+          class_div: add_item,
+          data: {
+            "action":"click->edit-character--item#add",
+            "edit-character--macros-count-param": @character.pathfinder_focus_spells.count,
+            "edit-character--item-name-param":"focus_spells"
+          }
+        },
+        forms: [
+          {flex: [
+            {
+              name: :name,
+              type: :text
+            },
+            {
+              removable: true,
+              data: {
+                "action":"click->edit-character--item#remove",
+                "edit-character--item-id-param": true,
+                "edit-character--item-name-param":"focus_spells"
+              },
+              class_div: delete_item,
+            }
+          ]},
+          {flex: [
+            {
+              name: :action,
+              type: :select,
+              array: actions,
+              class_div: "font-pathfinder"
+            },
+            {
+              name: :spell_component,
+              type: :select,
+              array: spell_component
+            }
+          ]},
+          {flex: [
+            {
+              name: :duration,
+              type: :text
+            },
+            {
+              name: :range,
+              type: :number
+            },
+          ]},
+          {grid: [
+            {
+              name: :notes,
+              type: :area
+            }
+          ]}
+        ]
+      ))%>
     <% end %>
   </div>
 <% end %>
