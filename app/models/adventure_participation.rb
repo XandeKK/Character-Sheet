@@ -23,4 +23,22 @@ class AdventureParticipation < ApplicationRecord
   has_many :pathfinder_innate_spells, through: :character
   has_many :pathfinder_notes, through: :character
   has_many :dices, through: :character
+
+  scope :includes_all, -> { includes(
+        :character_category,
+        :character,
+        :character_image_blob,
+        :pathfinder_basic,
+        :pathfinder_ability,
+        :pathfinder_saving_throw,
+        :pathfinder_defense,
+        :pathfinder_perception,
+        :pathfinder_class_dc,
+        :pathfinder_melees,
+        :pathfinder_languages,
+        :pathfinder_rangeds,
+        :pathfinder_skills,
+        :pathfinder_notes,
+        :dices
+      ) }
 end

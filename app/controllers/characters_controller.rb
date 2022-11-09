@@ -7,11 +7,7 @@ class CharactersController < ApplicationController
   end
 
   def index
-    @characters = current_user.characters
-      .select("characters.id, pathfinder_basics.name")
-      .joins(:character_category, :pathfinder_basic)
-      .where("character_category.name": params[:category].capitalize)
-      .includes(character_image_attachment: :blob)
+    @characters = current_user.characters.select_of(params[:category].capitalize)
   end
 
   def show
@@ -61,16 +57,7 @@ class CharactersController < ApplicationController
 
   def update_hp
     characters = params[:characters]
-    characters.each do |character|
-      character_id = character[0]
-      current_hp = character[1][:current_hp]
-      temp_hp = character[1][:temp_hp]
-
-      character_defense = Pathfinder::Defense.find_by(character_id: character_id)
-      character_defense.update(
-        current_hp: current_hp, temp_hp: temp_hp
-      )
-    end
+    PathfinderCharacter::update_hp(characters)
     head :ok
   end
 

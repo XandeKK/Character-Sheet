@@ -7,24 +7,7 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @adventure_participations = @adventure.adventure_participations
-      .includes(
-        :character_category,
-        :character,
-        :character_image_blob,
-        :pathfinder_basic,
-        :pathfinder_ability,
-        :pathfinder_saving_throw,
-        :pathfinder_defense,
-        :pathfinder_perception,
-        :pathfinder_class_dc,
-        :pathfinder_melees,
-        :pathfinder_languages,
-        :pathfinder_rangeds,
-        :pathfinder_skills,
-        :pathfinder_notes,
-        :dices
-      )
+    @adventure_participations = @adventure.adventure_participations.includes_all
 
     @npc_and_enemy = current_user.characters
       .select("characters.id, pathfinder_basics.name, character_category.name as character_category_name")
