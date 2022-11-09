@@ -22,12 +22,11 @@ export default class extends Controller {
   }
 
   toggleDrawerRight(event) {
-    console.log("FOPDA", event)
-    let note = ""
+    let note = `Note:\n${event.params.note}`
 
     if (event.params.volume) {
       let body = `Volume: ${event.params.volume} Quatity: ${event.params.quatity}\n\n`
-      note = body + event.params.note
+      note = `${body}Note:\n${event.params.note}`
     }
 
     this.dice_divTarget.classList.add("hidden")
