@@ -7,13 +7,6 @@ import Cropper from 'cropperjs';
 // Add class Cropper to in variable global
 window.Cropper = Cropper;
 
-// Change Theme
-if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark');
-} else {
-  document.documentElement.classList.remove('dark')
-}
-
 // Add scroll spy
 window.addEventListener("turbo:load", function() {
   const mainMenu = document.getElementById('main-menu');
