@@ -24,7 +24,7 @@ module PathfinderCharacter
     end
   end
 
-  def update_hp(characters)
+  def self.update_hp(characters)
     characters.each do |character|
       character_id = character[0]
       current_hp = character[1][:current_hp]
