@@ -84,16 +84,13 @@
       <%= render(Form::BoxComponent.new(title: "Feats",
         main_id: "body-feats",
         item_id: "feats-",
-        data: {
-          "controller": "edit-character--macros",
-        },
         form: @form,
         fields_for: :pathfinder_feats,
         add: {
           class_div: add_item,
           data: {
             "action":"click->edit-character--item#add",
-            "edit-character--macros-count-param": @character.pathfinder_feats.count,
+            "edit-character--item-count-param": @character.pathfinder_feats.count,
             "edit-character--item-name-param":"feats"
           }
         },
@@ -138,7 +135,7 @@
           class_div: add_item,
           data: {
             "action":"click->edit-character--item#add",
-            "edit-character--macros-count-param": @character.pathfinder_languages.count,
+            "edit-character--item-count-param": @character.pathfinder_languages.count,
             "edit-character--item-name-param":"languages"
           }
         },
