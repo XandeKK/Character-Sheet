@@ -62,12 +62,7 @@ module ShowCharactersHelper
 
     attack = str + item + proficiency + level
 
-    if attack > 0
-      return "+#{attack}"
-    elsif attack < 0
-      return "-#{attack.abs}"
-    end
-    nil
+    format_number(attack)
   end
 
   def get_second_attack_melee(character, weapon)
@@ -79,12 +74,7 @@ module ShowCharactersHelper
 
     attack = str + item + proficiency + penalty + level
 
-    if attack > 0
-      return "+#{attack}" 
-    elsif attack < 0
-      return "-#{attack.abs}"
-    end
-    nil
+    format_number(attack)
   end
 
   def get_third_attack_melee(character, weapon)
@@ -95,12 +85,8 @@ module ShowCharactersHelper
     penalty = weapon.multiple_attack_penalty_3 || -10
 
     attack = str + item + proficiency + penalty + level
-    if attack > 0
-      return "+#{attack}" 
-    elsif attack < 0
-      return "-#{attack.abs}"
-    end
-    nil
+
+    format_number(attack)
   end
 
   def bonus_damage_melee(character, weapon)
@@ -109,11 +95,7 @@ module ShowCharactersHelper
 
     bonus = str + weapon_specialization
 
-    if bonus > 0
-      "+#{bonus}" 
-    else
-      "-#{bonus.abs}"
-    end
+    format_number(bonus)
   end
 
   def get_attack_ranged(character, weapon)
@@ -122,7 +104,9 @@ module ShowCharactersHelper
     proficiency = weapon.proficiency || 0
     level = get_score_level(character, proficiency)
 
-    dex + item + proficiency + level
+    attack = dex + item + proficiency + level
+
+    format_number(attack)
   end
 
   def get_second_attack_ranged(character, weapon)
@@ -132,7 +116,9 @@ module ShowCharactersHelper
     level = get_score_level(character, proficiency)
     penalty = weapon.multiple_attack_penalty_2 || -5
 
-    dex + item + proficiency + penalty + level
+    attack = dex + item + proficiency + penalty + level
+
+    format_number(attack)
   end
 
   def get_third_attack_ranged(character, weapon)
@@ -142,7 +128,9 @@ module ShowCharactersHelper
     level = get_score_level(character, proficiency)
     penalty = weapon.multiple_attack_penalty_3 || -10
 
-    dex + item + proficiency + penalty + level
+    attack = dex + item + proficiency + penalty + level
+
+    format_number(attack)
   end
 
   def bonus_damage_ranged weapon
@@ -151,11 +139,7 @@ module ShowCharactersHelper
 
     bonus = special + weapon_specialization
 
-    if bonus > 0
-      "+#{bonus}" 
-    else
-      "-#{bonus.abs}"
-    end
+    format_number(bonus)
   end
 
   def score_skill(character, skill)
@@ -206,5 +190,16 @@ module ShowCharactersHelper
     macro.gsub! "level", level.to_s
 
     macro
+  end
+
+  private
+  def format_number number
+    if number > 0
+      "+#{number.abs}"
+    elsif number < 0
+      "-#{number.abs}"
+    else
+      number
+    end
   end
 end
