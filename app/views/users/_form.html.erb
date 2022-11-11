@@ -1,4 +1,4 @@
-<% [:name, :email, :password].each do |name| %>
+<% [:name, :email].each do |name| %>
   <div class="relative z-0 mb-6 w-full group">
     <%= form.text_field name, class: peer_field(user, name), placeholder: " " %>
     <%= form.label name, class: peer_label(user, name) %>
@@ -7,3 +7,11 @@
     <% end %>
   </div>
 <% end %>
+
+<div class="relative z-0 mb-6 w-full group">
+  <%= form.password_field :password, class: peer_field(user, :password), placeholder: " " %>
+  <%= form.label :password, class: peer_label(user, :password) %>
+  <% user.errors.messages[:password].each do |message| %>
+    <p class="mt-2 text-red-600 dark:text-red-500"><%= "Password #{message}" %></p>
+  <% end %>
+</div>
