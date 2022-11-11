@@ -3,7 +3,7 @@
   <head>
     <title>CharacterSheet</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= javascript_include_tag "loading" %>
+    <%= javascript_include_tag "theme" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
   </head>
   <body class="bg-gray-100 dark:bg-black text-black dark:text-white" data-controller="drawer">
-    <%= render partial: "shared/loading" %>
 
     <% unless ["sessions", "users", "passwords", "tv"].include?(controller_name) %>
       <header class="z-20 h-15 sticky top-0">
