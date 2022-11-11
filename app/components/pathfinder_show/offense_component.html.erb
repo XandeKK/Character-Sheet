@@ -31,7 +31,11 @@
           </div>
           <div class="flex flex-wrap gap-6">
             <div class="flex space-x-4">
-              <%= render(PopoverComponent.new(name: "attack-melee-#{melee.id}", content_popover: "Str: #{get_modifier(@character, "str")} | Item: #{melee.item || 0} | Proficiency: #{melee.proficiency || 0}")) do%>
+              <%= render(PopoverComponent.new(name: "attack-melee-#{melee.id}", content_popover: 
+              "Str: #{get_modifier(@character, "str")}
+              Item: #{melee.item || 0}
+              Proficiency: #{melee.proficiency || 0}
+              Level modifier: #{get_score_level(@character, melee.proficiency || 0)}")) do%>
                 <h3 class="italic text-rose-700 dark:text-rose-500">
                   Attack
                 </h3>
@@ -42,7 +46,9 @@
               <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
             </div>
             <div class="flex space-x-4">
-              <%= render(PopoverComponent.new(name: "attack-damage-melee-#{melee.id}", content_popover: "Str: #{get_modifier(@character, "str")} | Weapon specialization: #{melee.weapon_specialization || 0} ")) do%>
+              <%= render(PopoverComponent.new(name: "attack-damage-melee-#{melee.id}", content_popover: 
+              "Str: #{get_modifier(@character, "str")}
+              Weapon specialization: #{melee.weapon_specialization || 0}")) do%>
                 <h3 class="italic text-rose-700 dark:text-rose-500">
                   Damage
                 </h3>
@@ -98,7 +104,11 @@
           </div>
           <div class="flex flex-wrap gap-6">
             <div class="flex space-x-4">
-              <%= render(PopoverComponent.new(name: "attack-ranged-#{ranged.id}", content_popover: "Dex: #{get_modifier(@character, "str")} | Item: #{ranged.item || 0} | Proficiency: #{ranged.proficiency || 0}")) do%>
+              <%= render(PopoverComponent.new(name: "attack-ranged-#{ranged.id}", content_popover: 
+              "Dex: #{get_modifier(@character, "dex")}
+              Item: #{ranged.item || 0}
+              Proficiency: #{ranged.proficiency || 0}
+              Level modifier: #{get_score_level(@character, ranged.proficiency || 0)}")) do %>
                 <h3 class="italic text-rose-700 dark:text-rose-500">
                   Attack
                 </h3>
@@ -109,7 +119,9 @@
               <p class="w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
             </div>
             <div class="flex space-x-4">
-              <%= render(PopoverComponent.new(name: "attack-damage-ranged-#{ranged.id}", content_popover: "Special: #{ranged.special || 0} | Weapon specialization: #{ranged.weapon_specialization || 0} ")) do%>
+              <%= render(PopoverComponent.new(name: "attack-damage-ranged-#{ranged.id}", content_popover: 
+              "Special: #{ranged.special || 0}
+              Weapon specialization: #{ranged.weapon_specialization || 0}")) do%>
                 <h3 class="italic text-rose-700 dark:text-rose-500">
                   Damage
                 </h3>
