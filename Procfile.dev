@@ -1,2 +1,2 @@
-web: bin/rails server -p 3000 -b 10.0.0.22
+web: bin/rails server -p 3000
 css: bin/rails tailwindcss:watch
