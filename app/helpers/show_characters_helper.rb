@@ -1,10 +1,6 @@
 module ShowCharactersHelper
   def get_score_level(character, proficiency)
-    if proficiency > 0
-      character.pathfinder_basic.level.to_i
-    else
-      0
-    end
+    proficiency > 0 ? character.pathfinder_basic.level.to_i : 0
   end
 
   def get_perception character
@@ -36,8 +32,6 @@ module ShowCharactersHelper
   def key_ability?(character, ability)
     if character.pathfinder_basic.key_ability == ability
       "bg-rose-300/50 dark:bg-rose-700/30"
-    else
-      ""
     end
   end
 

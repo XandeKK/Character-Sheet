@@ -9,7 +9,11 @@
           <p>
             <%= skill.name %>
           </p>
-          <%= render(PopoverComponent.new(name: "skill-#{skill.id}", content_popover: "#{skill.key_ability}: #{get_modifier(@character, skill.key_ability)} | Item: #{skill.item || 0} | Proficiency: #{skill.proficiency || 0}")) do%>
+          <%= render(PopoverComponent.new(name: "skill-#{skill.id}", content_popover: 
+            "#{skill.key_ability}: #{get_modifier(@character, skill.key_ability)} 
+            Item: #{skill.item || 0} \nProficiency: #{skill.proficiency || 0} 
+          Level modifier: #{get_score_level(@character, skill.proficiency || 0)} 
+          Armor: -#{(skill.armor || 0).abs}")) do %>
             <%= score_skill(@character, skill) %>
           <% end %>
         </div>
