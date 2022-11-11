@@ -25,7 +25,7 @@ class CharactersController < ApplicationController
     )
 
     if @character
-      redirect_to character_path(category: params[:category], id: @character),
+      redirect_to edit_character_path(category: params[:category], id: @character),
         notice: "#{params[:category].capitalize} created successfully!"
     else
       @character_systems = CharacterSystem.all

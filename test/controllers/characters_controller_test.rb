@@ -52,7 +52,6 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
-    assert_select "h1", "Nameless"
     assert_equal "#{@category} created successfully!", flash[:notice]
   end
 
