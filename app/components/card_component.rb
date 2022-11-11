@@ -7,6 +7,8 @@ class CardComponent < ViewComponent::Base
     @tabs = tabs
   end
 
+  private
+
   def change_title
     change_name @title
   end
