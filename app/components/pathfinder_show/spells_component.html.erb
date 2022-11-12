@@ -18,7 +18,11 @@
           <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
         <div class="flex mb-3 gap-6">
-          <%= render(PopoverComponent.new(name: "attack-spell-caster", content_popover: "#{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)} | Proficiency: #{@character.pathfinder_spell_caster.attack_proficiency || 0} | Bonus: #{@character.pathfinder_spell_caster.attack_bonus || 0} | Penalty: #{@character.pathfinder_spell_caster.attack_penalty || 0}")) do%>
+          <%= render(PopoverComponent.new(name: "attack-spell-caster", content_popover: "
+          #{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)}
+          Proficiency: #{@character.pathfinder_spell_caster.attack_proficiency || 0}
+          Bonus: #{@character.pathfinder_spell_caster.attack_bonus || 0}
+          Penalty: #{@character.pathfinder_spell_caster.attack_penalty || 0}")) do %>
             <h3 class="italic text-rose-700 dark:text-rose-500">
               Attack
             </h3>
@@ -29,7 +33,12 @@
           <p class="h-max-2 w-0.5 bg-gray-500 opacity-50 rotate-12"></p>
         </div>
         <div class="flex mb-3 gap-6">
-          <%= render(PopoverComponent.new(name: "cd-spell-caster", content_popover: "Base: 10 | #{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)} | Proficiency: #{@character.pathfinder_spell_caster.cd_proficiency || 0} | Bonus: #{@character.pathfinder_spell_caster.cd_bonus || 0} | Penalty: #{@character.pathfinder_spell_caster.cd_penalty || 0}")) do%>
+          <%= render(PopoverComponent.new(name: "cd-spell-caster", content_popover: 
+            "Base: 10
+            #{@character.pathfinder_basic.key_ability}: #{get_modifier(@character, @character.pathfinder_basic.key_ability)}
+            Proficiency: #{@character.pathfinder_spell_caster.cd_proficiency || 0}
+            Bonus: #{@character.pathfinder_spell_caster.cd_bonus || 0}
+            Penalty: #{@character.pathfinder_spell_caster.cd_penalty || 0}")) do %>
             <h3 class="italic text-rose-700 dark:text-rose-500">
               DC
             </h3>
