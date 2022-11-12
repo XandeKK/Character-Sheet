@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import consumer from "./consumer"
+import { createConsumer } from "@rails/actioncable"
+const consumer = createConsumer();
 
 export default class extends Controller {
   static targets = [
