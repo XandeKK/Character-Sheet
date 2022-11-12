@@ -554,7 +554,7 @@ loadWorld_fn = async function() {
     __privateGet(this, _diceWorldResolve).call(this);
   };
   if ("OffscreenCanvas" in window && "transferControlToOffscreen" in this.canvas && this.config.offscreen) {
-    const WorldOffscreen = await import("./world.offscreen.js").then((module) => module.default);
+    const WorldOffscreen = await import("<%= javascript_path('world.offscreen.js') %>").then((module) => module.default);
     __privateSet(this, _DiceWorld, new WorldOffscreen({
       canvas: this.canvas,
       options: this.config,
@@ -565,7 +565,7 @@ loadWorld_fn = async function() {
       console.warn("This browser does not support OffscreenCanvas. Using standard canvas fallback.");
       this.config.offscreen = false;
     }
-    const WorldOnscreen = await import("./world.onscreen.js").then((module) => module.default);
+    const WorldOnscreen = await import("<%= javascript_path('world.onscreen.js') %>").then((module) => module.default);
     __privateSet(this, _DiceWorld, new WorldOnscreen({
       canvas: this.canvas,
       options: this.config,
