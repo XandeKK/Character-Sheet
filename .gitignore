@@ -32,3 +32,5 @@
 /config/local_env.yml
 
 /app/assets/builds/tailwind.css
+# Ignore application configuration
+/config/application.yml
