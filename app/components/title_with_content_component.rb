@@ -7,8 +7,8 @@ class TitleWithContentComponent < ViewComponent::Base
     @bar = bar
   end
 
+  private
   def have_bar?
     @bar
   end
-
 end
