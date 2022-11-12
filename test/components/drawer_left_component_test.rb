@@ -3,10 +3,18 @@
 require "test_helper"
 
 class DrawerLeftComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(DrawerLeftComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test "should create a drawer left component" do
+    render_inline(DrawerLeftComponent.new)
+
+    assert_text "Menu"
+    assert_text "Home"
+    assert_text "Characters"
+    assert_text "Players"
+    assert_text "Npcs"
+    assert_text "Enemies"
+    assert_text "Adventures"
+    assert_text "Log-out"
+    assert_text "Night mode"
+    assert_text "Day mode"
   end
 end

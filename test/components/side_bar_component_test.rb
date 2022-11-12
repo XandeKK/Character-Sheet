@@ -3,10 +3,21 @@
 require "test_helper"
 
 class SideBarComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(SideBarComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test "should create a side bar component" do
+    render_inline(SideBarComponent.new)
+
+    [
+      "basics",
+      "statistics",
+      "equipament",
+      "defense",
+      "offense",
+      "skills",
+      "spells",
+      "notes"
+    ].each do |name|
+      assert_css("svg[href-spy='##{name}']")
+      assert_css("a[href='##{name}']")
+    end
   end
 end

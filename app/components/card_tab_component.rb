@@ -6,6 +6,8 @@ class CardTabComponent < ViewComponent::Base
     @hidden = hidden
   end
 
+  private
+
   def hidden?
     @hidden
   end

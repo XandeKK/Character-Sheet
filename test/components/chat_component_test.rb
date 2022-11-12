@@ -3,10 +3,11 @@
 require "test_helper"
 
 class ChatComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(ChatComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test "should create chat component" do
+    render_inline(ChatComponent.new)
+
+    assert_text "I want to receive message from tv."
+    assert_text "@"
+    assert_text "Send message"
   end
 end
