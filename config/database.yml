@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: CharacterSheet_production
   username: CharacterSheet
   password: <%= ENV["CHARACTERSHEET_DATABASE_PASSWORD"] %>
