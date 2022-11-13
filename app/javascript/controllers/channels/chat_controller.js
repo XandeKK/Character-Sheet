@@ -35,6 +35,7 @@ export default class extends Controller {
   }
 
   startServerAdventure() {
+    if (this.channel) return;
     this.channel = consumer.subscriptions.create(
       {channel: "ChatChannel", server_name: this.serverNameTarget.textContent},
       {
