@@ -36,6 +36,7 @@ export default class extends Controller {
   }
 
   startServer() {
+    if (this.channel) return;
     this.channel = consumer.subscriptions.create(
       {channel: "CharacterChannel", server_name: this.serverNameTarget.value,
       password: this.passwordTarget.value},
@@ -75,6 +76,7 @@ export default class extends Controller {
   }
 
   _cableRejected() {;
+    this.channel = null;
     this.warningTarget.innerHTML = '<div class="text-red-500 dark:text-red-400 font-bold">Bad server name or password</div>';
   }
 

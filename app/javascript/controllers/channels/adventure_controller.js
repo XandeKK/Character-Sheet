@@ -19,11 +19,13 @@ export default class extends Controller {
   }
 
   startServer() {
+    if (this.channel) return;
     this.channel = consumer.subscriptions.create(
       {channel: "AdventureChannel", server_name: this.serverNameTarget.textContent},
       {
         connected: this._cableConnected.bind(this),
         received: this._cableReceived.bind(this),
+        rejected: this._cableRejected.bind(this),
     })
   }
 
@@ -39,6 +41,10 @@ export default class extends Controller {
 
   _cableReceived(data) {
     this.act[data["act"]](data);
+  }
+
+  _cableRejected() {;
+    this.channel = null;
   }
 
   terminateServer() {

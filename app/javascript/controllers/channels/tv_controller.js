@@ -14,6 +14,7 @@ export default class extends Controller {
   }
 
   startServer() {
+    if (this.channel) return;
     this.channel = consumer.subscriptions.create(
       {channel: "TvChannel", server_name: this.serverNameTarget.value,
       password: this.passwordTarget.value},
@@ -45,7 +46,7 @@ export default class extends Controller {
   }
 
   _cableRejected() {
-    console.log("rejected")
+    this.channel = null;
   }
 
   sendDice(data) {
