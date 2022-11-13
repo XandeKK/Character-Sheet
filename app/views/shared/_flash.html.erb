@@ -1,4 +1,4 @@
-<% flash[:demo] = "Note: this is a demo, all information saved here will be deleted the next day." if Rails.env.development? %>
+<% flash[:demo] = "Note: this is a demo, all information saved here will be deleted the next day." if Rails.env.production? %>
 <% flash.each_with_index do |hash, index| %>
   <% color = hash[0] == "alert" ? "red": "blue" %>
   <div id="<%= hash[0] %>-border" class="z-30 fixed right-9 flex p-4 mb-4 bg-<%= color %>-100 border-t-4 border-<%= color %>-500 dark:bg-<%= color %>-200" role="alert" style="top: <%= index * 60 + 10 %>px;" data-controller="flash">
