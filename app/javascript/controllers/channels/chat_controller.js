@@ -170,7 +170,7 @@ export default class extends Controller {
         </div>
         <div class="relative ${ isPlayer ? "mr-3" : "ml-3" } text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
           <div>
-            <span class="font-bold">${data.name} ${isPrivate ? "say private" : "say for all"}:</span>
+            <span class="font-bold">${data.name} ${isPrivate ? "whispered" : "told everyone"}:</span>
             <p class="ml-2 whitespace-pre-line">${data.message}</p>
           </div>
         </div>

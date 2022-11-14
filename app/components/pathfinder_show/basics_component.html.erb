@@ -62,7 +62,9 @@
       <!--  -->
       <div class="px-6 pb-6">
         <%= render(TitleWithContentComponent.new(title: "Description", _class: "italic")) do%>
-          <%= @character.pathfinder_basic.description %>
+          <p class="whitespace-pre-line">
+            <%= @character.pathfinder_basic.description %>
+          </p>
         <% end %>
       </div>
     <% end %>
