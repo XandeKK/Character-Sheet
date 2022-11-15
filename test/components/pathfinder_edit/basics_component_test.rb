@@ -7,7 +7,7 @@ class PathfinderEdit::BasicsComponentTest < ViewComponent::TestCase
   include ActionView::Helpers::FormOptionsHelper
   include ActionView::Context
 
-  test "should create a PathfinderEdit::BasicsComponentTest" do
+  test "should create a PathfinderEdit::BasicsComponent" do
     character = characters(:one)
     pathfinder_basic = character.pathfinder_basic
     pathfinder_perception = character.pathfinder_perception
@@ -44,7 +44,7 @@ class PathfinderEdit::BasicsComponentTest < ViewComponent::TestCase
     assert_selector "#character_pathfinder_perception_attributes_item[value='#{pathfinder_perception.item}']"
   end
 
-  test "should't create a PathfinderEdit::BasicsComponentTest without character" do
+  test "should't create a PathfinderEdit::BasicsComponent without character" do
     character = characters(:one)
 
     form_with model: character,
@@ -62,7 +62,7 @@ class PathfinderEdit::BasicsComponentTest < ViewComponent::TestCase
 
   end
 
-  test "should't create a PathfinderEdit::BasicsComponentTest without form" do
+  test "should't create a PathfinderEdit::BasicsComponent without form" do
     character = characters(:one)
 
     exception = assert_raise ArgumentError do
