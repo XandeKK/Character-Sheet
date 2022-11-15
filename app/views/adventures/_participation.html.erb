@@ -15,17 +15,17 @@
     <div class="px-6 py-3 flex flex-wrap gap-6">
       <%= render(TitleWithContentComponent.new(title: "HP", _class: "italic", bar: true)) do%>
         <span class="text-2xl">
-          <span id="<%= dom_id(participation, :current_hp) %>">
+          <span id="current_hp_character_<%= participation.character_id %>">
             <%= participation.pathfinder_defense.current_hp || 0 %>
           </span>
           /
-          <span id="<%= dom_id(participation, :max_hp) %>">
+          <span id="max_hp_character_<%= participation.character_id %>">
             <%= participation.pathfinder_defense.max_hp || 0 %>
           </span>
         </span>
       <% end %>
       <%= render(TitleWithContentComponent.new(title: "Temp HP", _class: "italic", bar: true)) do%>
-        <span id="<%= dom_id(participation, :temp_hp)%>" class="text-2xl pl-3">
+        <span id="temp_hp_character_<%= participation.character_id %>" class="text-2xl pl-3">
           <%= participation.pathfinder_defense.temp_hp || 0 %>
         </span>
       <% end %>
