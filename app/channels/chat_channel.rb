@@ -11,7 +11,23 @@ class ChatChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def receive data
+  def message data
+    ActionCable.server.broadcast("chat_#{params[:server_name]}", data)
+  end
+
+  def private_message data
+    ActionCable.server.broadcast("chat_#{params[:server_name]}", data)
+  end
+  
+  def put_me_on_chat data
+    ActionCable.server.broadcast("chat_#{params[:server_name]}", data)
+  end
+  
+  def character_exit data
+    ActionCable.server.broadcast("chat_#{params[:server_name]}", data)
+  end
+  
+  def want_characters data
     ActionCable.server.broadcast("chat_#{params[:server_name]}", data)
   end
 end

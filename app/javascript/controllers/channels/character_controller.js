@@ -33,6 +33,11 @@ export default class extends Controller {
       temp_hp: temp_hp,
       image: image,
     };
+
+    this.actions = {
+      "want_players": this.sendPlayerToAdventure.bind(this),
+      "character_exit": this.terminateServer.bind(this)
+    }
   }
 
   startServer() {
@@ -48,7 +53,9 @@ export default class extends Controller {
     })
   }
 
-  terminateServer() {
+  terminateServer(data) {
+    if (data["id"] != this.character.id) return;
+
     this.dispatch("terminate");
     this.channel.unsubscribe();
     this.channel = null;
@@ -68,11 +75,7 @@ export default class extends Controller {
   }
 
   _cableReceived(data) {
-    if (data["act"] == "wantPlayers") {
-      this.sendPlayerToAdventure();
-    } else if (data["act"] == "characterExit" && data["id"] == this.character.id){
-      this.terminateServer();
-    }
+    this.actions[data["action"]](data);
   }
 
   _cableRejected() {;
@@ -82,9 +85,8 @@ export default class extends Controller {
 
   sendPlayerToAdventure() {
     let dataToSend = Object.assign({}, this.character)
-    dataToSend.act = "putMeOnAdventure";
 
-    this.channel.send(dataToSend);
+    this.channel.perform("put_me_on_adventure", dataToSend);
   }
 
   sendCharacterExit() {
@@ -95,9 +97,8 @@ export default class extends Controller {
     if (this.channel == null) return;
 
     let id = this.character.id;
-    let dataToSend = {act: "characterExit", id: id};
 
-    this.channel.send(dataToSend);
+    this.channel.perform("character_exit", {id: id});
   }
 
   sendUptadedHp() {
@@ -105,13 +106,12 @@ export default class extends Controller {
 
     let id = this.character.id;
     let dataToSend = Object.assign({}, this.character)
-    dataToSend.act = "updateHp";
 
     delete dataToSend.name;
     delete dataToSend.image;
     delete dataToSend.max_hp;
 
-    this.channel.send(dataToSend); 
+    this.channel.perform("update_hp", dataToSend); 
   }
 
   sendDice(dice) {
@@ -122,7 +122,6 @@ export default class extends Controller {
     let id = this.character.id;
     let dataToSend = Object.assign({}, this.character)
 
-    dataToSend.act = "rollDice";
     dataToSend.color = color;
     dataToSend.theme = theme;
     dataToSend.dice = dice;
@@ -131,7 +130,7 @@ export default class extends Controller {
     delete dataToSend.current_hp;
     delete dataToSend.temp_hp;
 
-    this.channel.send(dataToSend);
+    this.channel.perform("roll", dataToSend);
   }
 
   diceNormal(event) {

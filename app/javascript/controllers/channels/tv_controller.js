@@ -8,8 +8,8 @@ export default class extends Controller {
   ]
 
   connect() {
-    this.act = {
-      "rollDice": this.sendDice.bind(this),
+    this.actions = {
+      "roll": this.sendDice.bind(this),
     }
   }
 
@@ -42,7 +42,7 @@ export default class extends Controller {
   }
 
   _cableReceived(data) {
-    this.act[data["act"]](data);
+    this.actions[data["action"]](data);
   }
 
   _cableRejected() {
@@ -54,7 +54,7 @@ export default class extends Controller {
   }
 
   sendToCharacters({ detail: { data }}) {
-    this.channel.send(data)
+    this.channel.perform("message_tv", data)
   }
 }
 

@@ -11,7 +11,7 @@ class TvChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def receive data
+  def message_tv data
     ActionCable.server.broadcast("chat_#{params[:server_name]}", data)
   end
 end

@@ -219,7 +219,6 @@ export default class extends Controller {
   }
 
   sendToCharacters(data) {
-    data.act = "messageTv";
     this.dispatch("sendToCharacters", { detail: { data: data } });
   }
 }

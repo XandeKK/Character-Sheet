@@ -11,15 +11,16 @@ export default class extends Controller {
   connect() {
     this.weapon = null;
     this.characters_ids = {};
-    this.act = {
-      "putMeOnAdventure": this.putOnAdventure.bind(this),
-      "characterExit": this.removeCharacter.bind(this),
-      "updateHp": this.updateHp.bind(this),
+    this.actions = {
+      "put_me_on_adventure": this.putOnAdventure.bind(this),
+      "character_exit": this.removeCharacter.bind(this),
+      "update_hp": this.updateHp.bind(this),
     }
   }
 
   startServer() {
     if (this.channel) return;
+
     this.channel = consumer.subscriptions.create(
       {channel: "AdventureChannel", server_name: this.serverNameTarget.textContent},
       {
@@ -33,14 +34,15 @@ export default class extends Controller {
     this.dispatch("start")
     this.startButtonTarget.classList.add("hidden");
     this.terminateButtonTarget.classList.remove("hidden");
-    this.channel.send({ act: "wantPlayers" });
+    
+    this.channel.perform("want_players");
 
     document.addEventListener("turbo:load", this.terminateServer.bind(this));
     window.addEventListener("beforeunload", this.terminateServer.bind(this));
   }
 
   _cableReceived(data) {
-    this.act[data["act"]](data);
+    this.actions[data["action"]](data);
   }
 
   _cableRejected() {;
@@ -51,12 +53,14 @@ export default class extends Controller {
     this.dispatch("terminate");
     this.channel.unsubscribe();
     this.channel = null;
+
     this.terminateButtonTarget.classList.add("hidden");
     this.startButtonTarget.classList.remove("hidden");
   }
 
   putOnAdventure(data) {
     let id = data.id;
+
     if (this.characters_ids[id]) {
       return;
     } else {
@@ -120,8 +124,8 @@ export default class extends Controller {
   }
 
   removeCharacter(data) {
-    console.log(data);
     let id = data.id;
+
     if (this.characters_ids[id] === undefined) {
       return;
     } else {
@@ -138,12 +142,11 @@ export default class extends Controller {
     let id = this.characters.id;
     let dataToSend = Object.assign({}, this.characters)
 
-    dataToSend.act = "rollDice";
     dataToSend.color = color;
     dataToSend.theme = theme;
     dataToSend.dice = dice;
 
-    this.channel.send(dataToSend);
+    this.channel.perform("roll", dataToSend);
   }
 
   diceNormal(event) {
@@ -185,6 +188,7 @@ export default class extends Controller {
       name: event.params.name,
       image: event.params.image,
     };
+
     this.weapon = {
       attack: event.params.attack,
       secondAttack: event.params.secondAttack,
@@ -197,6 +201,7 @@ export default class extends Controller {
 
   updateHp(data) {
     let id = data.id;
+    
     document.getElementById(`current_hp-${id}`).textContent = data.current_hp;
     document.getElementById(`temp_hp-${id}`).textContent = data.temp_hp;
   }

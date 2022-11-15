@@ -19,6 +19,15 @@ export default class extends Controller {
       name: this.name,
       image: this.image
     }
+
+    this.actions = {
+      "message": this.addMessage.bind(this),
+      "private_message": this.addPrivateMessage.bind(this),
+      "message_tv": this.addMessageTv.bind(this),
+      "put_me_on_chat": this.putCharacterOnChat.bind(this),
+      "character_exit": this.removeCharacterOnChat.bind(this),
+      "want_characters": this.sendCharacter.bind(this)
+    }
   }
 
   startServer() {
@@ -51,9 +60,7 @@ export default class extends Controller {
     this.boxCharactersTarget.innerHTML = "";
     this.characters = {};
 
-    let dataToSend = {act: "characterExit", id: this.id};
-
-    this.channel.send(dataToSend);
+    this.channel.perform("character_exit", {id: this.id});
 
     this.channel.unsubscribe();
     this.channel = null;
@@ -61,26 +68,14 @@ export default class extends Controller {
 
   _cableConnected() {
     this.sendCharacterToOtherPlayers();
-    this.channel.send({ act: "wantCharacters", id: this.id });
+    this.channel.perform("want_characters", {id: this.id });
   }
 
   _cableDisconnected() {
   }
 
   _cableReceived(data) {
-    if(data.act == "message") {
-      this.addMessage(data);
-    }  else if (data.act == "privateMessage") {
-      this.addPrivateMessage(data);
-    } else if(data.act == "putMeOnChat") {
-      this.putCharacterOnChat(data);
-    } else if(data.act == "characterExit") {
-      this.removeCharacterOnChat(data);
-    } else if (data.act == "wantCharacters") {
-      this.sendCharacter(data);
-    } else if (data.act == "messageTv") {
-      this.addMessageTv(data);
-    }
+    this.actions[data["action"]](data);
   }
 
   _cableRejected() {;
@@ -89,9 +84,8 @@ export default class extends Controller {
 
   sendCharacterToOtherPlayers() {
     let dataToSend = Object.assign({}, this.character);
-    dataToSend.act = "putMeOnChat";
 
-    this.channel.send(dataToSend);
+    this.channel.perform("put_me_on_chat", dataToSend);
   }
 
   sendCharacter(data) {
@@ -125,14 +119,12 @@ export default class extends Controller {
   }
 
   sendMessageToAll(dataToSend) {
-    dataToSend.act = "message";
-    this.channel.send(dataToSend);
+    this.channel.perform("message", dataToSend);
   }
 
   sendPrivateMessage(dataToSend) {
     dataToSend.message = dataToSend.message.replace(/^@[0-9a-zA-Z_\ \-]*: ?/g, "");
-    dataToSend.act = "privateMessage";
-    this.channel.send(dataToSend);
+    this.channel.perform("private_message", dataToSend);
   }
 
   addMessageTv(data) {
@@ -197,6 +189,7 @@ export default class extends Controller {
   addPlayerInBodyMessage(event) {
     let name = event.target.dataset["channels-ChatNameParam"];
     if (name == undefined) return;
+    
     this.messageBodyTarget.value = `@${name}: `;
     this.messageBodyTarget.click();
     this.messageBodyTarget.focus();
