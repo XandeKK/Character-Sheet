@@ -9,6 +9,7 @@ class AdventureChannel < ApplicationCable::Channel
 
   def want_players data
     ActionCable.server.broadcast("character_#{params[:server_name]}", data)
+    data
   end
 
   def roll data

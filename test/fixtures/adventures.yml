@@ -3,11 +3,11 @@
 one:
   name: Skyfall
   server_name: <%= SecureRandom.hex(4) %>
-  password_digest: password
+  password_digest: <%= BCrypt::Password.create('password') %>
   user: one
 
 two:
   name: PopWorld
   server_name: <%= SecureRandom.hex(4) %>
-  password_digest: password
+  password_digest: <%= BCrypt::Password.create('password') %>
   user: two
