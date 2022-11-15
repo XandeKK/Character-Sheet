@@ -162,7 +162,7 @@ export default class extends Controller {
         </div>
         <div class="relative ${ isPlayer ? "mr-3" : "ml-3" } text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
           <div>
-            <span class="font-bold">${data.name} ${isPrivate ? "whispered" : "told everyone"}:</span>
+            <span class="font-bold">${data.name} ${isPrivate ? `told ${data.to}` : "told everyone"}:</span>
             <p class="ml-2 whitespace-pre-line">${data.message}</p>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default class extends Controller {
   addPlayerInBodyMessage(event) {
     let name = event.target.dataset["channels-ChatNameParam"];
     if (name == undefined) return;
-    
+
     this.messageBodyTarget.value = `@${name}: `;
     this.messageBodyTarget.click();
     this.messageBodyTarget.focus();
